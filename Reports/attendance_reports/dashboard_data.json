@@ -1,0 +1,1304 @@
+{
+  "timestamp": "2025-10-08 15:20:52",
+  "overall_stats": {
+    "total_students": 132,
+    "total_classes": 2,
+    "overall_avg_attendance": 33.89651515151515,
+    "overall_eligible_50_plus": 26
+  },
+  "attendance_distribution": {
+    "90-100%": 0,
+    "80-90%": 2,
+    "70-80%": 6,
+    "60-70%": 9,
+    "50-60%": 9,
+    "45-50%": 11,
+    "40-45%": 12,
+    "35-40%": 8,
+    "0-35%": 75
+  },
+  "class_comparison": [
+    {
+      "class_name": "5 AI",
+      "total_students": 65,
+      "avg_attendance": 35.21,
+      "eligible_50_plus": 15,
+      "threshold_45_50": 7,
+      "threshold_40_45": 7,
+      "threshold_35_40": 5,
+      "below_35": 31
+    },
+    {
+      "class_name": "5 DS",
+      "total_students": 67,
+      "avg_attendance": 32.63,
+      "eligible_50_plus": 11,
+      "threshold_45_50": 4,
+      "threshold_40_45": 5,
+      "threshold_35_40": 3,
+      "below_35": 44
+    }
+  ],
+  "subject_aggregate": {
+    "SEPM": {
+      "total_students": 132,
+      "total_eligible": "28",
+      "avg_attendance": 30.55,
+      "eligibility_rate": 21.21
+    },
+    "DAA": {
+      "total_students": 132,
+      "total_eligible": "39",
+      "avg_attendance": 34.48,
+      "eligibility_rate": 29.55
+    },
+    "CN": {
+      "total_students": 132,
+      "total_eligible": "25",
+      "avg_attendance": 31.54,
+      "eligibility_rate": 18.94
+    },
+    "DVA": {
+      "total_students": 65,
+      "total_eligible": "19",
+      "avg_attendance": 31.59,
+      "eligibility_rate": 29.23
+    },
+    "CD": {
+      "total_students": 132,
+      "total_eligible": "47",
+      "avg_attendance": 36.49,
+      "eligibility_rate": 35.61
+    },
+    "WD_LAB": {
+      "total_students": 132,
+      "total_eligible": "10",
+      "avg_attendance": 19.61,
+      "eligibility_rate": 7.58
+    },
+    "MP_LAB": {
+      "total_students": 132,
+      "total_eligible": "1",
+      "avg_attendance": 18.32,
+      "eligibility_rate": 0.76
+    },
+    "DA_LAB": {
+      "total_students": 132,
+      "total_eligible": "13",
+      "avg_attendance": 24.51,
+      "eligibility_rate": 9.85
+    },
+    "CN_LAB": {
+      "total_students": 132,
+      "total_eligible": "8",
+      "avg_attendance": 23.54,
+      "eligibility_rate": 6.06
+    }
+  },
+  "student_details": [
+    {
+      "class": "5 AI",
+      "urn": 300111323002,
+      "enroll": "CD8839",
+      "name": "AAYUSHMAN SAHU",
+      "attendance_pct": 16.78,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323003,
+      "enroll": "CD8835",
+      "name": "ADITYA KUMAR MESHRAM",
+      "attendance_pct": 6.99,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323004,
+      "enroll": "CD8815",
+      "name": "AMAN TIRKEY",
+      "attendance_pct": 6.29,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323005,
+      "enroll": "CD8827",
+      "name": "AMITESH RATHORE",
+      "attendance_pct": 44.76,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323006,
+      "enroll": "CD8850",
+      "name": "ANIMESH KUJUR",
+      "attendance_pct": 19.58,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323007,
+      "enroll": "CD8817",
+      "name": "ANISH KUMAR SAHU",
+      "attendance_pct": 46.85,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323008,
+      "enroll": "CD8808",
+      "name": "ANSH MAHAJAN",
+      "attendance_pct": 12.59,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323009,
+      "enroll": "CD8798",
+      "name": "APEKSHA SIDAR",
+      "attendance_pct": 13.99,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323010,
+      "enroll": "CD8838",
+      "name": "ARBAB RIFFAT SHAHNAWAZ",
+      "attendance_pct": 8.39,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323011,
+      "enroll": "CD8845",
+      "name": "ARIN SONI",
+      "attendance_pct": 11.19,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323012,
+      "enroll": "CD8825",
+      "name": "AYAN MISHRA",
+      "attendance_pct": 6.29,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323013,
+      "enroll": "CD8792",
+      "name": "AYUSH PRADHAN",
+      "attendance_pct": 81.82,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323014,
+      "enroll": "CD8830",
+      "name": "D MALINI",
+      "attendance_pct": 15.38,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323015,
+      "enroll": "CD8806",
+      "name": "DEEPAK SAHU",
+      "attendance_pct": 52.45,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323016,
+      "enroll": "CD8814",
+      "name": "DIVYANSH KUMAR MATHUR",
+      "attendance_pct": 39.16,
+      "ct_eligible": false,
+      "category": "Critical (35-40%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323017,
+      "enroll": "CD8840",
+      "name": "FALAK SAHU",
+      "attendance_pct": 29.37,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323018,
+      "enroll": "CD8823",
+      "name": "FARAZ AHMAD",
+      "attendance_pct": 9.79,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323019,
+      "enroll": "CD8816",
+      "name": "GATIK PATEL",
+      "attendance_pct": 56.64,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323020,
+      "enroll": "CD8819",
+      "name": "GULSHAN DEWANGAN",
+      "attendance_pct": 60.84,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323021,
+      "enroll": "CD8812",
+      "name": "HARSH PATEL",
+      "attendance_pct": 64.34,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323022,
+      "enroll": "CD8805",
+      "name": "HARSHITA DEWANGAN",
+      "attendance_pct": 59.44,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323023,
+      "enroll": "CD8821",
+      "name": "HIMANSHU SORI",
+      "attendance_pct": 16.08,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323024,
+      "enroll": "CD8820",
+      "name": "J YASH RAO",
+      "attendance_pct": 52.45,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323025,
+      "enroll": "CD8822",
+      "name": "JEET RAKESH BHERIYA",
+      "attendance_pct": 61.54,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323026,
+      "enroll": "CD8811",
+      "name": "KHILESH KUMAR PURENA",
+      "attendance_pct": 7.69,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323027,
+      "enroll": "CD8802",
+      "name": "LAKSHYA KUMAR DEHARIYA",
+      "attendance_pct": 43.36,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323028,
+      "enroll": "CD8803",
+      "name": "MAYANK KUMAR BANJARE",
+      "attendance_pct": 34.97,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323029,
+      "enroll": "CD8810",
+      "name": "MUKUND NIKHIL DHRUW",
+      "attendance_pct": 33.57,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323030,
+      "enroll": "CD8794",
+      "name": "NANDINI SHARMA",
+      "attendance_pct": 56.64,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323031,
+      "enroll": "CD8842",
+      "name": "NISHANT EKKA",
+      "attendance_pct": 3.5,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323032,
+      "enroll": "CD8847",
+      "name": "PARIDHI AGRAWAL",
+      "attendance_pct": 64.34,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323033,
+      "enroll": "CD8841",
+      "name": "PIYUSH KUMAR SINGH",
+      "attendance_pct": 10.27,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323034,
+      "enroll": "CD8800",
+      "name": "POOJA SAHU",
+      "attendance_pct": 49.32,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323035,
+      "enroll": "CD8831",
+      "name": "PRAKHAR PANDEY",
+      "attendance_pct": 7.53,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323036,
+      "enroll": "CD8829",
+      "name": "PURNANK KUMAR",
+      "attendance_pct": 39.73,
+      "ct_eligible": false,
+      "category": "Critical (35-40%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323037,
+      "enroll": "CD8843",
+      "name": "RAJ VARU",
+      "attendance_pct": 45.89,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323038,
+      "enroll": "CD8795",
+      "name": "RAVISHU JOSHI",
+      "attendance_pct": 49.32,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323039,
+      "enroll": "CD8837",
+      "name": "REET PAL",
+      "attendance_pct": 45.89,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323040,
+      "enroll": "CD8848",
+      "name": "RESHANK KAIWART",
+      "attendance_pct": 5.48,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323041,
+      "enroll": "CD8836",
+      "name": "RIDA FATIMA",
+      "attendance_pct": 73.29,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323043,
+      "enroll": "CD8801",
+      "name": "SAHARISH FATIMA KHAN",
+      "attendance_pct": 31.51,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323045,
+      "enroll": "CD8833",
+      "name": "SARANSH SAMUEL MINJ",
+      "attendance_pct": 28.77,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323046,
+      "enroll": "CD8849",
+      "name": "SHOURYA MISHRA",
+      "attendance_pct": 42.47,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323047,
+      "enroll": "CD8793",
+      "name": "SUNAYANA SAI NATH SAMAN",
+      "attendance_pct": 34.25,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323048,
+      "enroll": "CD8809",
+      "name": "SURABHI CHAUDHARI",
+      "attendance_pct": 57.53,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323049,
+      "enroll": "CD8807",
+      "name": "SURAJ DEV",
+      "attendance_pct": 54.79,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323050,
+      "enroll": "CD8826",
+      "name": "SURAJ NAHAK",
+      "attendance_pct": 18.49,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323051,
+      "enroll": "CD8832",
+      "name": "TARANA THAKUR",
+      "attendance_pct": 22.6,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323052,
+      "enroll": "CD8846",
+      "name": "TISHYA VYAS",
+      "attendance_pct": 23.97,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323053,
+      "enroll": "CD8834",
+      "name": "V V S VIGNESH",
+      "attendance_pct": 82.88,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323054,
+      "enroll": "CD8818",
+      "name": "VAIBHAV THAKUR",
+      "attendance_pct": 19.86,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323055,
+      "enroll": "CD8844",
+      "name": "VANSHIKA WASNIK",
+      "attendance_pct": 43.15,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323056,
+      "enroll": "CD8797",
+      "name": "VINAY SONKAR",
+      "attendance_pct": 43.84,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323057,
+      "enroll": "CD8799",
+      "name": "YADURAJ SINGH YADAV",
+      "attendance_pct": 63.01,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323058,
+      "enroll": "CD8796",
+      "name": "YASH PATIL",
+      "attendance_pct": 36.99,
+      "ct_eligible": false,
+      "category": "Critical (35-40%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323059,
+      "enroll": "CD8824",
+      "name": "YASH RAJ KAMLE",
+      "attendance_pct": 45.21,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323060,
+      "enroll": "CD8923",
+      "name": "LAKSHYA PARMAR",
+      "attendance_pct": 2.05,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323061,
+      "enroll": "CD8630",
+      "name": "GANDHARLA ANKIT",
+      "attendance_pct": 43.84,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111324305,
+      "enroll": "CA3104",
+      "name": "SAKSHAM UPADHYAY",
+      "attendance_pct": 37.67,
+      "ct_eligible": false,
+      "category": "Critical (35-40%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111324306,
+      "enroll": "CA3249",
+      "name": "T HARIKRISHNA",
+      "attendance_pct": 43.15,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111324301,
+      "enroll": "BJ3905",
+      "name": "ADITI",
+      "attendance_pct": 32.19,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111324302,
+      "enroll": "CB4153",
+      "name": "HARSHITA SAHU",
+      "attendance_pct": 23.97,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111324304,
+      "enroll": "BK4781",
+      "name": "N. KIRAN KUMAR",
+      "attendance_pct": 4.11,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111324303,
+      "enroll": "CA2629",
+      "name": "K HARSHVARDHAN MURTI",
+      "attendance_pct": 39.73,
+      "ct_eligible": false,
+      "category": "Critical (35-40%)"
+    },
+    {
+      "class": "5 AI",
+      "urn": 300111323062,
+      "enroll": "CD8625",
+      "name": "AYUSHI MISHRA",
+      "attendance_pct": 48.63,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023001,
+      "enroll": "CD8754",
+      "name": "ABHINAV VERMA",
+      "attendance_pct": 34.23,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023002,
+      "enroll": "CD8763",
+      "name": "ADARSH TIWARI",
+      "attendance_pct": 30.2,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023003,
+      "enroll": "CD8791",
+      "name": "AKSHANSH DANI",
+      "attendance_pct": 10.74,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023004,
+      "enroll": "CD8759",
+      "name": "AMAN ANAND TANDAN",
+      "attendance_pct": 8.05,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023005,
+      "enroll": "CD8772",
+      "name": "AMAN VERMA",
+      "attendance_pct": 20.13,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023006,
+      "enroll": "CD8732",
+      "name": "ANSH KANAR",
+      "attendance_pct": 24.83,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023008,
+      "enroll": "CD8755",
+      "name": "ARCHI JAISWAL",
+      "attendance_pct": 22.82,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023009,
+      "enroll": "CD8760",
+      "name": "ARUNIMA BISHEN",
+      "attendance_pct": 44.97,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023010,
+      "enroll": "CD8790",
+      "name": "ARYAN TIWARI",
+      "attendance_pct": 2.68,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023011,
+      "enroll": "CD8749",
+      "name": "AYATI DUBEY",
+      "attendance_pct": 28.19,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023012,
+      "enroll": "CD8786",
+      "name": "AYUSH MADHUKAR",
+      "attendance_pct": 10.74,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023013,
+      "enroll": "CD8753",
+      "name": "BHAVESH KANNOJE",
+      "attendance_pct": 7.38,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023014,
+      "enroll": "CD8741",
+      "name": "Chanchal Gore",
+      "attendance_pct": 77.85,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023015,
+      "enroll": "CD8756",
+      "name": "DEVANSHU KURRE",
+      "attendance_pct": 2.68,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023016,
+      "enroll": "CD8735",
+      "name": "DEVYANI VAIDYA",
+      "attendance_pct": 38.26,
+      "ct_eligible": false,
+      "category": "Critical (35-40%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023017,
+      "enroll": "CD8784",
+      "name": "DURGA PRASAD",
+      "attendance_pct": 5.37,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023018,
+      "enroll": "CD8739",
+      "name": "DUSHYANT SHARMA",
+      "attendance_pct": 68.46,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023019,
+      "enroll": "CD8782",
+      "name": "HARDIK SHANDILYA",
+      "attendance_pct": 42.95,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023020,
+      "enroll": "CD8761",
+      "name": "HARSH SONKUSARE",
+      "attendance_pct": 17.45,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023021,
+      "enroll": "CD8734",
+      "name": "HIMANSHU DEWANGAN",
+      "attendance_pct": 41.61,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023022,
+      "enroll": "CD8744",
+      "name": "ISHAN KUMAR SAHU",
+      "attendance_pct": 59.06,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023024,
+      "enroll": "CD8736",
+      "name": "JAYASH KUMAR KAIWART",
+      "attendance_pct": 24.83,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023025,
+      "enroll": "CD8762",
+      "name": "KALPANA SONKEWARE",
+      "attendance_pct": 54.36,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023026,
+      "enroll": "CD8731",
+      "name": "KRISHNA KUMAR VERMA",
+      "attendance_pct": 65.1,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023027,
+      "enroll": "CD8748",
+      "name": "LEENA SAHU",
+      "attendance_pct": 42.28,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023028,
+      "enroll": "CD8740",
+      "name": "MAHAK JAIN",
+      "attendance_pct": 30.2,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023029,
+      "enroll": "CD8751",
+      "name": "MAHATTAVA SAHU",
+      "attendance_pct": 23.49,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023030,
+      "enroll": "CD8777",
+      "name": "MAHIR SINGH PAWAR",
+      "attendance_pct": 39.6,
+      "ct_eligible": false,
+      "category": "Critical (35-40%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023031,
+      "enroll": "CD8787",
+      "name": "MANISH KUMAR",
+      "attendance_pct": 25.5,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023032,
+      "enroll": "CD8743",
+      "name": "MAYANK SINHA",
+      "attendance_pct": 24.83,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023033,
+      "enroll": "CD8774",
+      "name": "MITALI SAHU",
+      "attendance_pct": 76.51,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023034,
+      "enroll": "CD8778",
+      "name": "NEELESH KUMAR SONI",
+      "attendance_pct": 34.23,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023035,
+      "enroll": "CD8738",
+      "name": "NEHA TIWARI",
+      "attendance_pct": 73.15,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023036,
+      "enroll": "CD8783",
+      "name": "NIKHIL YADAV",
+      "attendance_pct": 18.12,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023037,
+      "enroll": "CD8773",
+      "name": "NIMESH GUPTA",
+      "attendance_pct": 18.12,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023038,
+      "enroll": "CD8752",
+      "name": "NITISH KUMAR PRADHAN",
+      "attendance_pct": 30.2,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023039,
+      "enroll": "CD8769",
+      "name": "RAJ DEWANGAN",
+      "attendance_pct": 18.79,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023040,
+      "enroll": "CD8766",
+      "name": "RASHI MESHRAM",
+      "attendance_pct": 61.07,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023041,
+      "enroll": "CD8776",
+      "name": "RUCHI SAHU",
+      "attendance_pct": 40.27,
+      "ct_eligible": false,
+      "category": "At Risk (40-45%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023042,
+      "enroll": "CD8768",
+      "name": "SAKSHAM SHRIVASTAVA",
+      "attendance_pct": 27.52,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023043,
+      "enroll": "CD8785",
+      "name": "SAMEER BHARGAV",
+      "attendance_pct": 1.34,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023044,
+      "enroll": "CD8779",
+      "name": "SAMIKSHA HIRWAY",
+      "attendance_pct": 13.42,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023045,
+      "enroll": "CD8771",
+      "name": "SANGAM SINGH",
+      "attendance_pct": 4.7,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023046,
+      "enroll": "CD8788",
+      "name": "SANIDHYA TIWARI",
+      "attendance_pct": 17.45,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023047,
+      "enroll": "CD8781",
+      "name": "SARTHAK KUMAR",
+      "attendance_pct": 34.23,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023048,
+      "enroll": "CD8789",
+      "name": "SARTHAK NANDESHWAR",
+      "attendance_pct": 20.81,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023049,
+      "enroll": "CD8764",
+      "name": "SHEIKH ABDUL ZEESHAN",
+      "attendance_pct": 22.15,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023050,
+      "enroll": "CD8746",
+      "name": "SHIVANGI SINHA",
+      "attendance_pct": 19.46,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023051,
+      "enroll": "CD8765",
+      "name": "SHRAVAN TANDAN",
+      "attendance_pct": 33.56,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023052,
+      "enroll": "CD8757",
+      "name": "SHUBHAM RAI",
+      "attendance_pct": 28.86,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023053,
+      "enroll": "CD8758",
+      "name": "SNEHA TRIVEDI",
+      "attendance_pct": 22.82,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023054,
+      "enroll": "CD8780",
+      "name": "SOUMIL PANDEY",
+      "attendance_pct": 28.19,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023055,
+      "enroll": "CD8767",
+      "name": "TILAK SONI",
+      "attendance_pct": 36.24,
+      "ct_eligible": false,
+      "category": "Critical (35-40%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023056,
+      "enroll": "CD8770",
+      "name": "TRISHNA",
+      "attendance_pct": 46.31,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023057,
+      "enroll": "CD8745",
+      "name": "TRIVENDRA KUMAR GOYAL",
+      "attendance_pct": 30.87,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023058,
+      "enroll": "CD8733",
+      "name": "VAIBHAV SUKHDEVE",
+      "attendance_pct": 34.23,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023059,
+      "enroll": "CD8742",
+      "name": "KUMARI VANITA",
+      "attendance_pct": 16.78,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023060,
+      "enroll": "CD8775",
+      "name": "VARSHA DHAMGAY",
+      "attendance_pct": 47.65,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023062,
+      "enroll": "CD8921",
+      "name": "AJNKYA RISHI LAKHE",
+      "attendance_pct": 1.34,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023064,
+      "enroll": "CD8643",
+      "name": "PALAK RAI",
+      "attendance_pct": 74.5,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023065,
+      "enroll": "CD8629",
+      "name": "SANA SANJANA",
+      "attendance_pct": 48.99,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023066,
+      "enroll": "CD8865",
+      "name": "KRITIKA BALPANDE",
+      "attendance_pct": 78.52,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111023067,
+      "enroll": "CD8577",
+      "name": "ANURAG VERMA",
+      "attendance_pct": 32.21,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111024302,
+      "enroll": "CA2774",
+      "name": "ALFAIZ KHAN",
+      "attendance_pct": 67.79,
+      "ct_eligible": true,
+      "category": "Eligible (\u226550%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111024305,
+      "enroll": "CA2384",
+      "name": "HIMANSHU",
+      "attendance_pct": 15.44,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111024301,
+      "enroll": "CE2440",
+      "name": "ADITYA MULE",
+      "attendance_pct": 32.89,
+      "ct_eligible": false,
+      "category": "Very Critical (<35%)"
+    },
+    {
+      "class": "5 DS",
+      "urn": 300111024303,
+      "enroll": "CE2439",
+      "name": "ASHISH KUMAR",
+      "attendance_pct": 48.32,
+      "ct_eligible": false,
+      "category": "Near Eligible (45-50%)"
+    }
+  ],
+  "thresholds": {
+    "CT_ELIGIBLE": 50,
+    "THRESHOLD_45_50": [
+      45,
+      50
+    ],
+    "THRESHOLD_40_45": [
+      40,
+      45
+    ],
+    "THRESHOLD_35_40": [
+      35,
+      40
+    ],
+    "CRITICAL": 35
+  }
+}

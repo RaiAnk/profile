@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Attendance Analytics Dashboard</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- ApexCharts for advanced visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <!-- DataTables for interactive tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .stat-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .chart-container {
+            position: relative;
+            height: 350px;
+        }
+
+        .dataTables_wrapper {
+            padding: 20px;
+        }
+
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-eligible { background: #10b981; color: white; }
+        .badge-near { background: #f59e0b; color: white; }
+        .badge-risk { background: #f97316; color: white; }
+        .badge-critical { background: #ef4444; color: white; }
+        .badge-very-critical { background: #7f1d1d; color: white; }
+
+        .filter-chip {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-chip:hover {
+            transform: scale(1.05);
+        }
+
+        .filter-chip.active {
+            background: #667eea !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center z-50">
+        <div class="text-center">
+            <div class="loading-spinner mx-auto mb-4"></div>
+            <h2 class="text-white text-2xl font-bold">Loading Analytics...</h2>
+            <p class="text-purple-200 mt-2">Preparing your dashboard</p>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div id="mainContent" class="hidden max-w-[1920px] mx-auto">
+
+        <!-- Header -->
+        <div class="glass-card p-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h1 class="text-4xl font-bold gradient-text mb-2">
+                        <i class="fas fa-chart-line mr-3"></i>Attendance Analytics Dashboard
+                    </h1>
+                    <p class="text-gray-600">Enterprise-Grade Student Performance Monitoring System</p>
+                </div>
+                <div class="flex gap-3">
+                    <button onclick="refreshData()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-sync-alt mr-2"></i>Refresh
+                    </button>
+                    <button onclick="exportReport()" class="bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all">
+                        <i class="fas fa-download mr-2"></i>Export
+                    </button>
+                </div>
+            </div>
+            <div class="mt-4 text-sm text-gray-500">
+                <i class="far fa-clock mr-2"></i>Last Updated: <span id="lastUpdated">--</span>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="glass-card p-6 stat-card" onclick="showStudentList('all')">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Total Students</p>
+                        <h3 class="text-4xl font-bold text-gray-800 mt-2" id="totalStudents">0</h3>
+                    </div>
+                    <div class="bg-blue-500 p-4 rounded-full">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-center text-sm">
+                    <span class="text-gray-600">Across <span id="totalClasses" class="font-semibold">0</span> classes</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 stat-card" onclick="showStudentList('eligible')">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">CT Eligible (≥50%)</p>
+                        <h3 class="text-4xl font-bold text-green-600 mt-2" id="eligibleStudents">0</h3>
+                    </div>
+                    <div class="bg-green-500 p-4 rounded-full">
+                        <i class="fas fa-check-circle text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-gray-600">Eligibility Rate</span>
+                        <span class="font-semibold" id="eligibilityRate">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="bg-green-500 h-2 rounded-full transition-all" id="eligibilityBar" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 stat-card" onclick="showStudentList('risk')">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">At Risk (35-50%)</p>
+                        <h3 class="text-4xl font-bold text-orange-600 mt-2" id="riskStudents">0</h3>
+                    </div>
+                    <div class="bg-orange-500 p-4 rounded-full">
+                        <i class="fas fa-exclamation-triangle text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-orange-600 font-medium">
+                    <i class="fas fa-arrow-up mr-1"></i>Needs Attention
+                </div>
+            </div>
+
+            <div class="glass-card p-6 stat-card" onclick="showStudentList('critical')">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-gray-500 text-sm font-medium">Critical (<35%)</p>
+                        <h3 class="text-4xl font-bold text-red-600 mt-2" id="criticalStudents">0</h3>
+                    </div>
+                    <div class="bg-red-500 p-4 rounded-full">
+                        <i class="fas fa-times-circle text-white text-2xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4 text-sm text-red-600 font-medium">
+                    <i class="fas fa-bell mr-1 pulse"></i>Immediate Action Required
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+            <div class="glass-card p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-chart-pie mr-2 text-purple-600"></i>Attendance Distribution
+                </h3>
+                <div class="chart-container">
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-card p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-chart-bar mr-2 text-indigo-600"></i>Class-wise Comparison
+                </h3>
+                <div class="chart-container">
+                    <canvas id="classComparisonChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+            <div class="glass-card p-6 lg:col-span-2">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-book mr-2 text-teal-600"></i>Subject-wise Performance
+                </h3>
+                <div class="chart-container">
+                    <canvas id="subjectChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass-card p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">
+                    <i class="fas fa-percentage mr-2 text-pink-600"></i>Eligibility Breakdown
+                </h3>
+                <div class="chart-container">
+                    <canvas id="eligibilityChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Heatmap -->
+        <div class="glass-card p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-th mr-2 text-red-600"></i>Class Performance Heatmap
+            </h3>
+            <div id="heatmapChart"></div>
+        </div>
+
+        <!-- Filters -->
+        <div class="glass-card p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-filter mr-2 text-blue-600"></i>Advanced Filters
+            </h3>
+            <div class="flex flex-wrap gap-3">
+                <button class="filter-chip px-4 py-2 rounded-full bg-gray-200 text-gray-700 font-medium" data-filter="all" onclick="filterStudents('all')">
+                    All Students
+                </button>
+                <button class="filter-chip px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium" data-filter="eligible" onclick="filterStudents('eligible')">
+                    Eligible (≥50%)
+                </button>
+                <button class="filter-chip px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 font-medium" data-filter="near" onclick="filterStudents('near')">
+                    Near Eligible (45-50%)
+                </button>
+                <button class="filter-chip px-4 py-2 rounded-full bg-orange-100 text-orange-700 font-medium" data-filter="risk" onclick="filterStudents('risk')">
+                    At Risk (40-45%)
+                </button>
+                <button class="filter-chip px-4 py-2 rounded-full bg-red-100 text-red-700 font-medium" data-filter="critical" onclick="filterStudents('critical')">
+                    Critical (35-40%)
+                </button>
+                <button class="filter-chip px-4 py-2 rounded-full bg-red-900 text-white font-medium" data-filter="very-critical" onclick="filterStudents('very-critical')">
+                    Very Critical (<35%)
+                </button>
+            </div>
+        </div>
+
+        <!-- Students Table -->
+        <div class="glass-card p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">
+                <i class="fas fa-table mr-2 text-purple-600"></i>Student Details
+            </h3>
+            <div class="overflow-x-auto">
+                <table id="studentsTable" class="display w-full">
+                    <thead>
+                        <tr>
+                            <th>Class</th>
+                            <th>URN</th>
+                            <th>Enrollment</th>
+                            <th>Name</th>
+                            <th>Attendance %</th>
+                            <th>Category</th>
+                            <th>CT Eligible</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="glass-card p-6 mt-8 text-center">
+            <p class="text-gray-600">
+                <i class="fas fa-shield-alt mr-2"></i>
+                Enterprise Attendance Analytics System v2.0 |
+                Powered by Advanced Analytics Engine
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        let dashboardData = null;
+        let charts = {};
+        let studentsTable = null;
+        let currentFilter = 'all';
+
+        // Load dashboard data
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('attendance_reports/dashboard_data.json');
+                dashboardData = await response.json();
+                initializeDashboard();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Data Loading Failed',
+                    text: 'Could not load dashboard data. Please ensure dashboard_data.json exists.',
+                    confirmButtonColor: '#667eea'
+                });
+            }
+        }
+
+        function initializeDashboard() {
+            // Hide loading screen
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('mainContent').classList.remove('hidden');
+
+            // Update stats
+            updateStats();
+
+            // Initialize charts
+            initializeCharts();
+
+            // Initialize table
+            initializeTable();
+
+            // Update timestamp
+            document.getElementById('lastUpdated').textContent = dashboardData.timestamp;
+
+            // Show welcome message
+            Swal.fire({
+                icon: 'success',
+                title: 'Dashboard Loaded',
+                text: 'All analytics data has been successfully loaded!',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+
+        function updateStats() {
+            const stats = dashboardData.overall_stats;
+
+            document.getElementById('totalStudents').textContent = stats.total_students;
+            document.getElementById('totalClasses').textContent = stats.total_classes;
+            document.getElementById('eligibleStudents').textContent = stats.overall_eligible_50_plus;
+
+            const eligibilityRate = ((stats.overall_eligible_50_plus / stats.total_students) * 100).toFixed(1);
+            document.getElementById('eligibilityRate').textContent = eligibilityRate + '%';
+            document.getElementById('eligibilityBar').style.width = eligibilityRate + '%';
+
+            // Calculate risk and critical
+            const students = dashboardData.student_details;
+            const riskStudents = students.filter(s => s.attendance_pct >= 35 && s.attendance_pct < 50).length;
+            const criticalStudents = students.filter(s => s.attendance_pct < 35).length;
+
+            document.getElementById('riskStudents').textContent = riskStudents;
+            document.getElementById('criticalStudents').textContent = criticalStudents;
+        }
+
+        function initializeCharts() {
+            // Distribution Chart (Doughnut)
+            const distCtx = document.getElementById('distributionChart').getContext('2d');
+            const distData = dashboardData.attendance_distribution;
+
+            charts.distribution = new Chart(distCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(distData),
+                    datasets: [{
+                        data: Object.values(distData),
+                        backgroundColor: [
+                            '#10b981', '#34d399', '#6ee7b7', '#a7f3d0',
+                            '#fbbf24', '#fb923c', '#f87171', '#dc2626', '#7f1d1d'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right' },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                    return `${context.label}: ${context.parsed} (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Class Comparison Chart (Bar)
+            const classCtx = document.getElementById('classComparisonChart').getContext('2d');
+            const classData = dashboardData.class_comparison;
+
+            charts.classComparison = new Chart(classCtx, {
+                type: 'bar',
+                data: {
+                    labels: classData.map(c => c.class_name),
+                    datasets: [
+                        {
+                            label: 'Eligible (≥50%)',
+                            data: classData.map(c => c.eligible_50_plus),
+                            backgroundColor: '#10b981'
+                        },
+                        {
+                            label: 'Near (45-50%)',
+                            data: classData.map(c => c.threshold_45_50),
+                            backgroundColor: '#fbbf24'
+                        },
+                        {
+                            label: 'At Risk (40-45%)',
+                            data: classData.map(c => c.threshold_40_45),
+                            backgroundColor: '#fb923c'
+                        },
+                        {
+                            label: 'Critical (35-40%)',
+                            data: classData.map(c => c.threshold_35_40),
+                            backgroundColor: '#f87171'
+                        },
+                        {
+                            label: 'Very Critical (<35%)',
+                            data: classData.map(c => c.below_35),
+                            backgroundColor: '#7f1d1d'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { stacked: true },
+                        y: { stacked: true, beginAtZero: true }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Subject Performance Chart (Horizontal Bar)
+            const subjectCtx = document.getElementById('subjectChart').getContext('2d');
+            const subjectData = dashboardData.subject_aggregate;
+
+            charts.subject = new Chart(subjectCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(subjectData),
+                    datasets: [{
+                        label: 'Average Attendance %',
+                        data: Object.values(subjectData).map(s => s.avg_attendance),
+                        backgroundColor: '#667eea',
+                        borderColor: '#764ba2',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { beginAtZero: true, max: 100 }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const subject = Object.keys(subjectData)[context.dataIndex];
+                                    const eligibleCount = subjectData[subject].total_eligible;
+                                    const totalCount = subjectData[subject].total_students;
+                                    return `Eligible: ${eligibleCount}/${totalCount}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Eligibility Breakdown (Polar Area)
+            const eligCtx = document.getElementById('eligibilityChart').getContext('2d');
+            const classComp = dashboardData.class_comparison;
+            const totalEligible = classComp.reduce((sum, c) => sum + c.eligible_50_plus, 0);
+            const totalNear = classComp.reduce((sum, c) => sum + c.threshold_45_50, 0);
+            const totalRisk = classComp.reduce((sum, c) => sum + c.threshold_40_45, 0);
+            const totalCritical = classComp.reduce((sum, c) => sum + c.threshold_35_40, 0);
+            const totalVCritical = classComp.reduce((sum, c) => sum + c.below_35, 0);
+
+            charts.eligibility = new Chart(eligCtx, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Eligible (≥50%)', 'Near (45-50%)', 'At Risk (40-45%)', 'Critical (35-40%)', 'Very Critical (<35%)'],
+                    datasets: [{
+                        data: [totalEligible, totalNear, totalRisk, totalCritical, totalVCritical],
+                        backgroundColor: [
+                            'rgba(16, 185, 129, 0.7)',
+                            'rgba(251, 191, 36, 0.7)',
+                            'rgba(251, 146, 60, 0.7)',
+                            'rgba(248, 113, 113, 0.7)',
+                            'rgba(127, 29, 29, 0.7)'
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Heatmap using ApexCharts
+            const heatmapData = classData.map(c => ({
+                name: c.class_name,
+                data: [
+                    { x: 'Eligible', y: c.eligible_50_plus },
+                    { x: 'Near', y: c.threshold_45_50 },
+                    { x: 'At Risk', y: c.threshold_40_45 },
+                    { x: 'Critical', y: c.threshold_35_40 },
+                    { x: 'Very Critical', y: c.below_35 }
+                ]
+            }));
+
+            const heatmapOptions = {
+                series: heatmapData,
+                chart: {
+                    height: 350,
+                    type: 'heatmap',
+                    toolbar: { show: true }
+                },
+                dataLabels: { enabled: true },
+                colors: ['#667eea'],
+                title: {
+                    text: 'Student Distribution Across Categories',
+                    style: { fontSize: '16px', fontWeight: 600 }
+                }
+            };
+
+            const heatmapChart = new ApexCharts(document.querySelector("#heatmapChart"), heatmapOptions);
+            heatmapChart.render();
+        }
+
+        function initializeTable() {
+            const students = dashboardData.student_details;
+
+            studentsTable = $('#studentsTable').DataTable({
+                data: students,
+                columns: [
+                    { data: 'class' },
+                    { data: 'urn' },
+                    { data: 'enroll' },
+                    { data: 'name' },
+                    {
+                        data: 'attendance_pct',
+                        render: function(data) {
+                            const color = data >= 50 ? 'text-green-600' : data >= 35 ? 'text-orange-600' : 'text-red-600';
+                            return `<span class="${color} font-bold">${data}%</span>`;
+                        }
+                    },
+                    {
+                        data: 'category',
+                        render: function(data) {
+                            let badgeClass = 'badge-eligible';
+                            if (data.includes('Near')) badgeClass = 'badge-near';
+                            else if (data.includes('At Risk')) badgeClass = 'badge-risk';
+                            else if (data.includes('Critical') && !data.includes('Very')) badgeClass = 'badge-critical';
+                            else if (data.includes('Very Critical')) badgeClass = 'badge-very-critical';
+                            return `<span class="category-badge ${badgeClass}">${data}</span>`;
+                        }
+                    },
+                    {
+                        data: 'ct_eligible',
+                        render: function(data) {
+                            return data ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : '<i class="fas fa-times-circle text-red-500 text-xl"></i>';
+                        }
+                    },
+                    {
+                        data: null,
+                        render: function(data, type, row) {
+                            return `
+                                <button onclick='viewStudentDetails(${JSON.stringify(row)})' class="bg-purple-500 text-white px-3 py-1 rounded hover:bg-purple-600 transition">
+                                    <i class="fas fa-eye mr-1"></i>View
+                                </button>
+                            `;
+                        }
+                    }
+                ],
+                pageLength: 25,
+                order: [[4, 'asc']],
+                responsive: true
+            });
+        }
+
+        function filterStudents(category) {
+            currentFilter = category;
+
+            // Update filter chips
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            let searchValue = '';
+            switch(category) {
+                case 'eligible':
+                    searchValue = 'Eligible';
+                    break;
+                case 'near':
+                    searchValue = 'Near Eligible';
+                    break;
+                case 'risk':
+                    searchValue = 'At Risk';
+                    break;
+                case 'critical':
+                    searchValue = 'Critical (35-40%)';
+                    break;
+                case 'very-critical':
+                    searchValue = 'Very Critical';
+                    break;
+                default:
+                    searchValue = '';
+            }
+
+            studentsTable.column(5).search(searchValue).draw();
+        }
+
+        function viewStudentDetails(student) {
+            Swal.fire({
+                title: `<strong>${student.name}</strong>`,
+                html: `
+                    <div class="text-left space-y-3">
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-sm text-gray-600">URN</p>
+                            <p class="font-semibold">${student.urn}</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-sm text-gray-600">Enrollment Number</p>
+                            <p class="font-semibold">${student.enroll}</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-sm text-gray-600">Class</p>
+                            <p class="font-semibold">${student.class}</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-sm text-gray-600">Attendance Percentage</p>
+                            <p class="text-3xl font-bold ${student.attendance_pct >= 50 ? 'text-green-600' : 'text-red-600'}">${student.attendance_pct}%</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-sm text-gray-600">Category</p>
+                            <p class="font-semibold">${student.category}</p>
+                        </div>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <p class="text-sm text-gray-600">CT Eligibility</p>
+                            <p class="font-semibold ${student.ct_eligible ? 'text-green-600' : 'text-red-600'}">
+                                ${student.ct_eligible ? '✓ Eligible' : '✗ Not Eligible'}
+                            </p>
+                        </div>
+                    </div>
+                `,
+                width: 600,
+                confirmButtonColor: '#667eea'
+            });
+        }
+
+        function showStudentList(category) {
+            const students = dashboardData.student_details;
+            let filtered = students;
+            let title = 'All Students';
+
+            switch(category) {
+                case 'eligible':
+                    filtered = students.filter(s => s.ct_eligible);
+                    title = 'CT Eligible Students (≥50%)';
+                    break;
+                case 'risk':
+                    filtered = students.filter(s => s.attendance_pct >= 35 && s.attendance_pct < 50);
+                    title = 'At Risk Students (35-50%)';
+                    break;
+                case 'critical':
+                    filtered = students.filter(s => s.attendance_pct < 35);
+                    title = 'Critical Students (<35%)';
+                    break;
+            }
+
+            const listHtml = filtered.map(s => `
+                <div class="border-b py-2 flex justify-between items-center">
+                    <div>
+                        <p class="font-semibold">${s.name}</p>
+                        <p class="text-sm text-gray-600">${s.class} - ${s.urn}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-lg font-bold ${s.attendance_pct >= 50 ? 'text-green-600' : 'text-red-600'}">${s.attendance_pct}%</p>
+                    </div>
+                </div>
+            `).join('');
+
+            Swal.fire({
+                title: title,
+                html: `
+                    <div class="max-h-96 overflow-y-auto text-left">
+                        ${listHtml}
+                    </div>
+                    <p class="mt-4 text-sm text-gray-600">Total: ${filtered.length} students</p>
+                `,
+                width: 700,
+                confirmButtonColor: '#667eea'
+            });
+        }
+
+        function refreshData() {
+            Swal.fire({
+                title: 'Refreshing Data...',
+                text: 'Please wait while we update the dashboard',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            setTimeout(() => {
+                location.reload();
+            }, 1500);
+        }
+
+        function exportReport() {
+            Swal.fire({
+                title: 'Export Report',
+                text: 'Choose export format',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Export CSV',
+                denyButtonText: 'Export JSON',
+                confirmButtonColor: '#667eea',
+                denyButtonColor: '#10b981'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    exportCSV();
+                } else if (result.isDenied) {
+                    exportJSON();
+                }
+            });
+        }
+
+        function exportCSV() {
+            const students = dashboardData.student_details;
+            const csv = [
+                ['Class', 'URN', 'Enrollment', 'Name', 'Attendance %', 'Category', 'CT Eligible'].join(','),
+                ...students.map(s => [
+                    s.class, s.urn, s.enroll, s.name, s.attendance_pct,
+                    `"${s.category}"`, s.ct_eligible ? 'Yes' : 'No'
+                ].join(','))
+            ].join('\n');
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `attendance_report_${new Date().getTime()}.csv`;
+            a.click();
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Exported!',
+                text: 'CSV file has been downloaded',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+
+        function exportJSON() {
+            const blob = new Blob([JSON.stringify(dashboardData, null, 2)], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `attendance_data_${new Date().getTime()}.json`;
+            a.click();
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Exported!',
+                text: 'JSON file has been downloaded',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', loadDashboardData);
+    </script>
+
+</body>
+</html>
