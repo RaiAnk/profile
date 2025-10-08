@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Attendance Analytics Dashboard</title>
+    <title>BIT Attendance Analyzer - Enterprise Dashboard</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,10 +14,10 @@
     <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- ApexCharts for advanced visualizations -->
+    <!-- ApexCharts -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
-    <!-- DataTables for interactive tables -->
+    <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -26,40 +26,61 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
         * {
             font-family: 'Inter', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
             min-height: 100vh;
         }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .stat-card {
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.3);
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        .bit-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
         }
 
         .pulse {
@@ -72,11 +93,11 @@
         }
 
         .loading-spinner {
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #667eea;
+            border: 5px solid #f3f4f6;
+            border-top: 5px solid #3b82f6;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             animation: spin 1s linear infinite;
         }
 
@@ -87,59 +108,116 @@
 
         .chart-container {
             position: relative;
-            height: 350px;
-        }
-
-        .dataTables_wrapper {
-            padding: 20px;
+            height: 380px;
         }
 
         .tab-button {
             transition: all 0.3s ease;
+            border-radius: 12px;
         }
 
         .tab-button.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
         }
 
         .category-badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 12px;
+            padding: 6px 14px;
+            border-radius: 16px;
             font-size: 12px;
-            font-weight: 600;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
 
-        .badge-eligible { background: #10b981; color: white; }
-        .badge-near { background: #f59e0b; color: white; }
-        .badge-risk { background: #f97316; color: white; }
-        .badge-critical { background: #ef4444; color: white; }
-        .badge-very-critical { background: #7f1d1d; color: white; }
+        .badge-eligible { background: linear-gradient(135deg, #10b981, #34d399); color: white; }
+        .badge-near { background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; }
+        .badge-risk { background: linear-gradient(135deg, #f97316, #fb923c); color: white; }
+        .badge-critical { background: linear-gradient(135deg, #ef4444, #f87171); color: white; }
+        .badge-very-critical { background: linear-gradient(135deg, #7f1d1d, #991b1b); color: white; }
 
         .filter-chip {
             cursor: pointer;
             transition: all 0.2s ease;
+            border: 2px solid transparent;
         }
 
         .filter-chip:hover {
             transform: scale(1.05);
+            border-color: #3b82f6;
         }
 
         .filter-chip.active {
-            background: #667eea !important;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
             color: white !important;
+            border-color: #1e3a8a;
+        }
+
+        .class-tab {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .class-tab.active {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-up {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .data-value {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .icon-bg {
+            padding: 1.25rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
 <body class="p-4 md:p-8">
 
     <!-- Loading Screen -->
-    <div id="loadingScreen" class="fixed inset-0 bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center z-50">
+    <div id="loadingScreen" class="fixed inset-0 bit-gradient flex items-center justify-center z-50">
         <div class="text-center">
-            <div class="loading-spinner mx-auto mb-4"></div>
-            <h2 class="text-white text-2xl font-bold">Loading Analytics...</h2>
-            <p class="text-purple-200 mt-2">Preparing your dashboard</p>
+            <div class="loading-spinner mx-auto mb-6"></div>
+            <h2 class="text-white text-3xl font-bold mb-2">BIT Attendance Analyzer</h2>
+            <p class="text-blue-200 text-lg">Bhilai Institute of Technology</p>
+            <p class="text-blue-300 text-sm mt-2">Loading Analytics Dashboard...</p>
         </div>
     </div>
 
@@ -147,205 +225,320 @@
     <div id="mainContent" class="hidden max-w-[1920px] mx-auto">
 
         <!-- Header -->
-        <div class="glass-card p-6 mb-8">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div class="glass-card p-8 mb-8 animate-slide-up">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div>
-                    <h1 class="text-4xl font-bold gradient-text mb-2">
-                        <i class="fas fa-chart-line mr-3"></i>Attendance Analytics Dashboard
-                    </h1>
-                    <p class="text-gray-600">Enterprise-Grade Student Performance Monitoring System</p>
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="icon-bg bit-gradient">
+                            <i class="fas fa-graduation-cap text-white text-3xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="logo-text gradient-text">BIT Attendance Analyzer</h1>
+                            <p class="text-gray-600 text-lg font-medium">Bhilai Institute of Technology</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex gap-3">
-                    <button onclick="refreshData()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all">
+                    <button onclick="refreshData()" class="bit-gradient text-white px-6 py-3 rounded-xl hover:shadow-2xl transition-all font-semibold">
                         <i class="fas fa-sync-alt mr-2"></i>Refresh
                     </button>
-                    <button onclick="exportReport()" class="bg-gradient-to-r from-green-600 to-teal-600 text-white px-6 py-3 rounded-lg hover:shadow-lg transition-all">
+                    <button onclick="exportReport()" class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-xl hover:shadow-2xl transition-all font-semibold">
                         <i class="fas fa-download mr-2"></i>Export
+                    </button>
+                    <button onclick="showSettings()" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl hover:shadow-2xl transition-all font-semibold">
+                        <i class="fas fa-cog mr-2"></i>Settings
                     </button>
                 </div>
             </div>
-            <div class="mt-4 text-sm text-gray-500">
-                <i class="far fa-clock mr-2"></i>Last Updated: <span id="lastUpdated">--</span>
-            </div>
-        </div>
-
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div class="glass-card p-6 stat-card" onclick="showStudentList('all')">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm font-medium">Total Students</p>
-                        <h3 class="text-4xl font-bold text-gray-800 mt-2" id="totalStudents">0</h3>
-                    </div>
-                    <div class="bg-blue-500 p-4 rounded-full">
-                        <i class="fas fa-users text-white text-2xl"></i>
-                    </div>
+            <div class="mt-4 flex items-center gap-6 text-sm text-gray-600">
+                <div class="flex items-center gap-2">
+                    <i class="far fa-clock"></i>
+                    <span>Last Updated: <strong id="lastUpdated">--</strong></span>
                 </div>
-                <div class="mt-4 flex items-center text-sm">
-                    <span class="text-gray-600">Across <span id="totalClasses" class="font-semibold">0</span> classes</span>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-database"></i>
+                    <span>Version: <strong id="systemVersion">2.0</strong></span>
                 </div>
-            </div>
-
-            <div class="glass-card p-6 stat-card" onclick="showStudentList('eligible')">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm font-medium">CT Eligible (≥50%)</p>
-                        <h3 class="text-4xl font-bold text-green-600 mt-2" id="eligibleStudents">0</h3>
-                    </div>
-                    <div class="bg-green-500 p-4 rounded-full">
-                        <i class="fas fa-check-circle text-white text-2xl"></i>
-                    </div>
-                </div>
-                <div class="mt-4">
-                    <div class="flex justify-between text-sm mb-1">
-                        <span class="text-gray-600">Eligibility Rate</span>
-                        <span class="font-semibold" id="eligibilityRate">0%</span>
-                    </div>
-                    <div class="w-full bg-gray-200 rounded-full h-2">
-                        <div class="bg-green-500 h-2 rounded-full transition-all" id="eligibilityBar" style="width: 0%"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card p-6 stat-card" onclick="showStudentList('risk')">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm font-medium">At Risk (35-50%)</p>
-                        <h3 class="text-4xl font-bold text-orange-600 mt-2" id="riskStudents">0</h3>
-                    </div>
-                    <div class="bg-orange-500 p-4 rounded-full">
-                        <i class="fas fa-exclamation-triangle text-white text-2xl"></i>
-                    </div>
-                </div>
-                <div class="mt-4 text-sm text-orange-600 font-medium">
-                    <i class="fas fa-arrow-up mr-1"></i>Needs Attention
-                </div>
-            </div>
-
-            <div class="glass-card p-6 stat-card" onclick="showStudentList('critical')">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <p class="text-gray-500 text-sm font-medium">Critical (<35%)</p>
-                        <h3 class="text-4xl font-bold text-red-600 mt-2" id="criticalStudents">0</h3>
-                    </div>
-                    <div class="bg-red-500 p-4 rounded-full">
-                        <i class="fas fa-times-circle text-white text-2xl"></i>
-                    </div>
-                </div>
-                <div class="mt-4 text-sm text-red-600 font-medium">
-                    <i class="fas fa-bell mr-1 pulse"></i>Immediate Action Required
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-users"></i>
+                    <span>Classes: <strong id="classesAnalyzed">--</strong></span>
                 </div>
             </div>
         </div>
 
-        <!-- Charts Row 1 -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <!-- Class Tabs -->
+        <div class="glass-card p-6 mb-8 animate-slide-up">
+            <div class="flex flex-wrap gap-4">
+                <button class="class-tab tab-button active px-8 py-4 font-bold text-lg" data-view="overall" onclick="switchView('overall')">
+                    <i class="fas fa-chart-pie mr-2"></i>Overall Analysis
+                </button>
+                <button class="class-tab tab-button px-8 py-4 font-bold text-lg" data-view="5 AI" onclick="switchView('5 AI')">
+                    <i class="fas fa-robot mr-2"></i>5 AI
+                </button>
+                <!-- 5 CSE A_B tab hidden for now -->
+                <!-- <button class="class-tab tab-button px-8 py-4 font-bold text-lg" data-view="5 CSE A_B" onclick="switchView('5 CSE A_B')">
+                    <i class="fas fa-laptop-code mr-2"></i>5 CSE A_B
+                </button> -->
+                <button class="class-tab tab-button px-8 py-4 font-bold text-lg" data-view="5 DS" onclick="switchView('5 DS')">
+                    <i class="fas fa-database mr-2"></i>5 DS
+                </button>
+            </div>
+        </div>
+
+        <!-- Overall View -->
+        <div id="overallView" class="view-content">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="glass-card p-6 stat-card" onclick="showStudentList('all')">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Total Students</p>
+                            <h3 class="data-value text-gray-800 mt-2" id="totalStudents">0</h3>
+                        </div>
+                        <div class="icon-bg bg-blue-500">
+                            <i class="fas fa-users text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center text-sm">
+                        <span class="text-gray-600">Across <span id="totalClasses" class="font-bold">0</span> classes</span>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 stat-card" onclick="showStudentList('eligible')">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">CT Eligible</p>
+                            <h3 class="data-value text-green-600 mt-2" id="eligibleStudents">0</h3>
+                        </div>
+                        <div class="icon-bg bg-green-500">
+                            <i class="fas fa-check-circle text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span class="text-gray-600 font-medium">Eligibility Rate</span>
+                            <span class="font-bold text-green-600" id="eligibilityRate">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-gradient-to-r from-green-500 to-emerald-500 h-3 rounded-full transition-all" id="eligibilityBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 stat-card" onclick="showStudentList('risk')">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">At Risk</p>
+                            <h3 class="data-value text-orange-600 mt-2" id="riskStudents">0</h3>
+                        </div>
+                        <div class="icon-bg bg-orange-500">
+                            <i class="fas fa-exclamation-triangle text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-sm text-orange-600 font-bold">
+                        <i class="fas fa-arrow-up mr-1"></i>Requires Attention
+                    </div>
+                </div>
+
+                <div class="glass-card p-6 stat-card" onclick="showStudentList('critical')">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm font-semibold uppercase tracking-wide">Critical</p>
+                            <h3 class="data-value text-red-600 mt-2" id="criticalStudents">0</h3>
+                        </div>
+                        <div class="icon-bg bg-red-500">
+                            <i class="fas fa-times-circle text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 text-sm text-red-600 font-bold pulse">
+                        <i class="fas fa-bell mr-1"></i>Immediate Action Required
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Threshold Slider -->
+            <div class="glass-card p-8 mb-8">
+                <h3 class="section-title">
+                    <i class="fas fa-sliders-h text-indigo-600"></i>
+                    <span>Interactive Attendance Threshold Analyzer</span>
+                </h3>
+                <p class="text-gray-600 mb-6">Adjust the slider to see how many students would be eligible at different attendance thresholds</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Slider Section -->
+                    <div class="lg:col-span-2">
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-3">
+                                <label class="text-lg font-bold text-gray-700">Attendance Threshold:</label>
+                                <span class="text-4xl font-black gradient-text" id="thresholdValue">50%</span>
+                            </div>
+                            <input type="range" min="0" max="100" value="50" class="w-full h-4 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-lg appearance-none cursor-pointer" id="thresholdSlider" oninput="updateThreshold(this.value)">
+                            <div class="flex justify-between text-xs text-gray-500 mt-2">
+                                <span>0%</span>
+                                <span>25%</span>
+                                <span>50%</span>
+                                <span>75%</span>
+                                <span>100%</span>
+                            </div>
+                        </div>
+
+                        <!-- Overall Stats -->
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-xl mb-4">
+                            <h4 class="font-bold text-gray-700 mb-4 text-lg">Overall Eligibility</h4>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="text-gray-600 text-sm">Eligible Students</p>
+                                    <p class="text-3xl font-black text-green-600" id="thresholdEligible">--</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-600 text-sm">Eligibility Rate</p>
+                                    <p class="text-3xl font-black text-blue-600" id="thresholdRate">--%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Class-wise Breakdown -->
+                        <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-xl">
+                            <h4 class="font-bold text-gray-700 mb-4 text-lg">Class-wise Eligibility</h4>
+                            <div id="thresholdClassBreakdown" class="space-y-3">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Visual Chart -->
+                    <div>
+                        <div class="bg-white p-4 rounded-xl shadow-lg">
+                            <h4 class="font-bold text-gray-700 mb-4 text-center">Threshold Impact</h4>
+                            <canvas id="thresholdChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row 1 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="glass-card p-6">
+                    <h3 class="section-title">
+                        <i class="fas fa-chart-pie text-purple-600"></i>
+                        <span>Attendance Distribution</span>
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6">
+                    <h3 class="section-title">
+                        <i class="fas fa-chart-bar text-indigo-600"></i>
+                        <span>Class-wise Comparison</span>
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="classComparisonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row 2 -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <div class="glass-card p-6 lg:col-span-2">
+                    <h3 class="section-title">
+                        <i class="fas fa-book text-teal-600"></i>
+                        <span>Subject-wise Performance</span>
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="subjectChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-card p-6">
+                    <h3 class="section-title">
+                        <i class="fas fa-percentage text-pink-600"></i>
+                        <span>Eligibility Status</span>
+                    </h3>
+                    <div class="chart-container">
+                        <canvas id="eligibilityChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Heatmap -->
+            <div class="glass-card p-6 mb-8">
+                <h3 class="section-title">
+                    <i class="fas fa-th text-red-600"></i>
+                    <span>Class Performance Heatmap</span>
+                </h3>
+                <div id="heatmapChart"></div>
+            </div>
+
+            <!-- Filters -->
+            <div class="glass-card p-6 mb-8">
+                <h3 class="section-title">
+                    <i class="fas fa-filter text-blue-600"></i>
+                    <span>Advanced Filters</span>
+                </h3>
+                <div class="flex flex-wrap gap-3">
+                    <button class="filter-chip px-5 py-3 rounded-full bg-gray-200 text-gray-700 font-bold" data-filter="all" onclick="filterStudents('all')">
+                        <i class="fas fa-users mr-2"></i>All Students
+                    </button>
+                    <button class="filter-chip px-5 py-3 rounded-full bg-green-100 text-green-700 font-bold" data-filter="eligible" onclick="filterStudents('eligible')">
+                        <i class="fas fa-check mr-2"></i>Eligible (≥50%)
+                    </button>
+                    <button class="filter-chip px-5 py-3 rounded-full bg-yellow-100 text-yellow-700 font-bold" data-filter="near" onclick="filterStudents('near')">
+                        <i class="fas fa-star-half-alt mr-2"></i>Near (45-50%)
+                    </button>
+                    <button class="filter-chip px-5 py-3 rounded-full bg-orange-100 text-orange-700 font-bold" data-filter="risk" onclick="filterStudents('risk')">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>At Risk (40-45%)
+                    </button>
+                    <button class="filter-chip px-5 py-3 rounded-full bg-red-100 text-red-700 font-bold" data-filter="critical" onclick="filterStudents('critical')">
+                        <i class="fas fa-exclamation-circle mr-2"></i>Critical (35-40%)
+                    </button>
+                    <button class="filter-chip px-5 py-3 rounded-full bg-red-900 text-white font-bold" data-filter="very-critical" onclick="filterStudents('very-critical')">
+                        <i class="fas fa-skull-crossbones mr-2"></i>Very Critical (<35%)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Students Table -->
             <div class="glass-card p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">
-                    <i class="fas fa-chart-pie mr-2 text-purple-600"></i>Attendance Distribution
+                <h3 class="section-title">
+                    <i class="fas fa-table text-purple-600"></i>
+                    <span>Student Details</span>
                 </h3>
-                <div class="chart-container">
-                    <canvas id="distributionChart"></canvas>
-                </div>
-            </div>
-
-            <div class="glass-card p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">
-                    <i class="fas fa-chart-bar mr-2 text-indigo-600"></i>Class-wise Comparison
-                </h3>
-                <div class="chart-container">
-                    <canvas id="classComparisonChart"></canvas>
-                </div>
-            </div>
-        </div>
-
-        <!-- Charts Row 2 -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-            <div class="glass-card p-6 lg:col-span-2">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">
-                    <i class="fas fa-book mr-2 text-teal-600"></i>Subject-wise Performance
-                </h3>
-                <div class="chart-container">
-                    <canvas id="subjectChart"></canvas>
-                </div>
-            </div>
-
-            <div class="glass-card p-6">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">
-                    <i class="fas fa-percentage mr-2 text-pink-600"></i>Eligibility Breakdown
-                </h3>
-                <div class="chart-container">
-                    <canvas id="eligibilityChart"></canvas>
+                <div class="overflow-x-auto">
+                    <table id="studentsTable" class="display w-full">
+                        <thead>
+                            <tr>
+                                <th>Class</th>
+                                <th>URN</th>
+                                <th>Enrollment</th>
+                                <th>Name</th>
+                                <th>Attendance %</th>
+                                <th>Category</th>
+                                <th>CT Eligible</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody">
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <!-- Heatmap -->
-        <div class="glass-card p-6 mb-8">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">
-                <i class="fas fa-th mr-2 text-red-600"></i>Class Performance Heatmap
-            </h3>
-            <div id="heatmapChart"></div>
-        </div>
-
-        <!-- Filters -->
-        <div class="glass-card p-6 mb-8">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">
-                <i class="fas fa-filter mr-2 text-blue-600"></i>Advanced Filters
-            </h3>
-            <div class="flex flex-wrap gap-3">
-                <button class="filter-chip px-4 py-2 rounded-full bg-gray-200 text-gray-700 font-medium" data-filter="all" onclick="filterStudents('all')">
-                    All Students
-                </button>
-                <button class="filter-chip px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium" data-filter="eligible" onclick="filterStudents('eligible')">
-                    Eligible (≥50%)
-                </button>
-                <button class="filter-chip px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 font-medium" data-filter="near" onclick="filterStudents('near')">
-                    Near Eligible (45-50%)
-                </button>
-                <button class="filter-chip px-4 py-2 rounded-full bg-orange-100 text-orange-700 font-medium" data-filter="risk" onclick="filterStudents('risk')">
-                    At Risk (40-45%)
-                </button>
-                <button class="filter-chip px-4 py-2 rounded-full bg-red-100 text-red-700 font-medium" data-filter="critical" onclick="filterStudents('critical')">
-                    Critical (35-40%)
-                </button>
-                <button class="filter-chip px-4 py-2 rounded-full bg-red-900 text-white font-medium" data-filter="very-critical" onclick="filterStudents('very-critical')">
-                    Very Critical (<35%)
-                </button>
-            </div>
-        </div>
-
-        <!-- Students Table -->
-        <div class="glass-card p-6">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">
-                <i class="fas fa-table mr-2 text-purple-600"></i>Student Details
-            </h3>
-            <div class="overflow-x-auto">
-                <table id="studentsTable" class="display w-full">
-                    <thead>
-                        <tr>
-                            <th>Class</th>
-                            <th>URN</th>
-                            <th>Enrollment</th>
-                            <th>Name</th>
-                            <th>Attendance %</th>
-                            <th>Category</th>
-                            <th>CT Eligible</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="studentTableBody">
-                    </tbody>
-                </table>
-            </div>
+        <!-- Class-Specific Views (will be populated dynamically) -->
+        <div id="classSpecificView" class="view-content hidden">
+            <div id="classSpecificContent"></div>
         </div>
 
         <!-- Footer -->
         <div class="glass-card p-6 mt-8 text-center">
-            <p class="text-gray-600">
-                <i class="fas fa-shield-alt mr-2"></i>
-                Enterprise Attendance Analytics System v2.0 |
-                Powered by Advanced Analytics Engine
+            <p class="text-gray-600 font-medium text-lg">
+                <i class="fas fa-shield-alt mr-2 text-blue-600"></i>
+                BIT Attendance Analyzer v2.0 | Bhilai Institute of Technology
+            </p>
+            <p class="text-gray-500 text-sm mt-2">
+                Powered by Advanced Analytics Engine | © 2025
             </p>
         </div>
 
@@ -353,23 +546,42 @@
 
     <script>
         let dashboardData = null;
+        let classSpecificData = {};
         let charts = {};
         let studentsTable = null;
+        let currentView = 'overall';
         let currentFilter = 'all';
+        let thresholdChartInstance = null;
 
         // Load dashboard data
         async function loadDashboardData() {
             try {
+                // Load main dashboard data
                 const response = await fetch('attendance_reports/dashboard_data.json');
                 dashboardData = await response.json();
+
+                // Load class-specific data
+                const classes = ['5_AI', '5_CSE_A_B', '5_DS'];
+                for (const className of classes) {
+                    try {
+                        const classResponse = await fetch(`attendance_reports/dashboard_${className}.json`);
+                        if (classResponse.ok) {
+                            const displayName = className.replace(/_/g, ' '); // Replace all underscores
+                            classSpecificData[displayName] = await classResponse.json();
+                        }
+                    } catch (e) {
+                        console.log(`Class-specific data for ${className} not available`);
+                    }
+                }
+
                 initializeDashboard();
             } catch (error) {
                 console.error('Error loading data:', error);
                 Swal.fire({
                     icon: 'error',
                     title: 'Data Loading Failed',
-                    text: 'Could not load dashboard data. Please ensure dashboard_data.json exists.',
-                    confirmButtonColor: '#667eea'
+                    text: 'Could not load dashboard data. Please run the Python analyzer first.',
+                    confirmButtonColor: '#3b82f6'
                 });
             }
         }
@@ -378,6 +590,17 @@
             // Hide loading screen
             document.getElementById('loadingScreen').classList.add('hidden');
             document.getElementById('mainContent').classList.remove('hidden');
+
+            // Update system info
+            const timestamp = dashboardData.timestamp || (dashboardData.system_info && dashboardData.system_info.timestamp) || new Date().toLocaleString();
+            const version = (dashboardData.system_info && dashboardData.system_info.version) || '2.0';
+            const classes = (dashboardData.system_info && dashboardData.system_info.classes_analyzed) ?
+                           dashboardData.system_info.classes_analyzed.join(', ') :
+                           dashboardData.class_comparison.map(c => c.class_name).join(', ');
+
+            document.getElementById('lastUpdated').textContent = timestamp;
+            document.getElementById('systemVersion').textContent = version;
+            document.getElementById('classesAnalyzed').textContent = classes;
 
             // Update stats
             updateStats();
@@ -388,17 +611,10 @@
             // Initialize table
             initializeTable();
 
-            // Update timestamp
-            document.getElementById('lastUpdated').textContent = dashboardData.timestamp;
+            // Initialize threshold slider and chart
+            initializeThresholdChart();
 
-            // Show welcome message
-            Swal.fire({
-                icon: 'success',
-                title: 'Dashboard Loaded',
-                text: 'All analytics data has been successfully loaded!',
-                timer: 2000,
-                showConfirmButton: false
-            });
+            // Welcome message removed - goes straight to dashboard
         }
 
         function updateStats() {
@@ -422,7 +638,7 @@
         }
 
         function initializeCharts() {
-            // Distribution Chart (Doughnut)
+            // Distribution Chart
             const distCtx = document.getElementById('distributionChart').getContext('2d');
             const distData = dashboardData.attendance_distribution;
 
@@ -436,7 +652,7 @@
                             '#10b981', '#34d399', '#6ee7b7', '#a7f3d0',
                             '#fbbf24', '#fb923c', '#f87171', '#dc2626', '#7f1d1d'
                         ],
-                        borderWidth: 2,
+                        borderWidth: 3,
                         borderColor: '#fff'
                     }]
                 },
@@ -444,7 +660,10 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { position: 'right' },
+                        legend: {
+                            position: 'right',
+                            labels: { font: { size: 12, weight: 'bold' } }
+                        },
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
@@ -458,7 +677,7 @@
                 }
             });
 
-            // Class Comparison Chart (Bar)
+            // Class Comparison Chart
             const classCtx = document.getElementById('classComparisonChart').getContext('2d');
             const classData = dashboardData.class_comparison;
 
@@ -470,27 +689,32 @@
                         {
                             label: 'Eligible (≥50%)',
                             data: classData.map(c => c.eligible_50_plus),
-                            backgroundColor: '#10b981'
+                            backgroundColor: '#10b981',
+                            borderRadius: 8
                         },
                         {
                             label: 'Near (45-50%)',
                             data: classData.map(c => c.threshold_45_50),
-                            backgroundColor: '#fbbf24'
+                            backgroundColor: '#fbbf24',
+                            borderRadius: 8
                         },
                         {
                             label: 'At Risk (40-45%)',
                             data: classData.map(c => c.threshold_40_45),
-                            backgroundColor: '#fb923c'
+                            backgroundColor: '#fb923c',
+                            borderRadius: 8
                         },
                         {
                             label: 'Critical (35-40%)',
                             data: classData.map(c => c.threshold_35_40),
-                            backgroundColor: '#f87171'
+                            backgroundColor: '#f87171',
+                            borderRadius: 8
                         },
                         {
                             label: 'Very Critical (<35%)',
                             data: classData.map(c => c.below_35),
-                            backgroundColor: '#7f1d1d'
+                            backgroundColor: '#7f1d1d',
+                            borderRadius: 8
                         }
                     ]
                 },
@@ -498,16 +722,26 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        x: { stacked: true },
-                        y: { stacked: true, beginAtZero: true }
+                        x: {
+                            stacked: true,
+                            grid: { display: false }
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        }
                     },
                     plugins: {
-                        legend: { position: 'bottom' }
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 11, weight: 'bold' } }
+                        }
                     }
                 }
             });
 
-            // Subject Performance Chart (Horizontal Bar)
+            // Subject Performance Chart
             const subjectCtx = document.getElementById('subjectChart').getContext('2d');
             const subjectData = dashboardData.subject_aggregate;
 
@@ -518,9 +752,10 @@
                     datasets: [{
                         label: 'Average Attendance %',
                         data: Object.values(subjectData).map(s => s.avg_attendance),
-                        backgroundColor: '#667eea',
-                        borderColor: '#764ba2',
-                        borderWidth: 2
+                        backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                        borderColor: '#1e3a8a',
+                        borderWidth: 2,
+                        borderRadius: 8
                     }]
                 },
                 options: {
@@ -528,7 +763,12 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        x: { beginAtZero: true, max: 100 }
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(0,0,0,0.05)' }
+                        },
+                        y: { grid: { display: false } }
                     },
                     plugins: {
                         legend: { display: false },
@@ -538,7 +778,8 @@
                                     const subject = Object.keys(subjectData)[context.dataIndex];
                                     const eligibleCount = subjectData[subject].total_eligible;
                                     const totalCount = subjectData[subject].total_students;
-                                    return `Eligible: ${eligibleCount}/${totalCount}`;
+                                    const rate = subjectData[subject].eligibility_rate;
+                                    return `Eligible: ${eligibleCount}/${totalCount} (${rate}%)`;
                                 }
                             }
                         }
@@ -546,7 +787,7 @@
                 }
             });
 
-            // Eligibility Breakdown (Polar Area)
+            // Eligibility Breakdown
             const eligCtx = document.getElementById('eligibilityChart').getContext('2d');
             const classComp = dashboardData.class_comparison;
             const totalEligible = classComp.reduce((sum, c) => sum + c.eligible_50_plus, 0);
@@ -558,30 +799,33 @@
             charts.eligibility = new Chart(eligCtx, {
                 type: 'polarArea',
                 data: {
-                    labels: ['Eligible (≥50%)', 'Near (45-50%)', 'At Risk (40-45%)', 'Critical (35-40%)', 'Very Critical (<35%)'],
+                    labels: ['Eligible', 'Near', 'At Risk', 'Critical', 'V.Critical'],
                     datasets: [{
                         data: [totalEligible, totalNear, totalRisk, totalCritical, totalVCritical],
                         backgroundColor: [
-                            'rgba(16, 185, 129, 0.7)',
-                            'rgba(251, 191, 36, 0.7)',
-                            'rgba(251, 146, 60, 0.7)',
-                            'rgba(248, 113, 113, 0.7)',
-                            'rgba(127, 29, 29, 0.7)'
+                            'rgba(16, 185, 129, 0.8)',
+                            'rgba(251, 191, 36, 0.8)',
+                            'rgba(251, 146, 60, 0.8)',
+                            'rgba(248, 113, 113, 0.8)',
+                            'rgba(127, 29, 29, 0.8)'
                         ],
                         borderColor: '#fff',
-                        borderWidth: 2
+                        borderWidth: 3
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { position: 'bottom' }
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 11, weight: 'bold' } }
+                        }
                     }
                 }
             });
 
-            // Heatmap using ApexCharts
+            // Heatmap
             const heatmapData = classData.map(c => ({
                 name: c.class_name,
                 data: [
@@ -600,11 +844,14 @@
                     type: 'heatmap',
                     toolbar: { show: true }
                 },
-                dataLabels: { enabled: true },
-                colors: ['#667eea'],
+                dataLabels: {
+                    enabled: true,
+                    style: { fontSize: '14px', fontWeight: 'bold' }
+                },
+                colors: ['#3b82f6'],
                 title: {
                     text: 'Student Distribution Across Categories',
-                    style: { fontSize: '16px', fontWeight: 600 }
+                    style: { fontSize: '18px', fontWeight: 700 }
                 }
             };
 
@@ -626,7 +873,7 @@
                         data: 'attendance_pct',
                         render: function(data) {
                             const color = data >= 50 ? 'text-green-600' : data >= 35 ? 'text-orange-600' : 'text-red-600';
-                            return `<span class="${color} font-bold">${data}%</span>`;
+                            return `<span class="${color} font-bold text-lg">${data}%</span>`;
                         }
                     },
                     {
@@ -643,14 +890,14 @@
                     {
                         data: 'ct_eligible',
                         render: function(data) {
-                            return data ? '<i class="fas fa-check-circle text-green-500 text-xl"></i>' : '<i class="fas fa-times-circle text-red-500 text-xl"></i>';
+                            return data ? '<i class="fas fa-check-circle text-green-500 text-2xl"></i>' : '<i class="fas fa-times-circle text-red-500 text-2xl"></i>';
                         }
                     },
                     {
                         data: null,
                         render: function(data, type, row) {
                             return `
-                                <button onclick='viewStudentDetails(${JSON.stringify(row)})' class="bg-purple-500 text-white px-3 py-1 rounded hover:bg-purple-600 transition">
+                                <button onclick='viewStudentDetails(${JSON.stringify(row)})' class="bit-gradient text-white px-4 py-2 rounded-lg hover:shadow-lg transition font-semibold">
                                     <i class="fas fa-eye mr-1"></i>View
                                 </button>
                             `;
@@ -659,38 +906,278 @@
                 ],
                 pageLength: 25,
                 order: [[4, 'asc']],
-                responsive: true
+                responsive: true,
+                language: {
+                    search: "Search students:",
+                    lengthMenu: "Show _MENU_ students per page"
+                }
+            });
+        }
+
+        function switchView(view) {
+            currentView = view;
+
+            // Update tab buttons
+            document.querySelectorAll('.class-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-view="${view}"]`).classList.add('active');
+
+            if (view === 'overall') {
+                document.getElementById('overallView').classList.remove('hidden');
+                document.getElementById('classSpecificView').classList.add('hidden');
+            } else {
+                document.getElementById('overallView').classList.add('hidden');
+                document.getElementById('classSpecificView').classList.remove('hidden');
+                loadClassSpecificView(view);
+            }
+        }
+
+        function loadClassSpecificView(className) {
+            const data = classSpecificData[className];
+
+            if (!data) {
+                document.getElementById('classSpecificContent').innerHTML = `
+                    <div class="glass-card p-12 text-center">
+                        <i class="fas fa-exclamation-triangle text-yellow-500 text-6xl mb-4"></i>
+                        <h2 class="text-2xl font-bold text-gray-700">Class-specific data not available</h2>
+                        <p class="text-gray-600 mt-2">Please run the Python analyzer to generate detailed class reports.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Build enhanced class-specific dashboard with multiple charts
+            const stats = data.statistics;
+            const detailed = data.detailed_analysis;
+
+            let html = `
+                <div class="glass-card p-8 mb-8">
+                    <h2 class="text-3xl font-bold gradient-text mb-6">
+                        <i class="fas fa-school mr-3"></i>${className} - Comprehensive Analysis
+                    </h2>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-blue-50 p-6 rounded-xl">
+                            <p class="text-gray-600 font-semibold">Total Students</p>
+                            <p class="text-4xl font-bold text-blue-600">${stats.total_students}</p>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-xl">
+                            <p class="text-gray-600 font-semibold">Average Attendance</p>
+                            <p class="text-4xl font-bold text-green-600">${stats.avg_attendance.toFixed(2)}%</p>
+                        </div>
+                        <div class="bg-purple-50 p-6 rounded-xl">
+                            <p class="text-gray-600 font-semibold">CT Eligible</p>
+                            <p class="text-4xl font-bold text-purple-600">${stats.eligible_50_plus}</p>
+                        </div>
+                        <div class="bg-orange-50 p-6 rounded-xl">
+                            <p class="text-gray-600 font-semibold">Eligibility Rate</p>
+                            <p class="text-4xl font-bold text-orange-600">${((stats.eligible_50_plus / stats.total_students) * 100).toFixed(1)}%</p>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row 1 -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="text-lg font-bold text-gray-700 mb-4">Eligibility Distribution</h3>
+                            <canvas id="class_eligibility_${className.replace(/\s+/g, '_')}"></canvas>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="text-lg font-bold text-gray-700 mb-4">Subject Performance</h3>
+                            <canvas id="class_subject_${className.replace(/\s+/g, '_')}"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row 2 -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-lg lg:col-span-2">
+                            <h3 class="text-lg font-bold text-gray-700 mb-4">Threshold-based Eligibility Analysis</h3>
+                            <canvas id="class_threshold_${className.replace(/\s+/g, '_')}"></canvas>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-lg">
+                            <h3 class="text-lg font-bold text-gray-700 mb-4">Risk Distribution</h3>
+                            <canvas id="class_risk_${className.replace(/\s+/g, '_')}"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Top/Bottom Performers -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-green-700 mb-4">
+                                <i class="fas fa-trophy mr-2"></i>Top 5 Performers
+                            </h3>
+                            ${detailed.top_performers.slice(0, 5).map((s, i) => `
+                                <div class="bg-white p-3 rounded-lg mb-2 flex justify-between items-center">
+                                    <div>
+                                        <span class="font-bold text-gray-700">${i + 1}. ${s.name}</span>
+                                        <span class="text-sm text-gray-500 ml-2">${s.urn}</span>
+                                    </div>
+                                    <span class="text-xl font-bold text-green-600">${s.attendance.toFixed(2)}%</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="bg-gradient-to-br from-red-50 to-rose-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-red-700 mb-4">
+                                <i class="fas fa-exclamation-circle mr-2"></i>Bottom 5 Performers
+                            </h3>
+                            ${detailed.bottom_performers.slice(0, 5).map((s, i) => `
+                                <div class="bg-white p-3 rounded-lg mb-2 flex justify-between items-center">
+                                    <div>
+                                        <span class="font-bold text-gray-700">${i + 1}. ${s.name}</span>
+                                        <span class="text-sm text-gray-500 ml-2">${s.urn}</span>
+                                    </div>
+                                    <span class="text-xl font-bold text-red-600">${s.attendance.toFixed(2)}%</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    ${detailed.recommendations.length > 0 ? `
+                        <div class="bg-yellow-50 p-6 rounded-xl">
+                            <h3 class="text-xl font-bold text-yellow-700 mb-4">
+                                <i class="fas fa-lightbulb mr-2"></i>Recommendations
+                            </h3>
+                            ${detailed.recommendations.map(rec => `
+                                <div class="bg-white p-3 rounded-lg mb-2">
+                                    <p class="text-gray-700 font-medium">${rec}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+
+            document.getElementById('classSpecificContent').innerHTML = html;
+
+            // Initialize class-specific charts
+            setTimeout(() => initializeClassCharts(className, stats, data.student_details), 100);
+        }
+
+        function initializeClassCharts(className, stats, students) {
+            const cleanName = className.replace(/\s+/g, '_');
+
+            // 1. Eligibility Distribution Chart
+            const eligCtx = document.getElementById(`class_eligibility_${cleanName}`).getContext('2d');
+            new Chart(eligCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Eligible (≥50%)', 'Near (45-50%)', 'At Risk (40-45%)', 'Critical (35-40%)', 'Very Critical (<35%)'],
+                    datasets: [{
+                        data: [stats.eligible_50_plus, stats.threshold_45_50, stats.threshold_40_45, stats.threshold_35_40, stats.below_35],
+                        backgroundColor: ['#10b981', '#fbbf24', '#fb923c', '#f87171', '#7f1d1d'],
+                        borderWidth: 2,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // 2. Subject Performance Chart
+            const subjectData = stats.subject_wise;
+            const subjects = Object.keys(subjectData);
+            const subjectCtx = document.getElementById(`class_subject_${cleanName}`).getContext('2d');
+            new Chart(subjectCtx, {
+                type: 'bar',
+                data: {
+                    labels: subjects,
+                    datasets: [{
+                        label: 'Avg Attendance %',
+                        data: subjects.map(s => subjectData[s].avg_attendance),
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: { beginAtZero: true, max: 100 }
+                    }
+                }
+            });
+
+            // 3. Threshold Analysis Chart
+            const thresholds = [30, 35, 40, 45, 50, 55, 60, 65, 70, 75];
+            const thresholdCounts = thresholds.map(t => students.filter(s => s.attendance_pct >= t).length);
+            const thresholdCtx = document.getElementById(`class_threshold_${cleanName}`).getContext('2d');
+            new Chart(thresholdCtx, {
+                type: 'line',
+                data: {
+                    labels: thresholds.map(t => t + '%'),
+                    datasets: [{
+                        label: 'Students Eligible',
+                        data: thresholdCounts,
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        borderWidth: 3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+
+            // 4. Risk Distribution Chart
+            const riskData = {
+                'Safe (≥50%)': stats.eligible_50_plus,
+                'Medium Risk (35-50%)': stats.threshold_45_50 + stats.threshold_40_45 + stats.threshold_35_40,
+                'High Risk (<35%)': stats.below_35
+            };
+            const riskCtx = document.getElementById(`class_risk_${cleanName}`).getContext('2d');
+            new Chart(riskCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(riskData),
+                    datasets: [{
+                        data: Object.values(riskData),
+                        backgroundColor: ['#10b981', '#fb923c', '#ef4444'],
+                        borderWidth: 3,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { size: 10 } } }
+                    }
+                }
             });
         }
 
         function filterStudents(category) {
             currentFilter = category;
 
-            // Update filter chips
             document.querySelectorAll('.filter-chip').forEach(chip => {
                 chip.classList.remove('active');
             });
-            event.target.classList.add('active');
+            event.target.closest('.filter-chip').classList.add('active');
 
             let searchValue = '';
             switch(category) {
-                case 'eligible':
-                    searchValue = 'Eligible';
-                    break;
-                case 'near':
-                    searchValue = 'Near Eligible';
-                    break;
-                case 'risk':
-                    searchValue = 'At Risk';
-                    break;
-                case 'critical':
-                    searchValue = 'Critical (35-40%)';
-                    break;
-                case 'very-critical':
-                    searchValue = 'Very Critical';
-                    break;
-                default:
-                    searchValue = '';
+                case 'eligible': searchValue = 'Eligible'; break;
+                case 'near': searchValue = 'Near Eligible'; break;
+                case 'risk': searchValue = 'At Risk'; break;
+                case 'critical': searchValue = 'Critical (35-40%)'; break;
+                case 'very-critical': searchValue = 'Very Critical'; break;
+                default: searchValue = '';
             }
 
             studentsTable.column(5).search(searchValue).draw();
@@ -700,37 +1187,38 @@
             Swal.fire({
                 title: `<strong>${student.name}</strong>`,
                 html: `
-                    <div class="text-left space-y-3">
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">URN</p>
-                            <p class="font-semibold">${student.urn}</p>
+                    <div class="text-left space-y-4">
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-5 rounded-xl">
+                            <p class="text-sm text-gray-600 font-semibold">URN</p>
+                            <p class="text-lg font-bold text-gray-800">${student.urn}</p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">Enrollment Number</p>
-                            <p class="font-semibold">${student.enroll}</p>
+                        <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-5 rounded-xl">
+                            <p class="text-sm text-gray-600 font-semibold">Enrollment Number</p>
+                            <p class="text-lg font-bold text-gray-800">${student.enroll}</p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">Class</p>
-                            <p class="font-semibold">${student.class}</p>
+                        <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-5 rounded-xl">
+                            <p class="text-sm text-gray-600 font-semibold">Class</p>
+                            <p class="text-lg font-bold text-gray-800">${student.class}</p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">Attendance Percentage</p>
-                            <p class="text-3xl font-bold ${student.attendance_pct >= 50 ? 'text-green-600' : 'text-red-600'}">${student.attendance_pct}%</p>
+                        <div class="bg-gradient-to-r from-orange-50 to-yellow-50 p-5 rounded-xl">
+                            <p class="text-sm text-gray-600 font-semibold">Attendance Percentage</p>
+                            <p class="text-5xl font-black ${student.attendance_pct >= 50 ? 'text-green-600' : 'text-red-600'} mt-2">${student.attendance_pct}%</p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">Category</p>
-                            <p class="font-semibold">${student.category}</p>
+                        <div class="bg-gradient-to-r from-gray-50 to-slate-50 p-5 rounded-xl">
+                            <p class="text-sm text-gray-600 font-semibold">Category</p>
+                            <p class="text-lg font-bold text-gray-800">${student.category}</p>
                         </div>
-                        <div class="bg-gray-100 p-4 rounded-lg">
-                            <p class="text-sm text-gray-600">CT Eligibility</p>
-                            <p class="font-semibold ${student.ct_eligible ? 'text-green-600' : 'text-red-600'}">
-                                ${student.ct_eligible ? '✓ Eligible' : '✗ Not Eligible'}
+                        <div class="bg-gradient-to-r from-teal-50 to-cyan-50 p-5 rounded-xl">
+                            <p class="text-sm text-gray-600 font-semibold">CT Eligibility</p>
+                            <p class="text-2xl font-bold ${student.ct_eligible ? 'text-green-600' : 'text-red-600'}">
+                                ${student.ct_eligible ? '✓ Eligible for Class Test' : '✗ Not Eligible for Class Test'}
                             </p>
                         </div>
                     </div>
                 `,
-                width: 600,
-                confirmButtonColor: '#667eea'
+                width: 650,
+                confirmButtonColor: '#3b82f6',
+                confirmButtonText: 'Close'
             });
         }
 
@@ -755,13 +1243,13 @@
             }
 
             const listHtml = filtered.map(s => `
-                <div class="border-b py-2 flex justify-between items-center">
+                <div class="border-b py-3 flex justify-between items-center hover:bg-gray-50 px-2 rounded">
                     <div>
-                        <p class="font-semibold">${s.name}</p>
+                        <p class="font-bold text-gray-800">${s.name}</p>
                         <p class="text-sm text-gray-600">${s.class} - ${s.urn}</p>
                     </div>
                     <div class="text-right">
-                        <p class="text-lg font-bold ${s.attendance_pct >= 50 ? 'text-green-600' : 'text-red-600'}">${s.attendance_pct}%</p>
+                        <p class="text-2xl font-black ${s.attendance_pct >= 50 ? 'text-green-600' : 'text-red-600'}">${s.attendance_pct}%</p>
                     </div>
                 </div>
             `).join('');
@@ -772,17 +1260,17 @@
                     <div class="max-h-96 overflow-y-auto text-left">
                         ${listHtml}
                     </div>
-                    <p class="mt-4 text-sm text-gray-600">Total: ${filtered.length} students</p>
+                    <p class="mt-6 text-lg font-bold text-gray-700">Total: ${filtered.length} students</p>
                 `,
-                width: 700,
-                confirmButtonColor: '#667eea'
+                width: 800,
+                confirmButtonColor: '#3b82f6'
             });
         }
 
         function refreshData() {
             Swal.fire({
-                title: 'Refreshing Data...',
-                text: 'Please wait while we update the dashboard',
+                title: 'Refreshing Dashboard...',
+                text: 'Loading latest attendance data',
                 allowOutsideClick: false,
                 didOpen: () => {
                     Swal.showLoading();
@@ -797,12 +1285,13 @@
         function exportReport() {
             Swal.fire({
                 title: 'Export Report',
-                text: 'Choose export format',
+                text: 'Choose your preferred export format',
+                icon: 'question',
                 showDenyButton: true,
                 showCancelButton: true,
-                confirmButtonText: 'Export CSV',
-                denyButtonText: 'Export JSON',
-                confirmButtonColor: '#667eea',
+                confirmButtonText: '<i class="fas fa-file-csv mr-2"></i>Export CSV',
+                denyButtonText: '<i class="fas fa-file-code mr-2"></i>Export JSON',
+                confirmButtonColor: '#3b82f6',
                 denyButtonColor: '#10b981'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -818,7 +1307,7 @@
             const csv = [
                 ['Class', 'URN', 'Enrollment', 'Name', 'Attendance %', 'Category', 'CT Eligible'].join(','),
                 ...students.map(s => [
-                    s.class, s.urn, s.enroll, s.name, s.attendance_pct,
+                    s.class, s.urn, s.enroll, `"${s.name}"`, s.attendance_pct,
                     `"${s.category}"`, s.ct_eligible ? 'Yes' : 'No'
                 ].join(','))
             ].join('\n');
@@ -827,12 +1316,12 @@
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `attendance_report_${new Date().getTime()}.csv`;
+            a.download = `BIT_attendance_export_${new Date().getTime()}.csv`;
             a.click();
 
             Swal.fire({
                 icon: 'success',
-                title: 'Exported!',
+                title: 'Export Successful!',
                 text: 'CSV file has been downloaded',
                 timer: 2000,
                 showConfirmButton: false
@@ -844,16 +1333,134 @@
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `attendance_data_${new Date().getTime()}.json`;
+            a.download = `BIT_attendance_data_${new Date().getTime()}.json`;
             a.click();
 
             Swal.fire({
                 icon: 'success',
-                title: 'Exported!',
+                title: 'Export Successful!',
                 text: 'JSON file has been downloaded',
                 timer: 2000,
                 showConfirmButton: false
             });
+        }
+
+        function showSettings() {
+            const timestamp = dashboardData && dashboardData.timestamp ? dashboardData.timestamp :
+                             (dashboardData && dashboardData.system_info && dashboardData.system_info.timestamp ? dashboardData.system_info.timestamp : 'Not available');
+
+            Swal.fire({
+                title: 'Dashboard Settings',
+                html: `
+                    <div class="text-left space-y-4">
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <h3 class="font-bold text-gray-700 mb-2">Display Options</h3>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" class="w-4 h-4" checked>
+                                <span>Show animations</span>
+                            </label>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg">
+                            <h3 class="font-bold text-gray-700 mb-2">Data Information</h3>
+                            <p class="text-sm text-gray-600 mb-2">Last updated: ${timestamp}</p>
+                            <p class="text-sm text-gray-600">Total Students: ${dashboardData.overall_stats.total_students}</p>
+                            <p class="text-sm text-gray-600">Classes: ${dashboardData.overall_stats.total_classes}</p>
+                        </div>
+                        <div class="p-4 bg-purple-50 rounded-lg">
+                            <h3 class="font-bold text-gray-700 mb-2">System Version</h3>
+                            <p class="text-sm text-gray-600">BIT Attendance Analyzer v2.0</p>
+                            <p class="text-sm text-gray-600">Bhilai Institute of Technology</p>
+                        </div>
+                    </div>
+                `,
+                confirmButtonColor: '#3b82f6',
+                confirmButtonText: 'Close'
+            });
+        }
+
+        function updateThreshold(value) {
+            const threshold = parseFloat(value);
+            document.getElementById('thresholdValue').textContent = threshold + '%';
+
+            // Calculate overall eligibility
+            const students = dashboardData.student_details;
+            const eligible = students.filter(s => s.attendance_pct >= threshold).length;
+            const total = students.length;
+            const rate = ((eligible / total) * 100).toFixed(1);
+
+            document.getElementById('thresholdEligible').textContent = eligible;
+            document.getElementById('thresholdRate').textContent = rate + '%';
+
+            // Calculate class-wise eligibility
+            const classes = dashboardData.class_comparison;
+            let breakdownHTML = '';
+
+            classes.forEach(classData => {
+                const classStudents = students.filter(s => s.class === classData.class_name);
+                const classEligible = classStudents.filter(s => s.attendance_pct >= threshold).length;
+                const classTotal = classStudents.length;
+                const classRate = ((classEligible / classTotal) * 100).toFixed(1);
+
+                breakdownHTML += `
+                    <div class="flex items-center justify-between bg-white p-4 rounded-lg">
+                        <div class="flex-1">
+                            <p class="font-bold text-gray-700">${classData.class_name}</p>
+                            <p class="text-sm text-gray-500">${classEligible}/${classTotal} students</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-black ${classRate >= 50 ? 'text-green-600' : 'text-red-600'}">${classRate}%</p>
+                        </div>
+                        <div class="ml-4 w-24 bg-gray-200 rounded-full h-3">
+                            <div class="h-3 rounded-full transition-all ${classRate >= 50 ? 'bg-green-500' : 'bg-red-500'}" style="width: ${classRate}%"></div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('thresholdClassBreakdown').innerHTML = breakdownHTML;
+
+            // Update threshold chart
+            if (thresholdChartInstance) {
+                const chartData = classes.map(classData => {
+                    const classStudents = students.filter(s => s.class === classData.class_name);
+                    const classEligible = classStudents.filter(s => s.attendance_pct >= threshold).length;
+                    return classEligible;
+                });
+
+                thresholdChartInstance.data.datasets[0].data = chartData;
+                thresholdChartInstance.update();
+            }
+        }
+
+        function initializeThresholdChart() {
+            const ctx = document.getElementById('thresholdChart').getContext('2d');
+            const classes = dashboardData.class_comparison;
+
+            thresholdChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: classes.map(c => c.class_name),
+                    datasets: [{
+                        data: classes.map(c => c.eligible_50_plus),
+                        backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'],
+                        borderWidth: 3,
+                        borderColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: { font: { size: 11, weight: 'bold' } }
+                        }
+                    }
+                }
+            });
+
+            // Initialize threshold display
+            updateThreshold(50);
         }
 
         // Initialize on page load
