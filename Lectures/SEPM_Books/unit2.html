@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEPM Unit-2: Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .overview-box {
+            background: #f0f9ff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #0891b2;
+        }
+
+        .overview-box h2 {
+            color: #0891b2;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .overview-box .big-picture {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .intro {
+            background: #ecfeff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #06b6d4;
+        }
+
+        .intro h2 {
+            color: #0891b2;
+            margin-bottom: 15px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: #0891b2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #0891b2;
+        }
+
+        h3 {
+            color: #0e7490;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .definition {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .definition strong {
+            color: #1e40af;
+        }
+
+        .simple-explanation {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .simple-explanation-title {
+            color: #d97706;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .example {
+            background: #fff7ed;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #fb923c;
+        }
+
+        .example-title {
+            color: #ea580c;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .formula {
+            background: #f0fdfa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            border-left: 4px solid #14b8a6;
+        }
+
+        .calculation {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #22c55e;
+        }
+
+        .calculation-title {
+            color: #16a34a;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        tr:hover {
+            background: #e0f2fe;
+        }
+
+        .component-list {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .component-list li {
+            margin: 15px 0;
+            padding-left: 10px;
+        }
+
+        .case-study {
+            background: #fce7f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ec4899;
+        }
+
+        .case-study-title {
+            color: #be185d;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .mode-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #0891b2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .mode-box h4 {
+            color: #0891b2;
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #fef08a;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin: 20px 0;
+            padding-left: 60px;
+            position: relative;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #0891b2;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .key-points {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .key-points ul {
+            margin-left: 20px;
+        }
+
+        .key-points li {
+            margin: 10px 0;
+        }
+
+        .analogy-box {
+            background: #fef9c3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #eab308;
+        }
+
+        .analogy-box strong {
+            color: #a16207;
+        }
+
+        .process-flow {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .process-arrow {
+            font-size: 2em;
+            color: #0891b2;
+            margin: 10px 0;
+        }
+
+        .diagram-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #0891b2;
+            text-align: center;
+        }
+
+        .hierarchy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .hierarchy-level {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 10px 0;
+        }
+
+        .hierarchy-box {
+            background: #dbeafe;
+            padding: 15px 25px;
+            border-radius: 8px;
+            border: 2px solid #0891b2;
+            min-width: 150px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>SEPM Unit-2</h1>
+            <p>Requirements Analysis, Design, and Software Estimation</p>
+        </header>
+
+        <div class="content">
+            <!-- Overview Section -->
+            <div class="overview-box">
+                <h2>🎯 Overview: The Big Picture</h2>
+
+                <div class="big-picture">
+                    <h3 style="color: #0891b2; border: none; margin-top: 0;">What is Unit-2 About?</h3>
+                    <p style="font-size: 1.1em;">This unit covers the critical phase of software development where we <strong>understand what to build and how much it will cost</strong>. Before writing any code, software engineers must:</p>
+                    <ul style="margin: 15px 0 15px 30px; font-size: 1.05em;">
+                        <li><strong>Gather and analyze requirements</strong> from stakeholders</li>
+                        <li><strong>Design the system structure</strong> using various diagrams and models</li>
+                        <li><strong>Estimate the size and cost</strong> of the software project</li>
+                        <li><strong>Determine if the project is feasible</strong> technically and economically</li>
+                    </ul>
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Think of it Like Planning a Building</div>
+                    <p>Before constructing a building, architects need to:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Requirements:</strong> Understand what the client wants (offices, parking, etc.)</li>
+                        <li><strong>Design:</strong> Create blueprints showing the structure</li>
+                        <li><strong>Estimation:</strong> Calculate materials needed and total cost</li>
+                        <li><strong>Feasibility:</strong> Check if it's technically possible and financially viable</li>
+                    </ul>
+                    <p style="margin-top: 10px;">Software engineering follows the same logical approach!</p>
+                </div>
+
+                <div class="process-flow">
+                    <h3 style="color: #0891b2; border: none; margin-top: 0;">The Unit-2 Process Flow</h3>
+                    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 20px 0;">
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; flex: 1; min-width: 150px;">
+                            <strong>Step 1</strong><br>Requirements Gathering
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #dcfce7; padding: 15px; border-radius: 8px; flex: 1; min-width: 150px;">
+                            <strong>Step 2</strong><br>System Design
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; flex: 1; min-width: 150px;">
+                            <strong>Step 3</strong><br>Size Estimation
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fce7f3; padding: 15px; border-radius: 8px; flex: 1; min-width: 150px;">
+                            <strong>Step 4</strong><br>Cost Estimation
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>📚 Main Topics Covered in Unit-2:</h4>
+                    <ul>
+                        <li><strong>Types of Requirements:</strong> Business, User, and Software (Functional, Non-Functional, Domain)</li>
+                        <li><strong>Requirements Elicitation:</strong> Interviews, Brainstorming, FAST, QFD, Use Cases</li>
+                        <li><strong>Feasibility Study:</strong> Technical, Economic, Operational, and Resource feasibility</li>
+                        <li><strong>Design Tools:</strong> DFD, Data Dictionary, HIPO Charts, Warnier Orr Diagrams</li>
+                        <li><strong>SRS Document:</strong> Software Requirements Specification structure and contents</li>
+                        <li><strong>Software Estimation:</strong> Function Point Analysis, Lines of Code, COCOMO, COCOMO-II</li>
+                    </ul>
+                </div>
+
+                <div style="background: #fef2f2; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #ef4444;">
+                    <p style="margin: 0; font-size: 1.05em;"><strong>⚠️ Critical Rule:</strong> <span class="highlight">Requirements must be clear, complete, and documented</span> before design and development begins. Poor requirements are the #1 cause of software project failures!</p>
+                </div>
+            </div>
+
+            <!-- Requirements Section -->
+            <section id="requirements">
+                <h2>📋 Requirements in Software Engineering</h2>
+
+                <div class="definition">
+                    <strong>What is a Requirement?</strong><br>
+                    According to IEEE Std 610.12-1990, a requirement is defined as:
+                    <ol style="margin: 10px 0 10px 20px;">
+                        <li>A condition or capability needed by a user to solve a problem or achieve an objective</li>
+                        <li>A condition or capability that must be met by a system to satisfy a contract, standard, or specification</li>
+                        <li>A documented representation of such conditions or capabilities</li>
+                    </ol>
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 In Simple Terms</div>
+                    <p>A requirement is <strong>anything the software must do or any quality it must have</strong>. It answers the question: "What should this software accomplish?"</p>
+                    <p style="margin-top: 10px;">Example: "The system shall allow users to login with username and password" is a requirement.</p>
+                </div>
+
+                <h3>Types of Requirements</h3>
+
+                <div class="diagram-box">
+                    <h4 style="color: #0891b2;">Requirements Hierarchy</h4>
+                    <div style="margin: 20px 0;">
+                        <div style="background: #fbbf24; padding: 15px; border-radius: 8px; margin: 10px auto; max-width: 250px; font-weight: bold;">
+                            Requirements
+                        </div>
+                        <div style="height: 30px; border-left: 2px solid #0891b2; width: 2px; margin: 0 auto;"></div>
+                        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                            <div style="flex: 1; min-width: 200px; max-width: 300px;">
+                                <div style="background: #86efac; padding: 15px; border-radius: 8px; font-weight: bold;">
+                                    (1) Business Requirements
+                                </div>
+                            </div>
+                            <div style="flex: 1; min-width: 200px; max-width: 300px;">
+                                <div style="background: #86efac; padding: 15px; border-radius: 8px; font-weight: bold;">
+                                    (2) User Requirements
+                                </div>
+                            </div>
+                            <div style="flex: 1; min-width: 200px; max-width: 300px;">
+                                <div style="background: #86efac; padding: 15px; border-radius: 8px; font-weight: bold; position: relative;">
+                                    (3) Software Requirements
+                                    <div style="height: 30px; border-left: 2px solid #0891b2; width: 2px; margin: 10px auto 0;"></div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+                                    <div style="background: #93c5fd; padding: 10px; border-radius: 8px; font-size: 0.9em;">
+                                        (i) Functional
+                                    </div>
+                                    <div style="background: #93c5fd; padding: 10px; border-radius: 8px; font-size: 0.9em;">
+                                        (ii) Non-Functional
+                                    </div>
+                                    <div style="background: #93c5fd; padding: 10px; border-radius: 8px; font-size: 0.9em;">
+                                        (iii) Domain
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>(1) Business Requirements</h4>
+                    <p>Business requirements capture the <span class="highlight">high-level objectives and goals</span> that guide the design of the system.</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Usually captured by <strong>business analysts</strong> or product owners</li>
+                        <li>Determines project's overall goals and constraints</li>
+                        <li>Uses keywords like <strong>"shall"</strong> (must implement) and <strong>"should"</strong> (desirable but not mandatory)</li>
+                    </ul>
+                    <div class="example" style="margin-top: 10px;">
+                        <div class="example-title">Example</div>
+                        <p>"The e-commerce system <strong>shall</strong> increase online sales by 30% within 6 months."</p>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>(2) User Requirements (URS)</h4>
+                    <p>User Requirements describe <span class="highlight">why users would use the system and what they expect from it</span>.</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Written early in the validation process, typically before system creation</li>
+                        <li>Written by <strong>product owners and end-users</strong> with input from QA</li>
+                        <li>Tested in <strong>User Acceptance Testing (UAT)</strong></li>
+                        <li>Should be understandable by non-technical readers</li>
+                    </ul>
+                    <div class="example" style="margin-top: 10px;">
+                        <div class="example-title">Example</div>
+                        <p>"Users should be able to search for products by name, category, or price range."</p>
+                    </div>
+                </div>
+
+                <h3>Software Requirements - Detailed Breakdown</h3>
+
+                <div class="mode-box">
+                    <h4>(i) Functional Requirements</h4>
+                    <p>Part of the Software Requirements Specification (SRS) that describes <span class="highlight">what the system should do</span> - its behavior, features, and capabilities.</p>
+
+                    <div class="key-points" style="margin-top: 15px;">
+                        <strong>Four Key Aspects:</strong>
+                        <ul>
+                            <li><strong>System Behavior:</strong> How the system will interact with users, process data, and respond to inputs</li>
+                            <li><strong>Use Cases and Scenarios:</strong> Step-by-step flow of events highlighting expected outcomes</li>
+                            <li><strong>Quantifiable and Verifiable:</strong> Each requirement should have specific acceptance criteria</li>
+                            <li><strong>Traceability:</strong> Should be traceable back to business goals and objectives</li>
+                        </ul>
+                    </div>
+
+                    <div class="example" style="margin-top: 10px;">
+                        <div class="example-title">Examples of Functional Requirements</div>
+                        <ul style="margin-left: 20px;">
+                            <li>"The system shall validate email format before accepting registration."</li>
+                            <li>"Users shall receive order confirmation via email within 2 minutes."</li>
+                            <li>"The system shall generate monthly sales reports in PDF format."</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>(ii) Non-Functional Requirements</h4>
+                    <p>Define the <span class="highlight">quality attributes and characteristics</span> of the system - focusing on <strong>how the system should perform</strong> rather than what it should do.</p>
+
+                    <div class="component-list">
+                        <strong>Common Non-Functional Requirements:</strong>
+                        <ul>
+                            <li><strong>Performance:</strong> Response time, throughput, resource usage
+                                <br><em>Example: "Page load time shall not exceed 2 seconds"</em></li>
+                            <li><strong>Security:</strong> Authentication, authorization, data encryption
+                                <br><em>Example: "Passwords must be encrypted using SHA-256"</em></li>
+                            <li><strong>Reliability:</strong> Uptime, fault tolerance, recovery
+                                <br><em>Example: "System uptime shall be 99.9%"</em></li>
+                            <li><strong>Scalability:</strong> Ability to handle growth
+                                <br><em>Example: "Support 10,000 concurrent users"</em></li>
+                            <li><strong>Maintainability:</strong> Ease of updates and fixes
+                                <br><em>Example: "Code must follow coding standards"</em></li>
+                            <li><strong>Interoperability:</strong> Integration with other systems
+                                <br><em>Example: "Must integrate with existing payment gateway"</em></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>(iii) Domain Requirements</h4>
+                    <p>Domain requirements refer to <span class="highlight">unique needs, constraints, and characteristics particular to a specific industry or application domain</span>.</p>
+
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Each software system operates within a specific domain</li>
+                        <li>Understanding domain requirements is crucial for successful software</li>
+                        <li>Typically gathered through interactions with <strong>domain experts and stakeholders</strong></li>
+                    </ul>
+
+                    <div class="example" style="margin-top: 10px;">
+                        <div class="example-title">Domain-Specific Examples</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Domain</th>
+                                    <th>Example Requirement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Healthcare</td>
+                                    <td>Must comply with HIPAA regulations for patient data</td>
+                                </tr>
+                                <tr>
+                                    <td>Banking</td>
+                                    <td>Must follow PCI-DSS standards for payment processing</td>
+                                </tr>
+                                <tr>
+                                    <td>Aviation</td>
+                                    <td>Must meet FAA safety certification requirements</td>
+                                </tr>
+                                <tr>
+                                    <td>E-commerce</td>
+                                    <td>Must support multiple currencies and tax calculations</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Requirements Elicitation Section -->
+            <section id="elicitation">
+                <h2>🎤 Requirements Elicitation</h2>
+
+                <div class="definition">
+                    <strong>What is Requirements Elicitation?</strong><br>
+                    Requirements elicitation is the <span class="highlight">process of gathering, understanding, and documenting the needs, expectations, and specifications of a software system from stakeholders</span>.
+                    <p style="margin-top: 10px;">This step is crucial to ensure the software meets intended goals and satisfies users' and clients' requirements.</p>
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🎯 Importance:</strong> Effective requirement elicitation requires <strong>balancing</strong> between:
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Collecting enough information to understand the project's needs</li>
+                        <li>Avoiding excessive detail that can lead to scope creep or unnecessary complexity</li>
+                    </ul>
+                </div>
+
+                <h3>Requirements Elicitation Process</h3>
+
+                <ul class="steps">
+                    <li><strong>Requirements Gathering:</strong> Developers discuss with clients and end users to understand their expectations from the software</li>
+                    <li><strong>Organizing Requirements:</strong> Developers prioritize and arrange requirements in order of importance, urgency, and convenience</li>
+                    <li><strong>Negotiation & Discussion:</strong> If requirements are ambiguous or conflicting, they are negotiated and discussed with stakeholders, then prioritized and reasonably compromised</li>
+                    <li><strong>Documentation:</strong> All formal & informal, functional and non-functional requirements are documented and made available for next phase processing</li>
+                </ul>
+
+                <h3>Requirements Elicitation Techniques</h3>
+
+                <div class="mode-box">
+                    <h4>1) Interviews</h4>
+                    <p>Interviews are a <strong>strong medium to collect requirements</strong>. Organizations may conduct several types of interviews:</p>
+
+                    <div class="component-list">
+                        <ul>
+                            <li><strong>Structured (Closed) Interviews:</strong> Every information to gather is decided in advance; follow a fixed pattern and matter of discussion firmly
+                                <br><em>Best for: Specific, targeted information gathering</em></li>
+                            <li><strong>Non-Structured (Open) Interviews:</strong> Information to gather is not decided in advance; more flexible and less biased
+                                <br><em>Best for: Exploratory discussions and discovering unexpected requirements</em></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>2) Brainstorming Sessions</h4>
+                    <p>A <strong>group technique</strong> intended to generate lots of new ideas, providing a platform to share views.</p>
+
+                    <div class="key-points">
+                        <strong>Key Characteristics:</strong>
+                        <ul>
+                            <li>Requires a highly trained facilitator to handle group bias and conflicts</li>
+                            <li>Every idea is documented so everyone can see it</li>
+                            <li>Finally, a document is prepared with the list of requirements and their priorities</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>3) Facilitated Application Specification Technique (FAST)</h4>
+                    <p>FAST is a requirements elicitation technique used to <span class="highlight">gather and define software system requirements through collaborative workshops</span>.</p>
+
+                    <p style="margin-top: 10px;">It's a <strong>structured approach</strong> that involves conducting workshops or sessions with stakeholders to identify, clarify, and prioritize the system's functionalities and features.</p>
+
+                    <div class="key-points">
+                        <strong>When to Use FAST:</strong>
+                        <ul>
+                            <li>Particularly useful for complex projects</li>
+                            <li>Large teams</li>
+                            <li>Projects with rapidly changing requirements</li>
+                            <li>Encourages collaboration, communication, and alignment among stakeholders</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="margin-top: 20px;">FAST Process Steps:</h4>
+                    <ul class="steps">
+                        <li><strong>Preparation:</strong> Facilitator prepares by understanding project context, identifying key stakeholders, and setting clear objectives for the workshop</li>
+                        <li><strong>Conduct the Session:</strong> Facilitator leads the workshop, engaging stakeholders in discussions, brainstorming, and collaborative activities to identify and define requirements</li>
+                        <li><strong>Visual Modeling:</strong> During the session, facilitator uses visual modeling techniques to capture requirements clearly (diagrams, flowcharts, use cases, etc.)</li>
+                        <li><strong>Requirements Prioritization:</strong> Stakeholders discuss and prioritize requirements based on significance and impact on project goals</li>
+                        <li><strong>Documentation:</strong> Facilitator documents outcomes including requirements, prioritization, and any additional insights or decisions made</li>
+                        <li><strong>Follow-up:</strong> Facilitator follows up with stakeholders to clarify ambiguous points, validate documented requirements, and ensure everyone is aligned</li>
+                    </ul>
+                </div>
+
+                <div class="mode-box">
+                    <h4>4) Quality Function Deployment (QFD)</h4>
+                    <p>QFD is a <strong>structured and systematic approach</strong> to ensure <span class="highlight">customer needs and expectations are translated into appropriate design requirements and process specifications</span>.</p>
+
+                    <div class="simple-explanation">
+                        <div class="simple-explanation-title">💡 What is QFD?</div>
+                        <p>It's a <strong>customer-centric methodology</strong> that aims to deliver high-quality products or services that meet customer requirements and preferences.</p>
+                        <p style="margin-top: 10px;">The main goal is to <strong>align product design and development with customer desires and priorities</strong>.</p>
+                    </div>
+
+                    <h4 style="margin-top: 20px;">QFD Process Steps:</h4>
+                    <ul class="steps">
+                        <li><strong>Identify Customer Needs (What):</strong> Conduct market research, customer surveys, interviews, and feedback sessions to identify customer needs and expectations. Document both explicit and implicit requirements</li>
+                        <li><strong>Translate into Product Characteristics (How):</strong> Create a matrix known as the "House of Quality" (HOQ). Rows represent customer needs, columns represent product characteristics. Record the relationship between customer needs and product characteristics</li>
+                        <li><strong>Assign Relative Importance Ratings (Priority):</strong> Prioritize customer needs by assigning relative importance ratings reflecting the customer's perception of each need's importance. Ratings can be assigned through discussions, surveys, or pairwise comparison</li>
+                        <li><strong>Deployment of Requirements:</strong> Communicate the prioritized technical requirements and customer needs to various functional areas responsible for design, manufacturing, marketing, and quality control. Ensure all team members are aware of customer needs and technical requirements to align their efforts</li>
+                        <li><strong>Design and Development:</strong> Proceed with design and development based on prioritized technical requirements and customer needs. Use QFD outputs to guide decision-making during the design phase</li>
+                        <li><strong>Continuous Improvement:</strong> The QFD process is iterative. Gather feedback from customers, monitor performance, and use insights to improve the product and QFD process itself</li>
+                    </ul>
+                </div>
+
+                <div class="mode-box">
+                    <h4>5) Use Case Approach</h4>
+                    <p>Use case diagrams are a way to <span class="highlight">capture the system's functionality and requirements in UML diagrams</span>.</p>
+
+                    <div class="definition">
+                        <ul>
+                            <li>Captures the dynamic behavior of a live system</li>
+                            <li>A use case diagram consists of a <strong>use case</strong> and <strong>an actor</strong></li>
+                            <li><strong>Use cases:</strong> Represent high-level functionalities and how the user will handle the system</li>
+                            <li><strong>Actor:</strong> An entity that interacts with the system (can be users or other systems)</li>
+                        </ul>
+                    </div>
+
+                    <div class="example">
+                        <div class="example-title">Example: Student Management System</div>
+                        <p><strong>Actors:</strong> Student, Teacher</p>
+                        <p><strong>Use Cases:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Student: Check attendance, Check timetable, Check test-score</li>
+                            <li>Teacher: Update attendance, Update score</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feasibility Study Section -->
+            <section id="feasibility">
+                <h2>✅ Feasibility Study</h2>
+
+                <div class="definition">
+                    <strong>What is a Feasibility Study?</strong><br>
+                    Feasibility study is <span class="highlight">essential for making informed decisions about the software project's viability</span> and can help avoid costly mistakes or project failures.
+                    <p style="margin-top: 10px;">Studies are conducted during initial stages of project planning and revisited at different milestones to ensure the project's continued feasibility throughout its development lifecycle.</p>
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🎯 Purpose:</strong> A feasibility study helps answer the critical question: <em>"Should we proceed with this project?"</em>
+                </div>
+
+                <h3>Types of Feasibility Studies</h3>
+
+                <div class="mode-box">
+                    <h4>1) Technical Feasibility</h4>
+                    <p>Assesses the <strong>technical capabilities of the development team</strong>, availability of required hardware and software, and compatibility with existing systems.</p>
+
+                    <div class="example">
+                        <div class="example-title">Questions Asked:</div>
+                        <ul style="margin-left: 20px;">
+                            <li>Do we have the technical expertise to build this?</li>
+                            <li>Is the required technology available and mature?</li>
+                            <li>Can it integrate with our existing systems?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>2) Economic Feasibility</h4>
+                    <p>Evaluates whether the <strong>benefits derived from the project will outweigh the costs</strong> involved in development, implementation, and maintenance.</p>
+
+                    <div class="component-list">
+                        <strong>Techniques Used:</strong>
+                        <ul>
+                            <li><strong>Cost-Benefit Analysis:</strong> Compare total costs vs. expected benefits</li>
+                            <li><strong>Return on Investment (ROI):</strong> Calculate expected financial return</li>
+                            <li><strong>Payback Period:</strong> Time needed to recover the investment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>3) Operational Feasibility</h4>
+                    <p>Evaluates the <strong>impact of the proposed software on the organization's workflow, processes, and resources</strong>.</p>
+
+                    <p style="margin-top: 10px;">Assesses how well the software will be <span class="highlight">accepted and used by end-users</span>.</p>
+
+                    <div class="example">
+                        <div class="example-title">Key Considerations:</div>
+                        <ul style="margin-left: 20px;">
+                            <li>Will employees accept and adopt the new system?</li>
+                            <li>Does it fit with current business processes?</li>
+                            <li>What training will be required?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>5) Resource Feasibility</h4>
+                    <p>Assesses whether the <strong>necessary resources</strong> (human resources, skills, expertise) are available to execute the software project successfully.</p>
+
+                    <p style="margin-top: 10px;">Helps identify any <span class="highlight">potential gaps in required resources and resources presently available</span>.</p>
+                </div>
+            </section>
+
+            <!-- SRS Section -->
+            <section id="srs">
+                <h2>📄 Software Requirements Specification (SRS)</h2>
+
+                <div class="definition">
+                    <strong>What is an SRS Document?</strong><br>
+                    SRS is a <span class="highlight">formal document that serves as a comprehensive description of the software system's requirements</span>.
+                    <p style="margin-top: 10px;">It outlines the functionalities, capabilities, constraints, and other characteristics of the software that need to be developed.</p>
+                </div>
+
+                <div class="key-points">
+                    <strong>Purpose of SRS:</strong>
+                    <ul>
+                        <li><strong>Acts as a contract</strong> between development team and stakeholders</li>
+                        <li>Establishes clear and unambiguous understanding of <em>what the software should do and how it should perform</em></li>
+                        <li><strong>Serves as a reference document</strong> throughout the software development life cycle</li>
+                        <li>Guides design, implementation, testing, and validation processes</li>
+                    </ul>
+                </div>
+
+                <h3>Typical Contents of SRS Document</h3>
+
+                <div class="component-list">
+                    <ol>
+                        <li><strong>Introduction:</strong> Provides an overview of the document, its purpose, scope, and intended audience</li>
+
+                        <li><strong>System Overview:</strong> Describes the context and general functionality of the software system</li>
+
+                        <li><strong>Functional Requirements:</strong> Specifies the individual functions and features of the software, often described in the form of use cases or user stories</li>
+
+                        <li><strong>Non-Functional Requirements:</strong> Defines the quality attributes and constraints, such as performance, reliability, usability, security, and scalability</li>
+
+                        <li><strong>External Interfaces:</strong> Details the interactions with other systems, hardware devices, and external services</li>
+
+                        <li><strong>User Interface:</strong> Describes the user interface components and their behavior</li>
+
+                        <li><strong>Data Requirements:</strong> Specifies the data inputs, outputs, and the data structures used by the software</li>
+
+                        <li><strong>Assumptions and Constraints:</strong> Lists any assumptions made during the requirements gathering process and any constraints that might impact the software development</li>
+
+                        <li><strong>Glossary:</strong> Provides definitions of technical terms and acronyms used in the document</li>
+
+                        <li><strong>Appendices:</strong> Contains any supplementary information, diagrams, or additional documentation to support the requirements</li>
+                    </ol>
+                </div>
+
+                <div style="background: #dcfce7; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #22c55e;">
+                    <p style="margin: 0; font-size: 1.05em;"><strong>✅ Best Practice:</strong> A well-written SRS document reduces misunderstandings, helps manage scope, and serves as the foundation for successful software development!</p>
+                </div>
+            </section>
+
+            <!-- Design Tools Section -->
+            <section id="design-tools">
+                <h2>📐 Design Tools and Diagrams</h2>
+
+                <h3>Data Flow Diagram (DFD)</h3>
+
+                <div class="definition">
+                    <strong>What is a DFD?</strong><br>
+                    DFD stands for <strong>Data Flow Diagram</strong>. It is a graphical representation used in software engineering to <span class="highlight">depict the flow of data within a system</span>.
+                    <p style="margin-top: 10px;">It's a widely used technique for modeling the processes and data exchanges within a software application or business system.</p>
+                    <p style="margin-top: 10px;">DFDs are also called <strong>bubble charts</strong>.</p>
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🎯 Purpose:</strong> DFDs provide a clear and concise way to visualize <em>how data moves through different components of a system</em>, making it easier to understand the system's functionalities and data dependencies.
+                </div>
+
+                <h4>DFD Components</h4>
+
+                <div class="component-list">
+                    <ol>
+                        <li><strong>Process:</strong> Represents a specific function/module that takes input data, performs processing, and produces output data
+                            <br><em>Symbol: Rounded rectangle or circle (bubble)</em></li>
+
+                        <li><strong>Data Flow:</strong> Represents the movement of data from one process to another or between processes and data stores
+                            <br><em>Symbol: Labeled arrowed lines</em></li>
+
+                        <li><strong>Data Store:</strong> A repository where data is stored and retrieved as needed (database, file, or any data storage medium)
+                            <br><em>Symbol: Open ended rectangle</em></li>
+
+                        <li><strong>External Entity:</strong> External entities from which data enters or exits the system (users, other systems, or any external entity)
+                            <br><em>Symbol: Closed rectangle</em></li>
+                    </ol>
+                </div>
+
+                <h4>DFD Levels</h4>
+
+                <div class="mode-box">
+                    <h4>0-Level DFD (Context Level DFD)</h4>
+                    <p>Represents the <strong>entire system as a single bubble</strong> and provides an overall picture of the system.</p>
+                </div>
+
+                <div class="mode-box">
+                    <h4>1-Level DFD</h4>
+                    <p>Represents the <strong>main functions of the system</strong> and how they interact with each other.</p>
+                </div>
+
+                <div class="mode-box">
+                    <h4>2-Level DFD</h4>
+                    <p>Represents the <strong>processes within each function</strong> and how they interact with each other.</p>
+                </div>
+
+                <div class="mode-box">
+                    <h4>3-Level DFD</h4>
+                    <p>Represents the <strong>data flow within each process</strong> and how data is transformed and stored.</p>
+                </div>
+
+                <div class="key-points">
+                    <strong>Important Note:</strong>
+                    <ul>
+                        <li>DFDs can go to any level</li>
+                        <li>With every level, the amount of details increases</li>
+                        <li>Generally <strong>3 levels are enough</strong> to express the detailed description of the system</li>
+                    </ul>
+                </div>
+
+                <h3>Data Dictionary</h3>
+
+                <div class="definition">
+                    <strong>What is a Data Dictionary?</strong><br>
+                    In software engineering, a data dictionary is a <span class="highlight">central repository or documentation that provides a comprehensive description of all data elements used in a software system</span>.
+                    <p style="margin-top: 10px;">It serves as a reference guide for developers, analysts, and stakeholders to understand the structure, characteristics, and meaning of the data stored and processed within the software application.</p>
+                </div>
+
+                <div class="key-points">
+                    <strong>Key Information in Data Dictionary:</strong>
+                    <ol>
+                        <li><strong>Name of the item:</strong> Developer's choice following standards like Hungarian notation (Java)
+                            <br><em>Example: totalMarks, internalMarks, externalMarks</em></li>
+
+                        <li><strong>Aliases:</strong> Represents another name
+                            <br><em>Example: aggregateMarks is same as totalMarks</em></li>
+
+                        <li><strong>Description:</strong> What the data is all about
+                            <br><em>Example: "totalMarks is the aggregate of marks obtained in 5 subjects"</em></li>
+
+                        <li><strong>Related data items:</strong> How the data relates to others
+                            <br><em>Example: totalMarks must always equal internalMarks plus externalMarks</em></li>
+
+                        <li><strong>Range of values:</strong> All possible values the data can represent
+                            <br><em>Example: totalMarks should be positive integer from 0 to aggregate of maximum marks</em></li>
+                    </ol>
+                </div>
+
+                <h4>Use of Data Dictionary in Software Lifecycle</h4>
+
+                <div class="component-list">
+                    <ul>
+                        <li><strong>Database Design:</strong> Helps define the database schema and ensures consistency in data structure and constraints</li>
+
+                        <li><strong>Software Development:</strong> Developers can refer to understand the data they are working with and use information to create accurate code</li>
+
+                        <li><strong>Documentation:</strong> Serves as valuable documentation resource for future maintenance, troubleshooting, and enhancement</li>
+
+                        <li><strong>Data Integration:</strong> When integrating with other systems or during data migration, assists in mapping and aligning data elements</li>
+                    </ul>
+                </div>
+
+                <h3>HIPO Chart</h3>
+
+                <div class="definition">
+                    <strong>What is HIPO?</strong><br>
+                    HIPO model was developed by IBM in 1970. HIPO chart stands for <strong>Hierarchy plus Input-Process-Output chart</strong>.
+                    <p style="margin-top: 10px;">It is a graphical representation and documentation technique used to <span class="highlight">model the hierarchy and flow of information within a software system</span>.</p>
+                </div>
+
+                <div class="key-points">
+                    <strong>Key Characteristics:</strong>
+                    <ul>
+                        <li>Structured way to represent the functional components of a system</li>
+                        <li>Shows the <em>input data, processes that act on the data, and resulting output data</em></li>
+                        <li>Analysts use HIPO diagram to obtain high-level view of system functions</li>
+                        <li>Decomposes functions into sub-functions in a hierarchical manner</li>
+                        <li>Depicts various functions performed by the system</li>
+                    </ul>
+                </div>
+
+                <h3>Warnier Orr Diagram</h3>
+
+                <div class="definition">
+                    <strong>What is Warnier Orr Diagram?</strong><br>
+                    The Warnier/Orr Diagram is primarily used to represent the <span class="highlight">hierarchical structure and modular decomposition of a software system</span>.
+                    <p style="margin-top: 10px;">It provides a <strong>top-down approach</strong> to software design, starting with the main function and then breaking it down into smaller sub-functions or modules.</p>
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 How It Works</div>
+                    <p>To develop a Warnier/Orr diagram, the analyst <strong>works backwards</strong>, starting with system output and using output-oriented analysis.</p>
+                    <p style="margin-top: 10px;">On paper, development moves from the set to the element (from left to right).</p>
+                    <p style="margin-top: 10px;"><strong>Process:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>First, the intended output or results of processing are defined</li>
+                        <li>At the next level (shown by inclusion with a bracket), steps needed to produce the output are defined</li>
+                        <li>Each step in turn is further defined</li>
+                        <li>Additional brackets group the processes required to produce the result on the next level</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Software Estimation Section -->
+            <section id="estimation">
+                <h2>📊 Software Size Estimation</h2>
+
+                <div class="definition">
+                    <strong>What is Software Size Estimation?</strong><br>
+                    Software size estimation is the process of <span class="highlight">predicting the size or effort required to develop a software application</span>.
+                    <p style="margin-top: 10px;">Accurate size estimation is crucial for project planning, resource allocation, and budgeting.</p>
+                </div>
+
+                <div class="key-points">
+                    <strong>Two Very Popular Methods:</strong>
+                    <ul>
+                        <li><strong>Lines of Code (LOC):</strong> Measures based on source code lines</li>
+                        <li><strong>Function Point Metric:</strong> Measures based on functionality provided</li>
+                    </ul>
+                </div>
+
+                <h3>Lines of Code (LOC)</h3>
+
+                <div class="definition">
+                    <p>Lines of Code counts the <strong>total number of lines of source code</strong> in a project.</p>
+                    <div class="component-list" style="margin-top: 10px;">
+                        <strong>Units of LOC:</strong>
+                        <ul>
+                            <li><strong>KLOC:</strong> Thousand lines of code</li>
+                            <li><strong>NLOC:</strong> Non-comment lines of code</li>
+                            <li><strong>KDSI:</strong> Thousands of delivered source-code instructions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 How to Estimate LOC</div>
+                    <p>The size is estimated by:</p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Comparing with existing systems</strong> of the same kind</li>
+                        <li><strong>Counting entities in ER Diagram</strong> and estimating LOC for each entity, then aggregating</li>
+                        <li><strong>Counting processes in DFD</strong> and estimating LOC for each process/module, then aggregating</li>
+                    </ul>
+                    <p style="margin-top: 10px; font-style: italic;"><strong>Note:</strong> All estimation activities can only be done by experienced software engineers with wide variety of software product experience.</p>
+                </div>
+
+                <h3>Function Point Metric</h3>
+
+                <div class="definition">
+                    <strong>What is Function Point Analysis (FPA)?</strong><br>
+                    Function Point Analysis is a software size estimation technique used to <span class="highlight">measure the functionality provided by a software application from the user's perspective</span>.
+                    <p style="margin-top: 10px;">It quantifies the software's <strong>functional requirements</strong> regardless of technology, programming language, or development approach used.</p>
+                    <p style="margin-top: 10px;">The goal is to provide an <strong>objective and standardized method</strong> for estimating software size, which can be used as a basis for effort and cost estimation.</p>
+                </div>
+
+                <h4>Function Point Calculation Steps</h4>
+
+                <p>FPs are found by counting the number and types of functions used in the applications. Various functions can be put under five types:</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Measurement Parameters</th>
+                            <th>Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. Number of External Inputs (EI)</td>
+                            <td>Input screen and tables</td>
+                        </tr>
+                        <tr>
+                            <td>2. Number of External Output (EO)</td>
+                            <td>Output screens and reports</td>
+                        </tr>
+                        <tr>
+                            <td>3. Number of External Inquiries (EQ)</td>
+                            <td>Prompts and interrupts</td>
+                        </tr>
+                        <tr>
+                            <td>4. Number of Internal Files (ILF)</td>
+                            <td>Databases and directories</td>
+                        </tr>
+                        <tr>
+                            <td>5. Number of External Interfaces (EIF)</td>
+                            <td>Shared databases and shared routines</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="calculation">
+                    <div class="calculation-title">🔢 Step 1: Assign Weights</div>
+                    <p>All parameters are assigned weights that have been experimentally determined:</p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Measurement Parameter</th>
+                                <th>Low</th>
+                                <th>Average</th>
+                                <th>High</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Number of External Inputs (EI)</td>
+                                <td>7</td>
+                                <td>10</td>
+                                <td>15</td>
+                            </tr>
+                            <tr>
+                                <td>Number of External Outputs (EO)</td>
+                                <td>5</td>
+                                <td>7</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Number of External Inquiries (EQ)</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <td>Number of Internal Files (ILF)</td>
+                                <td>4</td>
+                                <td>5</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <td>Number of External Interfaces (EIF)</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>6</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="calculation">
+                    <div class="calculation-title">🔢 Step 2: Calculate Complexity Adjustment Values</div>
+                    <p>The Fi (i = 1 to 14) are "complexity adjustment values" based on responses to 14 questions:</p>
+                    <ol style="margin: 10px 0 10px 20px;">
+                        <li>Does the system require reliable backup and recovery?</li>
+                        <li>Are data communications required?</li>
+                        <li>Are there distributed processing functions?</li>
+                        <li>Is performance critical?</li>
+                        <li>Will the system run in an existing, heavily utilized operational environment?</li>
+                        <li>Does the system require on-line data entry?</li>
+                        <li>Does the on-line data entry require the input transaction to be built over multiple screens or operations?</li>
+                        <li>Are the master files updated on-line?</li>
+                        <li>Are the inputs, outputs, files, or inquiries complex?</li>
+                        <li>Is the internal processing complex?</li>
+                        <li>Is the code designed to be reusable?</li>
+                        <li>Are conversion and installation included in the design?</li>
+                        <li>Is the system designed for multiple installations in different organizations?</li>
+                        <li>Is the application designed to facilitate change and ease of use by the user?</li>
+                    </ol>
+
+                    <p style="margin-top: 15px;">Fi value for each question is either 0 or 1:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>If answer is "No", then Fi = 0</li>
+                        <li>If answer is "Yes", then Fi = 1</li>
+                    </ul>
+                    <p style="margin-top: 10px;">In this way, all questions are answered and summation of all Fi values is calculated (F1+F2+...F14).</p>
+                    <p>This summed up Fi value is represented as <strong>Σ(Fi)</strong></p>
+                </div>
+
+                <div class="calculation">
+                    <div class="calculation-title">🔢 Step 3: Calculate UFP (Unadjusted Function Point)</div>
+                    <p>The functional complexities are multiplied with corresponding weights against each function, and values are added up to determine the UFP (Unadjusted Function Point) <strong>"Count-Total"</strong> of the subsystem.</p>
+                </div>
+
+                <div class="formula">
+                    <h4>Step 4: Calculate CAF (Complexity Adjustment Factor)</h4>
+                    <p style="font-size: 1.3em; margin: 20px 0;">CAF = [0.65 + (0.01 × Σ(Fi))]</p>
+                </div>
+
+                <div class="formula">
+                    <h4>Step 5: Calculate Final Function Points</h4>
+                    <p style="font-size: 1.4em; margin: 20px 0;">FP = Count-Total × CAF</p>
+                </div>
+
+                <h4>Uses of Function Points</h4>
+
+                <div class="key-points">
+                    <p>Function points can be used to estimate variety of attributes during software engineering such as Productivity, Documentation, Cost, etc.</p>
+                    <p style="margin-top: 10px;"><strong>Following equations are used:</strong></p>
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Effort</strong> = FP / Person-Month</li>
+                        <li><strong>Productivity</strong> = FP × Effort</li>
+                        <li><strong>Documentation</strong> = FP × Total Pages of Documentation</li>
+                        <li><strong>Cost of Each Functionality</strong> = Cost applied Per Month × Productivity</li>
+                    </ul>
+                </div>
+
+                <h3>Project Size Factors</h3>
+
+                <div class="definition">
+                    <p>There are <strong>6 categories of projects</strong> with respect to project size:</p>
+                    <ol style="margin: 10px 0 10px 20px;">
+                        <li>Trivial projects</li>
+                        <li>Small projects</li>
+                        <li>Medium size projects</li>
+                        <li>Large projects</li>
+                        <li>Very large projects</li>
+                        <li>Extremely large projects</li>
+                    </ol>
+                    <p style="margin-top: 10px;">The analysis of project size helps to determine the amount of <strong>Man, Money and Materials</strong> that will be required before starting a project.</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📊 Project Size Comparison</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Project Type</th>
+                                <th>Team Size</th>
+                                <th>Duration</th>
+                                <th>Lines of Code</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Trivial</td>
+                                <td>1 part-time</td>
+                                <td>Days/Weeks</td>
+                                <td>Up to 500</td>
+                            </tr>
+                            <tr>
+                                <td>Small</td>
+                                <td>1 programmer</td>
+                                <td>1-6 months</td>
+                                <td>1,000-2,000</td>
+                            </tr>
+                            <tr>
+                                <td>Medium</td>
+                                <td>2-5 programmers</td>
+                                <td>1-2 years</td>
+                                <td>10,000-50,000</td>
+                            </tr>
+                            <tr>
+                                <td>Large</td>
+                                <td>5-20 programmers</td>
+                                <td>2-3 years</td>
+                                <td>50,000-100,000</td>
+                            </tr>
+                            <tr>
+                                <td>Very Large</td>
+                                <td>100-1000</td>
+                                <td>4-5 years</td>
+                                <td>10 lakh LOC</td>
+                            </tr>
+                            <tr>
+                                <td>Extremely Large</td>
+                                <td>2000-5000</td>
+                                <td>~10 years</td>
+                                <td>1-10 million LOC</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- COCOMO Section -->
+            <section id="cocomo">
+                <h2>💰 COCOMO (Constructive Cost Modeling)</h2>
+
+                <div class="definition">
+                    <strong>What is COCOMO?</strong><br>
+                    The Constructive Cost Model (COCOMO) is an <strong>empirical estimation model</strong> - the model uses a theoretically derived formula to predict cost-related factors.
+                    <p style="margin-top: 10px;">This model was created by <strong>Barry Boehm</strong>. The COCOMO model consists of three models:</p>
+                    <ol style="margin: 10px 0 10px 20px;">
+                        <li><strong>Basic COCOMO model:</strong> Computes effort & related cost as a function of program size (LOC or KLOC)</li>
+                        <li><strong>Intermediate COCOMO model:</strong> Uses program size and cost drivers (product, hardware, personnel, project attributes)</li>
+                        <li><strong>Advanced COCOMO model:</strong> Incorporates all characteristics of intermediate plus cost driver's impact on each step</li>
+                    </ol>
+                </div>
+
+                <h3>Three Classes of Software Projects</h3>
+
+                <div class="mode-box">
+                    <h4>1) Organic Projects</h4>
+                    <p>Relatively <strong>small and simple software projects</strong> which require small team structure having good application experience. The project requirements are not rigid.</p>
+                    <div class="example" style="margin-top: 10px;">
+                        <div class="example-title">Example</div>
+                        <p>Payroll systems, simple inventory systems, data entry applications</p>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>2) Semi-Detached Projects</h4>
+                    <p><strong>Medium size projects</strong> with a mix of rigid and less than rigid requirements level.</p>
+                    <div class="example" style="margin-top: 10px;">
+                        <div class="example-title">Example</div>
+                        <p>Database management systems, compilers, complex accounting systems</p>
+                    </div>
+                </div>
+
+                <div class="mode-box">
+                    <h4>3) Embedded Projects</h4>
+                    <p><strong>Large projects</strong> that have a very rigid requirements level. Here the hardware, software and operational constraints are of prime importance.</p>
+                    <div class="example" style="margin-top: 10px;">
+                        <div class="example-title">Example</div>
+                        <p>Flight control systems, missile guidance, real-time systems</p>
+                    </div>
+                </div>
+
+                <h3>Basic COCOMO Model</h3>
+
+                <div class="formula">
+                    <h4>The Effort Equation:</h4>
+                    <p style="font-size: 1.4em; margin: 20px 0;">E = a_b × (KLOC)<sup>b_b</sup></p>
+                    <p style="font-size: 1.4em; margin: 20px 0;">D = c_b × (E)<sup>d_b</sup></p>
+
+                    <div style="text-align: left; max-width: 600px; margin: 20px auto;">
+                        <p><strong>Where:</strong></p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li><strong>E</strong> = Effort applied by per person per month</li>
+                            <li><strong>D</strong> = Development time in consecutive months</li>
+                            <li><strong>KLOC</strong> = Estimated thousands of lines of code delivered</li>
+                            <li><strong>a_b, c_b</strong> and coefficients <strong>b_b, d_b</strong> are given in the table</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Software Project Type</th>
+                            <th>a_b</th>
+                            <th>b_b</th>
+                            <th>c_b</th>
+                            <th>d_b</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Organic</td>
+                            <td>2.4</td>
+                            <td>1.05</td>
+                            <td>2.5</td>
+                            <td>0.38</td>
+                        </tr>
+                        <tr>
+                            <td>Semi-detached</td>
+                            <td>3.0</td>
+                            <td>1.12</td>
+                            <td>2.5</td>
+                            <td>0.35</td>
+                        </tr>
+                        <tr>
+                            <td>Embedded</td>
+                            <td>3.6</td>
+                            <td>1.20</td>
+                            <td>2.5</td>
+                            <td>0.32</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="example">
+                    <div class="example-title">📊 Calculation Example</div>
+                    <p><strong>Problem:</strong> Calculate effort and development time for an organic project with 10 KLOC.</p>
+                    <p style="margin-top: 10px;"><strong>Solution:</strong></p>
+                    <p>E = 2.4 × (10)<sup>1.05</sup> = 2.4 × 11.22 = <strong>26.9 Person-Months</strong></p>
+                    <p>D = 2.5 × (26.9)<sup>0.38</sup> = 2.5 × 3.53 = <strong>8.8 Months</strong></p>
+                    <p style="margin-top: 10px; background: #dcfce7; padding: 10px; border-radius: 5px;">
+                        <strong>Average Team Size</strong> = 26.9 ÷ 8.8 ≈ <strong>3 developers</strong>
+                    </p>
+                </div>
+
+                <h3>Intermediate COCOMO Model</h3>
+
+                <div class="definition">
+                    <p>Intermediate COCOMO Model is a <strong>mix of TopDown and BottomUp</strong> approach.</p>
+                </div>
+
+                <div class="formula">
+                    <h4>The Effort Equation:</h4>
+                    <p style="font-size: 1.4em; margin: 20px 0;">E = a_i × (KLOC)<sup>b_i</sup> × EAF</p>
+
+                    <div style="text-align: left; max-width: 600px; margin: 20px auto;">
+                        <p><strong>Where:</strong></p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li><strong>E</strong> = Efforts applied by per person per month</li>
+                            <li><strong>KLOC</strong> = Estimated thousands of lines of code delivered</li>
+                            <li>Coefficients <strong>a_i</strong> and exponent <strong>b_i</strong> are given in the table</li>
+                            <li><strong>EAF</strong> = Effort Adjustment Factor (typically ranges from 0.9 to 1.4)</li>
+                        </ul>
+                        <p style="margin-top: 15px;">EAF is determined by the <strong>table published by Barry Boehm</strong> for four major categories: product attributes, hardware attributes, personal attributes, and project attributes.</p>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Software Project Type</th>
+                            <th>a_i</th>
+                            <th>b_i</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Organic</td>
+                            <td>3.2</td>
+                            <td>1.05</td>
+                        </tr>
+                        <tr>
+                            <td>Semi-detached</td>
+                            <td>3.0</td>
+                            <td>1.12</td>
+                        </tr>
+                        <tr>
+                            <td>Embedded</td>
+                            <td>2.8</td>
+                            <td>1.20</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>COCOMO II</h3>
+
+                <div class="definition">
+                    <strong>What is COCOMO II?</strong><br>
+                    COCOMO 2 is also a <strong>cost estimation model</strong> for computing software development cost.
+                    <p style="margin-top: 10px;">This model was developed to <span class="highlight">overcome the limitations of COCOMO 1</span> as COCOMO 1 was meant for projects having stable requirements.</p>
+                </div>
+
+                <div class="key-points">
+                    <strong>Key Features of COCOMO II:</strong>
+                    <ul>
+                        <li>Main objective is to provide quantitative analytic structure, techniques, and tools</li>
+                        <li>Exponent of the effort equation is determined by <strong>5 scale factors</strong></li>
+                        <li>Has <strong>17 cost drivers</strong> assigned to it</li>
+                        <li>Useful in non-sequential, rapid development, reengineering and reuse models of software development cycle</li>
+                    </ul>
+                </div>
+
+                <div style="background: #e0f2fe; padding: 20px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #0891b2;">
+                    <p style="margin: 0; font-size: 1.05em;"><strong>💡 Comparison:</strong> COCOMO II provides more flexibility and accuracy than COCOMO I by accounting for modern development practices, scale factors, and a wider range of cost drivers!</p>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section id="summary">
+                <h2>📚 Summary and Key Takeaways</h2>
+
+                <div class="key-points">
+                    <h3>Requirements</h3>
+                    <ul>
+                        <li><strong>Three main types:</strong> Business (high-level goals), User (user expectations), Software (system specifications)</li>
+                        <li><strong>Software requirements divided into:</strong> Functional (what system does), Non-Functional (quality attributes), Domain (industry-specific)</li>
+                        <li>Clear requirements are the foundation of successful software projects</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h3>Requirements Elicitation</h3>
+                    <ul>
+                        <li><strong>Five main techniques:</strong> Interviews, Brainstorming, FAST, QFD, Use Case Approach</li>
+                        <li>Balance between collecting enough information and avoiding scope creep</li>
+                        <li>Effective elicitation prevents costly mistakes later in development</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h3>Design Tools</h3>
+                    <ul>
+                        <li><strong>DFD:</strong> Shows how data flows through the system at different levels (0, 1, 2, 3)</li>
+                        <li><strong>Data Dictionary:</strong> Central repository describing all data elements</li>
+                        <li><strong>HIPO Chart:</strong> Hierarchical representation of Input-Process-Output</li>
+                        <li><strong>Warnier Orr:</strong> Top-down modular decomposition</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h3>Software Estimation</h3>
+                    <ul>
+                        <li><strong>Function Point Analysis:</strong> Technology-independent, measures functionality from user perspective</li>
+                        <li><strong>LOC:</strong> Counts lines of code, language-dependent measure</li>
+                        <li><strong>COCOMO:</strong> Three models (Basic, Intermediate, Advanced) for three project types (Organic, Semi-detached, Embedded)</li>
+                        <li><strong>COCOMO II:</strong> Modern approach with scale factors and cost drivers</li>
+                        <li>Accurate estimation is critical for project success</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); color: white; padding: 30px; border-radius: 10px; margin-top: 40px; text-align: center;">
+                    <h3 style="color: white; border: none; margin-bottom: 15px;">🎯 The Golden Rule of Software Engineering</h3>
+                    <p style="font-size: 1.2em; margin: 0;">Understand BEFORE you build. Estimate BEFORE you commit. Document BEFORE you forget!</p>
+                    <p style="margin-top: 15px; font-size: 1.1em;">The Process: <strong>Requirements → Design → Estimation → Implementation</strong></p>
+                    <p style="margin-top: 15px; font-size: 1em; font-style: italic;">Skipping any of these steps increases the risk of project failure exponentially!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

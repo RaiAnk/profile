@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEPM Unit-1: Software Engineering Fundamentals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #0891b2;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 3px solid #0891b2;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #0e7490;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        h4 {
+            color: #155e75;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .overview h3 {
+            color: white;
+            margin-top: 0;
+            border-bottom: 2px solid white;
+            padding-bottom: 10px;
+        }
+
+        .definition {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .definition strong {
+            color: #1e40af;
+            font-size: 1.1em;
+        }
+
+        .simple-explanation {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .example {
+            background: #fff7ed;
+            border-left: 4px solid #fb923c;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .example-title {
+            color: #ea580c;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .calculation {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .formula {
+            background: #f0fdfa;
+            border-left: 4px solid #14b8a6;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .case-study {
+            background: #fce7f3;
+            border-left: 4px solid #ec4899;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .key-points {
+            background: #e0e7ff;
+            border-left: 4px solid #6366f1;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .key-points ul {
+            margin-left: 20px;
+        }
+
+        .key-points li {
+            margin: 10px 0;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin: 20px 0;
+            padding-left: 60px;
+            position: relative;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        table th {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        table tr:hover {
+            background: #f3f4f6;
+        }
+
+        .diagram-container {
+            margin: 30px 0;
+            text-align: center;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 10px;
+        }
+
+        .diagram-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .pros {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .cons {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .pros h4, .cons h4 {
+            margin-top: 0;
+        }
+
+        .timeline-item {
+            background: white;
+            border-left: 4px solid #0891b2;
+            padding: 15px 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 5px;
+        }
+
+        .timeline-item strong {
+            color: #0891b2;
+            font-size: 1.1em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Lecture Notes : Software Engineering and Project Management</h1>
+			<h1>By Dr. Ankush Rai</h1>
+            <p style="font-size: 1.2em;">Unit 1: Introduction to Software Engineering</p>
+        </header>
+
+        <div class="overview">
+            <h3>🎯 Big Picture</h3>
+            <p>Software Engineering is the systematic, disciplined, and quantifiable approach to the development, operation, and maintenance of software. This unit covers the fundamental concepts, historical evolution, economic aspects, and various process models that form the foundation of modern software engineering practices.</p>
+        </div>
+
+        <h2>📚 1. Introduction to Software Engineering</h2>
+
+        <div class="definition">
+            <strong>What is Software Engineering?</strong>
+            <p>Software Engineering is the establishment and use of sound engineering principles in order to obtain economically software that is reliable and works efficiently on real machines.</p>
+        </div>
+
+        <div class="simple-explanation">
+            <p><strong>Think of it this way:</strong> Just like building a bridge requires civil engineering principles, building software requires software engineering principles. You wouldn't construct a bridge without blueprints, quality checks, and systematic processes - the same applies to software!</p>
+        </div>
+
+        <h3>🎯 Scope of Software Engineering</h3>
+
+        <div class="key-points">
+            <strong>Key Areas:</strong>
+            <ul>
+                <li><strong>Historical Aspects:</strong> Understanding the evolution of software engineering practices</li>
+                <li><strong>Economic Aspects:</strong> Cost-benefit analysis, ROI, and TCO considerations</li>
+                <li><strong>Maintenance Aspects:</strong> Ongoing support, updates, and improvements</li>
+                <li><strong>Specification Aspects:</strong> Requirements gathering and documentation</li>
+                <li><strong>Design Aspects:</strong> System architecture and component design</li>
+                <li><strong>Team Programming Aspects:</strong> Collaboration and project management</li>
+            </ul>
+        </div>
+
+        <h3>🕰️ Historical Aspects</h3>
+
+        <p>The evolution of software engineering can be traced through several distinct eras:</p>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Timeline line -->
+                <line x1="50" y1="200" x2="750" y2="200" stroke="#0891b2" stroke-width="4"/>
+
+                <!-- Era 1: 1940s-1950s -->
+                <circle cx="100" cy="200" r="10" fill="#0891b2"/>
+                <text x="100" y="240" text-anchor="middle" font-size="14" font-weight="bold">1940s-1950s</text>
+                <text x="100" y="260" text-anchor="middle" font-size="12">Machine Code</text>
+                <text x="100" y="160" text-anchor="middle" font-size="11">Hardware focus</text>
+
+                <!-- Era 2: 1960s-1970s -->
+                <circle cx="250" cy="200" r="10" fill="#0891b2"/>
+                <text x="250" y="240" text-anchor="middle" font-size="14" font-weight="bold">1960s-1970s</text>
+                <text x="250" y="260" text-anchor="middle" font-size="12">Software Crisis</text>
+                <text x="250" y="160" text-anchor="middle" font-size="11">Birth of SE</text>
+
+                <!-- Era 3: 1980s -->
+                <circle cx="400" cy="200" r="10" fill="#0891b2"/>
+                <text x="400" y="240" text-anchor="middle" font-size="14" font-weight="bold">1980s</text>
+                <text x="400" y="260" text-anchor="middle" font-size="12">Structured Methods</text>
+                <text x="400" y="160" text-anchor="middle" font-size="11">CASE tools</text>
+
+                <!-- Era 4: 1990s -->
+                <circle cx="550" cy="200" r="10" fill="#0891b2"/>
+                <text x="550" y="240" text-anchor="middle" font-size="14" font-weight="bold">1990s</text>
+                <text x="550" y="260" text-anchor="middle" font-size="12">OOP & Internet</text>
+                <text x="550" y="160" text-anchor="middle" font-size="11">Web applications</text>
+
+                <!-- Era 5: 2000s-Present -->
+                <circle cx="700" cy="200" r="10" fill="#0891b2"/>
+                <text x="700" y="240" text-anchor="middle" font-size="14" font-weight="bold">2000s-Present</text>
+                <text x="700" y="260" text-anchor="middle" font-size="12">Agile & Cloud</text>
+                <text x="700" y="160" text-anchor="middle" font-size="11">DevOps, AI/ML</text>
+            </svg>
+        </div>
+
+        <div class="timeline-item">
+            <strong>1940s-1950s:</strong> Early computing era - programming was done in machine code and assembly language. Hardware was the primary focus, and software was considered secondary.
+        </div>
+
+        <div class="timeline-item">
+            <strong>1960s-1970s:</strong> The "Software Crisis" emerged as projects became larger and more complex. The term "Software Engineering" was coined at the 1968 NATO Conference. This era saw the birth of structured programming.
+        </div>
+
+        <div class="timeline-item">
+            <strong>1980s:</strong> Introduction of structured methods and CASE (Computer-Aided Software Engineering) tools. Software engineering became recognized as a distinct discipline.
+        </div>
+
+        <div class="timeline-item">
+            <strong>1990s:</strong> Rise of Object-Oriented Programming (OOP) and the Internet revolution. Development of web-based applications became mainstream.
+        </div>
+
+        <div class="timeline-item">
+            <strong>2000s-Present:</strong> Agile methodologies, Cloud computing, DevOps practices, and integration of AI/ML in software development. Continuous integration and deployment became standard practices.
+        </div>
+
+        <h3>💰 Economic Aspects</h3>
+
+        <p>Understanding the economic impact of software engineering decisions is crucial for project success.</p>
+
+        <h4>Total Cost of Ownership (TCO)</h4>
+
+        <div class="definition">
+            <strong>TCO</strong> represents the complete cost of software throughout its entire lifecycle, including development, deployment, maintenance, and retirement.
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Pie chart showing cost distribution -->
+                <text x="300" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#0891b2">Software Cost Distribution</text>
+
+                <!-- Development (30%) -->
+                <path d="M 300 150 L 300 70 A 80 80 0 0 1 364.64 104.64 Z" fill="#3b82f6" opacity="0.8"/>
+                <text x="330" y="100" font-size="12" font-weight="bold">Development</text>
+                <text x="340" y="115" font-size="11">30%</text>
+
+                <!-- Maintenance (50%) -->
+                <path d="M 300 150 L 364.64 104.64 A 80 80 0 1 1 235.36 104.64 Z" fill="#14b8a6" opacity="0.8"/>
+                <text x="340" y="180" font-size="12" font-weight="bold">Maintenance</text>
+                <text x="350" y="195" font-size="11">50%</text>
+
+                <!-- Other (20%) -->
+                <path d="M 300 150 L 235.36 104.64 A 80 80 0 0 1 300 70 Z" fill="#f59e0b" opacity="0.8"/>
+                <text x="240" y="100" font-size="12" font-weight="bold">Other</text>
+                <text x="245" y="115" font-size="11">20%</text>
+
+                <!-- Legend -->
+                <rect x="100" y="240" width="15" height="15" fill="#3b82f6" opacity="0.8"/>
+                <text x="120" y="252" font-size="12">Development: Initial coding, testing, deployment</text>
+
+                <rect x="100" y="260" width="15" height="15" fill="#14b8a6" opacity="0.8"/>
+                <text x="120" y="272" font-size="12">Maintenance: Bug fixes, updates, enhancements</text>
+
+                <rect x="100" y="280" width="15" height="15" fill="#f59e0b" opacity="0.8"/>
+                <text x="120" y="292" font-size="12">Other: Infrastructure, training, support</text>
+            </svg>
+        </div>
+
+        <div class="key-points">
+            <strong>TCO Components:</strong>
+            <ul>
+                <li><strong>Development Costs:</strong> Planning, design, coding, testing (~30%)</li>
+                <li><strong>Maintenance Costs:</strong> Bug fixes, updates, enhancements (~50%)</li>
+                <li><strong>Infrastructure Costs:</strong> Hardware, servers, cloud services (~10%)</li>
+                <li><strong>Training & Support:</strong> User training, documentation, helpdesk (~10%)</li>
+            </ul>
+        </div>
+
+        <div class="simple-explanation">
+            <p><strong>Important Note:</strong> Many organizations underestimate maintenance costs! Studies show that maintenance typically accounts for 50-70% of the total software lifecycle cost. This is why building quality software from the start is so crucial.</p>
+        </div>
+
+        <h4>Return on Investment (ROI)</h4>
+
+        <div class="formula">
+            <p><strong>ROI Formula:</strong></p>
+            <p>ROI = ((Benefits - Costs) / Costs) × 100%</p>
+        </div>
+
+        <div class="example">
+            <div class="example-title">Example: Calculating Software ROI</div>
+            <p><strong>Scenario:</strong> A company invests $500,000 in developing custom inventory management software.</p>
+            <p><strong>Benefits (Annual):</strong></p>
+            <ul>
+                <li>Reduced labor costs: $200,000</li>
+                <li>Reduced errors and waste: $150,000</li>
+                <li>Improved efficiency: $100,000</li>
+                <li>Total annual benefits: $450,000</li>
+            </ul>
+            <p><strong>Calculation:</strong></p>
+            <p>3-year benefits: $450,000 × 3 = $1,350,000</p>
+            <p>ROI = (($1,350,000 - $500,000) / $500,000) × 100% = 170%</p>
+            <p><strong>Result:</strong> The software pays for itself in just over one year and provides a 170% return over three years.</p>
+        </div>
+
+        <h3>🔧 Maintenance Aspects</h3>
+
+        <p>Software maintenance is the process of modifying software after delivery to correct faults, improve performance, or adapt to a changed environment.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Maintenance Type</th>
+                    <th>Description</th>
+                    <th>% of Effort</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Corrective</strong></td>
+                    <td>Fixing bugs and defects discovered after release</td>
+                    <td>~20%</td>
+                </tr>
+                <tr>
+                    <td><strong>Adaptive</strong></td>
+                    <td>Modifying software to work in new environments (OS, hardware)</td>
+                    <td>~25%</td>
+                </tr>
+                <tr>
+                    <td><strong>Perfective</strong></td>
+                    <td>Adding new features and enhancing existing functionality</td>
+                    <td>~50%</td>
+                </tr>
+                <tr>
+                    <td><strong>Preventive</strong></td>
+                    <td>Updating software to prevent future problems</td>
+                    <td>~5%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="case-study">
+            <strong>Real-World Impact:</strong>
+            <p>A study by the Software Engineering Institute (SEI) found that organizations spend 60-80% of their software budget on maintenance activities. This highlights the critical importance of:</p>
+            <ul>
+                <li>Writing clean, maintainable code from the start</li>
+                <li>Comprehensive documentation</li>
+                <li>Automated testing frameworks</li>
+                <li>Version control and configuration management</li>
+            </ul>
+        </div>
+
+        <h2>🏗️ 2. Software as a Layered Technology</h2>
+
+        <div class="overview">
+            <h3>🎯 Concept Overview</h3>
+            <p>Software engineering is built on layers, with each layer supporting the ones above it. Think of it like building a house - you need a solid foundation (quality focus), a structural framework (process), walls and systems (methods), and finally, tools and equipment (tools).</p>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Title -->
+                <text x="350" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0891b2">Software Engineering Layers</text>
+
+                <!-- Layer 4: Tools (Top) -->
+                <polygon points="350,80 500,130 350,180 200,130" fill="#3b82f6" opacity="0.9"/>
+                <text x="350" y="135" text-anchor="middle" font-size="16" font-weight="bold" fill="white">TOOLS</text>
+                <text x="350" y="155" text-anchor="middle" font-size="11" fill="white">IDEs, Debuggers, Testing Tools</text>
+
+                <!-- Layer 3: Methods -->
+                <polygon points="350,180 530,240 350,300 170,240" fill="#14b8a6" opacity="0.9"/>
+                <text x="350" y="245" text-anchor="middle" font-size="16" font-weight="bold" fill="white">METHODS</text>
+                <text x="350" y="265" text-anchor="middle" font-size="11" fill="white">Requirements Analysis, Design, Testing</text>
+
+                <!-- Layer 2: Process -->
+                <polygon points="350,300 560,370 350,440 140,370" fill="#f59e0b" opacity="0.9"/>
+                <text x="350" y="375" text-anchor="middle" font-size="16" font-weight="bold" fill="white">PROCESS</text>
+                <text x="350" y="395" text-anchor="middle" font-size="11" fill="white">Framework Activities, Workflows</text>
+
+                <!-- Layer 1: Quality Focus (Foundation) -->
+                <rect x="120" y="440" width="460" height="40" fill="#ec4899" opacity="0.9" rx="5"/>
+                <text x="350" y="465" text-anchor="middle" font-size="16" font-weight="bold" fill="white">QUALITY FOCUS (Foundation)</text>
+            </svg>
+        </div>
+
+        <h3>📊 Layer Breakdown</h3>
+
+        <div class="definition">
+            <strong>Layer 1: Quality Focus (Foundation)</strong>
+            <p>This is the bedrock of software engineering. Quality management systems, standards (like ISO 9000), and continuous improvement practices form the foundation that supports all other layers.</p>
+        </div>
+
+        <div class="key-points">
+            <strong>Quality Attributes:</strong>
+            <ul>
+                <li>Correctness: Does the software meet its specifications?</li>
+                <li>Reliability: Does it perform consistently under expected conditions?</li>
+                <li>Efficiency: Does it use resources optimally?</li>
+                <li>Usability: Is it easy to learn and use?</li>
+                <li>Maintainability: Can it be easily modified?</li>
+                <li>Portability: Can it work in different environments?</li>
+            </ul>
+        </div>
+
+        <div class="definition">
+            <strong>Layer 2: Process</strong>
+            <p>The process layer defines the framework for effective delivery of software engineering technology. It establishes the workflow, schedules, and activities necessary to build high-quality software.</p>
+        </div>
+
+        <div class="key-points">
+            <strong>Key Process Activities:</strong>
+            <ul>
+                <li>Communication: Understanding stakeholder needs</li>
+                <li>Planning: Estimating resources, risks, and work schedule</li>
+                <li>Modeling: Creating representations of software</li>
+                <li>Construction: Code generation and testing</li>
+                <li>Deployment: Delivery to customers and feedback collection</li>
+            </ul>
+        </div>
+
+        <div class="definition">
+            <strong>Layer 3: Methods</strong>
+            <p>Methods provide the technical "how-to" for building software. They encompass tasks like requirements analysis, design, program construction, testing, and maintenance.</p>
+        </div>
+
+        <div class="definition">
+            <strong>Layer 4: Tools</strong>
+            <p>Software engineering tools provide automated or semi-automated support for the process and methods. Examples include IDEs, version control systems, testing frameworks, and project management tools.</p>
+        </div>
+
+        <div class="example">
+            <div class="example-title">Example: Building an E-commerce Platform</div>
+            <ul>
+                <li><strong>Quality Focus:</strong> ISO 9001 certification, code review standards, security compliance (PCI-DSS)</li>
+                <li><strong>Process:</strong> Agile Scrum with 2-week sprints, daily standups, sprint retrospectives</li>
+                <li><strong>Methods:</strong> User story mapping for requirements, microservices architecture for design, TDD for development</li>
+                <li><strong>Tools:</strong> VS Code (IDE), Git (version control), Jenkins (CI/CD), Jest (testing), Jira (project management)</li>
+            </ul>
+        </div>
+
+        <h2>🔄 3. Software Process Models (SDLC)</h2>
+
+        <div class="overview">
+            <h3>🎯 What is SDLC?</h3>
+            <p>Software Development Life Cycle (SDLC) is a framework that defines tasks performed at each step in the software development process. Different models provide different approaches to organizing these tasks, each with its own advantages and ideal use cases.</p>
+        </div>
+
+        <h3>💧 3.1 Waterfall Model</h3>
+
+        <div class="definition">
+            <strong>Waterfall Model</strong>
+            <p>A sequential, linear approach where each phase must be completed before the next begins. Like a waterfall, progress flows steadily downward through phases.</p>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg">
+                <!-- Title -->
+                <text x="350" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0891b2">Waterfall Model</text>
+
+                <!-- Phase 1: Requirements Analysis -->
+                <rect x="50" y="60" width="600" height="80" fill="#3b82f6" opacity="0.8" rx="5"/>
+                <text x="350" y="95" text-anchor="middle" font-size="16" font-weight="bold" fill="white">1. REQUIREMENTS ANALYSIS</text>
+                <text x="350" y="115" text-anchor="middle" font-size="12" fill="white">Gather and document all requirements</text>
+
+                <!-- Arrow -->
+                <path d="M 350 140 L 350 160" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="350,160 345,150 355,150" fill="#0891b2"/>
+
+                <!-- Phase 2: System Design -->
+                <rect x="100" y="170" width="500" height="80" fill="#14b8a6" opacity="0.8" rx="5"/>
+                <text x="350" y="205" text-anchor="middle" font-size="16" font-weight="bold" fill="white">2. SYSTEM DESIGN</text>
+                <text x="350" y="225" text-anchor="middle" font-size="12" fill="white">Create architecture and detailed design</text>
+
+                <!-- Arrow -->
+                <path d="M 350 250 L 350 270" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="350,270 345,260 355,260" fill="#0891b2"/>
+
+                <!-- Phase 3: Implementation -->
+                <rect x="150" y="280" width="400" height="80" fill="#f59e0b" opacity="0.8" rx="5"/>
+                <text x="350" y="315" text-anchor="middle" font-size="16" font-weight="bold" fill="white">3. IMPLEMENTATION</text>
+                <text x="350" y="335" text-anchor="middle" font-size="12" fill="white">Code the system modules</text>
+
+                <!-- Arrow -->
+                <path d="M 350 360 L 350 380" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="350,380 345,370 355,370" fill="#0891b2"/>
+
+                <!-- Phase 4: Testing -->
+                <rect x="200" y="390" width="300" height="80" fill="#ec4899" opacity="0.8" rx="5"/>
+                <text x="350" y="425" text-anchor="middle" font-size="16" font-weight="bold" fill="white">4. TESTING</text>
+                <text x="350" y="445" text-anchor="middle" font-size="12" fill="white">Verify and validate the system</text>
+
+                <!-- Arrow -->
+                <path d="M 350 470 L 350 490" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="350,490 345,480 355,480" fill="#0891b2"/>
+
+                <!-- Phase 5: Maintenance -->
+                <rect x="250" y="500" width="200" height="80" fill="#6366f1" opacity="0.8" rx="5"/>
+                <text x="350" y="535" text-anchor="middle" font-size="16" font-weight="bold" fill="white">5. MAINTENANCE</text>
+                <text x="350" y="555" text-anchor="middle" font-size="12" fill="white">Support and updates</text>
+
+                <!-- Feedback arrows (verification) -->
+                <path d="M 100 210 L 50 210 L 50 100 L 100 100" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                <text x="30" y="160" font-size="10" fill="#ef4444" transform="rotate(-90 30 160)">Verification</text>
+            </svg>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>Simple and easy to understand</li>
+                    <li>Clear phase deliverables</li>
+                    <li>Works well for small projects with clear requirements</li>
+                    <li>Easy to manage and track progress</li>
+                    <li>Good for projects with stable requirements</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ Disadvantages</h4>
+                <ul>
+                    <li>Inflexible to changing requirements</li>
+                    <li>No working software until late in the cycle</li>
+                    <li>High risk for complex projects</li>
+                    <li>Difficult to go back to previous phases</li>
+                    <li>Customer feedback comes very late</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="case-study">
+            <strong>Best Use Cases:</strong>
+            <p>Waterfall is ideal for projects where:</p>
+            <ul>
+                <li>Requirements are well-understood and unlikely to change</li>
+                <li>Technology is well-established and stable</li>
+                <li>Project is short-duration with clear objectives</li>
+                <li>Example: Developing a simple payroll system with well-defined government regulations</li>
+            </ul>
+        </div>
+
+        <h3>🔄 3.2 Prototyping Model</h3>
+
+        <div class="definition">
+            <strong>Prototyping Model</strong>
+            <p>An iterative model where a prototype (working model) is built, tested, and refined based on customer feedback until an acceptable prototype is achieved, which then becomes the basis for the final system.</p>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Title -->
+                <text x="350" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0891b2">Prototyping Model</text>
+
+                <!-- Step 1: Listen to Customer -->
+                <rect x="250" y="60" width="200" height="60" fill="#3b82f6" opacity="0.8" rx="5"/>
+                <text x="350" y="85" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Listen to Customer</text>
+                <text x="350" y="105" text-anchor="middle" font-size="11" fill="white">Gather requirements</text>
+
+                <!-- Arrow down -->
+                <path d="M 350 120 L 350 160" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="350,160 345,150 355,150" fill="#0891b2"/>
+
+                <!-- Step 2: Build/Revise Prototype -->
+                <rect x="250" y="160" width="200" height="60" fill="#14b8a6" opacity="0.8" rx="5"/>
+                <text x="350" y="185" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Build/Revise Prototype</text>
+                <text x="350" y="205" text-anchor="middle" font-size="11" fill="white">Quick design & code</text>
+
+                <!-- Arrow down -->
+                <path d="M 350 220 L 350 260" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="350,260 345,250 355,250" fill="#0891b2"/>
+
+                <!-- Step 3: Customer Tests -->
+                <rect x="250" y="260" width="200" height="60" fill="#f59e0b" opacity="0.8" rx="5"/>
+                <text x="350" y="285" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Customer Tests Prototype</text>
+                <text x="350" y="305" text-anchor="middle" font-size="11" fill="white">Evaluate & provide feedback</text>
+
+                <!-- Decision Diamond -->
+                <polygon points="350,350 430,400 350,450 270,400" fill="#ec4899" opacity="0.8"/>
+                <text x="350" y="395" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Customer</text>
+                <text x="350" y="410" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Satisfied?</text>
+
+                <!-- Arrow to decision -->
+                <path d="M 350 320 L 350 350" stroke="#0891b2" stroke-width="3" fill="none"/>
+
+                <!-- No - Loop back -->
+                <path d="M 270 400 L 180 400 L 180 190 L 250 190" stroke="#ef4444" stroke-width="3" fill="none"/>
+                <polygon points="250,190 240,185 240,195" fill="#ef4444"/>
+                <text x="150" y="300" font-size="14" font-weight="bold" fill="#ef4444">NO</text>
+                <text x="140" y="320" font-size="11" fill="#ef4444">Refine</text>
+
+                <!-- Yes - Engineer Product -->
+                <path d="M 430 400 L 520 400 L 520 470 L 450 470" stroke="#22c55e" stroke-width="3" fill="none"/>
+                <polygon points="450,470 460,465 460,475" fill="#22c55e"/>
+                <text x="530" y="440" font-size="14" font-weight="bold" fill="#22c55e">YES</text>
+
+                <!-- Final Step -->
+                <rect x="250" y="455" width="200" height="45" fill="#6366f1" opacity="0.8" rx="5"/>
+                <text x="350" y="475" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Engineer Final Product</text>
+            </svg>
+        </div>
+
+        <div class="simple-explanation">
+            <p><strong>Think of it like this:</strong> Imagine you're building a custom bicycle. Instead of building the entire bike at once, you create a quick mockup with basic parts, let the customer ride it, get feedback ("the seat is too low", "handlebars too wide"), adjust the mockup, and repeat until they're happy. Then you build the final, polished version.</p>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>Early customer feedback and involvement</li>
+                    <li>Helps identify missing requirements</li>
+                    <li>Reduces risk of building wrong product</li>
+                    <li>Users get a feel for the actual system</li>
+                    <li>Good for projects with unclear requirements</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ Disadvantages</h4>
+                <ul>
+                    <li>Can lead to scope creep</li>
+                    <li>Customer may expect prototype = final product</li>
+                    <li>Developers may be tempted to use prototype code</li>
+                    <li>May require significant time and cost</li>
+                    <li>Difficult to estimate completion time</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>📈 3.3 Incremental Model</h3>
+
+        <div class="definition">
+            <strong>Incremental Model</strong>
+            <p>The system is developed and delivered in increments (small portions). Each increment delivers a working portion of the system, adding functionality with each increment until the complete system is delivered.</p>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                <!-- Title -->
+                <text x="400" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0891b2">Incremental Development Model</text>
+
+                <!-- Increment 1 -->
+                <g>
+                    <text x="150" y="70" text-anchor="middle" font-size="14" font-weight="bold" fill="#0891b2">Increment 1</text>
+                    <rect x="50" y="80" width="80" height="40" fill="#3b82f6" opacity="0.8" rx="3"/>
+                    <text x="90" y="105" text-anchor="middle" font-size="10" fill="white">Analysis</text>
+
+                    <rect x="135" y="80" width="80" height="40" fill="#14b8a6" opacity="0.8" rx="3"/>
+                    <text x="175" y="105" text-anchor="middle" font-size="10" fill="white">Design</text>
+
+                    <rect x="220" y="80" width="80" height="40" fill="#f59e0b" opacity="0.8" rx="3"/>
+                    <text x="260" y="105" text-anchor="middle" font-size="10" fill="white">Code</text>
+
+                    <rect x="305" y="80" width="80" height="40" fill="#ec4899" opacity="0.8" rx="3"/>
+                    <text x="345" y="105" text-anchor="middle" font-size="10" fill="white">Test</text>
+
+                    <rect x="400" y="80" width="120" height="40" fill="#6366f1" opacity="0.9" rx="3"/>
+                    <text x="460" y="105" text-anchor="middle" font-size="11" font-weight="bold" fill="white">Core Features</text>
+                </g>
+
+                <!-- Increment 2 -->
+                <g>
+                    <text x="150" y="160" text-anchor="middle" font-size="14" font-weight="bold" fill="#0891b2">Increment 2</text>
+                    <rect x="50" y="170" width="80" height="40" fill="#3b82f6" opacity="0.8" rx="3"/>
+                    <text x="90" y="195" text-anchor="middle" font-size="10" fill="white">Analysis</text>
+
+                    <rect x="135" y="170" width="80" height="40" fill="#14b8a6" opacity="0.8" rx="3"/>
+                    <text x="175" y="195" text-anchor="middle" font-size="10" fill="white">Design</text>
+
+                    <rect x="220" y="170" width="80" height="40" fill="#f59e0b" opacity="0.8" rx="3"/>
+                    <text x="260" y="195" text-anchor="middle" font-size="10" fill="white">Code</text>
+
+                    <rect x="305" y="170" width="80" height="40" fill="#ec4899" opacity="0.8" rx="3"/>
+                    <text x="345" y="195" text-anchor="middle" font-size="10" fill="white">Test</text>
+
+                    <rect x="400" y="170" width="120" height="40" fill="#6366f1" opacity="0.9" rx="3"/>
+                    <text x="460" y="190" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Additional</text>
+                    <text x="460" y="202" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Features</text>
+                </g>
+
+                <!-- Increment 3 -->
+                <g>
+                    <text x="150" y="250" text-anchor="middle" font-size="14" font-weight="bold" fill="#0891b2">Increment 3</text>
+                    <rect x="50" y="260" width="80" height="40" fill="#3b82f6" opacity="0.8" rx="3"/>
+                    <text x="90" y="285" text-anchor="middle" font-size="10" fill="white">Analysis</text>
+
+                    <rect x="135" y="260" width="80" height="40" fill="#14b8a6" opacity="0.8" rx="3"/>
+                    <text x="175" y="285" text-anchor="middle" font-size="10" fill="white">Design</text>
+
+                    <rect x="220" y="260" width="80" height="40" fill="#f59e0b" opacity="0.8" rx="3"/>
+                    <text x="260" y="285" text-anchor="middle" font-size="10" fill="white">Code</text>
+
+                    <rect x="305" y="260" width="80" height="40" fill="#ec4899" opacity="0.8" rx="3"/>
+                    <text x="345" y="285" text-anchor="middle" font-size="10" fill="white">Test</text>
+
+                    <rect x="400" y="260" width="120" height="40" fill="#6366f1" opacity="0.9" rx="3"/>
+                    <text x="460" y="280" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Enhanced</text>
+                    <text x="460" y="292" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Features</text>
+                </g>
+
+                <!-- Increment N -->
+                <g>
+                    <text x="150" y="340" text-anchor="middle" font-size="14" font-weight="bold" fill="#0891b2">Increment N</text>
+                    <rect x="50" y="350" width="80" height="40" fill="#3b82f6" opacity="0.8" rx="3"/>
+                    <text x="90" y="375" text-anchor="middle" font-size="10" fill="white">Analysis</text>
+
+                    <rect x="135" y="350" width="80" height="40" fill="#14b8a6" opacity="0.8" rx="3"/>
+                    <text x="175" y="375" text-anchor="middle" font-size="10" fill="white">Design</text>
+
+                    <rect x="220" y="350" width="80" height="40" fill="#f59e0b" opacity="0.8" rx="3"/>
+                    <text x="260" y="375" text-anchor="middle" font-size="10" fill="white">Code</text>
+
+                    <rect x="305" y="350" width="80" height="40" fill="#ec4899" opacity="0.8" rx="3"/>
+                    <text x="345" y="375" text-anchor="middle" font-size="10" fill="white">Test</text>
+
+                    <rect x="400" y="350" width="120" height="40" fill="#6366f1" opacity="0.9" rx="3"/>
+                    <text x="460" y="370" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Final</text>
+                    <text x="460" y="382" text-anchor="middle" font-size="10" font-weight="bold" fill="white">Product</text>
+                </g>
+
+                <!-- Timeline arrow -->
+                <path d="M 550 100 L 750 100" stroke="#0891b2" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                <text x="650" y="90" text-anchor="middle" font-size="12" fill="#0891b2">Time</text>
+
+                <!-- Delivery markers -->
+                <circle cx="530" cy="100" r="5" fill="#22c55e"/>
+                <text x="530" y="130" text-anchor="middle" font-size="10" fill="#22c55e">Deploy</text>
+
+                <circle cx="530" cy="190" r="5" fill="#22c55e"/>
+                <text x="530" y="220" text-anchor="middle" font-size="10" fill="#22c55e">Deploy</text>
+
+                <circle cx="530" cy="280" r="5" fill="#22c55e"/>
+                <text x="530" y="310" text-anchor="middle" font-size="10" fill="#22c55e">Deploy</text>
+
+                <circle cx="530" cy="370" r="5" fill="#22c55e"/>
+                <text x="530" y="400" text-anchor="middle" font-size="10" fill="#22c55e">Deploy</text>
+
+                <!-- Arrow definition -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#0891b2"/>
+                    </marker>
+                </defs>
+            </svg>
+        </div>
+
+        <div class="example">
+            <div class="example-title">Example: Building an Online Store</div>
+            <ul>
+                <li><strong>Increment 1:</strong> Basic product listing and viewing (Deploy in 4 weeks)</li>
+                <li><strong>Increment 2:</strong> Shopping cart and checkout (Deploy in 8 weeks)</li>
+                <li><strong>Increment 3:</strong> User accounts and order history (Deploy in 12 weeks)</li>
+                <li><strong>Increment 4:</strong> Product reviews and recommendations (Deploy in 16 weeks)</li>
+                <li><strong>Increment 5:</strong> Advanced search and filters (Deploy in 20 weeks)</li>
+            </ul>
+            <p>Each increment delivers a usable product that customers can start using while more features are being developed!</p>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>Working software available early</li>
+                    <li>Easier to test and debug smaller increments</li>
+                    <li>Customer can provide feedback on each increment</li>
+                    <li>Lower risk - issues identified early</li>
+                    <li>Flexibility to change requirements</li>
+                    <li>Parallel development possible</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ Disadvantages</h4>
+                <ul>
+                    <li>Requires good planning and design upfront</li>
+                    <li>Need clear module boundaries</li>
+                    <li>Total cost may be higher</li>
+                    <li>System architecture may not be perfect initially</li>
+                    <li>Requires more customer involvement</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>🌀 3.4 Spiral Model</h3>
+
+        <div class="definition">
+            <strong>Spiral Model</strong>
+            <p>Combines iterative development with systematic aspects of the waterfall model. Risk analysis is a key feature - each iteration ("spiral") focuses on identifying and resolving the highest risk issues.</p>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+                <!-- Title -->
+                <text x="350" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0891b2">Spiral Model</text>
+
+                <!-- Quadrants -->
+                <line x1="350" y1="80" x2="350" y2="650" stroke="#ccc" stroke-width="2"/>
+                <line x1="80" y1="365" x2="620" y2="365" stroke="#ccc" stroke-width="2"/>
+
+                <!-- Quadrant labels -->
+                <text x="200" y="110" text-anchor="middle" font-size="14" font-weight="bold" fill="#3b82f6">1. Determine Objectives</text>
+                <text x="200" y="130" text-anchor="middle" font-size="11" fill="#666">Identify requirements</text>
+
+                <text x="500" y="110" text-anchor="middle" font-size="14" font-weight="bold" fill="#14b8a6">2. Risk Analysis</text>
+                <text x="500" y="130" text-anchor="middle" font-size="11" fill="#666">Identify & resolve risks</text>
+
+                <text x="500" y="610" text-anchor="middle" font-size="14" font-weight="bold" fill="#f59e0b">3. Development & Test</text>
+                <text x="500" y="630" text-anchor="middle" font-size="11" fill="#666">Build & verify</text>
+
+                <text x="200" y="610" text-anchor="middle" font-size="14" font-weight="bold" fill="#ec4899">4. Plan Next Iteration</text>
+                <text x="200" y="630" text-anchor="middle" font-size="11" fill="#666">Review & plan</text>
+
+                <!-- Spiral path -->
+                <path d="M 350 365 Q 370 320, 400 300 Q 450 270, 500 300 Q 550 330, 550 380 Q 550 450, 490 500 Q 430 550, 350 550 Q 250 550, 200 480 Q 150 410, 180 340 Q 210 270, 280 230 Q 350 190, 430 220"
+                      stroke="#0891b2" stroke-width="4" fill="none" opacity="0.7"/>
+
+                <!-- Spiral iterations markers -->
+                <circle cx="350" cy="365" r="6" fill="#0891b2"/>
+                <text x="350" y="355" text-anchor="middle" font-size="10" font-weight="bold">Start</text>
+
+                <circle cx="430" cy="220" r="6" fill="#6366f1"/>
+                <text x="455" y="215" font-size="10" fill="#6366f1">Iteration 1</text>
+
+                <circle cx="280" cy="230" r="6" fill="#6366f1"/>
+                <text x="255" y="225" font-size="10" fill="#6366f1">Iteration 2</text>
+
+                <circle cx="350" cy="550" r="6" fill="#6366f1"/>
+                <text x="350" y="575" text-anchor="middle" font-size="10" fill="#6366f1">Iteration N</text>
+
+                <!-- Cumulative cost arrow -->
+                <path d="M 100 620 L 580 140" stroke="#ef4444" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                <text x="340" y="380" font-size="12" fill="#ef4444" transform="rotate(-45 340 380)">Cumulative Cost →</text>
+            </svg>
+        </div>
+
+        <h4>Six Task Regions in Each Spiral</h4>
+
+        <ol class="steps">
+            <li>
+                <strong>Customer Communication</strong>
+                <p>Establish effective communication with the customer to understand their needs, constraints, and objectives.</p>
+            </li>
+            <li>
+                <strong>Planning</strong>
+                <p>Define resources, timelines, project schedule, and other planning information.</p>
+            </li>
+            <li>
+                <strong>Risk Analysis</strong>
+                <p>Identify technical and management risks. Evaluate alternatives and analyze/resolve each identified risk.</p>
+            </li>
+            <li>
+                <strong>Engineering</strong>
+                <p>Build one or more representations of the application - could be design documents, prototypes, or actual code.</p>
+            </li>
+            <li>
+                <strong>Construction & Release</strong>
+                <p>Construct, test, install, and provide user support (documentation, training).</p>
+            </li>
+            <li>
+                <strong>Customer Evaluation</strong>
+                <p>Obtain customer feedback on the current iteration and plan the next spiral based on this evaluation.</p>
+            </li>
+        </ol>
+
+        <div class="case-study">
+            <strong>Risk Analysis Examples:</strong>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Risk Type</th>
+                        <th>Example</th>
+                        <th>Mitigation Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Technical Risk</strong></td>
+                        <td>New technology not proven</td>
+                        <td>Build proof-of-concept, training</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Schedule Risk</strong></td>
+                        <td>Tight deadlines</td>
+                        <td>Prioritize features, increase resources</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cost Risk</strong></td>
+                        <td>Budget overrun</td>
+                        <td>Better estimation, incremental funding</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Requirements Risk</strong></td>
+                        <td>Unclear or changing requirements</td>
+                        <td>Prototyping, frequent customer review</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>Risk management is built into the process</li>
+                    <li>Good for large, complex, high-risk projects</li>
+                    <li>Requirements can evolve over time</li>
+                    <li>Customer feedback incorporated regularly</li>
+                    <li>Development can be divided into parts</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ Disadvantages</h4>
+                <ul>
+                    <li>Complex and expensive</li>
+                    <li>Requires expertise in risk analysis</li>
+                    <li>Success depends on risk assessment</li>
+                    <li>Not suitable for small projects</li>
+                    <li>Continuous monitoring required</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>⚡ 3.5 Agile Model</h3>
+
+        <div class="definition">
+            <strong>Agile Model</strong>
+            <p>An iterative and incremental approach that focuses on adaptive planning, evolutionary development, early delivery, and continuous improvement. Agile promotes flexible responses to change and emphasizes collaboration between cross-functional teams.</p>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+                <!-- Title -->
+                <text x="350" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0891b2">Agile Development Cycle</text>
+
+                <!-- Center circle -->
+                <circle cx="350" cy="280" r="60" fill="#6366f1" opacity="0.9"/>
+                <text x="350" y="275" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Product</text>
+                <text x="350" y="295" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Backlog</text>
+
+                <!-- Sprint Planning -->
+                <rect x="150" y="80" width="140" height="70" fill="#3b82f6" opacity="0.8" rx="5"/>
+                <text x="220" y="110" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Sprint Planning</text>
+                <text x="220" y="130" text-anchor="middle" font-size="11" fill="white">Select user stories</text>
+
+                <!-- Arrow to Sprint -->
+                <path d="M 290 130 L 340 180" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="340,180 330,175 335,165" fill="#0891b2"/>
+
+                <!-- Sprint Execution -->
+                <rect x="420" y="120" width="140" height="70" fill="#14b8a6" opacity="0.8" rx="5"/>
+                <text x="490" y="145" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Sprint Execution</text>
+                <text x="490" y="165" text-anchor="middle" font-size="11" fill="white">Daily standups</text>
+                <text x="490" y="180" text-anchor="middle" font-size="11" fill="white">1-4 weeks</text>
+
+                <!-- Arrow to Review -->
+                <path d="M 510 190 L 480 240" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="480,240 485,230 495,235" fill="#0891b2"/>
+
+                <!-- Sprint Review -->
+                <rect x="420" y="350" width="140" height="70" fill="#f59e0b" opacity="0.8" rx="5"/>
+                <text x="490" y="380" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Sprint Review</text>
+                <text x="490" y="400" text-anchor="middle" font-size="11" fill="white">Demo to stakeholders</text>
+
+                <!-- Arrow to Retrospective -->
+                <path d="M 420 385 L 290 385" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="290,385 300,380 300,390" fill="#0891b2"/>
+
+                <!-- Sprint Retrospective -->
+                <rect x="150" y="350" width="140" height="70" fill="#ec4899" opacity="0.8" rx="5"/>
+                <text x="220" y="375" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Retrospective</text>
+                <text x="220" y="395" text-anchor="middle" font-size="11" fill="white">Team improvement</text>
+                <text x="220" y="410" text-anchor="middle" font-size="11" fill="white">Process refinement</text>
+
+                <!-- Arrow back to Planning -->
+                <path d="M 220 350 L 220 150" stroke="#0891b2" stroke-width="3" fill="none"/>
+                <polygon points="220,150 215,160 225,160" fill="#0891b2"/>
+
+                <!-- Potentially Shippable Product -->
+                <rect x="250" y="460" width="200" height="35" fill="#22c55e" opacity="0.9" rx="5"/>
+                <text x="350" y="482" text-anchor="middle" font-size="13" font-weight="bold" fill="white">Potentially Shippable Product</text>
+
+                <!-- Arrow to Product -->
+                <path d="M 420 385 L 380 430 L 360 460" stroke="#22c55e" stroke-width="3" fill="none" stroke-dasharray="5,5"/>
+                <polygon points="360,460 365,450 355,450" fill="#22c55e"/>
+            </svg>
+        </div>
+
+        <h4>Core Principles of Agile (from the Agile Manifesto)</h4>
+
+        <div class="key-points">
+            <strong>Values:</strong>
+            <ul>
+                <li><strong>Individuals and interactions</strong> over processes and tools</li>
+                <li><strong>Working software</strong> over comprehensive documentation</li>
+                <li><strong>Customer collaboration</strong> over contract negotiation</li>
+                <li><strong>Responding to change</strong> over following a plan</li>
+            </ul>
+        </div>
+
+        <h4>Agile Practices</h4>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Practice</th>
+                    <th>Description</th>
+                    <th>Frequency</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Sprint Planning</strong></td>
+                    <td>Team selects user stories from backlog for the sprint</td>
+                    <td>Start of each sprint</td>
+                </tr>
+                <tr>
+                    <td><strong>Daily Standup</strong></td>
+                    <td>15-minute meeting: What did I do? What will I do? Any blockers?</td>
+                    <td>Daily</td>
+                </tr>
+                <tr>
+                    <td><strong>Sprint Review</strong></td>
+                    <td>Demo completed work to stakeholders and get feedback</td>
+                    <td>End of each sprint</td>
+                </tr>
+                <tr>
+                    <td><strong>Sprint Retrospective</strong></td>
+                    <td>Team reflects on process and identifies improvements</td>
+                    <td>End of each sprint</td>
+                </tr>
+                <tr>
+                    <td><strong>Backlog Grooming</strong></td>
+                    <td>Refine and prioritize user stories for future sprints</td>
+                    <td>Weekly/bi-weekly</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="example">
+            <div class="example-title">Example: 2-Week Sprint Timeline</div>
+            <ul>
+                <li><strong>Day 1 (Monday):</strong> Sprint Planning meeting (2-4 hours) - Select 8 user stories</li>
+                <li><strong>Days 2-9:</strong> Daily standups (15 min each morning), Development work, Code reviews</li>
+                <li><strong>Day 10 (Friday Week 2):</strong>
+                    <ul>
+                        <li>Sprint Review (1 hour) - Demo completed features to stakeholders</li>
+                        <li>Sprint Retrospective (1 hour) - Team discusses what went well, what to improve</li>
+                    </ul>
+                </li>
+                <li><strong>Next Monday:</strong> Start new sprint</li>
+            </ul>
+        </div>
+
+        <div class="pros-cons">
+            <div class="pros">
+                <h4>✅ Advantages</h4>
+                <ul>
+                    <li>Quick delivery of working software</li>
+                    <li>Customer satisfaction through continuous delivery</li>
+                    <li>Adapts well to changing requirements</li>
+                    <li>Regular stakeholder engagement</li>
+                    <li>Improved team morale and productivity</li>
+                    <li>Early detection of issues</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4>❌ Disadvantages</h4>
+                <ul>
+                    <li>Requires experienced team members</li>
+                    <li>Can be challenging without customer involvement</li>
+                    <li>Less emphasis on documentation</li>
+                    <li>Difficult to predict final cost and timeline</li>
+                    <li>Risk of scope creep without discipline</li>
+                    <li>May not work well for large, distributed teams</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>🏆 4. Process Framework Models</h2>
+
+        <div class="overview">
+            <h3>🎯 Quality Standards and Maturity</h3>
+            <p>Process framework models provide standards and benchmarks for assessing and improving software development processes. They help organizations systematically improve their software engineering capabilities.</p>
+        </div>
+
+        <h3>📜 4.1 ISO 9000</h3>
+
+        <div class="definition">
+            <strong>ISO 9000</strong>
+            <p>ISO 9000 is a family of quality management system standards designed to help organizations ensure they meet customer and stakeholder needs within statutory and regulatory requirements. It emphasizes continuous improvement and customer satisfaction.</p>
+        </div>
+
+        <h4>Seven Quality Management Principles</h4>
+
+        <ol class="steps">
+            <li>
+                <strong>Customer Focus</strong>
+                <p>The primary focus should be on meeting customer requirements and exceeding their expectations.</p>
+            </li>
+            <li>
+                <strong>Leadership</strong>
+                <p>Leaders establish unity of purpose and direction, creating an environment where people can achieve organizational objectives.</p>
+            </li>
+            <li>
+                <strong>Engagement of People</strong>
+                <p>Competent, empowered, and engaged people at all levels enhance the organization's capability to create value.</p>
+            </li>
+            <li>
+                <strong>Process Approach</strong>
+                <p>Consistent and predictable results are achieved more efficiently when activities are understood and managed as interrelated processes.</p>
+            </li>
+            <li>
+                <strong>Improvement</strong>
+                <p>Successful organizations have an ongoing focus on continual improvement.</p>
+            </li>
+            <li>
+                <strong>Evidence-based Decision Making</strong>
+                <p>Decisions based on analysis and evaluation of data and information are more likely to produce desired results.</p>
+            </li>
+            <li>
+                <strong>Relationship Management</strong>
+                <p>For sustained success, organizations manage their relationships with interested parties, such as suppliers and partners.</p>
+            </li>
+        </ol>
+
+        <div class="key-points">
+            <strong>Benefits of ISO 9000 Certification:</strong>
+            <ul>
+                <li>Enhanced customer confidence and satisfaction</li>
+                <li>Improved internal processes and efficiency</li>
+                <li>Competitive advantage in global markets</li>
+                <li>Better risk management</li>
+                <li>Consistent product/service quality</li>
+                <li>Foundation for continuous improvement</li>
+            </ul>
+        </div>
+
+        <h3>📊 4.2 Capability Maturity Model (CMM)</h3>
+
+        <div class="definition">
+            <strong>CMM (Capability Maturity Model)</strong>
+            <p>Developed by the Software Engineering Institute (SEI) at Carnegie Mellon University, CMM is a framework that describes the key elements of an effective software process. It provides a roadmap for process improvement across five maturity levels.</p>
+        </div>
+
+        <div class="diagram-container">
+            <svg viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg">
+                <!-- Title -->
+                <text x="350" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#0891b2">CMM Maturity Levels</text>
+
+                <!-- Level 1: Initial (Chaotic) -->
+                <rect x="100" y="480" width="500" height="90" fill="#ef4444" opacity="0.8" rx="5"/>
+                <text x="350" y="510" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Level 1: INITIAL (Chaotic)</text>
+                <text x="350" y="535" text-anchor="middle" font-size="12" fill="white">Unpredictable process, no KPAs</text>
+                <text x="350" y="555" text-anchor="middle" font-size="11" fill="white">Success depends on individual heroics</text>
+
+                <!-- Level 2: Repeatable -->
+                <rect x="120" y="370" width="460" height="90" fill="#f59e0b" opacity="0.8" rx="5"/>
+                <text x="350" y="400" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Level 2: REPEATABLE</text>
+                <text x="350" y="425" text-anchor="middle" font-size="12" fill="white">Basic project management, 6 KPAs</text>
+                <text x="350" y="445" text-anchor="middle" font-size="11" fill="white">Can repeat previous successes</text>
+
+                <!-- Level 3: Defined -->
+                <rect x="140" y="260" width="420" height="90" fill="#f59e0b" opacity="0.9" rx="5"/>
+                <text x="350" y="290" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Level 3: DEFINED</text>
+                <text x="350" y="315" text-anchor="middle" font-size="12" fill="white">Documented standard process, 7 KPAs</text>
+                <text x="350" y="335" text-anchor="middle" font-size="11" fill="white">Organization-wide process standards</text>
+
+                <!-- Level 4: Managed -->
+                <rect x="160" y="150" width="380" height="90" fill="#14b8a6" opacity="0.9" rx="5"/>
+                <text x="350" y="180" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Level 4: MANAGED</text>
+                <text x="350" y="205" text-anchor="middle" font-size="12" fill="white">Quantitative management, 2 KPAs</text>
+                <text x="350" y="225" text-anchor="middle" font-size="11" fill="white">Process measured and controlled</text>
+
+                <!-- Level 5: Optimizing -->
+                <rect x="180" y="40" width="340" height="90" fill="#22c55e" opacity="0.9" rx="5"/>
+                <text x="350" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="white">Level 5: OPTIMIZING</text>
+                <text x="350" y="95" text-anchor="middle" font-size="12" fill="white">Continuous improvement, 3 KPAs</text>
+                <text x="350" y="115" text-anchor="middle" font-size="11" fill="white">Focus on process optimization</text>
+
+                <!-- Upward arrow -->
+                <path d="M 50 550 L 50 80" stroke="#0891b2" stroke-width="4" fill="none"/>
+                <polygon points="50,80 45,95 55,95" fill="#0891b2"/>
+                <text x="30" y="320" font-size="14" font-weight="bold" fill="#0891b2" transform="rotate(-90 30 320)">Process Maturity</text>
+            </svg>
+        </div>
+
+        <h4>Detailed Level Descriptions</h4>
+
+        <div class="definition">
+            <strong>Level 1: Initial</strong>
+            <p><strong>Characteristics:</strong> Chaotic, ad-hoc processes. Success depends on individual effort and heroics. No Key Process Areas (KPAs). Processes are unpredictable, poorly controlled, and reactive.</p>
+            <p><strong>Typical Issues:</strong> Projects often exceed budget and schedule. Quality is unpredictable. No process discipline.</p>
+        </div>
+
+        <div class="definition">
+            <strong>Level 2: Repeatable</strong>
+            <p><strong>Characteristics:</strong> Basic project management processes are established. Organizations can repeat earlier successes on similar projects.</p>
+            <p><strong>6 Key Process Areas:</strong></p>
+            <ul>
+                <li>Requirements Management</li>
+                <li>Software Project Planning</li>
+                <li>Software Project Tracking & Oversight</li>
+                <li>Software Subcontract Management</li>
+                <li>Software Quality Assurance</li>
+                <li>Software Configuration Management</li>
+            </ul>
+        </div>
+
+        <div class="definition">
+            <strong>Level 3: Defined</strong>
+            <p><strong>Characteristics:</strong> Standard processes are documented and integrated across the organization. All projects use approved, tailored versions of the organization's standard process.</p>
+            <p><strong>7 Key Process Areas:</strong></p>
+            <ul>
+                <li>Organization Process Focus</li>
+                <li>Organization Process Definition</li>
+                <li>Training Program</li>
+                <li>Integrated Software Management</li>
+                <li>Software Product Engineering</li>
+                <li>Intergroup Coordination</li>
+                <li>Peer Reviews</li>
+            </ul>
+        </div>
+
+        <div class="definition">
+            <strong>Level 4: Managed</strong>
+            <p><strong>Characteristics:</strong> Detailed measures of the process and product quality are collected. Processes are quantitatively understood and controlled using statistical methods.</p>
+            <p><strong>2 Key Process Areas:</strong></p>
+            <ul>
+                <li>Quantitative Process Management</li>
+                <li>Software Quality Management</li>
+            </ul>
+        </div>
+
+        <div class="definition">
+            <strong>Level 5: Optimizing</strong>
+            <p><strong>Characteristics:</strong> Continuous process improvement is enabled by quantitative feedback. Focus on continually improving process performance through both incremental and innovative technological changes.</p>
+            <p><strong>3 Key Process Areas:</strong></p>
+            <ul>
+                <li>Defect Prevention</li>
+                <li>Technology Change Management</li>
+                <li>Process Change Management</li>
+            </ul>
+        </div>
+
+        <div class="case-study">
+            <strong>CMM Implementation Journey:</strong>
+            <p>A mid-sized software company's progression through CMM levels:</p>
+            <ul>
+                <li><strong>Year 1 (Level 1):</strong> 40% of projects failed, 30% cost overruns, high staff turnover</li>
+                <li><strong>Year 2-3 (Level 2):</strong> Implemented project tracking, requirements management. Project success rate improved to 70%</li>
+                <li><strong>Year 4-5 (Level 3):</strong> Documented standard processes, trained staff. Predictable delivery, 85% success rate</li>
+                <li><strong>Year 6-7 (Level 4):</strong> Metrics-driven development. 95% on-time delivery, defect rate reduced by 60%</li>
+                <li><strong>Year 8+ (Level 5):</strong> Continuous improvement culture. Industry-leading quality metrics, 25% productivity improvement</li>
+            </ul>
+        </div>
+
+        <div class="key-points">
+            <strong>Benefits of CMM Adoption:</strong>
+            <ul>
+                <li>Improved project predictability and consistency</li>
+                <li>Reduced defects and rework</li>
+                <li>Increased productivity (studies show 35-50% improvement from Level 1 to Level 5)</li>
+                <li>Better cost and schedule estimation</li>
+                <li>Enhanced customer satisfaction</li>
+                <li>Competitive advantage in bidding for contracts (especially government projects)</li>
+            </ul>
+        </div>
+
+        <h2>📝 Summary and Key Takeaways</h2>
+
+        <div class="key-points">
+            <strong>Unit 1 Essential Concepts:</strong>
+            <ul>
+                <li><strong>Software Engineering Definition:</strong> Systematic, disciplined approach to software development, operation, and maintenance</li>
+                <li><strong>Historical Evolution:</strong> From machine code (1940s) to Agile/DevOps (present)</li>
+                <li><strong>Economic Reality:</strong> Maintenance costs typically 50-70% of total lifecycle costs</li>
+                <li><strong>Layered Technology:</strong> Quality Focus → Process → Methods → Tools</li>
+                <li><strong>SDLC Models:</strong>
+                    <ul>
+                        <li>Waterfall: Sequential, good for stable requirements</li>
+                        <li>Prototyping: Iterative with customer feedback</li>
+                        <li>Incremental: Deliver working software in parts</li>
+                        <li>Spiral: Risk-driven, iterative approach</li>
+                        <li>Agile: Adaptive, collaborative, continuous delivery</li>
+                    </ul>
+                </li>
+                <li><strong>Process Frameworks:</strong>
+                    <ul>
+                        <li>ISO 9000: Quality management principles</li>
+                        <li>CMM: 5 maturity levels for process improvement</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="overview">
+            <h3>🎓 Study Tips</h3>
+            <p>Understanding these fundamental concepts is crucial for the rest of your software engineering journey. Make sure you can:</p>
+            <ul>
+                <li>Explain why software engineering emerged as a discipline</li>
+                <li>Compare and contrast different SDLC models</li>
+                <li>Identify which model is appropriate for different project scenarios</li>
+                <li>Describe the benefits of process maturity frameworks</li>
+                <li>Calculate basic cost and ROI metrics</li>
+            </ul>
+        </div>
+
+        <footer style="margin-top: 50px; padding: 20px; background: #f3f4f6; border-radius: 10px; text-align: center;">
+            <p style="color: #666; margin: 0;">Software Engineering and Project Management - Unit 1</p>
+            <p style="color: #0891b2; font-weight: bold; margin-top: 10px;">Created with the teaching style principles of clear explanations, visual diagrams, and practical examples</p>
+        </footer>
+    </div>
+</body>
+</html>

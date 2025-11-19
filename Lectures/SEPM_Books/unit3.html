@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEPM Unit 3: Software Project Management</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .overview-box {
+            background: #f0f9ff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #0891b2;
+        }
+
+        .overview-box h2 {
+            color: #0891b2;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .overview-box .big-picture {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .intro {
+            background: #ecfeff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #06b6d4;
+        }
+
+        .intro h2 {
+            color: #0891b2;
+            margin-bottom: 15px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: #0891b2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #0891b2;
+        }
+
+        h3 {
+            color: #0e7490;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .definition {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .definition strong {
+            color: #1e40af;
+        }
+
+        .simple-explanation {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .simple-explanation-title {
+            color: #d97706;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .example {
+            background: #fff7ed;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #fb923c;
+        }
+
+        .example-title {
+            color: #ea580c;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .formula {
+            background: #f0fdfa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            border-left: 4px solid #14b8a6;
+        }
+
+        .calculation {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #22c55e;
+        }
+
+        .calculation-title {
+            color: #16a34a;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        tr:hover {
+            background: #e0f2fe;
+        }
+
+        .component-list {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .component-list li {
+            margin: 15px 0;
+            padding-left: 10px;
+        }
+
+        .component-list strong {
+            color: #0891b2;
+        }
+
+        .case-study {
+            background: #fce7f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ec4899;
+        }
+
+        .case-study-title {
+            color: #be185d;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .mode-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #0891b2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .mode-box h4 {
+            color: #0891b2;
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            background: #fef08a;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin: 20px 0;
+            padding-left: 60px;
+            position: relative;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #0891b2;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .key-points {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .key-points ul {
+            margin-left: 20px;
+        }
+
+        .key-points li {
+            margin: 10px 0;
+        }
+
+        .analogy-box {
+            background: #fef9c3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #eab308;
+        }
+
+        .analogy-box strong {
+            color: #a16207;
+        }
+
+        .process-flow {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .process-arrow {
+            font-size: 2em;
+            color: #0891b2;
+            margin: 10px 0;
+        }
+
+        .risk-box {
+            background: #fef2f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #ef4444;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .risk-box h4 {
+            color: #dc2626;
+            margin-bottom: 8px;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Software Project Management</h1>
+            <p>A Complete Guide to Planning, Design, Coding, Testing, Maintenance & Risk Management</p>
+        </header>
+
+        <div class="content">
+            <!-- Overview Section -->
+            <div class="overview-box">
+                <h2>🎯 Overview: The Big Picture</h2>
+
+                <div class="big-picture">
+                    <h3 style="color: #0891b2; border: none; margin-top: 0;">What is Software Project Management?</h3>
+                    <p style="font-size: 1.1em;">Software project management is the <strong>systematic process of planning, organizing, executing, and monitoring software projects</strong> to ensure they are completed on time, within budget, and according to quality standards. It encompasses the entire software development lifecycle from initial planning to final maintenance.</p>
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Think of it Like Building a House</div>
+                    <p>Just like building a house requires:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Planning:</strong> Creating blueprints and estimating costs</li>
+                        <li><strong>Design:</strong> Deciding on architecture and layout</li>
+                        <li><strong>Construction:</strong> Actually building the structure (coding)</li>
+                        <li><strong>Inspection:</strong> Checking quality and safety (testing)</li>
+                        <li><strong>Maintenance:</strong> Regular upkeep and repairs</li>
+                        <li><strong>Risk Management:</strong> Planning for weather delays or budget issues</li>
+                    </ul>
+                    <p style="margin-top: 10px;">Software projects follow the same systematic approach to ensure successful delivery!</p>
+                </div>
+
+                <div class="process-flow">
+                    <h3 style="color: #0891b2; border: none; margin-top: 0;">The Software Development Lifecycle</h3>
+                    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 20px 0;">
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; flex: 1; min-width: 140px;">
+                            <strong>Planning</strong><br>Define scope & estimate
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #e0e7ff; padding: 15px; border-radius: 8px; flex: 1; min-width: 140px;">
+                            <strong>Design</strong><br>Create architecture
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; flex: 1; min-width: 140px;">
+                            <strong>Coding</strong><br>Write the code
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #dcfce7; padding: 15px; border-radius: 8px; flex: 1; min-width: 140px;">
+                            <strong>Testing</strong><br>Verify quality
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fce7f3; padding: 15px; border-radius: 8px; flex: 1; min-width: 140px;">
+                            <strong>Maintenance</strong><br>Support & updates
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>📚 Five Main Topics Covered:</h4>
+                    <ul>
+                        <li><strong>Planning Phase:</strong> Defining project objectives, scope, and creating estimates using empirical models</li>
+                        <li><strong>Design Phase:</strong> Applying design principles for effective modular design</li>
+                        <li><strong>Coding Phase:</strong> Writing code with proper standards and measuring complexity</li>
+                        <li><strong>Testing Phase:</strong> Various testing strategies to ensure quality</li>
+                        <li><strong>Maintenance & Risk:</strong> Managing software after deployment and handling risks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Planning Phase -->
+            <section id="planning">
+                <h2>📊 Phase 1: Software Project Planning</h2>
+
+                <div class="definition">
+                    <strong>What is Software Project Planning?</strong><br>
+                    Software project planning involves defining the <span class="highlight">goals, objectives, scope, and success criteria</span> of a project. It creates a detailed roadmap that guides the team and stakeholders throughout the project's lifecycle.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🗺️ Road Trip Analogy:</strong> Before starting a road trip, you need to know your destination (objectives), which routes to take (project plan), how long it will take (time estimation), how much fuel you'll need (cost estimation), and what could go wrong (risk assessment). Software planning works the same way!
+                </div>
+
+                <h3>Project Plan Components</h3>
+
+                <div class="component-list">
+                    <ol>
+                        <li><strong>Project Overview:</strong> Title, description, objectives, scope, and key stakeholders<br>
+                        <em>Example: "Student Registration System - A web-based platform for course enrollment"</em></li>
+
+                        <li><strong>Project Management Approach:</strong> The methodology used (Agile, Waterfall, Hybrid)<br>
+                        <em>Example: Using Agile methodology with 2-week sprints</em></li>
+
+                        <li><strong>Project Organization:</strong> Roles, responsibilities, reporting lines, and communication channels<br>
+                        <em>Example: Project Manager, Developers, Testers, Designers with defined roles</em></li>
+
+                        <li><strong>Project Schedule:</strong> Milestones, task lists, and timelines<br>
+                        <em>Example: Requirements gathering by Week 2, Design by Week 4, etc.</em></li>
+
+                        <li><strong>Resource Allocation Plan:</strong> Human resources, tools, and technology needed<br>
+                        <em>Example: 3 developers, 1 tester, cloud hosting, development tools</em></li>
+
+                        <li><strong>Budget and Financial Planning:</strong> Cost estimates for all project phases<br>
+                        <em>Example: Development costs, overhead, contingency, profit margin</em></li>
+
+                        <li><strong>Risk Management Plan:</strong> Potential risks and mitigation strategies<br>
+                        <em>Example: Technical risks, resource shortages, schedule delays</em></li>
+
+                        <li><strong>Quality Assurance Plan:</strong> Testing approach and quality standards<br>
+                        <em>Example: Unit testing, integration testing, acceptance criteria</em></li>
+                    </ol>
+                </div>
+
+                <h3>Software Scope</h3>
+
+                <div class="definition">
+                    <strong>What is Software Scope?</strong><br>
+                    Software scope defines the <span class="highlight">boundary and extent</span> of what a project will include and deliver. It specifies the functionalities, features, and deliverables that will be part of the final software product.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Understanding Scope</div>
+                    <p>The scope answers three critical questions:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>What will be built?</strong> - The features and functionalities</li>
+                        <li><strong>What will NOT be built?</strong> - Exclusions and boundaries</li>
+                        <li><strong>What will the software achieve?</strong> - Goals and objectives</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Why is scope important?</strong> A well-defined scope prevents <span class="highlight">scope creep</span> (uncontrolled expansion) and ensures the project stays on track in terms of time, budget, and resources.</p>
+                </div>
+
+                <h3>Empirical Estimation Models</h3>
+
+                <div class="intro">
+                    <h4>What are Empirical Estimation Models?</h4>
+                    <p>Empirical estimation models use <strong>empirically derived formulas</strong> based on historical data from previous projects to predict project size, effort, cost, and time. These models help answer: "How big will this project be?" and "How much will it cost?"</p>
+                </div>
+
+                <h4>1. Static Single Variable Model</h4>
+
+                <div class="definition">
+                    <strong>Single Variable Model:</strong> A model that uses a single variable (like Lines of Code) to calculate project metrics such as cost, time, and effort.
+                </div>
+
+                <div class="formula">
+                    <h4>Basic Formula:</h4>
+                    <p style="font-size: 1.4em; margin: 20px 0;">C = a × L<sup>b</sup></p>
+                    <p><strong>Where:</strong></p>
+                    <ul style="text-align: left; margin: 10px auto; max-width: 600px;">
+                        <li><strong>C</strong> = Cost (or Effort or Duration)</li>
+                        <li><strong>L</strong> = Size (Lines of Code)</li>
+                        <li><strong>a, b</strong> = Constants derived from historical data</li>
+                    </ul>
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">⚠️ Limitation</div>
+                    <p>The constants <strong>a</strong> and <strong>b</strong> depend on the local development environment, so these models are <span class="highlight">not transportable</span> across different organizations. Each company needs to develop their own constants based on their historical project data.</p>
+                </div>
+
+                <h4>2. Staffing Level Estimation</h4>
+
+                <div class="definition">
+                    <strong>Staffing Level Estimation:</strong> Calculating how many team members are needed to complete a project within a given timeframe.
+                </div>
+
+                <div class="formula">
+                    <h4>FTE (Full-Time Equivalent) Formula:</h4>
+                    <p style="font-size: 1.3em; margin: 20px 0;">FTE = Total Effort (Person-Months) ÷ Duration (Months)</p>
+                </div>
+
+                <div class="calculation">
+                    <div class="calculation-title">🔢 Staffing Calculation Example</div>
+                    <p><strong>Scenario:</strong> A project requires <strong>60 person-months</strong> of effort and must be completed in <strong>12 months</strong>.</p>
+
+                    <p style="margin-top: 15px;"><strong>Calculate FTE:</strong></p>
+                    <p>FTE = 60 ÷ 12 = <strong>5 team members</strong></p>
+
+                    <p style="margin-top: 15px; background: #dcfce7; padding: 10px; border-radius: 5px;">
+                        <strong>Result:</strong> You need <span class="highlight">5 full-time team members</span> working for 12 months to complete this project.
+                    </p>
+                </div>
+
+                <h4>3. COCOMO Model (Constructive Cost Model)</h4>
+
+                <div class="definition">
+                    <strong>COCOMO:</strong> A widely-used empirical model that estimates effort and time based on project size (KLOC - Kilo Lines of Code) and project type.
+                </div>
+
+                <div class="key-points">
+                    <strong>Three Project Modes in COCOMO:</strong>
+                    <ul>
+                        <li><strong>Organic Mode:</strong> Small, simple projects with experienced teams working in familiar environments</li>
+                        <li><strong>Semi-Detached Mode:</strong> Medium-sized projects with mixed experience levels and moderate complexity</li>
+                        <li><strong>Embedded Mode:</strong> Large, complex projects with tight constraints and innovative requirements</li>
+                    </ul>
+                </div>
+
+                <div class="formula">
+                    <h4>COCOMO Formulas:</h4>
+                    <p><strong>Effort Formula:</strong></p>
+                    <p style="font-size: 1.3em; margin: 15px 0;">Effort = a × (KLOC)<sup>b</sup> Person-Months</p>
+                    <p style="margin-top: 15px;"><strong>Time Formula:</strong></p>
+                    <p style="font-size: 1.3em; margin: 15px 0;">Time = c × (Effort)<sup>d</sup> Months</p>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Project Mode</th>
+                            <th>a</th>
+                            <th>b</th>
+                            <th>c</th>
+                            <th>d</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Organic</strong></td>
+                            <td>2.4</td>
+                            <td>1.05</td>
+                            <td>2.5</td>
+                            <td>0.38</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Semi-Detached</strong></td>
+                            <td>3.0</td>
+                            <td>1.12</td>
+                            <td>2.5</td>
+                            <td>0.35</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Embedded</strong></td>
+                            <td>3.6</td>
+                            <td>1.20</td>
+                            <td>2.5</td>
+                            <td>0.32</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="calculation">
+                    <div class="calculation-title">🔢 Complete COCOMO Example</div>
+                    <p><strong>Scenario:</strong> You're building a <strong>database utility tool</strong> with an experienced team. Estimated size = <strong>10 KLOC</strong>. Project type = <strong>Organic Mode</strong>.</p>
+
+                    <p style="margin-top: 20px;"><strong>Step 1: Calculate Effort</strong></p>
+                    <p>Using Organic parameters: a = 2.4, b = 1.05</p>
+                    <p>Effort = 2.4 × (10)<sup>1.05</sup></p>
+                    <p>Effort = 2.4 × 11.22</p>
+                    <p style="font-size: 1.1em; background: #dbeafe; padding: 10px; border-radius: 5px;">
+                        <strong>Effort = 26.9 Person-Months</strong>
+                    </p>
+
+                    <p style="margin-top: 20px;"><strong>Step 2: Calculate Development Time</strong></p>
+                    <p>Using Organic parameters: c = 2.5, d = 0.38</p>
+                    <p>Time = 2.5 × (26.9)<sup>0.38</sup></p>
+                    <p>Time = 2.5 × 3.53</p>
+                    <p style="font-size: 1.1em; background: #dcfce7; padding: 10px; border-radius: 5px;">
+                        <strong>Time = 8.8 Months</strong>
+                    </p>
+
+                    <p style="margin-top: 20px;"><strong>Step 3: Calculate Team Size</strong></p>
+                    <p>Average Team Size = Effort ÷ Time</p>
+                    <p>Team Size = 26.9 ÷ 8.8</p>
+                    <p style="font-size: 1.1em; background: #fef3c7; padding: 10px; border-radius: 5px;">
+                        <strong>Team Size ≈ 3 developers</strong>
+                    </p>
+
+                    <p style="margin-top: 20px; background: #f0f9ff; padding: 15px; border-radius: 5px;">
+                        <strong>📊 Final Result:</strong> This project requires <span class="highlight">26.9 Person-Months</span> of effort, will take <span class="highlight">8.8 months</span> to complete, and needs a team of approximately <span class="highlight">3 developers</span>.
+                    </p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🏢 Industry Example: Banking System</div>
+                    <p>A bank wants to build an ATM management system:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Complexity:</strong> Embedded mode (high security, real-time processing, hardware constraints)</li>
+                        <li><strong>Estimated Size:</strong> 50 KLOC</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Calculations:</strong></p>
+                    <p>Effort = 3.6 × (50)<sup>1.20</sup> = 3.6 × 87.8 = <strong>316 Person-Months</strong></p>
+                    <p>Time = 2.5 × (316)<sup>0.32</sup> = <strong>16.5 Months</strong></p>
+                    <p>Team Size = 316 ÷ 16.5 = <strong>19 developers</strong></p>
+                    <p style="margin-top: 10px; background: #fef3c7; padding: 10px; border-radius: 5px;">
+                        <strong>Result:</strong> This complex system needs a large team of 19 developers working for 16.5 months.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Design Phase -->
+            <section id="design">
+                <h2>🎨 Phase 2: Software Design</h2>
+
+                <div class="definition">
+                    <strong>What is Software Design?</strong><br>
+                    Software design is the process of <span class="highlight">transforming requirements into a blueprint</span> for building the software. It defines the architecture, components, interfaces, and data structures that will guide implementation.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🏗️ Architecture Analogy:</strong> Just as architects create detailed blueprints before construction begins, software designers create technical specifications before coding starts. A good design ensures the building (software) is maintainable, scalable, and of high quality!
+                </div>
+
+                <div class="intro">
+                    <h4>Why is Design Phase Important?</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Serves as the <strong>blueprint</strong> for the entire development process</li>
+                        <li>Prevents serious complications during development and after deployment</li>
+                        <li>Bridges the gap between high-level requirements and actual implementation</li>
+                        <li>Ensures the system is <span class="highlight">maintainable, scalable, and efficient</span></li>
+                    </ul>
+                </div>
+
+                <h3>Seven Essential Design Concepts</h3>
+
+                <h4>1. Modularity</h4>
+
+                <div class="definition">
+                    <strong>Modularity:</strong> Dividing a system into smaller, manageable <strong>modules or components</strong>. Each module has a clear purpose, well-defined responsibilities, and minimal dependencies on other modules.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 LEGO Blocks Analogy</div>
+                    <p>Think of software like LEGO blocks. Each block (module) is:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Self-contained and has a specific shape/purpose</li>
+                        <li>Can connect to other blocks through standard interfaces</li>
+                        <li>Can be replaced or modified without affecting the entire structure</li>
+                        <li>Can be reused in different projects</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🛒 E-Commerce Application Modules</div>
+                    <p>An e-commerce system can be divided into modules:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>User Interface Module:</strong> Handles presentation layer - displaying products, managing user accounts</li>
+                        <li><strong>Product Catalog Module:</strong> Manages product inventory and catalog</li>
+                        <li><strong>Shopping Cart Module:</strong> Manages user's shopping cart - add/remove items, calculate totals</li>
+                        <li><strong>Payment Processing Module:</strong> Handles payment transactions and gateway integration</li>
+                        <li><strong>Order Management Module:</strong> Manages order processing and fulfillment</li>
+                    </ul>
+                    <p style="margin-top: 10px;">Each module communicates through well-defined interfaces but can be developed, tested, and maintained independently!</p>
+                </div>
+
+                <h4>2. Abstraction</h4>
+
+                <div class="definition">
+                    <strong>Abstraction:</strong> Simplifying complex reality by modeling classes, objects, or components that represent <span class="highlight">essential properties and behaviors</span> while hiding complex implementation details.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🚗 Car Driving Analogy:</strong> When you drive a car, you use simple interfaces (steering wheel, pedals, gear shift) without knowing the complex engine mechanics. The car's interface provides abstraction - you focus on WHAT it does (accelerate, brake) rather than HOW the engine works internally.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🚗 Vehicle Abstraction Example</div>
+                    <p>Consider a car rental management system with "Vehicle" abstraction:</p>
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>Properties (What):</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>make (manufacturer)</li>
+                            <li>model (vehicle model name)</li>
+                            <li>year (manufacturing year)</li>
+                            <li>rentalPrice (cost per day)</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Behaviors (What):</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>calculateRentalCost(days) - calculates total rental cost</li>
+                        </ul>
+                    </div>
+                    <p>The abstraction focuses on essential properties and behaviors relevant to the car rental system. We don't need to know engine specifications, tire pressure algorithms, or fuel injection mechanics - those details are hidden!</p>
+                </div>
+
+                <h4>3. Encapsulation</h4>
+
+                <div class="definition">
+                    <strong>Encapsulation:</strong> Bundling data (attributes) and methods (functions) that operate on the data into a single unit (class), and <span class="highlight">hiding internal details</span> from the outside world. Access is controlled through public methods.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Medicine Capsule Analogy</div>
+                    <p>Think of a medicine capsule:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>The medicine (data) is packaged inside the capsule</li>
+                        <li>You cannot directly access the medicine - you must swallow the whole capsule</li>
+                        <li>The capsule protects the medicine and controls how it's released</li>
+                        <li>The outer coating is the public interface, the medicine inside is private data</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">👤 Employee Class Encapsulation</div>
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>Private Attributes (Hidden):</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>__name (employee name)</li>
+                            <li>__employee_id (employee ID)</li>
+                            <li>__salary (employee salary)</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Public Methods (Interface):</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>get_name() - read-only access to name</li>
+                            <li>get_employee_id() - read-only access to ID</li>
+                            <li>get_salary() - read-only access to salary</li>
+                            <li>set_name(new_name) - controlled update with validation</li>
+                            <li>set_salary(new_salary) - controlled update with validation</li>
+                        </ul>
+                    </div>
+                    <p>The Employee class encapsulates employee details. External code cannot directly access or modify __salary - it must use getter and setter methods, which can include validation logic!</p>
+                </div>
+
+                <h4>4. Separation of Concerns (SoC)</h4>
+
+                <div class="definition">
+                    <strong>Separation of Concerns:</strong> Dividing a system's functionality into <span class="highlight">distinct and isolated parts</span>, each addressing a specific concern. This is a layered design approach where different aspects (UI, business logic, data storage) are kept separate.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🏢 Company Department Analogy:</strong> In a company, different departments handle different concerns - Sales focuses on selling, Finance handles money, HR manages people, IT manages technology. Each department operates independently but communicates through defined processes. This separation makes the company more organized and manageable!
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📝 To-Do List Application with SoC</div>
+                    <p>A web application for managing tasks separated into layers:</p>
+                    <div style="background: #f1f5f9; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <p><strong>📱 User Interface (UI) Layer:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Handles presentation - buttons, forms, layouts</li>
+                            <li>Gathers user input and displays information</li>
+                            <li>Technology: HTML, CSS, JavaScript</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>💼 Business Logic Layer:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Core functionality - creating, updating, deleting tasks</li>
+                            <li>Managing task status and business rules</li>
+                            <li>Technology: Java/Python functions and classes</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>💾 Data Access Layer:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Data storage and retrieval</li>
+                            <li>CRUD operations (Create, Read, Update, Delete) on database</li>
+                            <li>Technology: Database queries or API calls</li>
+                        </ul>
+                    </div>
+                    <p>Each layer has a single concern and communicates through well-defined interfaces. You can change the UI without touching the database, or switch databases without changing business logic!</p>
+                </div>
+
+                <h4>5. Cohesion</h4>
+
+                <div class="definition">
+                    <strong>Cohesion:</strong> The measure of how <span class="highlight">closely related and focused</span> the responsibilities of elements within a module are. <strong>High cohesion</strong> is desirable - it means the module does one thing well.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Swiss Army Knife vs. Specialized Tool</div>
+                    <p><strong>Low Cohesion:</strong> A Swiss Army knife has many unrelated tools (knife, scissors, screwdriver) - it does many things but none perfectly.</p>
+                    <p><strong>High Cohesion:</strong> A professional chef's knife is designed specifically for cutting - it does ONE thing exceptionally well.</p>
+                    <p style="margin-top: 10px;">In software, we want modules like the chef's knife - focused on a single, well-defined purpose!</p>
+                </div>
+
+                <div class="key-points">
+                    <strong>Types of Cohesion (from Best to Worst):</strong>
+                    <ul>
+                        <li><strong>Functional Cohesion:</strong> Functions work together to perform a specific task (e.g., math library with add, subtract, multiply, divide)</li>
+                        <li><strong>Sequential Cohesion:</strong> Functions operate in a sequence, output of one is input to next (e.g., workflow: fetch data → process it → store result)</li>
+                        <li><strong>Procedural Cohesion:</strong> Functions contribute to a larger operation (e.g., invoice module: calculate taxes, arrange items, calculate total)</li>
+                        <li><strong>Temporal Cohesion:</strong> Functions executed at the same time (e.g., scheduler: trigger backup, cleanup, data synchronization)</li>
+                        <li><strong>Coincidental Cohesion:</strong> Functions grouped together without clear rationale (e.g., utility class with string manipulation AND network communication) - AVOID THIS!</li>
+                    </ul>
+                </div>
+
+                <h4>6. Coupling</h4>
+
+                <div class="definition">
+                    <strong>Coupling:</strong> The degree of <span class="highlight">interdependence between different modules</span>. It measures how closely connected modules are to each other. <strong>Low coupling</strong> is desirable - modules should be as independent as possible.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🔌 Appliance Analogy:</strong> <strong>High Coupling:</strong> A built-in dishwasher is tightly connected to your kitchen plumbing and electricity - hard to replace or modify. <strong>Low Coupling:</strong> A portable dishwasher connects through simple standard interfaces - easy to replace or move. We want software modules like the portable dishwasher!
+                </div>
+
+                <div class="key-points">
+                    <strong>Types of Coupling (from Best to Worst):</strong>
+                    <ul>
+                        <li><strong>Data Coupling:</strong> Modules communicate by passing simple data parameters (BEST - use this!)</li>
+                        <li><strong>Common Coupling:</strong> Modules depend on shared global data or variables (AVOID - causes conflicts)</li>
+                        <li><strong>External Coupling:</strong> Modules interact through external interfaces like files or databases</li>
+                        <li><strong>Control Coupling:</strong> One module influences another's behavior by passing control information (flags)</li>
+                        <li><strong>Content Coupling:</strong> One module directly accesses another's internal data (WORST - breaks encapsulation)</li>
+                    </ul>
+                </div>
+
+                <div style="background: #dcfce7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #16a34a; margin-top: 0;">🎯 Golden Design Rule</h4>
+                    <p style="font-size: 1.1em; margin: 0;"><strong>High Cohesion + Low Coupling = Excellent Design</strong></p>
+                    <p style="margin-top: 10px;">Each module should do ONE thing well (high cohesion) and have minimal dependencies on other modules (low coupling). This makes code more maintainable, understandable, and reusable!</p>
+                </div>
+
+                <h4>7. Single Responsibility Principle (SRP)</h4>
+
+                <div class="definition">
+                    <strong>Single Responsibility Principle:</strong> Each module should have <span class="highlight">one, and only one, reason to change</span>. It should have a single, well-defined responsibility or purpose.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📝 Blog Post Example</div>
+                    <p><strong>❌ Violating SRP:</strong> A <code>Post</code> class that:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Creates and manages post content (data management)</li>
+                        <li>Displays post on website (presentation)</li>
+                    </ul>
+                    <p>This violates SRP because the class has TWO responsibilities!</p>
+
+                    <p style="margin-top: 15px;"><strong>✅ Following SRP:</strong> Separate into two classes:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>PostManager class:</strong> Handles creating posts in the database</li>
+                        <li><strong>PostRenderer class:</strong> Handles displaying posts on the website</li>
+                    </ul>
+                    <p>Now each class has a single responsibility. If we need to change how posts are displayed, we only modify PostRenderer without touching PostManager!</p>
+                </div>
+
+                <h3>Design Strategies</h3>
+
+                <h4>Top-Down Design (Stepwise Refinement)</h4>
+
+                <div class="definition">
+                    <strong>Top-Down Design:</strong> Starting with a <span class="highlight">high-level overview</span> and gradually breaking it down into smaller, more specific sub-modules. It's like zooming into increasing levels of detail.
+                </div>
+
+                <div class="process-flow">
+                    <h4 style="color: #0891b2; border: none; margin-top: 0;">Top-Down Design Process</h4>
+                    <ul class="steps">
+                        <li><strong>High-Level Design:</strong> Identify major components/modules needed to solve the problem</li>
+                        <li><strong>Decomposition:</strong> Break each high-level module into smaller sub-modules</li>
+                        <li><strong>Refinement:</strong> Continue breaking down until each module performs a single, well-defined task</li>
+                        <li><strong>Hierarchical Structure:</strong> Organize modules in a hierarchy with higher-level modules calling lower-level ones</li>
+                        <li><strong>Interfaces:</strong> Define clear interfaces between modules</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🛒 E-Commerce Website Top-Down Design</div>
+                    <p><strong>Level 1 (High-Level):</strong> Main modules</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Product Catalog</li>
+                        <li>Shopping Cart</li>
+                        <li>User Account Management</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Level 2 (Decomposition):</strong> Break down Shopping Cart module</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Add Item</li>
+                        <li>Remove Item</li>
+                        <li>Calculate Total</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Level 3 (Refinement):</strong> Break down Add Item sub-module</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Validate Item</li>
+                        <li>Update Quantity</li>
+                        <li>Add to Cart</li>
+                    </ul>
+                </div>
+
+                <h4>Bottom-Up Design Strategy</h4>
+
+                <div class="definition">
+                    <strong>Bottom-Up Design:</strong> Starting with <span class="highlight">basic building blocks</span> (low-level components) and combining them to create higher-level modules. It's like assembling LEGO pieces into increasingly complex structures.
+                </div>
+
+                <div class="process-flow">
+                    <h4 style="color: #0891b2; border: none; margin-top: 0;">Bottom-Up Design Process</h4>
+                    <ul class="steps">
+                        <li><strong>Identify Primitives:</strong> Start with basic, reusable components that perform fundamental tasks</li>
+                        <li><strong>Build Layers:</strong> Combine primitives to create more complex modules</li>
+                        <li><strong>Integration:</strong> Continue combining modules until you reach the complete system</li>
+                        <li><strong>Reusability:</strong> Lower-level modules can be reused across multiple higher-level modules</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📚 Library Management System Bottom-Up Design</div>
+                    <p><strong>Level 1 (Low-Level Components):</strong> Basic building blocks</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Database Connection Module:</strong> Connect to database</li>
+                        <li><strong>Validation Module:</strong> Validate user inputs</li>
+                        <li><strong>Date/Time Module:</strong> Handle date operations</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Level 2 (Mid-Level Components):</strong> Combine basic modules</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Book Management Module:</strong> Uses database connection + validation to manage books</li>
+                        <li><strong>Member Management Module:</strong> Uses database connection + validation to manage members</li>
+                        <li><strong>Loan Processing Module:</strong> Uses database connection + date/time to handle book loans</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Level 3 (High-Level System):</strong> Complete system</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Library Management System:</strong> Integrates Book Management + Member Management + Loan Processing</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #0891b2; margin-top: 0;">🔄 Top-Down vs Bottom-Up: Which to Choose?</h4>
+                    <table style="box-shadow: none; margin: 10px 0;">
+                        <tr style="background: transparent;">
+                            <td style="border: none; padding: 10px 10px 10px 0;"><strong>Top-Down:</strong></td>
+                            <td style="border: none;">Best when requirements are clear and well-understood from the start</td>
+                        </tr>
+                        <tr style="background: transparent;">
+                            <td style="border: none; padding: 10px 10px 10px 0;"><strong>Bottom-Up:</strong></td>
+                            <td style="border: none;">Best when you have reusable components or when building complex systems from proven building blocks</td>
+                        </tr>
+                        <tr style="background: transparent;">
+                            <td style="border: none; padding: 10px 10px 10px 0;"><strong>Hybrid Approach:</strong></td>
+                            <td style="border: none;">Often the best solution - use top-down for planning and bottom-up for implementation!</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Coding Phase -->
+            <section id="coding">
+                <h2>💻 Phase 3: Coding</h2>
+
+                <div class="definition">
+                    <strong>What is the Coding Phase?</strong><br>
+                    The coding phase is where the <span class="highlight">actual software is written</span> based on the design specifications. This phase involves translating design documents into executable code using a programming language.
+                </div>
+
+                <div class="intro">
+                    <h4>Why are Coding Standards and Metrics Important?</h4>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Quality Assurance:</strong> Consistent coding standards ensure code quality and readability</li>
+                        <li><strong>Maintainability:</strong> Well-written code is easier to maintain and update</li>
+                        <li><strong>Measurement:</strong> Metrics help quantify code complexity, size, and quality</li>
+                        <li><strong>Team Collaboration:</strong> Standards ensure everyone writes code in a consistent manner</li>
+                    </ul>
+                </div>
+
+                <h3>Code Size Measures</h3>
+
+                <h4>1. Lines of Code (LOC)</h4>
+
+                <div class="definition">
+                    <strong>Lines of Code (LOC):</strong> The total number of lines in a program, including comments, blank lines, and code statements.
+                </div>
+
+                <h4>2. Source Lines of Code (SLOC)</h4>
+
+                <div class="definition">
+                    <strong>SLOC:</strong> Counts only the <span class="highlight">actual lines of executable code</span>, excluding comments and blank lines. This is a more accurate measure of code size.
+                </div>
+
+                <h4>3. Executable Lines of Code (ELOC)</h4>
+
+                <div class="definition">
+                    <strong>ELOC:</strong> Counts only lines that contain <span class="highlight">executable statements</span> - code that actually performs operations when the program runs.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📝 Counting Different Code Measures</div>
+                    <pre style="background: #1e293b; color: #e2e8f0;">
+// This is a comment - not counted in SLOC/ELOC
+int calculateSum(int a, int b) {    // Function declaration - SLOC and ELOC
+    int result;                      // Declaration - SLOC, not ELOC
+    result = a + b;                  // Assignment - SLOC and ELOC
+    return result;                   // Return statement - SLOC and ELOC
+}
+// Another comment
+
+                    </pre>
+                    <p style="margin-top: 10px;"><strong>Counts:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>LOC:</strong> 8 lines (including comments and blank lines)</li>
+                        <li><strong>SLOC:</strong> 5 lines (excluding comments and blank lines)</li>
+                        <li><strong>ELOC:</strong> 4 lines (only executable statements)</li>
+                    </ul>
+                </div>
+
+                <h3>Code Complexity Measures</h3>
+
+                <h4>1. Cyclomatic Complexity</h4>
+
+                <div class="definition">
+                    <strong>Cyclomatic Complexity:</strong> A quantitative measure of the <span class="highlight">number of independent paths</span> through a program's source code. It measures the complexity of the program's control flow.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 What Does It Mean?</div>
+                    <p>Cyclomatic complexity tells you:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>How many different paths can be taken through the code</li>
+                        <li>How complex the decision-making logic is</li>
+                        <li>How many test cases you need to cover all paths</li>
+                        <li>Higher complexity = harder to test and maintain</li>
+                    </ul>
+                </div>
+
+                <div class="formula">
+                    <h4>Cyclomatic Complexity Formula:</h4>
+                    <p style="font-size: 1.4em; margin: 20px 0;">V(G) = E - N + 2</p>
+                    <p><strong>Where:</strong></p>
+                    <ul style="text-align: left; margin: 10px auto; max-width: 600px;">
+                        <li><strong>V(G)</strong> = Cyclomatic Complexity</li>
+                        <li><strong>E</strong> = Number of edges in the control flow graph</li>
+                        <li><strong>N</strong> = Number of nodes in the control flow graph</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Alternative Formula:</strong></p>
+                    <p style="font-size: 1.3em; margin: 10px 0;">V(G) = P + 1</p>
+                    <p><strong>P</strong> = Number of predicate nodes (decision points like if, while, for)</p>
+                </div>
+
+                <div class="calculation">
+                    <div class="calculation-title">🔢 Cyclomatic Complexity Example</div>
+                    <p><strong>Code Sample:</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0;">
+void checkNumber(int num) {
+    if (num > 0) {              // Decision point 1
+        printf("Positive");
+    } else if (num < 0) {       // Decision point 2
+        printf("Negative");
+    } else {
+        printf("Zero");
+    }
+}
+                    </pre>
+                    <p style="margin-top: 15px;"><strong>Method 1: Using P + 1</strong></p>
+                    <p>Number of predicate nodes (P) = 2 (two decision points)</p>
+                    <p>V(G) = P + 1 = 2 + 1 = <strong>3</strong></p>
+
+                    <p style="margin-top: 15px;"><strong>Method 2: Using E - N + 2</strong></p>
+                    <p>Count nodes and edges in control flow graph:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>Nodes (N) = 6 (Start, num>0, Positive, num<0, Negative, Zero/End)</li>
+                        <li>Edges (E) = 7 (connections between nodes)</li>
+                    </ul>
+                    <p>V(G) = 7 - 6 + 2 = <strong>3</strong></p>
+
+                    <p style="margin-top: 15px; background: #dcfce7; padding: 10px; border-radius: 5px;">
+                        <strong>Result:</strong> Cyclomatic Complexity = 3 means there are <span class="highlight">3 independent paths</span> through this code, so you need at least 3 test cases to cover all paths!
+                    </p>
+                </div>
+
+                <div class="key-points">
+                    <h4>🎯 Complexity Guidelines:</h4>
+                    <ul>
+                        <li><strong>V(G) = 1-10:</strong> Simple program, low risk</li>
+                        <li><strong>V(G) = 11-20:</strong> Moderate complexity, medium risk</li>
+                        <li><strong>V(G) = 21-50:</strong> Complex program, high risk</li>
+                        <li><strong>V(G) > 50:</strong> Untestable, very high risk - consider refactoring!</li>
+                    </ul>
+                </div>
+
+                <h4>2. Halstead's Software Metrics</h4>
+
+                <div class="definition">
+                    <strong>Halstead Metrics:</strong> Measures of software complexity based on the <span class="highlight">number of operators and operands</span> in the source code. Developed by Maurice Halstead in 1977.
+                </div>
+
+                <div class="key-points">
+                    <h4>Basic Halstead Measures:</h4>
+                    <ul>
+                        <li><strong>n1:</strong> Number of distinct operators (keywords, operators like +, -, if, while)</li>
+                        <li><strong>n2:</strong> Number of distinct operands (variables, constants, literals)</li>
+                        <li><strong>N1:</strong> Total occurrences of operators</li>
+                        <li><strong>N2:</strong> Total occurrences of operands</li>
+                    </ul>
+                </div>
+
+                <div class="formula">
+                    <h4>Key Halstead Formulas:</h4>
+                    <table>
+                        <tr>
+                            <th>Metric</th>
+                            <th>Formula</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Vocabulary</strong></td>
+                            <td>n = n1 + n2</td>
+                            <td>Total unique tokens</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Length</strong></td>
+                            <td>N = N1 + N2</td>
+                            <td>Total tokens used</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Volume</strong></td>
+                            <td>V = N × log<sub>2</sub>(n)</td>
+                            <td>Size in bits</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Difficulty</strong></td>
+                            <td>D = (n1/2) × (N2/n2)</td>
+                            <td>How hard to understand</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Effort</strong></td>
+                            <td>E = D × V</td>
+                            <td>Mental effort required</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="calculation">
+                    <div class="calculation-title">🔢 Halstead Metrics Example</div>
+                    <p><strong>Code Sample:</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0;">
+int sum = 0;
+for (int i = 1; i <= 10; i++) {
+    sum = sum + i;
+}
+                    </pre>
+                    <p style="margin-top: 15px;"><strong>Step 1: Identify Operators and Operands</strong></p>
+                    <p><strong>Distinct Operators (n1):</strong> int, =, for, ;, <=, ++, +<br>Count: n1 = 7</p>
+                    <p><strong>Distinct Operands (n2):</strong> sum, 0, i, 1, 10<br>Count: n2 = 5</p>
+
+                    <p style="margin-top: 15px;"><strong>Total Operators (N1):</strong> 13 occurrences</p>
+                    <p><strong>Total Operands (N2):</strong> 11 occurrences</p>
+
+                    <p style="margin-top: 15px;"><strong>Step 2: Calculate Metrics</strong></p>
+                    <p>Vocabulary (n) = 7 + 5 = <strong>12</strong></p>
+                    <p>Length (N) = 13 + 11 = <strong>24</strong></p>
+                    <p>Volume (V) = 24 × log<sub>2</sub>(12) = 24 × 3.58 = <strong>86 bits</strong></p>
+                    <p>Difficulty (D) = (7/2) × (11/5) = 3.5 × 2.2 = <strong>7.7</strong></p>
+                    <p>Effort (E) = 7.7 × 86 = <strong>662</strong></p>
+
+                    <p style="margin-top: 15px; background: #f0f9ff; padding: 10px; border-radius: 5px;">
+                        <strong>Interpretation:</strong> This code has moderate difficulty (7.7) and requires reasonable mental effort (662) to understand and maintain.
+                    </p>
+                </div>
+
+                <h3>Coding Standards</h3>
+
+                <div class="key-points">
+                    <h4>📋 Essential Coding Standards:</h4>
+                    <ul>
+                        <li><strong>Naming Conventions:</strong> Use meaningful, descriptive names for variables, functions, and classes</li>
+                        <li><strong>Indentation:</strong> Consistent indentation (2 or 4 spaces) for readability</li>
+                        <li><strong>Comments:</strong> Document complex logic, function purposes, and non-obvious code</li>
+                        <li><strong>Function Length:</strong> Keep functions short and focused (typically under 50 lines)</li>
+                        <li><strong>Error Handling:</strong> Proper exception handling and error checking</li>
+                        <li><strong>Code Reusability:</strong> Avoid code duplication, use functions and modules</li>
+                        <li><strong>Version Control:</strong> Use Git or similar systems to track changes</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">✅ Good vs ❌ Bad Coding Practices</div>
+                    <p><strong>❌ Bad Practice:</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0;">
+int x=10;int y=20;int z=x+y;
+if(z>25){printf("big");}
+                    </pre>
+                    <p style="margin-top: 15px;"><strong>✅ Good Practice:</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0;">
+// Calculate the sum of two numbers
+int firstNumber = 10;
+int secondNumber = 20;
+int totalSum = firstNumber + secondNumber;
+
+// Check if sum exceeds threshold
+if (totalSum > 25) {
+    printf("Sum is large");
+}
+                    </pre>
+                    <p style="margin-top: 10px;"><strong>Why is the second version better?</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Meaningful variable names (firstNumber vs x)</li>
+                        <li>Proper spacing and indentation</li>
+                        <li>Comments explaining the purpose</li>
+                        <li>One statement per line for clarity</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Testing Phase -->
+            <section id="testing">
+                <h2>🧪 Phase 4: Software Testing</h2>
+
+                <div class="definition">
+                    <strong>What is Software Testing?</strong><br>
+                    Software testing is the process of <span class="highlight">evaluating and verifying</span> that a software application works as expected. It involves executing the software to identify bugs, errors, or missing requirements.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🏥 Medical Check-Up Analogy:</strong> Just as doctors perform various tests (blood test, X-ray, ECG) to ensure your health, software testing performs various types of tests to ensure software health. Each test checks different aspects - functionality, performance, security - to ensure the software is "healthy" before release!
+                </div>
+
+                <div class="intro">
+                    <h4>Goals of Software Testing:</h4>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Verification:</strong> Are we building the product right? (Does it match the design?)</li>
+                        <li><strong>Validation:</strong> Are we building the right product? (Does it meet user needs?)</li>
+                        <li><strong>Defect Detection:</strong> Find and fix bugs before deployment</li>
+                        <li><strong>Quality Assurance:</strong> Ensure the software meets quality standards</li>
+                    </ul>
+                </div>
+
+                <h3>Types of Software Testing</h3>
+
+                <h4>1. Unit Testing</h4>
+
+                <div class="definition">
+                    <strong>Unit Testing:</strong> Testing <span class="highlight">individual components or functions</span> in isolation to verify they work correctly. This is the smallest testable part of an application.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🔍 Unit Testing Example</div>
+                    <p>Testing a <code>calculateDiscount()</code> function:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Test 1:</strong> Input: price=100, discount=10% → Expected output: 90</li>
+                        <li><strong>Test 2:</strong> Input: price=50, discount=20% → Expected output: 40</li>
+                        <li><strong>Test 3:</strong> Input: price=0, discount=10% → Expected output: 0 (edge case)</li>
+                    </ul>
+                    <p>Each test checks the function independently without involving other system components.</p>
+                </div>
+
+                <h4>2. Integration Testing</h4>
+
+                <div class="definition">
+                    <strong>Integration Testing:</strong> Testing how different <span class="highlight">modules work together</span> when combined. It verifies that interfaces between components function correctly.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🔗 Integration Testing Example</div>
+                    <p>E-commerce system integration test:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>User adds item to cart (Shopping Cart Module)</li>
+                        <li>Proceeds to checkout (Payment Module)</li>
+                        <li>Payment is processed (Payment Gateway Integration)</li>
+                        <li>Order confirmation is generated (Order Management Module)</li>
+                    </ul>
+                    <p>Testing verifies that data flows correctly between these modules and they work together seamlessly.</p>
+                </div>
+
+                <h4>3. System Testing</h4>
+
+                <div class="definition">
+                    <strong>System Testing:</strong> Testing the <span class="highlight">complete integrated system</span> as a whole to verify it meets specified requirements. This is end-to-end testing of the entire application.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 System Testing Focus</div>
+                    <p>System testing validates:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>All functional requirements are working</li>
+                        <li>System behavior in different environments</li>
+                        <li>Integration with external systems</li>
+                        <li>Overall system performance and reliability</li>
+                    </ul>
+                </div>
+
+                <h4>4. Acceptance Testing</h4>
+
+                <div class="definition">
+                    <strong>Acceptance Testing:</strong> Testing performed by the <span class="highlight">customer or end-users</span> to verify the system meets their needs and is ready for deployment. Also called User Acceptance Testing (UAT).
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🏠 House Inspection Analogy:</strong> Before buying a house, you do a final walkthrough to ensure everything meets your expectations. Acceptance testing is the customer's "final walkthrough" of the software before accepting it!
+                </div>
+
+                <h4>5. Performance Testing</h4>
+
+                <div class="definition">
+                    <strong>Performance Testing:</strong> Testing to ensure the system performs well under expected <span class="highlight">load and stress conditions</span>. It measures response time, throughput, and resource usage.
+                </div>
+
+                <div class="key-points">
+                    <h4>Types of Performance Testing:</h4>
+                    <ul>
+                        <li><strong>Load Testing:</strong> Testing system behavior under expected user load</li>
+                        <li><strong>Stress Testing:</strong> Testing system limits by applying extreme load</li>
+                        <li><strong>Scalability Testing:</strong> Testing if system can scale up with increasing load</li>
+                        <li><strong>Endurance Testing:</strong> Testing system over extended period to find memory leaks</li>
+                    </ul>
+                </div>
+
+                <h4>6. Security Testing</h4>
+
+                <div class="definition">
+                    <strong>Security Testing:</strong> Testing to identify <span class="highlight">vulnerabilities and security risks</span> in the system. It ensures data protection and prevents unauthorized access.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🔒 Security Testing Checks</div>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Authentication:</strong> Verify login mechanisms are secure</li>
+                        <li><strong>Authorization:</strong> Check users can only access permitted resources</li>
+                        <li><strong>Data Encryption:</strong> Ensure sensitive data is encrypted</li>
+                        <li><strong>SQL Injection:</strong> Test for database vulnerabilities</li>
+                        <li><strong>XSS Attacks:</strong> Check for cross-site scripting vulnerabilities</li>
+                    </ul>
+                </div>
+
+                <h3>Testing Techniques</h3>
+
+                <h4>White-Box Testing</h4>
+
+                <div class="definition">
+                    <strong>White-Box Testing:</strong> Testing based on knowledge of the <span class="highlight">internal code structure</span>. The tester can see and test the internal logic, paths, and implementation details.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Think of it as X-Ray Vision</div>
+                    <p>The tester can "see inside" the code and design test cases based on:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Code statements and branches</li>
+                        <li>Conditional logic (if-else statements)</li>
+                        <li>Loops and iterations</li>
+                        <li>Internal data structures</li>
+                    </ul>
+                </div>
+
+                <h4>Black-Box Testing</h4>
+
+                <div class="definition">
+                    <strong>Black-Box Testing:</strong> Testing based only on <span class="highlight">requirements and specifications</span>, without knowledge of internal code. The tester treats the software as a "black box" and tests only inputs and outputs.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 User's Perspective</div>
+                    <p>The tester:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Doesn't know how the code works internally</li>
+                        <li>Tests from the user's perspective</li>
+                        <li>Focuses on what the software does, not how it does it</li>
+                        <li>Provides inputs and verifies expected outputs</li>
+                    </ul>
+                </div>
+
+                <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #0891b2; margin-top: 0;">⚖️ White-Box vs Black-Box</h4>
+                    <table style="box-shadow: none;">
+                        <tr>
+                            <th>Aspect</th>
+                            <th>White-Box</th>
+                            <th>Black-Box</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Knowledge</strong></td>
+                            <td>Internal code structure</td>
+                            <td>Only specifications</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tester</strong></td>
+                            <td>Developers</td>
+                            <td>Testers/End-users</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Focus</strong></td>
+                            <td>Code coverage, logic</td>
+                            <td>Functionality, usability</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example</strong></td>
+                            <td>Testing all if-else branches</td>
+                            <td>Testing login with valid/invalid credentials</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h4>Control Structure Testing</h4>
+
+                <div class="definition">
+                    <strong>Control Structure Testing:</strong> A white-box testing technique that focuses on testing the <span class="highlight">control flow</span> of a program - the paths through decision points, loops, and branches.
+                </div>
+
+                <h4>Basis Path Testing</h4>
+
+                <div class="definition">
+                    <strong>Basis Path Testing:</strong> A white-box testing technique that ensures <span class="highlight">all independent paths</span> through the program are executed at least once. It uses cyclomatic complexity to determine the number of test cases needed.
+                </div>
+
+                <div class="calculation">
+                    <div class="calculation-title">🔢 Basis Path Testing Example</div>
+                    <p><strong>Code Sample:</strong></p>
+                    <pre style="background: #1e293b; color: #e2e8f0;">
+void gradeEvaluator(int marks) {
+    if (marks >= 90) {           // Node 1
+        printf("Grade: A");
+    } else if (marks >= 75) {    // Node 2
+        printf("Grade: B");
+    } else if (marks >= 50) {    // Node 3
+        printf("Grade: C");
+    } else {
+        printf("Grade: F");
+    }
+}
+                    </pre>
+
+                    <p style="margin-top: 15px;"><strong>Step 1: Calculate Cyclomatic Complexity</strong></p>
+                    <p>Number of decision points (P) = 3</p>
+                    <p>V(G) = P + 1 = 3 + 1 = <strong>4 independent paths</strong></p>
+
+                    <p style="margin-top: 15px;"><strong>Step 2: Identify Independent Paths</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Path 1:</strong> marks >= 90 → Print "Grade: A"</li>
+                        <li><strong>Path 2:</strong> marks < 90 AND marks >= 75 → Print "Grade: B"</li>
+                        <li><strong>Path 3:</strong> marks < 75 AND marks >= 50 → Print "Grade: C"</li>
+                        <li><strong>Path 4:</strong> marks < 50 → Print "Grade: F"</li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>Step 3: Design Test Cases</strong></p>
+                    <table>
+                        <tr>
+                            <th>Test Case</th>
+                            <th>Input</th>
+                            <th>Expected Output</th>
+                            <th>Path Tested</th>
+                        </tr>
+                        <tr>
+                            <td>TC1</td>
+                            <td>marks = 95</td>
+                            <td>Grade: A</td>
+                            <td>Path 1</td>
+                        </tr>
+                        <tr>
+                            <td>TC2</td>
+                            <td>marks = 80</td>
+                            <td>Grade: B</td>
+                            <td>Path 2</td>
+                        </tr>
+                        <tr>
+                            <td>TC3</td>
+                            <td>marks = 60</td>
+                            <td>Grade: C</td>
+                            <td>Path 3</td>
+                        </tr>
+                        <tr>
+                            <td>TC4</td>
+                            <td>marks = 40</td>
+                            <td>Grade: F</td>
+                            <td>Path 4</td>
+                        </tr>
+                    </table>
+
+                    <p style="margin-top: 15px; background: #dcfce7; padding: 10px; border-radius: 5px;">
+                        <strong>Result:</strong> These 4 test cases ensure <span class="highlight">100% path coverage</span> - every independent path through the code is tested!
+                    </p>
+                </div>
+
+                <h4>Code Walkthrough</h4>
+
+                <div class="definition">
+                    <strong>Code Walkthrough:</strong> A <span class="highlight">peer review process</span> where the author presents their code to a team of reviewers who examine it for defects, design issues, and adherence to standards.
+                </div>
+
+                <div class="process-flow">
+                    <h4 style="color: #0891b2; border: none; margin-top: 0;">Code Walkthrough Process</h4>
+                    <ul class="steps">
+                        <li><strong>Preparation:</strong> Author distributes code and documentation to reviewers in advance</li>
+                        <li><strong>Presentation:</strong> Author walks through the code, explaining logic and design decisions</li>
+                        <li><strong>Review:</strong> Team asks questions, identifies issues, and suggests improvements</li>
+                        <li><strong>Documentation:</strong> Issues and action items are recorded</li>
+                        <li><strong>Follow-up:</strong> Author addresses identified issues and may schedule a re-review</li>
+                    </ul>
+                </div>
+
+                <div style="background: #dcfce7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #16a34a; margin-top: 0;">✅ Verification vs Validation</h4>
+                    <p><strong>Verification:</strong> "Are we building the product right?"</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Checks if software matches design specifications</li>
+                        <li>Performed by developers and QA team</li>
+                        <li>Example: Does the login module work as designed?</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Validation:</strong> "Are we building the right product?"</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Checks if software meets user needs and requirements</li>
+                        <li>Performed by end-users and stakeholders</li>
+                        <li>Example: Does the login module satisfy user expectations?</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Maintenance Phase -->
+            <section id="maintenance">
+                <h2>🔧 Phase 5: Software Maintenance</h2>
+
+                <div class="definition">
+                    <strong>What is Software Maintenance?</strong><br>
+                    Software maintenance is the process of <span class="highlight">modifying and updating software</span> after it has been deployed to correct faults, improve performance, adapt to changes, or add new features.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 The Longest Phase</div>
+                    <p>Maintenance typically consumes <strong>60-70% of the total software lifecycle cost</strong>! Once software is deployed, it needs continuous attention to remain functional, secure, and relevant. Just like a car needs regular servicing, software needs regular maintenance.</p>
+                </div>
+
+                <h3>Four Types of Software Maintenance</h3>
+
+                <h4>1. Corrective Maintenance</h4>
+
+                <div class="definition">
+                    <strong>Corrective Maintenance:</strong> Fixing <span class="highlight">bugs and errors</span> discovered after deployment. This addresses defects that prevent the software from functioning correctly.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🐛 Corrective Maintenance Examples</div>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Bug Fix:</strong> Users report that the shopping cart total is calculated incorrectly - developers fix the calculation logic</li>
+                        <li><strong>Crash Fix:</strong> Application crashes when uploading large files - developers fix memory handling</li>
+                        <li><strong>Data Loss:</strong> Form data is lost on page refresh - developers implement proper session management</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Goal:</strong> Restore correct functionality and fix defects.</p>
+                </div>
+
+                <h4>2. Adaptive Maintenance</h4>
+
+                <div class="definition">
+                    <strong>Adaptive Maintenance:</strong> Modifying software to work in <span class="highlight">new or changed environments</span>. This includes adapting to new operating systems, hardware, or external dependencies.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🔄 Adaptive Maintenance Examples</div>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>OS Upgrade:</strong> Updating software to work with Windows 11 after it ran on Windows 10</li>
+                        <li><strong>Browser Compatibility:</strong> Modifying web application to support new browser versions</li>
+                        <li><strong>Cloud Migration:</strong> Adapting on-premise software to work in AWS cloud environment</li>
+                        <li><strong>API Updates:</strong> Updating code when a third-party payment gateway changes its API</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Goal:</strong> Keep software functional in changing technical environments.</p>
+                </div>
+
+                <h4>3. Perfective Maintenance</h4>
+
+                <div class="definition">
+                    <strong>Perfective Maintenance:</strong> Adding <span class="highlight">new features and improvements</span> based on user requests or changing requirements. This enhances functionality and user experience.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">⭐ Perfective Maintenance Examples</div>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>New Feature:</strong> Adding dark mode to an existing application based on user feedback</li>
+                        <li><strong>Performance Improvement:</strong> Optimizing database queries to make the application faster</li>
+                        <li><strong>UI Enhancement:</strong> Redesigning the user interface for better usability</li>
+                        <li><strong>Additional Functionality:</strong> Adding export-to-PDF feature to a reporting system</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Goal:</strong> Improve software capabilities and user satisfaction.</p>
+                </div>
+
+                <h4>4. Preventive Maintenance</h4>
+
+                <div class="definition">
+                    <strong>Preventive Maintenance:</strong> Making changes to <span class="highlight">prevent future problems</span> and improve maintainability. This includes refactoring, updating documentation, and improving code quality.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">🛡️ Preventive Maintenance Examples</div>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Code Refactoring:</strong> Restructuring complex code to make it more maintainable</li>
+                        <li><strong>Documentation Updates:</strong> Updating technical documentation to reflect current system state</li>
+                        <li><strong>Security Patches:</strong> Updating dependencies to fix known vulnerabilities before exploitation</li>
+                        <li><strong>Technical Debt Reduction:</strong> Replacing deprecated libraries with modern alternatives</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Goal:</strong> Reduce future maintenance costs and prevent issues.</p>
+                </div>
+
+                <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #0891b2; margin-top: 0;">📊 Maintenance Type Distribution</h4>
+                    <p>Typical breakdown of maintenance effort:</p>
+                    <table style="box-shadow: none;">
+                        <tr>
+                            <th>Maintenance Type</th>
+                            <th>Typical Percentage</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Perfective</strong></td>
+                            <td>50-65%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adaptive</strong></td>
+                            <td>20-25%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Corrective</strong></td>
+                            <td>15-20%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Preventive</strong></td>
+                            <td>5-10%</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 10px;"><em>Note: Most maintenance effort goes into adding new features (perfective), not just fixing bugs!</em></p>
+                </div>
+            </section>
+
+            <!-- Risk Management -->
+            <section id="risk-management">
+                <h2>⚠️ Risk Management in Software Projects</h2>
+
+                <div class="definition">
+                    <strong>What is Risk Management?</strong><br>
+                    Risk management is the process of <span class="highlight">identifying, assessing, and mitigating potential risks</span> that could negatively impact a software project. It's about being proactive rather than reactive.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🌧️ Weather Forecast Analogy:</strong> Just as checking the weather forecast helps you prepare for rain (bring an umbrella), risk management helps you prepare for project issues (have backup plans). You can't prevent rain, but you can avoid getting wet!
+                </div>
+
+                <div class="intro">
+                    <h4>Why is Risk Management Critical?</h4>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Prevents Project Failure:</strong> Identifies threats before they become critical</li>
+                        <li><strong>Reduces Costs:</strong> Early risk mitigation is cheaper than fixing problems later</li>
+                        <li><strong>Improves Planning:</strong> Better resource allocation and contingency planning</li>
+                        <li><strong>Stakeholder Confidence:</strong> Demonstrates project awareness and preparedness</li>
+                    </ul>
+                </div>
+
+                <h3>Types of Software Project Risks</h3>
+
+                <div class="risk-box">
+                    <h4>1. Technical Risks</h4>
+                    <p>Risks related to technology, design, implementation, and interfaces.</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Complexity of implementation exceeds team capability</li>
+                        <li>Technology becomes obsolete during development</li>
+                        <li>Integration issues with existing systems</li>
+                        <li>Poor code quality leading to maintenance issues</li>
+                    </ul>
+                </div>
+
+                <div class="risk-box">
+                    <h4>2. Project Management Risks</h4>
+                    <p>Risks related to planning, resource allocation, and project execution.</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Unrealistic deadlines and poor time estimation</li>
+                        <li>Inadequate resource allocation</li>
+                        <li>Poor communication among team members</li>
+                        <li>Scope creep - uncontrolled expansion of requirements</li>
+                    </ul>
+                </div>
+
+                <div class="risk-box">
+                    <h4>3. Organizational Risks</h4>
+                    <p>Risks stemming from the organization's environment and policies.</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Budget cuts or financial constraints</li>
+                        <li>Organizational restructuring affecting the project</li>
+                        <li>Changing priorities and shifting focus</li>
+                        <li>Lack of management support</li>
+                    </ul>
+                </div>
+
+                <div class="risk-box">
+                    <h4>4. External Risks</h4>
+                    <p>Risks from outside the organization's control.</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Changes in market conditions or competition</li>
+                        <li>Regulatory or compliance changes</li>
+                        <li>Vendor or third-party service failures</li>
+                        <li>Natural disasters or infrastructure issues</li>
+                    </ul>
+                </div>
+
+                <div class="risk-box">
+                    <h4>5. People Risks</h4>
+                    <p>Risks related to human resources and team dynamics.</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Key personnel leaving the project</li>
+                        <li>Insufficient skill levels or training</li>
+                        <li>Team conflicts and poor collaboration</li>
+                        <li>Low motivation and morale</li>
+                    </ul>
+                </div>
+
+                <h3>Risk Monitoring</h3>
+
+                <div class="definition">
+                    <strong>Risk Monitoring:</strong> The continuous process of <span class="highlight">tracking identified risks</span>, monitoring residual risks, identifying new risks, and evaluating risk mitigation effectiveness throughout the project.
+                </div>
+
+                <div class="process-flow">
+                    <h4 style="color: #0891b2; border: none; margin-top: 0;">Risk Monitoring Steps</h4>
+                    <ul class="steps">
+                        <li><strong>Regular Reviews:</strong> Conduct periodic risk assessment meetings to review current risk status</li>
+                        <li><strong>Track Risk Indicators:</strong> Monitor specific metrics that signal risk occurrence (e.g., defect rates, schedule variance)</li>
+                        <li><strong>Update Risk Register:</strong> Maintain a living document tracking all risks, their status, and mitigation actions</li>
+                        <li><strong>Communicate:</strong> Report risk status to stakeholders regularly and transparently</li>
+                        <li><strong>Adjust Plans:</strong> Modify risk mitigation strategies based on monitoring results</li>
+                    </ul>
+                </div>
+
+                <h3>Risk Mitigation Strategies</h3>
+
+                <div class="mode-box">
+                    <h4>1. Risk Avoidance</h4>
+                    <p><strong>Strategy:</strong> Change project plans to eliminate the risk entirely.</p>
+                    <p><strong>Example:</strong> If a new technology is too risky, use a proven, stable technology instead.</p>
+                </div>
+
+                <div class="mode-box">
+                    <h4>2. Risk Transfer</h4>
+                    <p><strong>Strategy:</strong> Shift the impact of the risk to a third party.</p>
+                    <p><strong>Example:</strong> Outsource a complex component to a specialized vendor, use cloud services instead of managing infrastructure, purchase insurance.</p>
+                </div>
+
+                <div class="mode-box">
+                    <h4>3. Risk Mitigation/Reduction</h4>
+                    <p><strong>Strategy:</strong> Take actions to reduce the likelihood or impact of the risk.</p>
+                    <p><strong>Example:</strong> Conduct regular code reviews to reduce technical risks, provide training to improve team skills, implement continuous integration to catch defects early.</p>
+                </div>
+
+                <div class="mode-box">
+                    <h4>4. Risk Acceptance</h4>
+                    <p><strong>Strategy:</strong> Acknowledge the risk and decide to deal with consequences if it occurs.</p>
+                    <p><strong>Example:</strong> Accept minor UI bugs that don't affect core functionality and plan to fix them in the next release.</p>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-title">📋 Risk Management Example: E-Commerce Project</div>
+                    <p><strong>Identified Risk:</strong> Key senior developer might leave during critical development phase</p>
+
+                    <p style="margin-top: 10px;"><strong>Risk Type:</strong> People Risk</p>
+                    <p><strong>Impact:</strong> High (project delay, knowledge loss)</p>
+                    <p><strong>Probability:</strong> Medium (developer has received external job offer)</p>
+
+                    <p style="margin-top: 15px;"><strong>Mitigation Strategies Applied:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Risk Reduction:</strong> Implement pair programming and knowledge sharing sessions</li>
+                        <li><strong>Risk Reduction:</strong> Document critical code and architectural decisions</li>
+                        <li><strong>Risk Reduction:</strong> Cross-train other team members on key components</li>
+                        <li><strong>Risk Transfer:</strong> Identify external consultants who could step in if needed</li>
+                        <li><strong>Risk Acceptance:</strong> Accept potential 2-week delay and adjust schedule buffer</li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>Monitoring:</strong> Weekly one-on-one meetings with developer, track documentation progress, monitor knowledge transfer effectiveness</p>
+                </div>
+
+                <div style="background: #dcfce7; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                    <h4 style="color: #16a34a; margin-top: 0;">🎯 Best Practices for Risk Management</h4>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Start Early:</strong> Identify risks during project planning, not mid-crisis</li>
+                        <li><strong>Be Proactive:</strong> Address risks before they become issues</li>
+                        <li><strong>Involve the Team:</strong> Encourage everyone to identify and report risks</li>
+                        <li><strong>Prioritize Risks:</strong> Focus on high-impact, high-probability risks first</li>
+                        <li><strong>Document Everything:</strong> Maintain a risk register with all risks and mitigation plans</li>
+                        <li><strong>Regular Reviews:</strong> Make risk management an ongoing process, not a one-time activity</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section id="summary">
+                <h2>📚 Summary: Software Project Management</h2>
+
+                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 30px; border-radius: 10px; margin: 20px 0;">
+                    <p style="font-size: 1.1em; margin-bottom: 20px;">Software Project Management encompasses a comprehensive set of practices, methodologies, and techniques to ensure successful software delivery. Let's recap the five critical phases:</p>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #0891b2;">
+                        <h4 style="color: #0891b2; margin-top: 0;">📊 Phase 1: Planning</h4>
+                        <p>Define project objectives, scope, and estimates using empirical models like COCOMO. Planning answers: What will we build? How long will it take? How much will it cost?</p>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #0891b2;">
+                        <h4 style="color: #0891b2; margin-top: 0;">🎨 Phase 2: Design</h4>
+                        <p>Apply design principles (modularity, abstraction, encapsulation, separation of concerns) and strategies (top-down, bottom-up) to create a solid architecture. Good design ensures maintainability and scalability.</p>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #0891b2;">
+                        <h4 style="color: #0891b2; margin-top: 0;">💻 Phase 3: Coding</h4>
+                        <p>Write code following standards and best practices. Measure code using metrics (cyclomatic complexity, Halstead metrics) to ensure quality and maintainability.</p>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #0891b2;">
+                        <h4 style="color: #0891b2; margin-top: 0;">🧪 Phase 4: Testing</h4>
+                        <p>Apply various testing types (unit, integration, system, acceptance) and techniques (white-box, black-box) to verify and validate software quality before deployment.</p>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #0891b2;">
+                        <h4 style="color: #0891b2; margin-top: 0;">🔧 Phase 5: Maintenance</h4>
+                        <p>Continuously maintain software through corrective, adaptive, perfective, and preventive maintenance. This phase consumes the majority of lifecycle costs!</p>
+                    </div>
+
+                    <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #ef4444;">
+                        <h4 style="color: #ef4444; margin-top: 0;">⚠️ Throughout All Phases: Risk Management</h4>
+                        <p>Identify, monitor, and mitigate risks (technical, organizational, external, people) continuously. Proactive risk management prevents project failure.</p>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>🎓 Key Takeaways</h4>
+                    <ul>
+                        <li><strong>Planning is Critical:</strong> Good estimates using COCOMO and proper scope definition set projects up for success</li>
+                        <li><strong>Design Quality Matters:</strong> High cohesion + Low coupling = Maintainable software</li>
+                        <li><strong>Measure Everything:</strong> Code metrics (V(G), Halstead) provide objective quality indicators</li>
+                        <li><strong>Test Thoroughly:</strong> Multiple testing levels and techniques ensure software quality</li>
+                        <li><strong>Maintenance Dominates:</strong> Most costs occur after deployment - design for maintainability!</li>
+                        <li><strong>Manage Risks Proactively:</strong> Identify and mitigate risks early to avoid project failure</li>
+                    </ul>
+                </div>
+
+                <div style="background: #dcfce7; padding: 25px; border-radius: 10px; margin: 30px 0; text-align: center;">
+                    <h3 style="color: #16a34a; margin-top: 0;">🏆 Remember: Successful Software Projects Require</h3>
+                    <p style="font-size: 1.2em; margin: 15px 0;"><strong>Careful Planning + Solid Design + Quality Code + Thorough Testing + Ongoing Maintenance + Proactive Risk Management</strong></p>
+                    <p style="margin-top: 15px; font-style: italic;">Master these five phases and risk management principles, and you'll be well-equipped to deliver successful software projects!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

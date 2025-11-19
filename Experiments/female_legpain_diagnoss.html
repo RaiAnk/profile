@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leg & Bone Health Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-pink-50 min-h-screen p-4">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
+            <h1 class="text-3xl font-bold text-purple-800 mb-2">Women's Leg & Bone Health Assessment</h1>
+            <p class="text-gray-600">Complete this questionnaire to receive personalized health insights and recommendations</p>
+        </div>
+
+        <!-- Questionnaire Form -->
+        <div id="questionnaire" class="bg-white rounded-lg shadow-lg p-8">
+            <form id="healthForm">
+                <!-- Section 1: Basic Information -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-purple-700 mb-4 border-b-2 border-purple-200 pb-2">Basic Information</h2>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Age</label>
+                        <input type="number" name="age" min="30" max="100" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Weight (kg)</label>
+                        <input type="number" name="weight" min="30" max="200" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Height (cm)</label>
+                        <input type="number" name="height" min="100" max="220" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                </div>
+
+                <!-- Section 2: Pain Assessment -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-purple-700 mb-4 border-b-2 border-purple-200 pb-2">Pain Assessment</h2>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Where do you experience pain? (Select all that apply)</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" name="pain_location" value="feet" class="mr-2"> Feet</label>
+                            <label class="flex items-center"><input type="checkbox" name="pain_location" value="ankles" class="mr-2"> Ankles</label>
+                            <label class="flex items-center"><input type="checkbox" name="pain_location" value="shins" class="mr-2"> Shin bones</label>
+                            <label class="flex items-center"><input type="checkbox" name="pain_location" value="knees" class="mr-2"> Knees</label>
+                            <label class="flex items-center"><input type="checkbox" name="pain_location" value="hips" class="mr-2"> Hips</label>
+                            <label class="flex items-center"><input type="checkbox" name="pain_location" value="thighs" class="mr-2"> Thighs</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Pain intensity (0-10)</label>
+                        <input type="range" name="pain_intensity" min="0" max="10" value="5" class="w-full" oninput="document.getElementById('painValue').textContent = this.value">
+                        <div class="text-center text-2xl font-bold text-purple-600" id="painValue">5</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">When does the pain occur most?</label>
+                        <select name="pain_timing" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="morning">Morning (upon waking)</option>
+                            <option value="standing">After standing/walking</option>
+                            <option value="evening">Evening/Night</option>
+                            <option value="constant">Constant throughout day</option>
+                            <option value="activity">During physical activity</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">How long have you had this pain?</label>
+                        <select name="pain_duration" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="weeks">Less than 3 months</option>
+                            <option value="months">3-6 months</option>
+                            <option value="year">6-12 months</option>
+                            <option value="years">More than 1 year</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 3: Lifestyle Factors -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-purple-700 mb-4 border-b-2 border-purple-200 pb-2">Lifestyle Factors</h2>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Physical activity level</label>
+                        <select name="activity_level" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="sedentary">Sedentary (little to no exercise)</option>
+                            <option value="light">Light (1-2 days/week)</option>
+                            <option value="moderate">Moderate (3-4 days/week)</option>
+                            <option value="active">Active (5+ days/week)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Daily standing/walking duration</label>
+                        <select name="standing_time" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="minimal">Less than 2 hours</option>
+                            <option value="moderate">2-4 hours</option>
+                            <option value="high">4-6 hours</option>
+                            <option value="very_high">More than 6 hours</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Sun exposure per week</label>
+                        <select name="sun_exposure" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="minimal">Minimal (mostly indoors)</option>
+                            <option value="moderate">Moderate (some outdoor time)</option>
+                            <option value="high">High (regularly outdoors)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Type of footwear most commonly worn</label>
+                        <select name="footwear" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="supportive">Supportive athletic/walking shoes</option>
+                            <option value="flat">Flat shoes/sandals</option>
+                            <option value="heels">High heels (regular use)</option>
+                            <option value="mixed">Mixed variety</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 4: Nutritional Habits -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-purple-700 mb-4 border-b-2 border-purple-200 pb-2">Nutritional Habits</h2>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Daily water intake</label>
+                        <select name="water_intake" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="low">Less than 4 glasses</option>
+                            <option value="moderate">4-6 glasses</option>
+                            <option value="good">6-8 glasses</option>
+                            <option value="high">More than 8 glasses</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Calcium-rich foods (dairy, leafy greens, etc.)</label>
+                        <select name="calcium_intake" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="rarely">Rarely (less than once/week)</option>
+                            <option value="sometimes">Sometimes (2-3 times/week)</option>
+                            <option value="regular">Regular (4-6 times/week)</option>
+                            <option value="daily">Daily</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Do you take any supplements?</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" name="supplements" value="vitamin_d" class="mr-2"> Vitamin D</label>
+                            <label class="flex items-center"><input type="checkbox" name="supplements" value="calcium" class="mr-2"> Calcium</label>
+                            <label class="flex items-center"><input type="checkbox" name="supplements" value="magnesium" class="mr-2"> Magnesium</label>
+                            <label class="flex items-center"><input type="checkbox" name="supplements" value="b12" class="mr-2"> Vitamin B12</label>
+                            <label class="flex items-center"><input type="checkbox" name="supplements" value="none" class="mr-2"> None</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Medical History -->
+                <div class="mb-8">
+                    <h2 class="text-2xl font-bold text-purple-700 mb-4 border-b-2 border-purple-200 pb-2">Medical History</h2>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Menstrual status</label>
+                        <select name="menstrual_status" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="regular">Regular periods</option>
+                            <option value="irregular">Irregular periods</option>
+                            <option value="perimenopause">Perimenopause</option>
+                            <option value="menopause">Menopause</option>
+                            <option value="postmenopause">Post-menopause</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Do you have any of these conditions?</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" name="conditions" value="arthritis" class="mr-2"> Arthritis</label>
+                            <label class="flex items-center"><input type="checkbox" name="conditions" value="osteoporosis" class="mr-2"> Osteoporosis</label>
+                            <label class="flex items-center"><input type="checkbox" name="conditions" value="diabetes" class="mr-2"> Diabetes</label>
+                            <label class="flex items-center"><input type="checkbox" name="conditions" value="thyroid" class="mr-2"> Thyroid issues</label>
+                            <label class="flex items-center"><input type="checkbox" name="conditions" value="circulation" class="mr-2"> Circulation problems</label>
+                            <label class="flex items-center"><input type="checkbox" name="conditions" value="none" class="mr-2"> None</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Have you had recent blood tests?</label>
+                        <select name="blood_tests" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                            <option value="">Select...</option>
+                            <option value="recent">Yes, within 6 months</option>
+                            <option value="old">Yes, but more than 6 months ago</option>
+                            <option value="never">No, never</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-2">Additional symptoms</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" name="symptoms" value="fatigue" class="mr-2"> Chronic fatigue</label>
+                            <label class="flex items-center"><input type="checkbox" name="symptoms" value="swelling" class="mr-2"> Leg/feet swelling</label>
+                            <label class="flex items-center"><input type="checkbox" name="symptoms" value="numbness" class="mr-2"> Numbness or tingling</label>
+                            <label class="flex items-center"><input type="checkbox" name="symptoms" value="cramps" class="mr-2"> Muscle cramps</label>
+                            <label class="flex items-center"><input type="checkbox" name="symptoms" value="stiffness" class="mr-2"> Morning stiffness</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-purple-600 text-white font-bold py-4 px-6 rounded-lg hover:bg-purple-700 transition duration-300 text-lg">
+                    Generate Health Report
+                </button>
+            </form>
+        </div>
+
+        <!-- Report Section (Hidden Initially) -->
+        <div id="report" class="hidden bg-white rounded-lg shadow-lg p-8 mt-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-purple-800">Your Health Assessment Report</h2>
+                <button onclick="window.print()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">Print Report</button>
+            </div>
+            <div id="reportContent"></div>
+            <button onclick="location.reload()" class="mt-6 w-full bg-gray-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-gray-700">
+                Take Assessment Again
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('healthForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateReport();
+        });
+
+        function generateReport() {
+            const formData = new FormData(document.getElementById('healthForm'));
+            const data = {};
+            
+            // Process form data
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+
+            // Calculate BMI
+            const height = parseFloat(data.height) / 100;
+            const weight = parseFloat(data.weight);
+            const bmi = (weight / (height * height)).toFixed(1);
+
+            // Analyze data
+            const analysis = analyzeHealth(data, bmi);
+
+            // Generate report HTML
+            const reportHTML = `
+                <div class="space-y-6">
+                    <!-- Summary Card -->
+                    <div class="bg-gradient-to-r from-purple-100 to-pink-100 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-purple-800 mb-4">Assessment Summary</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div><span class="font-semibold">Age:</span> ${data.age} years</div>
+                            <div><span class="font-semibold">BMI:</span> ${bmi} (${getBMICategory(bmi)})</div>
+                            <div><span class="font-semibold">Pain Level:</span> ${data.pain_intensity}/10</div>
+                            <div><span class="font-semibold">Risk Score:</span> ${analysis.riskScore}/100</div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Assessment -->
+                    <div class="border-l-4 ${analysis.riskLevel === 'High' ? 'border-red-500 bg-red-50' : analysis.riskLevel === 'Moderate' ? 'border-yellow-500 bg-yellow-50' : 'border-green-500 bg-green-50'} p-6 rounded">
+                        <h3 class="text-xl font-bold mb-2">Overall Risk Level: ${analysis.riskLevel}</h3>
+                        <p class="text-gray-700">${analysis.riskDescription}</p>
+                    </div>
+
+                    <!-- Key Findings -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-purple-800 mb-4">Key Findings</h3>
+                        <div class="space-y-3">
+                            ${analysis.findings.map(finding => `
+                                <div class="flex items-start bg-gray-50 p-4 rounded-lg">
+                                    <span class="text-2xl mr-3">${finding.icon}</span>
+                                    <div>
+                                        <h4 class="font-bold text-lg text-gray-800">${finding.title}</h4>
+                                        <p class="text-gray-600">${finding.description}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-purple-800 mb-4">Personalized Recommendations</h3>
+                        <div class="space-y-4">
+                            ${analysis.recommendations.map((rec, index) => `
+                                <div class="bg-purple-50 p-5 rounded-lg border-l-4 border-purple-500">
+                                    <h4 class="font-bold text-lg text-purple-800 mb-2">${index + 1}. ${rec.title}</h4>
+                                    <p class="text-gray-700 mb-2">${rec.description}</p>
+                                    <div class="text-sm text-purple-700 font-semibold">Action: ${rec.action}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Lifestyle Modifications -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-purple-800 mb-4">Lifestyle Modifications</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            ${analysis.lifestyle.map(item => `
+                                <div class="bg-green-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-green-800 mb-2">${item.category}</h4>
+                                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                        ${item.tips.map(tip => `<li>${tip}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Warning Signs -->
+                    <div class="bg-red-50 border border-red-200 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-red-800 mb-3">⚠️ Seek Medical Attention If:</h3>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Pain suddenly worsens or becomes unbearable</li>
+                            <li>You experience severe swelling, redness, or warmth</li>
+                            <li>You have numbness, weakness, or loss of function</li>
+                            <li>Pain is accompanied by fever or signs of infection</li>
+                            <li>Symptoms don't improve after 2-3 weeks of self-care</li>
+                        </ul>
+                    </div>
+
+                    <!-- Next Steps -->
+                    <div class="bg-blue-50 p-6 rounded-lg">
+                        <h3 class="text-xl font-bold text-blue-800 mb-3">Recommended Next Steps</h3>
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            ${analysis.nextSteps.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                    </div>
+
+                    <!-- Disclaimer -->
+                    <div class="bg-gray-100 p-4 rounded-lg text-sm text-gray-600 italic">
+                        <strong>Disclaimer:</strong> This assessment provides general guidance and is not a substitute for professional medical advice. 
+                        Please consult with a qualified healthcare provider for proper diagnosis and treatment.
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('reportContent').innerHTML = reportHTML;
+            document.getElementById('questionnaire').classList.add('hidden');
+            document.getElementById('report').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function analyzeHealth(data, bmi) {
+            let riskScore = 0;
+            const findings = [];
+            const recommendations = [];
+            const lifestyle = [];
+            const nextSteps = [];
+
+            // Pain intensity analysis
+            const painIntensity = parseInt(data.pain_intensity);
+            if (painIntensity >= 7) {
+                riskScore += 25;
+                findings.push({
+                    icon: '🔴',
+                    title: 'Severe Pain Level',
+                    description: 'Your pain intensity is high (7+/10). This suggests significant inflammation or structural issues requiring medical evaluation.'
+                });
+            } else if (painIntensity >= 4) {
+                riskScore += 15;
+                findings.push({
+                    icon: '🟡',
+                    title: 'Moderate Pain Level',
+                    description: 'Your pain is at a moderate level. With proper management, this can often be improved significantly.'
+                });
+            }
+
+            // BMI analysis
+            if (bmi >= 30) {
+                riskScore += 20;
+                findings.push({
+                    icon: '⚖️',
+                    title: 'Weight Management Needed',
+                    description: 'Your BMI indicates obesity, which significantly increases stress on leg joints and bones.'
+                });
+                recommendations.push({
+                    title: 'Weight Management Program',
+                    description: 'Excess weight is a major contributor to leg and joint pain. Even a 5-10% weight loss can significantly reduce pain.',
+                    action: 'Consult a nutritionist for a personalized weight loss plan. Target 0.5-1 kg loss per week.'
+                });
+            } else if (bmi >= 25) {
+                riskScore += 10;
+                findings.push({
+                    icon: '⚖️',
+                    title: 'Weight Optimization Recommended',
+                    description: 'You are in the overweight category. Reducing weight can help alleviate joint stress.'
+                });
+            }
+
+            // Activity level analysis
+            if (data.activity_level === 'sedentary') {
+                riskScore += 15;
+                findings.push({
+                    icon: '🏃',
+                    title: 'Low Physical Activity',
+                    description: 'Sedentary lifestyle weakens muscles that support bones and joints, increasing pain risk.'
+                });
+                lifestyle.push({
+                    category: 'Exercise',
+                    tips: [
+                        'Start with 10-minute walks daily',
+                        'Try swimming or water aerobics (low impact)',
+                        'Include gentle stretching exercises',
+                        'Gradually increase to 30 minutes, 5 days/week'
+                    ]
+                });
+            } else if (data.activity_level === 'active') {
+                findings.push({
+                    icon: '✅',
+                    title: 'Good Activity Level',
+                    description: 'Your regular physical activity is beneficial for bone and joint health.'
+                });
+            }
+
+            // Standing time analysis
+            if (data.standing_time === 'very_high') {
+                riskScore += 10;
+                findings.push({
+                    icon: '🦶',
+                    title: 'Extended Standing/Walking',
+                    description: 'Prolonged standing (6+ hours) puts significant stress on feet, legs, and hips.'
+                });
+                recommendations.push({
+                    title: 'Footwear and Support',
+                    description: 'With extended standing, proper foot support is critical to prevent pain and injury.',
+                    action: 'Invest in high-quality supportive shoes, use cushioned insoles, and take sitting breaks every 2 hours.'
+                });
+            }
+
+            // Nutritional analysis
+            if (data.calcium_intake === 'rarely' || data.calcium_intake === 'sometimes') {
+                riskScore += 15;
+                findings.push({
+                    icon: '🥛',
+                    title: 'Low Calcium Intake',
+                    description: 'Insufficient calcium intake increases risk of bone loss and osteoporosis.'
+                });
+                recommendations.push({
+                    title: 'Increase Calcium Intake',
+                    description: 'Women over 30 need 1000-1200mg of calcium daily for bone health.',
+                    action: 'Consume 3 servings of dairy or fortified alternatives daily. Add leafy greens, almonds, and sardines to your diet.'
+                });
+            }
+
+            // Sun exposure and Vitamin D
+            if (data.sun_exposure === 'minimal') {
+                riskScore += 15;
+                findings.push({
+                    icon: '☀️',
+                    title: 'Low Vitamin D Risk',
+                    description: 'Minimal sun exposure increases risk of Vitamin D deficiency, crucial for bone health and pain management.'
+                });
+                recommendations.push({
+                    title: 'Vitamin D Optimization',
+                    description: 'Vitamin D deficiency is extremely common and causes bone and muscle pain.',
+                    action: 'Get 10-15 minutes of sun exposure daily. Consider Vitamin D3 supplement (1000-2000 IU daily) after blood test.'
+                });
+            }
+
+            // Supplement analysis
+            const supplements = Array.isArray(data.supplements) ? data.supplements : [data.supplements];
+            if (!supplements.includes('vitamin_d') && !supplements.includes('calcium')) {
+                riskScore += 10;
+                recommendations.push({
+                    title: 'Essential Supplements',
+                    description: 'You are not taking key supplements for bone health.',
+                    action: 'Consult doctor about starting Vitamin D3 (1000-2000 IU), Calcium (500-1000mg), and Magnesium (200-400mg) daily.'
+                });
+            }
+
+            // Menstrual status and hormones
+            if (data.menstrual_status === 'menopause' || data.menstrual_status === 'postmenopause') {
+                riskScore += 15;
+                findings.push({
+                    icon: '🔄',
+                    title: 'Menopausal Hormone Changes',
+                    description: 'Estrogen decline after menopause accelerates bone loss and increases joint pain.'
+                });
+                recommendations.push({
+                    title: 'Bone Density Screening',
+                    description: 'Post-menopausal women are at higher risk for osteoporosis.',
+                    action: 'Get a DEXA scan to check bone density. Discuss hormone replacement therapy or other options with your doctor.'
+                });
+            } else if (data.menstrual_status === 'perimenopause') {
+                riskScore += 10;
+                findings.push({
+                    icon: '🔄',
+                    title: 'Perimenopause Transition',
+                    description: 'Hormonal fluctuations during perimenopause can contribute to joint pain and bone changes.'
+                });
+            }
+
+            // Medical conditions
+            const conditions = Array.isArray(data.conditions) ? data.conditions : [data.conditions];
+            if (conditions.includes('arthritis')) {
+                riskScore += 15;
+                findings.push({
+                    icon: '🦴',
+                    title: 'Arthritis Diagnosis',
+                    description: 'Existing arthritis requires ongoing management to prevent progression.'
+                });
+            }
+            if (conditions.includes('osteoporosis')) {
+                riskScore += 20;
+                findings.push({
+                    icon: '⚠️',
+                    title: 'Osteoporosis Present',
+                    description: 'Diagnosed osteoporosis requires medical treatment and close monitoring.'
+                });
+            }
+            if (conditions.includes('diabetes')) {
+                riskScore += 10;
+                findings.push({
+                    icon: '🩸',
+                    title: 'Diabetes Impact',
+                    description: 'Diabetes can affect nerve function and circulation, contributing to leg pain.'
+                });
+            }
+
+            // Blood test analysis
+            if (data.blood_tests === 'never' || data.blood_tests === 'old') {
+                riskScore += 10;
+                nextSteps.push('Get comprehensive blood work including Vitamin D, B12, calcium, thyroid function, and inflammatory markers');
+            }
+
+            // Additional symptoms
+            const symptoms = Array.isArray(data.symptoms) ? data.symptoms : [data.symptoms];
+            if (symptoms.includes('swelling')) {
+                riskScore += 10;
+                findings.push({
+                    icon: '💧',
+                    title: 'Swelling Present',
+                    description: 'Leg swelling may indicate circulation issues, inflammation, or fluid retention.'
+                });
+            }
+            if (symptoms.includes('numbness')) {
+                riskScore += 15;
+                findings.push({
+                    icon: '🔌',
+                    title: 'Neurological Symptoms',
+                    description: 'Numbness or tingling suggests possible nerve involvement or B12 deficiency.'
+                });
+                recommendations.push({
+                    title: 'Neurological Evaluation',
+                    description: 'Numbness and tingling require medical evaluation to rule out nerve damage.',
+                    action: 'See a doctor for neurological examination and B12/B6 level testing.'
+                });
+            }
+
+            // General lifestyle recommendations
+            lifestyle.push({
+                category: 'Footwear',
+                tips: [
+                    'Choose shoes with arch support and cushioning',
+                    'Avoid high heels for extended periods',
+                    'Replace worn-out shoes every 6 months',
+                    'Consider custom orthotics if needed'
+                ]
+            });
+
+            lifestyle.push({
+                category: 'Hydration',
+                tips: [
+                    'Drink 8-10 glasses of water daily',
+                    'Proper hydration supports joint lubrication',
+                    'Reduce caffeine and alcohol intake',
+                    'Monitor urine color (should be pale yellow)'
+                ]
+            });
+
+            // Pain duration considerations
+            if (data.pain_duration === 'years') {
+                riskScore += 10;
+                nextSteps.push('Consider seeing a specialist (orthopedist or rheumatologist) for chronic pain evaluation');
+            }
+
+            // Build next steps
+            if (painIntensity >= 7) {
+                nextSteps.unshift('Schedule appointment with primary care doctor within 1 week');
+            } else {
+                nextSteps.unshift('Schedule routine check-up with primary care doctor within 1 month');
+            }
+
+            if (!nextSteps.includes('Get comprehensive blood work')) {
+                nextSteps.push('Consider preventive blood work annually to catch deficiencies early');
+            }
+
+            nextSteps.push('Start a pain diary to track symptoms and identify triggers');
+            nextSteps.push('Begin implementing lifestyle recommendations gradually');
+            nextSteps.push('Follow up with healthcare provider if symptoms worsen');
+
+            // Determine risk level
+            let riskLevel, riskDescription;
+            if (riskScore >= 60) {
+                riskLevel = 'High';
+                riskDescription = 'Your assessment indicates multiple risk factors that require prompt medical attention. Several issues are likely contributing to your pain.';
+            } else if (riskScore >= 30) {
+                riskLevel = 'Moderate';
+                riskDescription = 'Your assessment shows some areas of concern. With proper interventions and lifestyle changes, significant improvement is likely.';
+            } else {
+                riskLevel = 'Low';
+                riskDescription = 'Your assessment shows relatively few risk factors. Focus on prevention and maintaining healthy habits.';
+            }
+
+            // Add general recommendations if none exist
+            if (recommendations.length === 0) {
+                recommendations.push({
+                    title: 'Preventive Care',
+                    description: 'Continue maintaining healthy habits to prevent future issues.',
+                    action: 'Keep up regular exercise, balanced nutrition, and annual health check-ups.'
+                });
+            }
+
+            return {
+                riskScore: Math.min(riskScore, 100),
+                riskLevel,
+                riskDescription,
+                findings,
+                recommendations,
+                lifestyle,
+                nextSteps
+            };
+        }
+
+        function getBMICategory(bmi) {
+            if (bmi < 18.5) return 'Underweight';
+            if (bmi < 25) return 'Normal';
+            if (bmi < 30) return 'Overweight';
+            return 'Obese';
+        }
+    </script>
+</body>
+</html>
+
+

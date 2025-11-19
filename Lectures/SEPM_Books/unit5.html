@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineering and Project Management - Unit 5</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .overview-box {
+            background: #f0f9ff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #0891b2;
+        }
+
+        .overview-box h2 {
+            color: #0891b2;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .overview-box .big-picture {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .intro {
+            background: #ecfeff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #06b6d4;
+        }
+
+        .intro h2 {
+            color: #0891b2;
+            margin-bottom: 15px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: #0891b2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #0891b2;
+        }
+
+        h3 {
+            color: #0e7490;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .definition {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .definition strong {
+            color: #1e40af;
+        }
+
+        .simple-explanation {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .simple-explanation-title {
+            color: #d97706;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .example {
+            background: #fff7ed;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #fb923c;
+        }
+
+        .example-title {
+            color: #ea580c;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .process-box {
+            background: #f0fdfa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #14b8a6;
+        }
+
+        .process-box-title {
+            color: #0d9488;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        tr:hover {
+            background: #e0f2fe;
+        }
+
+        .component-list {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .component-list li {
+            margin: 15px 0;
+            padding-left: 10px;
+        }
+
+        .component-list strong {
+            color: #0891b2;
+        }
+
+        .case-study {
+            background: #fce7f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ec4899;
+        }
+
+        .case-study-title {
+            color: #be185d;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            background: #fef08a;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin: 20px 0;
+            padding-left: 60px;
+            position: relative;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #0891b2;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .key-points {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .key-points ul {
+            margin-left: 20px;
+        }
+
+        .key-points li {
+            margin: 10px 0;
+        }
+
+        .warning-box {
+            background: #fef2f2;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .process-flow {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Software Engineering and Project Management</h1>
+            <p>UNIT-5: Configuration Management, UI Design & CASE Tools</p>
+        </header>
+
+        <div class="content">
+            <!-- Overview Section -->
+            <div class="overview-box">
+                <h2>Overview: The Big Picture</h2>
+
+                <div class="big-picture">
+                    <h3 style="color: #0891b2; border: none; margin-top: 0;">What is Unit 5 About?</h3>
+                    <p style="font-size: 1.1em;">This unit covers three critical aspects of software engineering and project management:</p>
+                    <ul style="margin: 15px 0 15px 30px; font-size: 1.05em;">
+                        <li><strong>Software Configuration Management (SCM):</strong> Managing changes throughout the software lifecycle</li>
+                        <li><strong>User Interface Design:</strong> Creating effective and user-friendly interfaces</li>
+                        <li><strong>Computer Aided Software Engineering (CASE) Tools:</strong> Tools that automate and support software development</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h4>Key Topics Covered:</h4>
+                    <ul>
+                        <li><strong>SCM Basics:</strong> Understanding baselines, version control, and change management</li>
+                        <li><strong>SCM Tasks:</strong> Identification, version control, change control, FTR, audit, and status reporting</li>
+                        <li><strong>UI Design Principles:</strong> Consistency, simplicity, navigation, feedback, accessibility</li>
+                        <li><strong>CASE Tools:</strong> Upper CASE, Lower CASE, and Integrated CASE environments</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section 1: Software Configuration Management -->
+            <section id="scm">
+                <h2>1. Software Configuration Management (SCM)</h2>
+
+                <div class="definition">
+                    <strong>What is Software Configuration Management?</strong><br>
+                    SCM is an <span class="highlight">umbrella activity</span> that is applied throughout the development process. It is a systematic approach to manage changes in software products, ensuring integrity and traceability throughout the software lifecycle.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">Think of SCM Like Managing a Book Through Multiple Editions</div>
+                    <p>Imagine you're writing a book that goes through many revisions:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Version Control:</strong> Like keeping track of Draft 1, Draft 2, Final Version, etc.</li>
+                        <li><strong>Change Control:</strong> Like having an editor approve changes before they go into the next edition</li>
+                        <li><strong>Baselines:</strong> Like the "official published version" that can only be changed through formal processes</li>
+                    </ul>
+                    <p style="margin-top: 10px;">SCM does the same thing for software - it tracks every change, who made it, why, and ensures nothing breaks!</p>
+                </div>
+
+                <h3>The Basic Intentions of SCM</h3>
+                <div class="component-list">
+                    <ol>
+                        <li><strong>Identify Change:</strong> Recognize when and where changes occur in the software</li>
+                        <li><strong>Control Change:</strong> Manage changes through formal procedures to prevent chaos</li>
+                        <li><strong>Ensure Proper Implementation:</strong> Verify that changes are correctly applied</li>
+                        <li><strong>Report Changes:</strong> Keep all stakeholders informed about modifications</li>
+                    </ol>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Important:</strong> SCM activities begin from the initial phase of a project and remain active until the software becomes obsolete.</p>
+                </div>
+
+                <h3>Key SCM Terms You Must Know</h3>
+
+                <h4>1. Software Configuration Items (SCI)</h4>
+                <div class="definition">
+                    <strong>Definition:</strong> Items generated as a result of the software development process. SCIs can consist of other SCIs.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Examples of SCIs:</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SCI Type</th>
+                                <th>Example</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Source Code Files</strong></td>
+                                <td>UserController.java</td>
+                                <td>Manages user-related functionalities</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Configuration Files</strong></td>
+                                <td>database-config.yml</td>
+                                <td>Configuration for database connection</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Documentation</strong></td>
+                                <td>UserManual.docx</td>
+                                <td>Documentation for end-users</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Libraries/Dependencies</strong></td>
+                                <td>log4j.jar</td>
+                                <td>Logging library (Version 1.2.17)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Database Scripts</strong></td>
+                                <td>create-tables.sql</td>
+                                <td>SQL script for creating database tables</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>2. Baselines</h4>
+                <div class="definition">
+                    <strong>Definition:</strong> A specification or product that has been formally reviewed and agreed upon, serving as the basis for further development. It can only be changed through <span class="highlight">formal change control procedures</span>.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">Understanding Baselines</div>
+                    <p><strong>Before Baseline:</strong> Changes can be made quickly and informally - like editing a draft document.</p>
+                    <p><strong>After Baseline:</strong> Changes require formal approval - like needing management sign-off to change a contract.</p>
+                    <p style="margin-top: 10px;"><strong>Three Types of Baselines:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>Functional Baseline:</strong> The requirement document specifying functional requirements</li>
+                        <li><strong>Design Baseline:</strong> Designs of various system components</li>
+                        <li><strong>Product/System Baseline:</strong> The subsystems developed and the overall system</li>
+                    </ul>
+                </div>
+
+                <h3>The Six SCM Tasks</h3>
+
+                <div class="process-box">
+                    <div class="process-box-title">SCM Task Overview</div>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>Identification of Objects (SCIs)</strong></li>
+                        <li><strong>Version Control</strong></li>
+                        <li><strong>Change Control</strong></li>
+                        <li><strong>Formal Technical Review (FTR)</strong></li>
+                        <li><strong>Configuration Audit</strong></li>
+                        <li><strong>Configuration Status Reporting (CSR)</strong></li>
+                    </ol>
+                </div>
+
+                <h4>Task 1: Identification of Objects (SCIs)</h4>
+                <div class="component-list">
+                    <p><strong>Each object must have:</strong></p>
+                    <ul>
+                        <li><strong>i) Unique Name:</strong> For distinct identification</li>
+                        <li><strong>ii) Description:</strong> Including SCI type (document, program, data), project identifier, and version information</li>
+                        <li><strong>iii) List of Resources:</strong> Entities that are processed, provided, or required by the object</li>
+                    </ul>
+
+                    <p style="margin-top: 20px;"><strong>SCIs are classified into two types:</strong></p>
+                    <ul>
+                        <li><strong>Basic Objects:</strong> A "unit of text" created during analysis, design, coding, or testing phases</li>
+                        <li><strong>Aggregate Objects:</strong> A collection of basic objects and other aggregate objects</li>
+                    </ul>
+                </div>
+
+                <h4>Task 2: Version Control</h4>
+                <div class="definition">
+                    <strong>Version Control:</strong> Combines various tools and procedures to manage and control different versions of SCI objects created during the software engineering process. Standards are followed to assign version numbers to changing instances of software.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Version Control Example:</div>
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 300'%3E%3Crect fill='%23f0f9ff' width='600' height='300'/%3E%3Ctext x='300' y='30' text-anchor='middle' font-size='18' font-weight='bold' fill='%230891b2'%3EVersion Evolution Tree%3C/text%3E%3Ccircle cx='100' cy='80' r='25' fill='%2306b6d4' stroke='%23000' stroke-width='2'/%3E%3Ctext x='100' y='85' text-anchor='middle' fill='white' font-weight='bold'%3E1.0%3C/text%3E%3Ccircle cx='200' cy='80' r='25' fill='%2306b6d4' stroke='%23000' stroke-width='2'/%3E%3Ctext x='200' y='85' text-anchor='middle' fill='white' font-weight='bold'%3E1.1%3C/text%3E%3Ccircle cx='300' cy='80' r='25' fill='%2306b6d4' stroke='%23000' stroke-width='2'/%3E%3Ctext x='300' y='85' text-anchor='middle' fill='white' font-weight='bold'%3E1.2%3C/text%3E%3Ccircle cx='150' cy='160' r='25' fill='%2314b8a6' stroke='%23000' stroke-width='2'/%3E%3Ctext x='150' y='165' text-anchor='middle' fill='white' font-weight='bold'%3E1.1.1%3C/text%3E%3Ccircle cx='250' cy='160' r='25' fill='%2314b8a6' stroke='%23000' stroke-width='2'/%3E%3Ctext x='250' y='165' text-anchor='middle' fill='white' font-weight='bold'%3E1.1.2%3C/text%3E%3Ccircle cx='350' cy='160' r='25' fill='%2314b8a6' stroke='%23000' stroke-width='2'/%3E%3Ctext x='350' y='165' text-anchor='middle' fill='white' font-weight='bold'%3E2.0%3C/text%3E%3Ccircle cx='450' cy='160' r='25' fill='%2314b8a6' stroke='%23000' stroke-width='2'/%3E%3Ctext x='450' y='165' text-anchor='middle' fill='white' font-weight='bold'%3E2.1%3C/text%3E%3Ccircle cx='400' cy='240' r='25' fill='%2322c55e' stroke='%23000' stroke-width='2'/%3E%3Ctext x='400' y='245' text-anchor='middle' fill='white' font-weight='bold'%3E1.3%3C/text%3E%3Ccircle cx='500' cy='240' r='25' fill='%2322c55e' stroke='%23000' stroke-width='2'/%3E%3Ctext x='500' y='245' text-anchor='middle' fill='white' font-weight='bold'%3E1.4%3C/text%3E%3Cline x1='125' y1='80' x2='175' y2='80' stroke='%23000' stroke-width='2'/%3E%3Cline x1='225' y1='80' x2='275' y2='80' stroke='%23000' stroke-width='2'/%3E%3Cline x1='200' y1='105' x2='150' y2='135' stroke='%23000' stroke-width='2'/%3E%3Cline x1='200' y1='105' x2='250' y2='135' stroke='%23000' stroke-width='2'/%3E%3Cline x1='300' y1='105' x2='350' y2='135' stroke='%23000' stroke-width='2'/%3E%3Cline x1='350' y1='185' x2='400' y2='215' stroke='%23000' stroke-width='2'/%3E%3Cline x1='350' y1='185' x2='450' y2='135' stroke='%23000' stroke-width='2'/%3E%3Cline x1='450' y1='185' x2='500' y2='215' stroke='%23000' stroke-width='2'/%3E%3C/svg%3E" alt="Version Control Tree" style="width: 100%; max-width: 600px; margin: 20px auto; display: block;">
+                    <p style="margin-top: 15px;"><strong>Explanation:</strong> Version 1.0 evolves to 1.1, then 1.2. Minor corrections create 1.1.1 and 1.1.2. A major update creates version 2.0, which continues development through 2.1. Parallel development can occur on version 1.3 and 1.4.</p>
+                </div>
+
+                <div class="key-points">
+                    <h4>Key Version Control Concepts:</h4>
+                    <ul>
+                        <li><strong>Repository:</strong> A centralized location where version-controlled files are stored</li>
+                        <li><strong>Commit:</strong> A snapshot of the project at a specific point in time</li>
+                        <li><strong>Branch:</strong> A separate line of development</li>
+                        <li><strong>Merge:</strong> Combining changes from one branch into another</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Git Commands for Version Control:</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Command</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>git init [repository name]</code></td>
+                                <td>Initialize a new Git repository</td>
+                            </tr>
+                            <tr>
+                                <td><code>git add [file(s) name]</code></td>
+                                <td>Add files to staging area</td>
+                            </tr>
+                            <tr>
+                                <td><code>git commit -m "Message"</code></td>
+                                <td>Commit changes with a message</td>
+                            </tr>
+                            <tr>
+                                <td><code>git status</code></td>
+                                <td>Show status of files in the Git repo</td>
+                            </tr>
+                            <tr>
+                                <td><code>git branch [name-of-branch]</code></td>
+                                <td>Create a new branch</td>
+                            </tr>
+                            <tr>
+                                <td><code>git checkout [name-of-branch]</code></td>
+                                <td>Switch to an existing branch</td>
+                            </tr>
+                            <tr>
+                                <td><code>git log</code></td>
+                                <td>Examine detailed log of every commit</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4>Task 3: Change Control</h4>
+                <div class="definition">
+                    <strong>Change Control:</strong> For large system development projects, uncontrolled change rapidly leads to confusion and inconsistencies. Change control includes human procedures and automated tools to control the reasons for change.
+                </div>
+
+                <div class="process-box">
+                    <div class="process-box-title">Standard Change Control Procedure</div>
+                    <ul class="steps">
+                        <li>
+                            <strong>Change Request:</strong>
+                            <p>A change request consists of:</p>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>The SCI object description</li>
+                                <li>Suggestions for change in the object</li>
+                                <li>Affected subsystems</li>
+                                <li>Estimated cost for carrying out the change</li>
+                            </ul>
+                            <p style="margin-top: 10px;">The request is evaluated to assess its technical merit and potential side effects.</p>
+                        </li>
+                        <li>
+                            <strong>Change Report:</strong>
+                            <p>After evaluation, a change report is created and submitted to the <span class="highlight">Change Control Authority/Board (CCA or CCB)</span>.</p>
+                            <p style="margin-top: 10px;"><strong>CCA/CCB Role:</strong> A group responsible for evaluating the change report and making the final decision on the status and priority of the change.</p>
+                        </li>
+                        <li>
+                            <strong>Engineering Change Order (ECO):</strong>
+                            <p>For each approved change, the CCB generates an ECO consisting of:</p>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>Description of the change to be made</li>
+                                <li>Constraints that must be taken care of</li>
+                                <li>Criteria for review and audit</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Check Out & Check In:</strong>
+                            <p>The object to be changed is <span class="highlight">"checked out"</span> of the project database. The decided changes are made and appropriate SQA (Software Quality Assurance) activities are performed.</p>
+                            <p style="margin-top: 10px;">The object is then <span class="highlight">"checked in"</span> to the project database, and appropriate version control mechanisms are used to create the next version of the software.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4>Task 4: Formal Technical Review (FTR)</h4>
+                <div class="definition">
+                    <strong>Formal Technical Review (FTR):</strong> Part of the Software Quality Assurance (SQA) procedure to uncover errors in functions, logic, or implementation; verify that software meets requirements; ensure software is represented according to standards; and make the project more manageable.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">FTR Process: 13-Step Detailed Example</div>
+                    <p><strong>Scenario:</strong> Code review for the "XYZ Module" before integration into the main codebase.</p>
+
+                    <ul class="steps">
+                        <li>
+                            <strong>Objective:</strong>
+                            <p>To ensure the quality and correctness of the code written for the "XYZ Module" before it is integrated into the main codebase.</p>
+                        </li>
+                        <li>
+                            <strong>Participants:</strong>
+                            <ul style="margin-left: 20px;">
+                                <li><strong>Author:</strong> Developer who wrote the code</li>
+                                <li><strong>Moderator:</strong> Facilitates the review process</li>
+                                <li><strong>Reviewers:</strong> Team of other developers and QA engineer</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Preparation:</strong>
+                            <p>Before the review meeting, the developer provides the code to be reviewed along with related documentation, such as design specification and test cases.</p>
+                        </li>
+                        <li>
+                            <strong>Distribution:</strong>
+                            <p>The moderator distributes the code and documentation to the review team well in advance of the meeting. Each reviewer is assigned specific sections of the code to focus on.</p>
+                        </li>
+                        <li>
+                            <strong>Review Meeting:</strong>
+                            <p>The meeting is scheduled and conducted formally. The agenda includes:</p>
+                            <ul style="margin-left: 20px;">
+                                <li>Introduction and overview of the code by the developer</li>
+                                <li>Presentation of design choices and rationale</li>
+                                <li>Reviewer comments and feedback</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Roles and Responsibilities:</strong>
+                            <ul style="margin-left: 20px;">
+                                <li><strong>Moderator:</strong> Guides the review process, ensures adherence to agenda, manages time</li>
+                                <li><strong>Developer:</strong> Explains the code, design choices, and answers questions</li>
+                                <li><strong>Reviewers:</strong> Analyze code, identify defects, provide constructive feedback</li>
+                                <li><strong>QA Engineer:</strong> Focuses on testability, coding standards, and security vulnerabilities</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Checkpoints:</strong>
+                            <p>The team checks for:</p>
+                            <ul style="margin-left: 20px;">
+                                <li>Adherence to coding standards</li>
+                                <li>Proper error handling</li>
+                                <li>Security considerations</li>
+                                <li>Efficiency of algorithms</li>
+                                <li>Alignment with design specification</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Defect Logging:</strong>
+                            <p>Reviewers log defects, issues, and suggestions during the meeting. Each item is documented with description, severity level, and proposed resolution.</p>
+                        </li>
+                        <li>
+                            <strong>Resolution:</strong>
+                            <p>The developer addresses identified issues after the review meeting. Code modifications are made based on feedback received.</p>
+                        </li>
+                        <li>
+                            <strong>Follow-up:</strong>
+                            <p>A follow-up meeting may be scheduled to verify resolution of identified issues and ensure the code meets required standards.</p>
+                        </li>
+                        <li>
+                            <strong>Documentation Update:</strong>
+                            <p>Documentation is updated to reflect changes made during the review process, including updating design specification, test cases, and relevant documentation.</p>
+                        </li>
+                        <li>
+                            <strong>Approval:</strong>
+                            <p>Once the code is reviewed, modified, and verified, it goes through an approval process. The project lead or designated authority reviews the changes and approves the integration into the main codebase.</p>
+                        </li>
+                        <li>
+                            <strong>Closure:</strong>
+                            <p>The Formal Technical Review is officially closed. Documentation of the review process, identified issues, and resolutions are archived for future reference.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <h4>Task 5: Configuration Audit</h4>
+                <div class="definition">
+                    <strong>Configuration Audit:</strong> A series of auditing procedures that verify whether changes specified in the ECO have been properly made, if FTRs are conducted for assessment of technical correctness, if SE standards are properly followed, if changes are highlighted in SCI documentation, and if SCM procedures like noting change, recording it, and reporting it have been properly done.
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Configuration Audit Example: User Authentication Module</div>
+                    <p><strong>Scenario:</strong> We need to audit the User Authentication Module in the software project.</p>
+
+                    <p style="margin-top: 15px;"><strong>Audit Objective:</strong> Verify the integrity of source code for the User Authentication Module against the approved baseline.</p>
+
+                    <p style="margin-top: 15px;"><strong>Auditable Items:</strong> Source code files, design documentation, and related test scripts.</p>
+
+                    <p style="margin-top: 15px;"><strong>Audit Team:</strong> Developers, QA engineers, and a configuration management specialist.</p>
+
+                    <div class="process-box" style="margin-top: 15px;">
+                        <div class="process-box-title">Audit Checklist:</div>
+                        <ol style="margin-left: 20px;">
+                            <li>Check whether changes specified in ECO have been properly made</li>
+                            <li>Check whether Formal Technical Reviews (FTR) are conducted for assessment of technical correctness</li>
+                            <li>Check whether SE standards are properly followed (SQA)</li>
+                            <li>Check whether change is highlighted in SCI documentation</li>
+                            <li>Check whether SCM procedures like noting change, recording it, and reporting it have been properly done</li>
+                            <li>Check whether all related SCIs are properly updated</li>
+                        </ol>
+                    </div>
+
+                    <p style="margin-top: 15px;"><strong>Findings:</strong> During the audit, it is discovered that a recent code modification introduced a security vulnerability in the authentication module. The audit report highlights this issue along with recommendations for immediate correction.</p>
+
+                    <p style="margin-top: 15px;"><strong>Resolution:</strong> The development team addresses the security vulnerability by implementing the necessary code changes. The corrections undergo a peer review, and the updated configuration items are subject to a follow-up audit to ensure the issue is resolved.</p>
+                </div>
+
+                <h4>Task 6: Configuration Status Reporting (CSR)</h4>
+                <div class="definition">
+                    <strong>Configuration Status Reporting (CSR):</strong> An SCM task that summarizes activities done so far. The report contains all activities done so far, details of all persons involved, time and date when activities were accomplished, and information about various other factors or objects affected by the reported activity.
+                </div>
+
+                <div class="key-points">
+                    <h4>CSR Report Elements:</h4>
+                    <ul>
+                        <li><strong>a)</strong> All activities done so far</li>
+                        <li><strong>b)</strong> Details of all persons involved in the above reported activities</li>
+                        <li><strong>c)</strong> Time and date when the reported activities were accomplished</li>
+                        <li><strong>d)</strong> Information about various other factors or objects that will be affected due to the reported activity</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>ANSI/IEEE SCM Standards:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li><strong>Military Purpose:</strong> MIL-STD-483, DOD-STD-480A, etc.</li>
+                        <li><strong>Non-Military Purpose:</strong> 828-1983, 1042-1987, etc.</li>
+                    </ol>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">CSR Examples:</div>
+
+                    <h4 style="color: #0891b2; margin-top: 20px;">Example 1: Weekly Configuration Status Report</h4>
+                    <p><strong>Objective:</strong> Provide a weekly snapshot of the status of configuration items.</p>
+                    <div class="component-list">
+                        <p><strong>Content:</strong></p>
+                        <ul>
+                            <li>Changes made during the week</li>
+                            <li>Issues or defects identified and their current status</li>
+                            <li>Status of key baselines</li>
+                            <li>Metrics such as code churn or defect density</li>
+                        </ul>
+                    </div>
+
+                    <h4 style="color: #0891b2; margin-top: 20px;">Example 2: Release Configuration Status Report</h4>
+                    <p><strong>Objective:</strong> Provide a comprehensive report before a software release.</p>
+                    <div class="component-list">
+                        <p><strong>Content:</strong></p>
+                        <ul>
+                            <li>Overview of changes made since the last release</li>
+                            <li>Status of all configuration items</li>
+                            <li>Results of configuration audits</li>
+                            <li>Documentation completeness and updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: User Interface Design -->
+            <section id="ui-design">
+                <h2>2. User Interface Design</h2>
+
+                <div class="definition">
+                    <strong>What is User Interface Design?</strong><br>
+                    User Interface (UI) design is a crucial aspect of software application development. Effective UI design enhances user experiences, improves usability, enhances user satisfaction, and makes products more visually appealing.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">Why UI Design Matters</div>
+                    <p>Think of UI design like designing the dashboard of a car:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Consistency:</strong> All controls work the same way across the interface</li>
+                        <li><strong>Simplicity:</strong> Only essential information is displayed</li>
+                        <li><strong>Clear Navigation:</strong> Easy to find what you need</li>
+                        <li><strong>Feedback:</strong> Immediate response when you interact with controls</li>
+                    </ul>
+                    <p style="margin-top: 10px;">A good UI makes the software easy and pleasant to use, just like a well-designed car dashboard makes driving easier!</p>
+                </div>
+
+                <h3>Six Key Concepts for Effective UI Design</h3>
+
+                <h4>1. Consistency</h4>
+                <div class="component-list">
+                    <ul>
+                        <li>Maintain a consistent design throughout the application or website</li>
+                        <li>Use the same styles, layouts, and navigation patterns to create a unified user experience</li>
+                        <li>Consistency helps users predict how elements will behave and where to find specific features</li>
+                    </ul>
+                </div>
+
+                <h4>2. Simplicity</h4>
+                <div class="component-list">
+                    <ul>
+                        <li>Keep the interface simple and uncluttered</li>
+                        <li>Avoid unnecessary elements and features that can overwhelm users</li>
+                        <li>Follow the <span class="highlight">"less is more"</span> principle to make it easier for users to understand and navigate your UI</li>
+                    </ul>
+                </div>
+
+                <h4>3. Clear Navigation</h4>
+                <div class="component-list">
+                    <ul>
+                        <li>Provide intuitive and straightforward navigation menus and controls</li>
+                        <li>Users should easily find their way around the interface without confusion</li>
+                        <li>Provide clear labels and well-organized menus to guide users to different sections or features</li>
+                    </ul>
+                </div>
+
+                <h4>4. Feedback and Responsiveness</h4>
+                <div class="component-list">
+                    <ul>
+                        <li>Give users immediate feedback when they interact with elements</li>
+                        <li>Buttons, links, and form fields should respond visibly when clicked or hovered over</li>
+                        <li>Provide error messages and validation feedback in real-time when users input data</li>
+                    </ul>
+                </div>
+
+                <h4>5. Accessibility</h4>
+                <div class="component-list">
+                    <ul>
+                        <li>Ensure that the UI is accessible to all users, including those with disabilities</li>
+                        <li>Follow accessibility guidelines such as WCAG (Web Content Accessibility Guidelines)</li>
+                        <li>Use semantic HTML elements, provide alternative text for images, and test your design with assistive technologies</li>
+                    </ul>
+                </div>
+
+                <h4>6. Scalability and Future-Proofing</h4>
+                <div class="component-list">
+                    <ul>
+                        <li>Design the UI with scalability in mind, allowing for future feature additions and changes</li>
+                        <li>Consider how the interface will accommodate growing content or user interaction requirements</li>
+                    </ul>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-title">Real-World UI Design Example: Mobile Banking App</div>
+                    <p><strong>Application of UI Design Principles:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Consistency:</strong> Same color scheme, button styles, and navigation throughout the app</li>
+                        <li><strong>Simplicity:</strong> Clean interface showing only essential information (balance, recent transactions)</li>
+                        <li><strong>Clear Navigation:</strong> Bottom navigation bar with clear icons and labels</li>
+                        <li><strong>Feedback:</strong> Loading indicators, confirmation messages, and haptic feedback</li>
+                        <li><strong>Accessibility:</strong> Large touch targets, high contrast text, support for screen readers</li>
+                        <li><strong>Scalability:</strong> Modular design that can easily incorporate new features</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <p><strong>Common UI Design Mistakes to Avoid:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Inconsistent design patterns across different screens</li>
+                        <li>Too many options or features on a single screen</li>
+                        <li>Poor color contrast making text hard to read</li>
+                        <li>Lack of visual hierarchy</li>
+                        <li>No feedback for user actions</li>
+                        <li>Ignoring mobile responsiveness</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 3: CASE Tools -->
+            <section id="case-tools">
+                <h2>3. Computer Aided Software Engineering (CASE) Tools</h2>
+
+                <div class="definition">
+                    <strong>What are CASE Tools?</strong><br>
+                    Computer-Aided Software Engineering (CASE) tools are software applications designed to support various phases of the software development lifecycle (SDLC) by automating, simplifying, and enhancing tasks related to software engineering.
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">Think of CASE Tools Like Power Tools for Construction</div>
+                    <p>Just as power tools make construction faster and more precise:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li><strong>Without CASE:</strong> Manually drawing diagrams, writing code without assistance, tracking changes manually</li>
+                        <li><strong>With CASE:</strong> Automated diagram generation, code completion, automated testing, integrated version control</li>
+                    </ul>
+                    <p style="margin-top: 10px;">CASE tools help developers, analysts, and project managers streamline the process of designing, developing, testing, and maintaining software.</p>
+                </div>
+
+                <h3>CASE Building Blocks</h3>
+
+                <div class="component-list">
+                    <p>CASE tools are built on a foundation of layers:</p>
+                    <ul>
+                        <li><strong>Environment Architecture:</strong> Hardware platform and operating system support</li>
+                        <li><strong>Portability Services:</strong> Bridge between CASE tools and their integration framework along with the environment architecture</li>
+                        <li><strong>Integration Framework:</strong> Collection of specialized programs that enable individual CASE tools to communicate, create a project database, and exhibit the same look and feel</li>
+                        <li><strong>CASE Tools:</strong> The actual software applications that automate SE tasks</li>
+                    </ul>
+                </div>
+
+                <h3>Taxonomy of CASE Tools</h3>
+
+                <div class="definition">
+                    <strong>Taxonomy of CASE Tools:</strong> The process of categorizing CASE tools according to the flow of the software engineering process.
+                </div>
+
+                <h4>Three Main Categories of CASE Tools:</h4>
+
+                <div class="process-box">
+                    <div class="process-box-title">1. Upper CASE Tools</div>
+                    <p><strong>Used in:</strong> Planning, Analysis, and Design stages of SDLC</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Rational Rose</li>
+                        <li>Microsoft Visio</li>
+                        <li>IBM Rhapsody</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Functions:</strong> Requirements modeling, system architecture design, UML diagram creation</p>
+                </div>
+
+                <div class="process-box">
+                    <div class="process-box-title">2. Lower CASE Tools</div>
+                    <p><strong>Used in:</strong> Implementation, Testing, and Maintenance stages</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Integrated Development Environments (IDEs): Visual Studio, Eclipse, JetBrains IntelliJ IDEA</li>
+                        <li>Debugging tools</li>
+                        <li>Testing frameworks</li>
+                        <li>Version control systems</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Functions:</strong> Code generation, compilation, debugging, unit testing</p>
+                </div>
+
+                <div class="process-box">
+                    <div class="process-box-title">3. Integrated CASE Tools (I-CASE)</div>
+                    <p><strong>Used in:</strong> All stages of SDLC, from Requirements gathering to Testing and documentation</p>
+                    <p><strong>Examples:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>IBM Rational Suite</li>
+                        <li>Sparx Systems Enterprise Architect</li>
+                        <li>CA Gen</li>
+                    </ul>
+                    <p style="margin-top: 10px;"><strong>Functions:</strong> Comprehensive support for entire software development lifecycle</p>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">CASE Tools by SDLC Phase:</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SDLC Phase</th>
+                                <th>Tool Category</th>
+                                <th>Example Tools</th>
+                                <th>Purpose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Planning</strong></td>
+                                <td>Upper CASE</td>
+                                <td>Project management tools</td>
+                                <td>Project scheduling, resource allocation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Analysis</strong></td>
+                                <td>Upper CASE</td>
+                                <td>Requirements management tools</td>
+                                <td>Capturing and organizing requirements</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Design</strong></td>
+                                <td>Upper CASE</td>
+                                <td>Modeling tools (UML)</td>
+                                <td>Creating system architecture diagrams</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Implementation</strong></td>
+                                <td>Lower CASE</td>
+                                <td>IDEs, Code editors</td>
+                                <td>Writing and compiling code</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Testing</strong></td>
+                                <td>Lower CASE</td>
+                                <td>Testing frameworks</td>
+                                <td>Unit testing, integration testing</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Maintenance</strong></td>
+                                <td>Lower CASE</td>
+                                <td>Version control, bug tracking</td>
+                                <td>Managing changes and fixes</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Integrated CASE Environment (I-CASE)</h3>
+
+                <div class="definition">
+                    <strong>Integrated CASE Environment:</strong> When CASE tools are integrated with various phases of the software engineering process, it is called Integrated CASE or I-CASE. An I-CASE is a comprehensive software development environment that integrates various tools and features to support the entire SDLC.
+                </div>
+
+                <div class="key-points">
+                    <h4>Goals of I-CASE:</h4>
+                    <ul>
+                        <li>Streamline and enhance the software development process</li>
+                        <li>Provide a unified platform for activities like requirements management, design, coding, testing, and documentation</li>
+                        <li>Improve collaboration among team members</li>
+                        <li>Increase productivity and code quality</li>
+                    </ul>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-title">Benefits of Using CASE Tools</div>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Increased Productivity:</strong> Automation reduces manual effort and speeds up development</li>
+                        <li><strong>Improved Quality:</strong> Automated testing and code analysis catch defects early</li>
+                        <li><strong>Better Collaboration:</strong> Integrated tools facilitate team communication and coordination</li>
+                        <li><strong>Consistency:</strong> Standardized processes and templates ensure uniform development practices</li>
+                        <li><strong>Documentation:</strong> Automated documentation generation keeps documentation up-to-date</li>
+                        <li><strong>Cost Reduction:</strong> Reduced rework and faster development lower overall project costs</li>
+                    </ul>
+                </div>
+
+                <div class="warning-box">
+                    <p><strong>Challenges in Implementing CASE Tools:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Learning Curve:</strong> Team members need time to learn new tools</li>
+                        <li><strong>Cost:</strong> Some CASE tools can be expensive to license and maintain</li>
+                        <li><strong>Integration Issues:</strong> Ensuring all tools work seamlessly together can be challenging</li>
+                        <li><strong>Customization:</strong> Tools may need to be adapted to fit specific organizational processes</li>
+                        <li><strong>Vendor Lock-in:</strong> Dependence on specific tool vendors can limit flexibility</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <div class="example-title">Popular CASE Tools in Modern Development:</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tool Name</th>
+                                <th>Category</th>
+                                <th>Primary Use</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>JIRA</strong></td>
+                                <td>Project Management</td>
+                                <td>Issue tracking, agile project management</td>
+                            </tr>
+                            <tr>
+                                <td><strong>GitHub</strong></td>
+                                <td>Version Control</td>
+                                <td>Source code management, collaboration</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Jenkins</strong></td>
+                                <td>CI/CD</td>
+                                <td>Continuous integration and deployment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Selenium</strong></td>
+                                <td>Testing</td>
+                                <td>Automated web application testing</td>
+                            </tr>
+                            <tr>
+                                <td><strong>IntelliJ IDEA</strong></td>
+                                <td>IDE</td>
+                                <td>Code development, debugging</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Confluence</strong></td>
+                                <td>Documentation</td>
+                                <td>Collaborative documentation</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section id="summary">
+                <h2>Summary and Key Takeaways</h2>
+
+                <div class="key-points">
+                    <h3>Software Configuration Management (SCM)</h3>
+                    <ul>
+                        <li>SCM is an umbrella activity applied throughout the software development process</li>
+                        <li>Main intentions: Identify change, Control change, Ensure proper implementation, Report changes</li>
+                        <li>Key terms: SCIs, Baselines (Functional, Design, Product)</li>
+                        <li>Six SCM Tasks: Identification, Version Control, Change Control, FTR, Configuration Audit, Status Reporting</li>
+                        <li>Change control prevents chaos through formal procedures: Change Request → Change Report → ECO → Check Out/In</li>
+                        <li>FTR is a 13-step process ensuring code quality before integration</li>
+                        <li>Configuration audits verify that changes are properly implemented</li>
+                        <li>CSR summarizes all activities, personnel, timing, and impacts</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h3>User Interface Design</h3>
+                    <ul>
+                        <li>UI design is crucial for user experience and product success</li>
+                        <li>Six key principles: Consistency, Simplicity, Clear Navigation, Feedback & Responsiveness, Accessibility, Scalability</li>
+                        <li>Consistency helps users predict behavior and find features</li>
+                        <li>Simplicity follows "less is more" to avoid overwhelming users</li>
+                        <li>Clear navigation with intuitive menus and controls</li>
+                        <li>Immediate feedback for all user interactions</li>
+                        <li>Accessibility ensures usability for all users, including those with disabilities (WCAG)</li>
+                        <li>Future-proofing allows for growth and new features</li>
+                    </ul>
+                </div>
+
+                <div class="key-points">
+                    <h3>CASE Tools</h3>
+                    <ul>
+                        <li>CASE tools automate, simplify, and enhance software engineering tasks</li>
+                        <li>Building blocks: Environment Architecture → Portability Services → Integration Framework → CASE Tools</li>
+                        <li>Three categories: Upper CASE (Planning, Analysis, Design), Lower CASE (Implementation, Testing, Maintenance), Integrated CASE (All phases)</li>
+                        <li>Upper CASE examples: Rational Rose, Microsoft Visio, IBM Rhapsody</li>
+                        <li>Lower CASE examples: Visual Studio, Eclipse, IntelliJ IDEA</li>
+                        <li>Integrated CASE examples: IBM Rational Suite, Sparx Systems Enterprise Architect</li>
+                        <li>Benefits: Increased productivity, improved quality, better collaboration, consistency, automated documentation</li>
+                        <li>Challenges: Learning curve, cost, integration issues, customization needs</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%); color: white; padding: 30px; border-radius: 10px; margin-top: 40px; text-align: center;">
+                    <h3 style="color: white; border: none; margin-bottom: 15px;">The Big Picture</h3>
+                    <p style="font-size: 1.2em; margin: 0;">Successful software projects require:</p>
+                    <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                        <li style="font-size: 1.1em; margin: 10px 0;"><strong>SCM:</strong> To manage changes systematically and maintain project integrity</li>
+                        <li style="font-size: 1.1em; margin: 10px 0;"><strong>Good UI Design:</strong> To create intuitive and accessible user experiences</li>
+                        <li style="font-size: 1.1em; margin: 10px 0;"><strong>CASE Tools:</strong> To automate and streamline development processes</li>
+                    </ul>
+                    <p style="margin-top: 20px; font-size: 1.1em; font-style: italic;">Together, these elements form the foundation of modern software engineering project management!</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEPM Unit 4 - IT Project Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #0891b2;
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #0891b2;
+        }
+
+        h3 {
+            color: #0e7490;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        h4 {
+            color: #155e75;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+
+        .overview-box {
+            background: #f0f9ff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #0891b2;
+        }
+
+        .overview-box h3 {
+            color: #0891b2;
+            margin-top: 0;
+        }
+
+        .big-picture {
+            background: #ecfeff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #06b6d4;
+        }
+
+        .simple-explanation {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .definition {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .definition strong {
+            color: #1e40af;
+            font-size: 1.1em;
+        }
+
+        .example {
+            background: #f0fdf4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #10b981;
+        }
+
+        .analogy-box {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .key-points {
+            background: #faf5ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #a855f7;
+        }
+
+        .key-points ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .key-points li {
+            margin: 8px 0;
+        }
+
+        .formula-box {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #cbd5e1;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .process-flow {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border: 2px solid #e2e8f0;
+        }
+
+        .process-arrow {
+            font-size: 2em;
+            color: #0891b2;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        tr:hover {
+            background: #f0f9ff;
+        }
+
+        .component-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .component-item {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #0891b2;
+            transition: transform 0.2s;
+        }
+
+        .component-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .risk-box {
+            background: #fef2f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ef4444;
+        }
+
+        .case-study {
+            background: #f5f3ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+
+        .highlight {
+            background: #fef08a;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        .four-ps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .p-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 5px solid #0891b2;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .p-card h4 {
+            color: #0891b2;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .framework-card {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #0891b2;
+        }
+
+        .framework-card h4 {
+            color: #0891b2;
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .four-ps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎯 IT Project Management</h1>
+        <p>Complete Guide to Software Project Management Frameworks, Methodologies & Best Practices</p>
+    </header>
+
+    <div class="container">
+        <div class="content">
+            <div class="overview-box">
+                <h3>📚 Unit 4 Overview</h3>
+                <p>Welcome to Unit 4 on IT Project Management! In this comprehensive guide, you'll learn everything about managing software projects - from understanding the fundamental 4Ps framework to mastering various project management methodologies like Agile (Scrum, Kanban, XP), PRINCE2, and DevOps. We'll explore the critical role of a project manager, how to manage stakeholders effectively, and master techniques for project scheduling, tracking, and scope management.</p>
+            </div>
+
+            <h2>🔑 Project Management Concepts</h2>
+
+            <div class="big-picture">
+                <strong>🌍 The Big Picture:</strong> Project management is like being the conductor of an orchestra. The conductor doesn't play every instrument, but ensures everyone plays in harmony at the right time to create beautiful music. Similarly, a project manager coordinates all aspects of a project - people, processes, products, and the project itself - to deliver successful outcomes.
+            </div>
+
+            <h3>The 4Ps of Project Management</h3>
+
+            <div class="simple-explanation">
+                <strong>💡 Simple Explanation:</strong> The 4Ps framework helps you remember the four critical elements that must be managed in any software project. Think of them as the four legs of a table - if any one is weak or missing, the entire table (project) becomes unstable and may collapse!
+            </div>
+
+            <div class="four-ps-grid">
+                <div class="p-card">
+                    <h4>👥 People</h4>
+                    <p><strong>The Human Element</strong></p>
+                    <ul>
+                        <li>Project team members and their skills</li>
+                        <li>Stakeholders and sponsors</li>
+                        <li>End users and customers</li>
+                        <li>Communication and collaboration</li>
+                        <li>Team motivation and culture</li>
+                    </ul>
+                    <div class="analogy-box" style="margin-top: 15px;">
+                        <strong>🎭 Analogy:</strong> Like casting actors for a movie - you need the right people with the right skills in the right roles.
+                    </div>
+                </div>
+
+                <div class="p-card">
+                    <h4>📦 Product</h4>
+                    <p><strong>What You're Building</strong></p>
+                    <ul>
+                        <li>Software requirements and specifications</li>
+                        <li>Product scope and features</li>
+                        <li>Quality standards and acceptance criteria</li>
+                        <li>Deliverables and milestones</li>
+                        <li>Technical architecture and design</li>
+                    </ul>
+                    <div class="analogy-box" style="margin-top: 15px;">
+                        <strong>🏗️ Analogy:</strong> Like having detailed blueprints before building a house - know exactly what you're creating.
+                    </div>
+                </div>
+
+                <div class="p-card">
+                    <h4>⚙️ Process</h4>
+                    <p><strong>How You Build It</strong></p>
+                    <ul>
+                        <li>Development methodology (Agile, Waterfall, etc.)</li>
+                        <li>Workflows and procedures</li>
+                        <li>Standards and best practices</li>
+                        <li>Quality assurance processes</li>
+                        <li>Change management procedures</li>
+                    </ul>
+                    <div class="analogy-box" style="margin-top: 15px;">
+                        <strong>🛣️ Analogy:</strong> Like following a recipe when cooking - the right process ensures consistent results.
+                    </div>
+                </div>
+
+                <div class="p-card">
+                    <h4>🎯 Project</h4>
+                    <p><strong>The Management Framework</strong></p>
+                    <ul>
+                        <li>Timeline and schedule</li>
+                        <li>Budget and resources</li>
+                        <li>Risk management</li>
+                        <li>Progress tracking and reporting</li>
+                        <li>Success metrics and KPIs</li>
+                    </ul>
+                    <div class="analogy-box" style="margin-top: 15px;">
+                        <strong>🗺️ Analogy:</strong> Like planning a road trip - you need a map, timeline, budget, and contingency plans.
+                    </div>
+                </div>
+            </div>
+
+            <h2>💼 IT Project Management</h2>
+
+            <div class="definition">
+                <strong>📖 Definition:</strong> IT Project Management is the application of knowledge, skills, tools, and techniques to information technology activities to meet project requirements. It involves planning, organizing, and managing resources to bring about the successful completion of specific IT project goals and objectives.
+            </div>
+
+            <div class="simple-explanation">
+                <strong>💡 In Simple Terms:</strong> IT Project Management is like being the captain of a ship carrying valuable cargo (software). You need to navigate through various challenges (technical issues, deadlines, budget constraints), keep your crew motivated (team management), and ensure the cargo reaches its destination safely and on time (successful project delivery).
+            </div>
+
+            <h3>Key Characteristics of IT Projects</h3>
+
+            <table>
+                <tr>
+                    <th>Characteristic</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><strong>Uniqueness</strong></td>
+                    <td>Each project has distinct requirements and challenges</td>
+                    <td>Building a custom e-commerce platform vs. a mobile game</td>
+                </tr>
+                <tr>
+                    <td><strong>Temporary Nature</strong></td>
+                    <td>Projects have defined start and end dates</td>
+                    <td>6-month website development project</td>
+                </tr>
+                <tr>
+                    <td><strong>Progressive Elaboration</strong></td>
+                    <td>Details become clearer as project progresses</td>
+                    <td>Initial wireframes evolve into detailed UI designs</td>
+                </tr>
+                <tr>
+                    <td><strong>Resource Constraints</strong></td>
+                    <td>Limited time, budget, and personnel</td>
+                    <td>5 developers, 3-month timeline, $100K budget</td>
+                </tr>
+                <tr>
+                    <td><strong>Complexity</strong></td>
+                    <td>Multiple interconnected components and dependencies</td>
+                    <td>Integration with 5 different third-party APIs</td>
+                </tr>
+            </table>
+
+            <h3>KPIs (Key Performance Indicators)</h3>
+
+            <div class="definition">
+                <strong>📊 KPIs</strong> are quantifiable measures used to evaluate the success and performance of a project. They help you answer the question: "Are we on track to meet our goals?"
+            </div>
+
+            <div class="component-list">
+                <div class="component-item">
+                    <h4>⏱️ Schedule Performance</h4>
+                    <p>Measures if project is on time</p>
+                    <ul>
+                        <li>Milestone completion rate</li>
+                        <li>Schedule variance (SV)</li>
+                        <li>Schedule Performance Index (SPI)</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>💰 Cost Performance</h4>
+                    <p>Tracks budget adherence</p>
+                    <ul>
+                        <li>Budget burn rate</li>
+                        <li>Cost variance (CV)</li>
+                        <li>Cost Performance Index (CPI)</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>✅ Quality Metrics</h4>
+                    <p>Measures deliverable quality</p>
+                    <ul>
+                        <li>Defect density</li>
+                        <li>Test coverage</li>
+                        <li>Customer satisfaction</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>👥 Team Performance</h4>
+                    <p>Evaluates team productivity</p>
+                    <ul>
+                        <li>Velocity (Agile)</li>
+                        <li>Resource utilization</li>
+                        <li>Team satisfaction</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>📈 Business Value</h4>
+                    <p>Measures ROI and benefits</p>
+                    <ul>
+                        <li>Return on Investment (ROI)</li>
+                        <li>Net Present Value (NPV)</li>
+                        <li>Business impact metrics</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>⚠️ Risk Indicators</h4>
+                    <p>Tracks project health</p>
+                    <ul>
+                        <li>Number of open risks</li>
+                        <li>Risk severity trends</li>
+                        <li>Issue resolution time</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>PAs (Project Attributes)</h3>
+
+            <div class="definition">
+                <strong>🏷️ Project Attributes</strong> are the defining characteristics and parameters that describe a project. They establish the boundaries and expectations for what needs to be accomplished.
+            </div>
+
+            <div class="key-points">
+                <strong>🎯 Essential Project Attributes:</strong>
+                <ul>
+                    <li><strong>Scope:</strong> What will be delivered (features, functionality, deliverables)</li>
+                    <li><strong>Time:</strong> When it will be completed (schedule, milestones, deadlines)</li>
+                    <li><strong>Cost:</strong> How much it will cost (budget, resource allocation)</li>
+                    <li><strong>Quality:</strong> Standards and acceptance criteria the deliverables must meet</li>
+                    <li><strong>Resources:</strong> People, equipment, and materials required</li>
+                    <li><strong>Risk:</strong> Potential issues and uncertainties that could impact the project</li>
+                    <li><strong>Stakeholders:</strong> Individuals or groups with interest in the project</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <strong>📝 Example - E-Commerce Website Project Attributes:</strong>
+                <ul>
+                    <li><strong>Scope:</strong> Product catalog, shopping cart, payment gateway, user authentication, order tracking</li>
+                    <li><strong>Time:</strong> 6 months (Jan 1 - June 30)</li>
+                    <li><strong>Cost:</strong> $150,000</li>
+                    <li><strong>Quality:</strong> 99.9% uptime, page load < 2 seconds, PCI DSS compliant</li>
+                    <li><strong>Resources:</strong> 1 PM, 3 developers, 1 UI/UX designer, 1 QA tester</li>
+                    <li><strong>Risk:</strong> Payment gateway integration delays, third-party API changes</li>
+                    <li><strong>Stakeholders:</strong> Business owner, marketing team, end customers, payment processor</li>
+                </ul>
+            </div>
+
+            <h3>IT Project Management Phases</h3>
+
+            <div class="process-flow">
+                <h4>📊 The IT Project Lifecycle</h4>
+                <div style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <div style="background: #dbeafe; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>1. Initiation</strong><br>
+                        Define & Authorize
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #e0e7ff; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>2. Planning</strong><br>
+                        Roadmap & Strategy
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #fef3c7; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>3. Execution</strong><br>
+                        Build & Develop
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #fce7f3; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>4. Monitoring</strong><br>
+                        Track & Control
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #dcfce7; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>5. Closure</strong><br>
+                        Deliver & Review
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-list">
+                <div class="component-item">
+                    <h4>1️⃣ Initiation Phase</h4>
+                    <p><strong>What happens:</strong> Project is defined and authorized</p>
+                    <ul>
+                        <li>Develop project charter</li>
+                        <li>Identify stakeholders</li>
+                        <li>Define high-level requirements</li>
+                        <li>Conduct feasibility study</li>
+                        <li>Get project approval</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>2️⃣ Planning Phase</h4>
+                    <p><strong>What happens:</strong> Detailed project plan is created</p>
+                    <ul>
+                        <li>Define scope and requirements</li>
+                        <li>Create WBS (Work Breakdown Structure)</li>
+                        <li>Develop schedule and budget</li>
+                        <li>Plan resources and procurement</li>
+                        <li>Identify risks and mitigation strategies</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>3️⃣ Execution Phase</h4>
+                    <p><strong>What happens:</strong> Project plan is put into action</p>
+                    <ul>
+                        <li>Direct and manage project work</li>
+                        <li>Develop team and assign tasks</li>
+                        <li>Implement quality assurance</li>
+                        <li>Acquire and manage resources</li>
+                        <li>Communicate with stakeholders</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>4️⃣ Monitoring & Control Phase</h4>
+                    <p><strong>What happens:</strong> Project progress is tracked</p>
+                    <ul>
+                        <li>Monitor project performance</li>
+                        <li>Track schedule and budget</li>
+                        <li>Manage changes</li>
+                        <li>Control quality</li>
+                        <li>Report to stakeholders</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>5️⃣ Closure Phase</h4>
+                    <p><strong>What happens:</strong> Project is formally completed</p>
+                    <ul>
+                        <li>Deliver final product</li>
+                        <li>Get client acceptance</li>
+                        <li>Document lessons learned</li>
+                        <li>Release resources</li>
+                        <li>Celebrate success!</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>🚀 Project Management Frameworks & Methodologies</h2>
+
+            <div class="big-picture">
+                <strong>🌍 The Big Picture:</strong> Different projects need different approaches. Just like you wouldn't use the same strategy to build a rocket ship as you would to bake a cake, different project management frameworks suit different types of projects. Some are flexible and adaptive (Agile), while others are structured and sequential (PRINCE2).
+            </div>
+
+            <h3>Agile Methodologies</h3>
+
+            <div class="definition">
+                <strong>🔄 Agile</strong> is an iterative and incremental approach to project management that emphasizes flexibility, collaboration, customer feedback, and rapid delivery of working software. Instead of planning everything upfront, Agile projects adapt to changes and evolve through continuous learning.
+            </div>
+
+            <div class="analogy-box">
+                <strong>🎨 Analogy:</strong> Agile is like sketching a painting. You start with a rough outline, add layers of detail with each iteration, and continuously step back to see if it looks right. You can adjust colors, composition, and details as you go, rather than planning every brushstroke before starting.
+            </div>
+
+            <h4>1. Scrum Framework</h4>
+
+            <div class="framework-card">
+                <h4>🏉 Scrum - The Most Popular Agile Framework</h4>
+
+                <div class="simple-explanation">
+                    <strong>💡 What is Scrum?</strong> Scrum is like playing rugby (where the name comes from). The team works together in short, intense bursts (called Sprints) to move the ball (project) forward. After each play, the team huddles to plan the next move, adapting their strategy based on what just happened.
+                </div>
+
+                <h4>Key Concepts:</h4>
+
+                <table>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Description</th>
+                        <th>Duration/Details</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Sprint</strong></td>
+                        <td>Time-boxed iteration where work is completed</td>
+                        <td>1-4 weeks (typically 2 weeks)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Product Backlog</strong></td>
+                        <td>Prioritized list of features and requirements</td>
+                        <td>Maintained by Product Owner</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sprint Backlog</strong></td>
+                        <td>Tasks selected for current sprint</td>
+                        <td>Committed by Development Team</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Increment</strong></td>
+                        <td>Working product delivered at end of sprint</td>
+                        <td>Potentially shippable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Definition of Done</strong></td>
+                        <td>Criteria for completed work</td>
+                        <td>Agreed by entire team</td>
+                    </tr>
+                </table>
+
+                <h4>Scrum Roles:</h4>
+
+                <div class="component-list">
+                    <div class="component-item">
+                        <h4>👔 Product Owner</h4>
+                        <p><strong>The "What" Person</strong></p>
+                        <ul>
+                            <li>Defines product vision</li>
+                            <li>Manages product backlog</li>
+                            <li>Prioritizes features</li>
+                            <li>Accepts completed work</li>
+                            <li>Represents stakeholders</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🎯 Scrum Master</h4>
+                        <p><strong>The "How" Person</strong></p>
+                        <ul>
+                            <li>Facilitates Scrum process</li>
+                            <li>Removes impediments</li>
+                            <li>Shields team from distractions</li>
+                            <li>Coaches team on Agile</li>
+                            <li>Organizes ceremonies</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>👥 Development Team</h4>
+                        <p><strong>The "Do" People</strong></p>
+                        <ul>
+                            <li>Self-organizing team (3-9 members)</li>
+                            <li>Cross-functional skills</li>
+                            <li>Estimates work</li>
+                            <li>Commits to sprint goals</li>
+                            <li>Delivers increment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>Scrum Ceremonies/Events:</h4>
+
+                <div class="component-list">
+                    <div class="component-item">
+                        <h4>🎬 Sprint Planning</h4>
+                        <p><strong>Duration:</strong> 2-4 hours</p>
+                        <ul>
+                            <li>What will be delivered?</li>
+                            <li>How will work be done?</li>
+                            <li>Team selects backlog items</li>
+                            <li>Creates sprint backlog</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>☀️ Daily Standup</h4>
+                        <p><strong>Duration:</strong> 15 minutes</p>
+                        <ul>
+                            <li>What did I do yesterday?</li>
+                            <li>What will I do today?</li>
+                            <li>Any blockers/impediments?</li>
+                            <li>Quick sync, not problem-solving</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🎁 Sprint Review</h4>
+                        <p><strong>Duration:</strong> 1-2 hours</p>
+                        <ul>
+                            <li>Demo completed work</li>
+                            <li>Get stakeholder feedback</li>
+                            <li>Update product backlog</li>
+                            <li>Discuss what's next</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🔄 Sprint Retrospective</h4>
+                        <p><strong>Duration:</strong> 1 hour</p>
+                        <ul>
+                            <li>What went well?</li>
+                            <li>What could be improved?</li>
+                            <li>Action items for next sprint</li>
+                            <li>Team improvement focus</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="example">
+                    <strong>📱 Example - Mobile App Development with Scrum:</strong><br><br>
+                    <strong>Sprint 1 (2 weeks):</strong> User registration and login<br>
+                    <strong>Sprint 2 (2 weeks):</strong> User profile and settings<br>
+                    <strong>Sprint 3 (2 weeks):</strong> Main dashboard and navigation<br>
+                    <strong>Sprint 4 (2 weeks):</strong> Core feature implementation<br><br>
+                    Each sprint delivers working software that can be tested and demonstrated!
+                </div>
+            </div>
+
+            <h4>2. Kanban</h4>
+
+            <div class="framework-card">
+                <h4>📋 Kanban - Visualize Your Workflow</h4>
+
+                <div class="simple-explanation">
+                    <strong>💡 What is Kanban?</strong> Kanban is like a conveyor belt in a factory. Work items move through different stages (columns) on a board, and you can see exactly what's being worked on, what's waiting, and what's done. The key rule: limit how much work is "in progress" at once to avoid bottlenecks.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🍔 Analogy:</strong> Think of a fast-food restaurant. Orders (tasks) flow through stages: "Order Placed" → "Preparing" → "Cooking" → "Quality Check" → "Serving". They limit how many burgers cook at once to ensure quality. That's Kanban!
+                </div>
+
+                <h4>Core Principles:</h4>
+
+                <div class="key-points">
+                    <strong>🎯 Kanban Principles:</strong>
+                    <ul>
+                        <li><strong>Visualize Workflow:</strong> Make work visible on a board</li>
+                        <li><strong>Limit Work in Progress (WIP):</strong> Restrict tasks per column</li>
+                        <li><strong>Manage Flow:</strong> Optimize speed through the system</li>
+                        <li><strong>Make Policies Explicit:</strong> Clear rules for moving cards</li>
+                        <li><strong>Continuous Improvement:</strong> Always optimize the process</li>
+                        <li><strong>Feedback Loops:</strong> Regular reviews and adjustments</li>
+                    </ul>
+                </div>
+
+                <h4>Typical Kanban Board Columns:</h4>
+
+                <div class="process-flow">
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                        <div style="background: #f3f4f6; padding: 15px; border-radius: 8px; min-width: 120px; text-align: center; border: 2px solid #9ca3af;">
+                            <strong>Backlog</strong><br>
+                            <small>Ideas & Requests</small>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; min-width: 120px; text-align: center; border: 2px solid #3b82f6;">
+                            <strong>To Do</strong><br>
+                            <small>Ready for Work</small>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; min-width: 120px; text-align: center; border: 2px solid #f59e0b;">
+                            <strong>In Progress</strong><br>
+                            <small>WIP Limit: 3</small>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fce7f3; padding: 15px; border-radius: 8px; min-width: 120px; text-align: center; border: 2px solid #ec4899;">
+                            <strong>Testing</strong><br>
+                            <small>QA Review</small>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #dcfce7; padding: 15px; border-radius: 8px; min-width: 120px; text-align: center; border: 2px solid #10b981;">
+                            <strong>Done</strong><br>
+                            <small>Completed!</small>
+                        </div>
+                    </div>
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Scrum</th>
+                        <th>Kanban</th>
+                    </tr>
+                    <tr>
+                        <td>Fixed-length sprints (1-4 weeks)</td>
+                        <td>Continuous flow, no sprints</td>
+                    </tr>
+                    <tr>
+                        <td>Defined roles (PO, SM, Team)</td>
+                        <td>No prescribed roles</td>
+                    </tr>
+                    <tr>
+                        <td>Sprint backlog commitment</td>
+                        <td>Pull work as capacity allows</td>
+                    </tr>
+                    <tr>
+                        <td>Velocity as metric</td>
+                        <td>Lead time and cycle time</td>
+                    </tr>
+                    <tr>
+                        <td>Changes mid-sprint discouraged</td>
+                        <td>Changes anytime as needed</td>
+                    </tr>
+                    <tr>
+                        <td>Best for: Product development</td>
+                        <td>Best for: Support, maintenance, ops</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>3. Extreme Programming (XP)</h4>
+
+            <div class="framework-card">
+                <h4>⚡ Extreme Programming - Engineering Excellence</h4>
+
+                <div class="simple-explanation">
+                    <strong>💡 What is XP?</strong> Extreme Programming takes good software engineering practices and "turns them up to 11." If code reviews are good, do them continuously (pair programming). If testing is good, test continuously (TDD). If integration is good, integrate multiple times a day (CI). XP is all about technical excellence and quality.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🎸 Analogy:</strong> If traditional development is like practicing guitar alone, XP is like jamming with a band. You're constantly collaborating, getting immediate feedback, and adjusting your playing in real-time to create better music together.
+                </div>
+
+                <h4>Core Practices:</h4>
+
+                <div class="component-list">
+                    <div class="component-item">
+                        <h4>👥 Pair Programming</h4>
+                        <p>Two developers, one computer</p>
+                        <ul>
+                            <li>Driver: writes code</li>
+                            <li>Navigator: reviews and thinks ahead</li>
+                            <li>Switch roles frequently</li>
+                            <li>Better code quality</li>
+                            <li>Knowledge sharing</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🧪 Test-Driven Development (TDD)</h4>
+                        <p>Write tests before code</p>
+                        <ul>
+                            <li>Red: Write failing test</li>
+                            <li>Green: Write minimum code to pass</li>
+                            <li>Refactor: Improve code</li>
+                            <li>Repeat cycle</li>
+                            <li>High test coverage</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🔄 Continuous Integration</h4>
+                        <p>Integrate code frequently</p>
+                        <ul>
+                            <li>Commit code multiple times daily</li>
+                            <li>Automated builds</li>
+                            <li>Run all tests</li>
+                            <li>Fix broken builds immediately</li>
+                            <li>Always deployable</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🔨 Refactoring</h4>
+                        <p>Continuously improve design</p>
+                        <ul>
+                            <li>Improve code structure</li>
+                            <li>Remove duplication</li>
+                            <li>Enhance readability</li>
+                            <li>Keep tests passing</li>
+                            <li>Small, frequent changes</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🎯 Simple Design</h4>
+                        <p>Keep it as simple as possible</p>
+                        <ul>
+                            <li>Passes all tests</li>
+                            <li>No duplication</li>
+                            <li>Expresses intent clearly</li>
+                            <li>Minimal classes/methods</li>
+                            <li>YAGNI principle</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>👤 Collective Code Ownership</h4>
+                        <p>Everyone owns all code</p>
+                        <ul>
+                            <li>Any developer can modify any code</li>
+                            <li>No code silos</li>
+                            <li>Shared responsibility</li>
+                            <li>Better team flexibility</li>
+                            <li>Reduces bottlenecks</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <strong>🎯 XP Values:</strong>
+                    <ul>
+                        <li><strong>Communication:</strong> Constant face-to-face interaction</li>
+                        <li><strong>Simplicity:</strong> Do the simplest thing that works</li>
+                        <li><strong>Feedback:</strong> Quick, continuous feedback loops</li>
+                        <li><strong>Courage:</strong> Willingness to refactor and change</li>
+                        <li><strong>Respect:</strong> Team members respect each other's contributions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>PRINCE2 Methodology</h3>
+
+            <div class="framework-card">
+                <h4>👑 PRINCE2 - PRojects IN Controlled Environments</h4>
+
+                <div class="definition">
+                    <strong>📖 PRINCE2</strong> is a process-based project management methodology that provides a structured approach to managing projects. It's widely used in the UK government and many organizations worldwide. Unlike Agile, PRINCE2 is more formal and document-driven.
+                </div>
+
+                <div class="simple-explanation">
+                    <strong>💡 What is PRINCE2?</strong> PRINCE2 is like following a detailed instruction manual for assembling furniture. Every step is documented, every role is defined, and there are clear checkpoints to ensure you're on the right track. It's very structured and controlled.
+                </div>
+
+                <h4>7 Principles of PRINCE2:</h4>
+
+                <table>
+                    <tr>
+                        <th>Principle</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Continued Business Justification</strong></td>
+                        <td>Project must remain viable and aligned with business objectives throughout</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Learn from Experience</strong></td>
+                        <td>Lessons are captured and applied from previous projects</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Defined Roles and Responsibilities</strong></td>
+                        <td>Clear organization structure with defined roles</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Manage by Stages</strong></td>
+                        <td>Project divided into manageable stages with reviews</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Manage by Exception</strong></td>
+                        <td>Defined tolerances for delegation and escalation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6. Focus on Products</strong></td>
+                        <td>Emphasis on quality and definition of deliverables</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7. Tailor to Suit Environment</strong></td>
+                        <td>Methodology adapted to project size and complexity</td>
+                    </tr>
+                </table>
+
+                <h4>7 Processes of PRINCE2:</h4>
+
+                <div class="component-list">
+                    <div class="component-item">
+                        <h4>1. Starting Up a Project (SU)</h4>
+                        <ul>
+                            <li>Appoint project team</li>
+                            <li>Design and appoint project management team</li>
+                            <li>Prepare outline business case</li>
+                            <li>Select approach and assemble project brief</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>2. Directing a Project (DP)</h4>
+                        <ul>
+                            <li>Authorize initiation</li>
+                            <li>Authorize project</li>
+                            <li>Authorize stage or exception plan</li>
+                            <li>Give ad hoc direction</li>
+                            <li>Authorize project closure</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>3. Initiating a Project (IP)</h4>
+                        <ul>
+                            <li>Prepare risk management strategy</li>
+                            <li>Prepare quality management strategy</li>
+                            <li>Prepare communication strategy</li>
+                            <li>Set up project controls</li>
+                            <li>Create project plan</li>
+                            <li>Refine business case</li>
+                            <li>Assemble project initiation documentation</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>4. Controlling a Stage (CS)</h4>
+                        <ul>
+                            <li>Authorize work package</li>
+                            <li>Review work package status</li>
+                            <li>Receive completed work packages</li>
+                            <li>Review stage status</li>
+                            <li>Report highlights</li>
+                            <li>Capture and examine issues</li>
+                            <li>Escalate issues and risks</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>5. Managing Product Delivery (MP)</h4>
+                        <ul>
+                            <li>Accept work package</li>
+                            <li>Execute work package</li>
+                            <li>Deliver work package</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>6. Managing Stage Boundary (SB)</h4>
+                        <ul>
+                            <li>Plan next stage</li>
+                            <li>Update project plan</li>
+                            <li>Update business case</li>
+                            <li>Report stage end</li>
+                            <li>Produce exception plan (if needed)</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>7. Closing a Project (CP)</h4>
+                        <ul>
+                            <li>Prepare planned closure</li>
+                            <li>Prepare premature closure</li>
+                            <li>Hand over products</li>
+                            <li>Evaluate project</li>
+                            <li>Recommend project closure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>DevOps</h3>
+
+            <div class="framework-card">
+                <h4>🔄 DevOps - Development Meets Operations</h4>
+
+                <div class="definition">
+                    <strong>🤝 DevOps</strong> is a set of practices that combines software development (Dev) and IT operations (Ops) to shorten the development lifecycle and provide continuous delivery of high-quality software. It's about breaking down silos and fostering collaboration.
+                </div>
+
+                <div class="simple-explanation">
+                    <strong>💡 What is DevOps?</strong> Imagine developers and operations teams used to work in separate buildings and only talked through formal meetings. DevOps is like tearing down the wall between them and having them work side-by-side in the same room, using the same tools, and sharing the same goals.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🏭 Analogy:</strong> Think of a car factory. DevOps is like having the designers who create the car work directly with the assembly line workers. The designers understand manufacturing constraints, and the workers can suggest design improvements. This collaboration makes better cars, faster.
+                </div>
+
+                <h4>DevOps Core Practices:</h4>
+
+                <div class="component-list">
+                    <div class="component-item">
+                        <h4>🔄 Continuous Integration (CI)</h4>
+                        <ul>
+                            <li>Frequent code commits</li>
+                            <li>Automated builds</li>
+                            <li>Automated testing</li>
+                            <li>Quick feedback on changes</li>
+                            <li>Early detection of issues</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🚀 Continuous Delivery/Deployment (CD)</h4>
+                        <ul>
+                            <li>Automated deployment pipeline</li>
+                            <li>Release to production frequently</li>
+                            <li>Small, incremental changes</li>
+                            <li>Reduced deployment risk</li>
+                            <li>Faster time to market</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>📊 Monitoring & Logging</h4>
+                        <ul>
+                            <li>Real-time application monitoring</li>
+                            <li>Centralized logging</li>
+                            <li>Performance metrics</li>
+                            <li>Alerting and notification</li>
+                            <li>Proactive issue detection</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🏗️ Infrastructure as Code (IaC)</h4>
+                        <ul>
+                            <li>Automated infrastructure provisioning</li>
+                            <li>Version-controlled configs</li>
+                            <li>Reproducible environments</li>
+                            <li>Faster setup and scaling</li>
+                            <li>Reduced manual errors</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>📦 Microservices Architecture</h4>
+                        <ul>
+                            <li>Decompose into small services</li>
+                            <li>Independent deployment</li>
+                            <li>Loosely coupled components</li>
+                            <li>Technology flexibility</li>
+                            <li>Easier scaling</li>
+                        </ul>
+                    </div>
+
+                    <div class="component-item">
+                        <h4>🤝 Collaboration & Communication</h4>
+                        <ul>
+                            <li>Shared responsibility</li>
+                            <li>Cross-functional teams</li>
+                            <li>ChatOps and collaboration tools</li>
+                            <li>Blameless post-mortems</li>
+                            <li>Continuous improvement culture</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4>DevOps Pipeline:</h4>
+
+                <div class="process-flow">
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; min-width: 100px; text-align: center;">
+                            <strong>Code</strong>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #e0e7ff; padding: 15px; border-radius: 8px; min-width: 100px; text-align: center;">
+                            <strong>Build</strong>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; min-width: 100px; text-align: center;">
+                            <strong>Test</strong>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fce7f3; padding: 15px; border-radius: 8px; min-width: 100px; text-align: center;">
+                            <strong>Release</strong>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #dcfce7; padding: 15px; border-radius: 8px; min-width: 100px; text-align: center;">
+                            <strong>Deploy</strong>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #f3e8ff; padding: 15px; border-radius: 8px; min-width: 100px; text-align: center;">
+                            <strong>Operate</strong>
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #ffe4e6; padding: 15px; border-radius: 8px; min-width: 100px; text-align: center;">
+                            <strong>Monitor</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <strong>🎯 DevOps Benefits:</strong>
+                    <ul>
+                        <li><strong>Speed:</strong> Faster delivery of features and fixes</li>
+                        <li><strong>Reliability:</strong> Higher quality and stable releases</li>
+                        <li><strong>Scale:</strong> Manage infrastructure and development processes efficiently</li>
+                        <li><strong>Collaboration:</strong> Better team communication and productivity</li>
+                        <li><strong>Security:</strong> Integrated security practices (DevSecOps)</li>
+                    </ul>
+                </div>
+
+                <div class="example">
+                    <strong>🏢 Example - DevOps in Action:</strong><br><br>
+                    A developer commits code at 10 AM → Automated tests run → Build passes → Deploys to staging → Automated integration tests run → Manual approval → Deploys to production → Monitoring dashboards show all systems green → Customer gets new feature by 11 AM!
+                    <br><br>
+                    <strong>Without DevOps:</strong> Same process would take days or weeks with manual handoffs and approvals.
+                </div>
+            </div>
+
+            <h2>👨‍💼 Role of a Project Manager</h2>
+
+            <div class="big-picture">
+                <strong>🌍 The Big Picture:</strong> A project manager is like the conductor of an orchestra, the director of a movie, or the captain of a ship. They don't do all the work themselves, but they ensure everyone knows what to do, when to do it, and how it all fits together to achieve the project goals.
+            </div>
+
+            <div class="definition">
+                <strong>🎯 Project Manager</strong> is the person responsible for planning, executing, and closing projects. They are the single point of accountability for the project's success, managing the interplay between scope, schedule, cost, quality, resources, and risks.
+            </div>
+
+            <h3>12 Key Responsibilities of a Project Manager</h3>
+
+            <div class="component-list">
+                <div class="component-item">
+                    <h4>1. 📋 Project Planning</h4>
+                    <ul>
+                        <li>Define project scope and objectives</li>
+                        <li>Create detailed project plan</li>
+                        <li>Develop WBS and schedule</li>
+                        <li>Estimate resources and budget</li>
+                        <li>Establish baselines</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>2. 👥 Team Management</h4>
+                    <ul>
+                        <li>Build and lead project team</li>
+                        <li>Assign tasks and responsibilities</li>
+                        <li>Motivate and support team</li>
+                        <li>Resolve conflicts</li>
+                        <li>Facilitate collaboration</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>3. 🤝 Stakeholder Management</h4>
+                    <ul>
+                        <li>Identify all stakeholders</li>
+                        <li>Understand their needs and expectations</li>
+                        <li>Manage stakeholder engagement</li>
+                        <li>Communicate project status</li>
+                        <li>Handle stakeholder conflicts</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>4. ⏰ Time Management</h4>
+                    <ul>
+                        <li>Develop project schedule</li>
+                        <li>Monitor progress against timeline</li>
+                        <li>Identify and address delays</li>
+                        <li>Optimize critical path</li>
+                        <li>Ensure milestones are met</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>5. 💰 Budget Management</h4>
+                    <ul>
+                        <li>Prepare project budget</li>
+                        <li>Track expenses and costs</li>
+                        <li>Manage financial resources</li>
+                        <li>Control cost overruns</li>
+                        <li>Report financial status</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>6. ✅ Quality Management</h4>
+                    <ul>
+                        <li>Define quality standards</li>
+                        <li>Implement QA processes</li>
+                        <li>Conduct quality reviews</li>
+                        <li>Ensure deliverables meet requirements</li>
+                        <li>Drive continuous improvement</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>7. ⚠️ Risk Management</h4>
+                    <ul>
+                        <li>Identify potential risks</li>
+                        <li>Assess impact and probability</li>
+                        <li>Develop mitigation strategies</li>
+                        <li>Monitor risk triggers</li>
+                        <li>Implement contingency plans</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>8. 📢 Communication</h4>
+                    <ul>
+                        <li>Establish communication plan</li>
+                        <li>Facilitate regular meetings</li>
+                        <li>Provide status reports</li>
+                        <li>Ensure information flow</li>
+                        <li>Manage expectations</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>9. 📦 Procurement Management</h4>
+                    <ul>
+                        <li>Identify what needs to be procured</li>
+                        <li>Manage vendor relationships</li>
+                        <li>Negotiate contracts</li>
+                        <li>Oversee deliveries</li>
+                        <li>Ensure contract compliance</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>10. 🔄 Change Management</h4>
+                    <ul>
+                        <li>Establish change control process</li>
+                        <li>Evaluate change requests</li>
+                        <li>Assess impact on scope, time, cost</li>
+                        <li>Approve or reject changes</li>
+                        <li>Update project documentation</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>11. 🐛 Issue Resolution</h4>
+                    <ul>
+                        <li>Track and log issues</li>
+                        <li>Prioritize problems</li>
+                        <li>Coordinate resolution efforts</li>
+                        <li>Remove blockers</li>
+                        <li>Escalate when necessary</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>12. 📝 Documentation & Reporting</h4>
+                    <ul>
+                        <li>Maintain project documentation</li>
+                        <li>Generate status reports</li>
+                        <li>Document lessons learned</li>
+                        <li>Prepare closure reports</li>
+                        <li>Archive project records</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Essential Project Manager Skills</h3>
+
+            <table>
+                <tr>
+                    <th>Skill Category</th>
+                    <th>Key Skills</th>
+                    <th>Why Important</th>
+                </tr>
+                <tr>
+                    <td><strong>Leadership</strong></td>
+                    <td>Vision setting, motivation, decision-making, conflict resolution</td>
+                    <td>Inspire team and drive project forward</td>
+                </tr>
+                <tr>
+                    <td><strong>Communication</strong></td>
+                    <td>Written, verbal, presentation, active listening</td>
+                    <td>Keep all stakeholders informed and aligned</td>
+                </tr>
+                <tr>
+                    <td><strong>Technical</strong></td>
+                    <td>Domain knowledge, tools proficiency, technical understanding</td>
+                    <td>Make informed decisions and communicate with team</td>
+                </tr>
+                <tr>
+                    <td><strong>Organizational</strong></td>
+                    <td>Planning, scheduling, prioritization, multitasking</td>
+                    <td>Manage complex projects with many moving parts</td>
+                </tr>
+                <tr>
+                    <td><strong>Problem-Solving</strong></td>
+                    <td>Critical thinking, creativity, analytical skills</td>
+                    <td>Address challenges and find solutions</td>
+                </tr>
+                <tr>
+                    <td><strong>Negotiation</strong></td>
+                    <td>Persuasion, compromise, conflict management</td>
+                    <td>Secure resources and manage stakeholder expectations</td>
+                </tr>
+                <tr>
+                    <td><strong>Risk Management</strong></td>
+                    <td>Risk identification, analysis, mitigation planning</td>
+                    <td>Anticipate and prevent problems</td>
+                </tr>
+                <tr>
+                    <td><strong>Adaptability</strong></td>
+                    <td>Flexibility, resilience, change management</td>
+                    <td>Respond to unexpected situations</td>
+                </tr>
+            </table>
+
+            <h2>🔍 Systems View of Project Management</h2>
+
+            <div class="definition">
+                <strong>🌐 Systems View</strong> means looking at a project as a complete system with interconnected parts, rather than isolated components. Changes in one area affect other areas - just like in a living organism, everything is connected.
+            </div>
+
+            <div class="analogy-box">
+                <strong>🧠 Analogy:</strong> Think of a project like the human body. You can't just focus on the heart (development) and ignore the lungs (testing) or the brain (planning). All systems must work together harmoniously. If one system fails, the whole body suffers.
+            </div>
+
+            <h3>Three Key Aspects of Systems View</h3>
+
+            <div class="component-list">
+                <div class="component-item">
+                    <h4>1. 🔗 System Integration</h4>
+                    <p><strong>Connecting the Pieces</strong></p>
+                    <ul>
+                        <li>All project components are interconnected</li>
+                        <li>Changes ripple through the system</li>
+                        <li>Must consider dependencies</li>
+                        <li>Integration points are critical</li>
+                        <li>Holistic problem-solving approach</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>2. 🌍 External Environment</h4>
+                    <p><strong>Context Matters</strong></p>
+                    <ul>
+                        <li>Projects exist within organizations</li>
+                        <li>Influenced by market conditions</li>
+                        <li>Regulatory and compliance requirements</li>
+                        <li>Stakeholder expectations</li>
+                        <li>Competitive landscape</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>3. ⚖️ Balance & Trade-offs</h4>
+                    <p><strong>The Iron Triangle</strong></p>
+                    <ul>
+                        <li>Scope vs. Time vs. Cost</li>
+                        <li>Optimizing one affects others</li>
+                        <li>Must make informed trade-offs</li>
+                        <li>Quality is the center point</li>
+                        <li>Balance stakeholder priorities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>The Iron Triangle (Triple Constraint)</h3>
+
+            <div class="process-flow">
+                <h4>⚖️ Project Management Triangle</h4>
+                <div style="text-align: center; padding: 30px;">
+                    <div style="display: inline-block; background: #f0f9ff; padding: 30px; border-radius: 10px; border: 3px solid #0891b2;">
+                        <div style="display: flex; justify-content: space-around; align-items: center; margin-bottom: 30px;">
+                            <div style="background: #3b82f6; color: white; padding: 20px; border-radius: 8px; font-weight: bold;">
+                                ⏰ TIME<br>(Schedule)
+                            </div>
+                            <div style="width: 150px; height: 3px; background: #0891b2;"></div>
+                            <div style="background: #10b981; color: white; padding: 20px; border-radius: 8px; font-weight: bold;">
+                                💰 COST<br>(Budget)
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: center; align-items: center;">
+                            <div style="width: 3px; height: 80px; background: #0891b2; margin-right: 120px; transform: rotate(60deg);"></div>
+                            <div style="width: 3px; height: 80px; background: #0891b2; margin-left: 120px; transform: rotate(-60deg);"></div>
+                        </div>
+                        <div style="text-align: center; margin-top: 20px;">
+                            <div style="background: #f59e0b; color: white; padding: 20px; border-radius: 8px; font-weight: bold; display: inline-block;">
+                                📦 SCOPE<br>(Features)
+                            </div>
+                        </div>
+                        <div style="margin-top: 30px; background: white; padding: 20px; border-radius: 8px;">
+                            <strong style="color: #dc2626;">⚠️ The Rule:</strong> You can't have it all!<br>
+                            Want more features? → Need more time or money<br>
+                            Want it faster? → Need more money or reduce features<br>
+                            Want it cheaper? → Need more time or reduce features
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="example">
+                <strong>🎮 Example - Game Development Project:</strong><br><br>
+                <strong>Scenario:</strong> CEO wants to add multiplayer mode to a game 1 week before launch<br><br>
+                <strong>Systems View Analysis:</strong>
+                <ul>
+                    <li><strong>Scope Impact:</strong> New feature (multiplayer) = major scope increase</li>
+                    <li><strong>Time Impact:</strong> Need 3 more months of development</li>
+                    <li><strong>Cost Impact:</strong> Need 2 network engineers + server infrastructure = $80K extra</li>
+                    <li><strong>Quality Impact:</strong> Rushing will increase bugs and technical debt</li>
+                    <li><strong>Risk Impact:</strong> Missing launch date, competitor advantage, team burnout</li>
+                </ul>
+                <strong>Trade-off Decision:</strong> Either delay launch by 3 months, increase budget by $80K, or save multiplayer for Version 2.0
+            </div>
+
+            <h2>👥 Stakeholder Management</h2>
+
+            <div class="definition">
+                <strong>🤝 Stakeholder Management</strong> is the process of identifying, analyzing, planning, and implementing actions designed to engage project stakeholders. It's about ensuring everyone who has a stake in the project is appropriately involved and their interests are managed.
+            </div>
+
+            <div class="simple-explanation">
+                <strong>💡 Simple Explanation:</strong> Stakeholders are like the audience of a theater performance. Some are critics who will review your show (executives), some are buying tickets (customers), some are working backstage (team), and some own the theater (sponsors). You need to keep all of them happy, but in different ways!
+            </div>
+
+            <h3>Types of Stakeholders</h3>
+
+            <table>
+                <tr>
+                    <th>Stakeholder Type</th>
+                    <th>Who They Are</th>
+                    <th>Their Interest</th>
+                    <th>Engagement Strategy</th>
+                </tr>
+                <tr>
+                    <td><strong>Project Sponsor</strong></td>
+                    <td>Executive who funds project</td>
+                    <td>ROI, business value, strategic alignment</td>
+                    <td>Regular status updates, seek decisions</td>
+                </tr>
+                <tr>
+                    <td><strong>Project Manager</strong></td>
+                    <td>Person leading the project</td>
+                    <td>Successful delivery, reputation</td>
+                    <td>Empower with authority and resources</td>
+                </tr>
+                <tr>
+                    <td><strong>Project Team</strong></td>
+                    <td>People doing the work</td>
+                    <td>Clear tasks, skills development, recognition</td>
+                    <td>Daily collaboration, remove blockers</td>
+                </tr>
+                <tr>
+                    <td><strong>End Users/Customers</strong></td>
+                    <td>People who will use product</td>
+                    <td>Usability, functionality, value</td>
+                    <td>Gather requirements, beta testing</td>
+                </tr>
+                <tr>
+                    <td><strong>Functional Managers</strong></td>
+                    <td>Department heads providing resources</td>
+                    <td>Resource utilization, departmental priorities</td>
+                    <td>Negotiate resource allocation</td>
+                </tr>
+                <tr>
+                    <td><strong>Vendors/Suppliers</strong></td>
+                    <td>External service providers</td>
+                    <td>Contract fulfillment, payment</td>
+                    <td>Clear specifications, timely communication</td>
+                </tr>
+                <tr>
+                    <td><strong>Regulatory Bodies</strong></td>
+                    <td>Government/compliance organizations</td>
+                    <td>Legal compliance, standards adherence</td>
+                    <td>Documentation, audits, reporting</td>
+                </tr>
+            </table>
+
+            <h3>Stakeholder Analysis</h3>
+
+            <div class="framework-card">
+                <h4>📊 Power-Interest Grid</h4>
+                <p>Categorize stakeholders based on their power and interest in the project</p>
+
+                <table>
+                    <tr>
+                        <th style="width: 25%;">Category</th>
+                        <th style="width: 35%;">Characteristics</th>
+                        <th style="width: 40%;">Management Strategy</th>
+                    </tr>
+                    <tr>
+                        <td><strong>High Power, High Interest</strong><br>🎯 Key Players</td>
+                        <td>Can significantly impact project and are very interested</td>
+                        <td><strong>Manage Closely:</strong> Engage regularly, involve in decisions, keep fully informed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>High Power, Low Interest</strong><br>😴 Keep Satisfied</td>
+                        <td>Can impact project but not very interested</td>
+                        <td><strong>Keep Satisfied:</strong> Provide enough information to keep them happy, don't bore with details</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Low Power, High Interest</strong><br>📢 Keep Informed</td>
+                        <td>Cannot significantly impact but are very interested</td>
+                        <td><strong>Keep Informed:</strong> Regular updates, may be helpful as advocates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Low Power, Low Interest</strong><br>📋 Monitor</td>
+                        <td>Limited impact and interest</td>
+                        <td><strong>Monitor:</strong> General communication, don't invest excessive effort</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>Stakeholder Management Process</h3>
+
+            <div class="process-flow">
+                <div style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <div style="background: #dbeafe; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>1. Identify</strong><br>
+                        <small>Who are they?</small>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #e0e7ff; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>2. Analyze</strong><br>
+                        <small>Power & Interest?</small>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #fef3c7; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>3. Plan</strong><br>
+                        <small>Engagement strategy?</small>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #dcfce7; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>4. Engage</strong><br>
+                        <small>Communicate & involve</small>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #fce7f3; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>5. Monitor</strong><br>
+                        <small>Track relationships</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-points">
+                <strong>🎯 Best Practices for Stakeholder Management:</strong>
+                <ul>
+                    <li><strong>Start Early:</strong> Identify stakeholders at project initiation</li>
+                    <li><strong>Communicate Proactively:</strong> Don't wait for them to ask</li>
+                    <li><strong>Be Transparent:</strong> Share both good and bad news</li>
+                    <li><strong>Manage Expectations:</strong> Be realistic about what can be delivered</li>
+                    <li><strong>Build Relationships:</strong> Invest time in getting to know stakeholders</li>
+                    <li><strong>Listen Actively:</strong> Understand their concerns and perspectives</li>
+                    <li><strong>Adapt Your Style:</strong> Different stakeholders need different communication approaches</li>
+                    <li><strong>Document Everything:</strong> Keep records of commitments and decisions</li>
+                </ul>
+            </div>
+
+            <h2>📅 Project Scheduling and Tracking</h2>
+
+            <div class="big-picture">
+                <strong>🌍 The Big Picture:</strong> Project scheduling is like planning a complex journey with multiple stops, different modes of transport, and various activities. You need to figure out what to do, in what order, how long each part takes, and which activities are critical for reaching your destination on time.
+            </div>
+
+            <h3>Work Breakdown Structure (WBS)</h3>
+
+            <div class="definition">
+                <strong>🌳 Work Breakdown Structure (WBS)</strong> is a hierarchical decomposition of the total scope of work to be carried out by the project team. It breaks down the project into smaller, more manageable pieces called work packages.
+            </div>
+
+            <div class="simple-explanation">
+                <strong>💡 Simple Explanation:</strong> Think of WBS like breaking down "Build a House" into smaller pieces: Foundation → Walls → Roof → Plumbing → Electrical → Interior. Each piece can then be broken down further until you have tasks small enough to estimate, assign, and track.
+            </div>
+
+            <div class="example">
+                <strong>🌐 Example - Website Development WBS:</strong>
+                <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-top: 15px; font-family: monospace;">
+                    <strong>1.0 Website Development Project</strong><br>
+                    &nbsp;&nbsp;1.1 Planning Phase<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.1.1 Requirements Gathering<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.1.2 Create Project Plan<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.1.3 Resource Allocation<br>
+                    &nbsp;&nbsp;1.2 Design Phase<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.2.1 UI/UX Wireframes<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.2.2 Visual Design Mockups<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.2.3 Database Design<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.2.4 Architecture Design<br>
+                    &nbsp;&nbsp;1.3 Development Phase<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.3.1 Frontend Development<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.3.2 Backend Development<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.3.3 Database Implementation<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.3.4 API Integration<br>
+                    &nbsp;&nbsp;1.4 Testing Phase<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.4.1 Unit Testing<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.4.2 Integration Testing<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.4.3 User Acceptance Testing<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.4.4 Performance Testing<br>
+                    &nbsp;&nbsp;1.5 Deployment Phase<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.5.1 Server Setup<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.5.2 Deploy to Production<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.5.3 Data Migration<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;1.5.4 Launch
+                </div>
+            </div>
+
+            <h3>Critical Path Method (CPM)</h3>
+
+            <div class="definition">
+                <strong>🛤️ Critical Path Method (CPM)</strong> is a technique used to identify the longest sequence of dependent activities (the critical path) that determines the minimum project duration. Activities on the critical path cannot be delayed without delaying the entire project.
+            </div>
+
+            <div class="analogy-box">
+                <strong>🍳 Analogy:</strong> Imagine cooking a complex meal. Some tasks can be done in parallel (chopping vegetables while rice cooks), but some must be sequential (can't frost a cake before it's baked and cooled). The critical path is the longest sequence of tasks that must be done in order - this determines when dinner will be ready!
+            </div>
+
+            <div class="key-points">
+                <strong>🔑 Key Concepts in CPM:</strong>
+                <ul>
+                    <li><strong>Critical Path:</strong> The longest path through the project network (shortest possible duration)</li>
+                    <li><strong>Critical Activities:</strong> Tasks on the critical path with zero slack/float</li>
+                    <li><strong>Float/Slack:</strong> How much an activity can be delayed without delaying the project</li>
+                    <li><strong>Early Start (ES):</strong> Earliest time an activity can begin</li>
+                    <li><strong>Early Finish (EF):</strong> Earliest time an activity can complete</li>
+                    <li><strong>Late Start (LS):</strong> Latest time an activity can start without delaying project</li>
+                    <li><strong>Late Finish (LF):</strong> Latest time an activity can finish without delaying project</li>
+                    <li><strong>Total Float:</strong> LF - EF (or LS - ES)</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <strong>💻 Example - Software Module Development:</strong><br><br>
+                <table>
+                    <tr>
+                        <th>Activity</th>
+                        <th>Duration</th>
+                        <th>Predecessors</th>
+                    </tr>
+                    <tr>
+                        <td>A: Design Database</td>
+                        <td>5 days</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>B: Design UI</td>
+                        <td>3 days</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>C: Implement Database</td>
+                        <td>8 days</td>
+                        <td>A</td>
+                    </tr>
+                    <tr>
+                        <td>D: Develop Frontend</td>
+                        <td>10 days</td>
+                        <td>B</td>
+                    </tr>
+                    <tr>
+                        <td>E: Develop Backend</td>
+                        <td>12 days</td>
+                        <td>C</td>
+                    </tr>
+                    <tr>
+                        <td>F: Integration Testing</td>
+                        <td>5 days</td>
+                        <td>D, E</td>
+                    </tr>
+                </table>
+                <br>
+                <strong>Critical Path:</strong> A → C → E → F (5 + 8 + 12 + 5 = <span class="highlight">30 days</span>)<br>
+                <strong>Non-Critical Path:</strong> B → D → F (3 + 10 + 5 = 18 days, has 12 days of float)<br><br>
+                <strong>Implication:</strong> Any delay in activities A, C, E, or F will delay the entire project. Activity D could be delayed by up to 12 days without impacting the project completion.
+            </div>
+
+            <h3>PERT (Program Evaluation and Review Technique)</h3>
+
+            <div class="definition">
+                <strong>📊 PERT</strong> is a statistical tool used to analyze and represent the tasks involved in completing a project. Unlike CPM which uses single time estimates, PERT uses three time estimates (optimistic, most likely, pessimistic) to account for uncertainty.
+            </div>
+
+            <div class="simple-explanation">
+                <strong>💡 What Makes PERT Different?</strong> PERT recognizes that we're not always certain how long tasks will take. Instead of saying "this will take 10 days," PERT says "best case 7 days, most likely 10 days, worst case 15 days" and calculates a weighted average.
+            </div>
+
+            <h4>PERT Time Estimates:</h4>
+
+            <table>
+                <tr>
+                    <th>Estimate</th>
+                    <th>Symbol</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><strong>Optimistic Time</strong></td>
+                    <td>O</td>
+                    <td>Best-case scenario - everything goes perfectly</td>
+                </tr>
+                <tr>
+                    <td><strong>Most Likely Time</strong></td>
+                    <td>M</td>
+                    <td>Realistic estimate - normal conditions</td>
+                </tr>
+                <tr>
+                    <td><strong>Pessimistic Time</strong></td>
+                    <td>P</td>
+                    <td>Worst-case scenario - everything goes wrong</td>
+                </tr>
+            </table>
+
+            <div class="formula-box">
+                <h4>📐 PERT Formulas:</h4><br>
+
+                <strong>Expected Time (TE):</strong><br>
+                TE = (O + 4M + P) / 6<br><br>
+
+                <strong>Standard Deviation (σ):</strong><br>
+                σ = (P - O) / 6<br><br>
+
+                <strong>Variance (σ²):</strong><br>
+                σ² = [(P - O) / 6]²
+            </div>
+
+            <div class="example">
+                <strong>🔧 Example - PERT Calculation:</strong><br><br>
+                <strong>Task:</strong> Develop User Authentication Module<br><br>
+                <strong>Estimates:</strong>
+                <ul>
+                    <li>Optimistic (O) = 5 days</li>
+                    <li>Most Likely (M) = 8 days</li>
+                    <li>Pessimistic (P) = 14 days</li>
+                </ul>
+
+                <strong>Calculations:</strong><br>
+                Expected Time (TE) = (5 + 4×8 + 14) / 6 = (5 + 32 + 14) / 6 = <span class="highlight">8.5 days</span><br>
+                Standard Deviation (σ) = (14 - 5) / 6 = 9 / 6 = <span class="highlight">1.5 days</span><br>
+                Variance (σ²) = (1.5)² = <span class="highlight">2.25</span><br><br>
+
+                <strong>Interpretation:</strong> The task is expected to take 8.5 days, with a standard deviation of 1.5 days. There's a 68% probability it will complete between 7 and 10 days (±1 standard deviation).
+            </div>
+
+            <h3>Gantt Charts</h3>
+
+            <div class="definition">
+                <strong>📊 Gantt Chart</strong> is a horizontal bar chart that illustrates a project schedule. It shows the start and finish dates of project elements, dependencies between tasks, and the current status of the project.
+            </div>
+
+            <div class="simple-explanation">
+                <strong>💡 Simple Explanation:</strong> A Gantt chart is like a visual timeline. Each task is a horizontal bar whose length represents its duration. You can see at a glance what should be happening when, what's dependent on what, and whether you're on track.
+            </div>
+
+            <div class="key-points">
+                <strong>🎯 Gantt Chart Components:</strong>
+                <ul>
+                    <li><strong>Task List:</strong> All project activities listed vertically</li>
+                    <li><strong>Timeline:</strong> Time period shown horizontally (days, weeks, months)</li>
+                    <li><strong>Bars:</strong> Horizontal bars showing task duration and position in time</li>
+                    <li><strong>Dependencies:</strong> Arrows showing task relationships</li>
+                    <li><strong>Milestones:</strong> Diamond symbols marking significant points</li>
+                    <li><strong>Progress:</strong> Shaded portions showing completion percentage</li>
+                    <li><strong>Critical Path:</strong> Often highlighted in different color</li>
+                    <li><strong>Today Marker:</strong> Vertical line showing current date</li>
+                </ul>
+            </div>
+
+            <div class="example">
+                <strong>📱 Example - Mobile App Gantt Chart:</strong>
+                <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                    <strong>Week 1-8 Timeline:</strong><br><br>
+                    <div style="font-family: monospace; line-height: 2;">
+                        Requirements     [████████] Week 1-2<br>
+                        UI Design          &nbsp;&nbsp;&nbsp;[████████] Week 2-3<br>
+                        Backend Dev         &nbsp;&nbsp;&nbsp;&nbsp;[████████████] Week 3-5<br>
+                        Frontend Dev          &nbsp;&nbsp;&nbsp;&nbsp;[████████████] Week 3-5<br>
+                        Integration            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[████] Week 5-6<br>
+                        Testing                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[████████] Week 6-7<br>
+                        Deployment               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[██] Week 8<br>
+                        <br>
+                        <strong>Key:</strong> [█] = Work, &nbsp; = Dependencies, 🔴 = Milestone
+                    </div>
+                </div>
+            </div>
+
+            <h3>Project Tracking Techniques</h3>
+
+            <div class="component-list">
+                <div class="component-item">
+                    <h4>📈 Earned Value Management (EVM)</h4>
+                    <ul>
+                        <li>Integrates scope, schedule, and cost</li>
+                        <li>Measures project performance</li>
+                        <li>Planned Value (PV)</li>
+                        <li>Earned Value (EV)</li>
+                        <li>Actual Cost (AC)</li>
+                        <li>Calculates variances and indices</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>🔍 Milestone Tracking</h4>
+                    <ul>
+                        <li>Track significant deliverables</li>
+                        <li>Binary (complete or not)</li>
+                        <li>Clear visibility of progress</li>
+                        <li>Easy to communicate</li>
+                        <li>Red/Yellow/Green status</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>⚡ Burndown Charts (Agile)</h4>
+                    <ul>
+                        <li>Shows work remaining over time</li>
+                        <li>Tracks sprint/release progress</li>
+                        <li>Ideal vs. actual burndown</li>
+                        <li>Early warning of issues</li>
+                        <li>Daily updates</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>🎯 Status Reports</h4>
+                    <ul>
+                        <li>Regular progress updates</li>
+                        <li>Accomplishments this period</li>
+                        <li>Plans for next period</li>
+                        <li>Issues and risks</li>
+                        <li>Key metrics and KPIs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>🎯 Project Scope Management</h2>
+
+            <div class="definition">
+                <strong>📦 Project Scope Management</strong> includes the processes required to ensure that the project includes all the work required, and only the work required, to complete the project successfully. It's about defining what's in and what's out.
+            </div>
+
+            <div class="analogy-box">
+                <strong>🎨 Analogy:</strong> Scope management is like framing a painting. The frame defines exactly what's in the picture and what's not. Without a clear frame (scope), people will keep suggesting you add more sky here, more trees there, different colors - and you'll never finish the painting!
+            </div>
+
+            <h3>Scope Management Processes</h3>
+
+            <div class="process-flow">
+                <div style="display: flex; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 20px;">
+                    <div style="background: #dbeafe; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>1. Plan Scope Management</strong>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #e0e7ff; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>2. Collect Requirements</strong>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #fef3c7; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>3. Define Scope</strong>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #fce7f3; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>4. Create WBS</strong>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #dcfce7; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>5. Validate Scope</strong>
+                    </div>
+                    <div class="process-arrow">→</div>
+                    <div style="background: #f3e8ff; padding: 20px; border-radius: 8px; min-width: 150px; text-align: center;">
+                        <strong>6. Control Scope</strong>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Requirements Collection Techniques</h3>
+
+            <table>
+                <tr>
+                    <th>Technique</th>
+                    <th>Description</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td><strong>Interviews</strong></td>
+                    <td>One-on-one or group discussions with stakeholders</td>
+                    <td>Deep understanding, sensitive topics</td>
+                </tr>
+                <tr>
+                    <td><strong>Focus Groups</strong></td>
+                    <td>Facilitated discussion with stakeholders</td>
+                    <td>Gathering diverse perspectives</td>
+                </tr>
+                <tr>
+                    <td><strong>Surveys/Questionnaires</strong></td>
+                    <td>Written questions to many stakeholders</td>
+                    <td>Large audiences, quantitative data</td>
+                </tr>
+                <tr>
+                    <td><strong>Workshops</strong></td>
+                    <td>Collaborative sessions to define requirements</td>
+                    <td>Cross-functional alignment</td>
+                </tr>
+                <tr>
+                    <td><strong>Observation</strong></td>
+                    <td>Watch users in their environment</td>
+                    <td>Understanding actual workflows</td>
+                </tr>
+                <tr>
+                    <td><strong>Prototyping</strong></td>
+                    <td>Build mockups/demos to gather feedback</td>
+                    <td>Visual/interactive requirements</td>
+                </tr>
+                <tr>
+                    <td><strong>Document Analysis</strong></td>
+                    <td>Review existing documentation</td>
+                    <td>Replacing/enhancing existing systems</td>
+                </tr>
+                <tr>
+                    <td><strong>Brainstorming</strong></td>
+                    <td>Generate ideas in group setting</td>
+                    <td>Creative solutions, innovation</td>
+                </tr>
+            </table>
+
+            <h3>Scope Creep</h3>
+
+            <div class="risk-box">
+                <strong>⚠️ Scope Creep:</strong> The uncontrolled expansion of project scope without adjustments to time, cost, and resources. It's the #1 killer of projects!
+            </div>
+
+            <div class="analogy-box">
+                <strong>🍕 Analogy:</strong> You ordered a cheese pizza (original scope). Then someone says "let's add pepperoni!" Then "mushrooms too!" Then "and olives!" Before you know it, you're paying for a supreme pizza but still expected to pay the cheese pizza price and get it in the same time. That's scope creep!
+            </div>
+
+            <h4>Common Causes of Scope Creep:</h4>
+
+            <div class="key-points">
+                <ul>
+                    <li><strong>Poor Requirements Definition:</strong> Vague or incomplete initial requirements</li>
+                    <li><strong>Weak Change Control:</strong> No formal process for handling changes</li>
+                    <li><strong>Gold Plating:</strong> Team adds features nobody asked for</li>
+                    <li><strong>Stakeholder Pressure:</strong> "Just one more small thing..."</li>
+                    <li><strong>Lack of Communication:</strong> Misunderstandings about what's included</li>
+                    <li><strong>No Baseline:</strong> No agreed-upon scope to compare against</li>
+                </ul>
+            </div>
+
+            <h4>Preventing Scope Creep:</h4>
+
+            <div class="component-list">
+                <div class="component-item">
+                    <h4>1. Clear Scope Statement</h4>
+                    <ul>
+                        <li>Document what's in scope</li>
+                        <li>Document what's out of scope</li>
+                        <li>Get stakeholder sign-off</li>
+                        <li>Reference throughout project</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>2. Change Control Process</h4>
+                    <ul>
+                        <li>Formal change request form</li>
+                        <li>Impact analysis (time, cost, risk)</li>
+                        <li>Approval authority defined</li>
+                        <li>Track all changes</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>3. Regular Communication</h4>
+                    <ul>
+                        <li>Frequent stakeholder updates</li>
+                        <li>Manage expectations</li>
+                        <li>Clarify misunderstandings early</li>
+                        <li>Reinforce scope boundaries</li>
+                    </ul>
+                </div>
+
+                <div class="component-item">
+                    <h4>4. "No" is a Valid Answer</h4>
+                    <ul>
+                        <li>Learn to push back</li>
+                        <li>Explain impact of changes</li>
+                        <li>Offer alternatives (future version)</li>
+                        <li>Protect team and timeline</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="example">
+                <strong>🛒 Example - E-commerce Project Scope Management:</strong><br><br>
+
+                <strong>✅ In Scope:</strong>
+                <ul>
+                    <li>Product catalog with search and filtering</li>
+                    <li>Shopping cart functionality</li>
+                    <li>Credit card payment processing</li>
+                    <li>Order confirmation emails</li>
+                    <li>Basic order tracking</li>
+                    <li>Admin panel for product management</li>
+                </ul>
+
+                <strong>❌ Out of Scope (Version 2.0):</strong>
+                <ul>
+                    <li>Wishlist functionality</li>
+                    <li>Product reviews and ratings</li>
+                    <li>Gift card support</li>
+                    <li>Social media integration</li>
+                    <li>Mobile app</li>
+                    <li>AI-powered recommendations</li>
+                </ul>
+
+                <br><strong>Change Request Example:</strong><br>
+                Mid-project, stakeholder requests "Add wishlist feature"<br>
+                <strong>PM Response:</strong> "That's currently out of scope for v1.0. Adding it would require 3 additional weeks and $15,000. Would you like to:<br>
+                1. Extend deadline and budget?<br>
+                2. Remove another feature to make room?<br>
+                3. Save wishlist for v2.0?"
+            </div>
+
+            <h2>🎓 Summary & Key Takeaways</h2>
+
+            <div class="key-points">
+                <strong>🎯 Unit 4 Key Concepts:</strong>
+                <ul>
+                    <li><strong>4Ps Framework:</strong> People, Product, Process, Project - the foundation of project management</li>
+                    <li><strong>KPIs & PAs:</strong> Measure what matters and define project boundaries</li>
+                    <li><strong>Agile Methods:</strong> Scrum (sprints), Kanban (flow), XP (engineering excellence)</li>
+                    <li><strong>PRINCE2:</strong> Structured, process-based methodology with 7 principles and 7 processes</li>
+                    <li><strong>DevOps:</strong> Breaking silos between Dev and Ops for continuous delivery</li>
+                    <li><strong>Project Manager:</strong> 12 key responsibilities from planning to closure</li>
+                    <li><strong>Systems View:</strong> Everything is connected - manage the whole, not just parts</li>
+                    <li><strong>Stakeholder Management:</strong> Identify, analyze, plan, engage, and monitor all stakeholders</li>
+                    <li><strong>Scheduling:</strong> WBS, CPM, PERT, Gantt charts - tools to plan and track time</li>
+                    <li><strong>Scope Management:</strong> Define clearly, control changes, prevent scope creep</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <strong>🌟 Final Thought:</strong><br><br>
+                Project management is both an art and a science. You need technical skills (scheduling, budgeting, risk analysis) and soft skills (communication, leadership, negotiation). The best project managers are adaptable - they know multiple frameworks and methodologies, but more importantly, they know when to use which approach. Remember: <span class="highlight">processes and tools are important, but people and collaboration are what make projects succeed!</span>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
