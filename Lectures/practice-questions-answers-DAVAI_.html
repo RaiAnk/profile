@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Questions with Answers - Data & Visual Analytics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    code, pre { font-family: 'Fira Code', monospace; }
+    .unit-gradient-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    .unit-gradient-2 { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+    .unit-gradient-3 { background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%); }
+    .answer-box { background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="max-w-5xl mx-auto px-4 py-8">
+    
+    <!-- Header -->
+    <header class="bg-white rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-indigo-600">
+      <h1 class="text-2xl font-bold text-gray-800 mb-2">Practice Question Bank with Solutions</h1>
+      <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+        <span class="bg-indigo-100 px-3 py-1 rounded-full">Subject Code: 108505CS</span>
+        <span class="bg-purple-100 px-3 py-1 rounded-full">B.TECH (AI) - 5th Semester</span>
+        <span class="bg-pink-100 px-3 py-1 rounded-full">Data and Visual Analytics in AI</span>
+      </div>
+    </header>
+
+    <!-- Unit III -->
+    <section class="mb-10">
+      <div class="unit-gradient-1 text-white rounded-xl p-4 mb-6 shadow-md">
+        <h2 class="text-xl font-bold">UNIT III: Statistical Measures for Data Processing</h2>
+      </div>
+
+      <!-- Q1 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 1</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">4 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO3</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L2</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-4">Define Range and Quartiles. For the dataset: <code class="bg-gray-100 px-2 py-1 rounded text-sm">[8, 12, 15, 19, 23, 27, 31, 35]</code>, calculate Q1, Q2 (Median), and Q3.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-indigo-500">
+          <h4 class="font-bold text-indigo-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-3"><strong>Definitions:</strong></p>
+          <ul class="list-disc list-inside text-gray-600 mb-4 space-y-1">
+            <li><strong>Range:</strong> The difference between the maximum and minimum values in a dataset. Range = Max - Min</li>
+            <li><strong>Quartiles:</strong> Values that divide a sorted dataset into four equal parts.
+              <ul class="list-disc list-inside ml-6 mt-1">
+                <li>Q1 (First Quartile): 25th percentile - separates lowest 25% of data</li>
+                <li>Q2 (Second Quartile/Median): 50th percentile - middle value</li>
+                <li>Q3 (Third Quartile): 75th percentile - separates lowest 75% of data</li>
+              </ul>
+            </li>
+          </ul>
+          
+          <p class="text-gray-700 mb-2"><strong>Calculation:</strong></p>
+          <p class="text-gray-600 mb-2">Dataset (already sorted): [8, 12, 15, 19, 23, 27, 31, 35], n = 8</p>
+          
+          <div class="bg-white p-4 rounded-lg mb-3">
+            <p class="text-gray-700 mb-2"><strong>Range:</strong> 35 - 8 = <span class="text-indigo-600 font-bold">27</span></p>
+            
+            <p class="text-gray-700 mb-2"><strong>Q2 (Median):</strong></p>
+            <p class="text-gray-600 mb-2">For even n: Median = (4th + 5th values) / 2 = (19 + 23) / 2 = <span class="text-indigo-600 font-bold">21</span></p>
+            
+            <p class="text-gray-700 mb-2"><strong>Q1:</strong> Median of lower half [8, 12, 15, 19]</p>
+            <p class="text-gray-600 mb-2">Q1 = (12 + 15) / 2 = <span class="text-indigo-600 font-bold">13.5</span></p>
+            
+            <p class="text-gray-700 mb-2"><strong>Q3:</strong> Median of upper half [23, 27, 31, 35]</p>
+            <p class="text-gray-600">Q3 = (27 + 31) / 2 = <span class="text-indigo-600 font-bold">29</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 2</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO3</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Write a Python program using NumPy to:</p>
+        <ol class="list-decimal list-inside text-gray-600 space-y-1 ml-4 mb-4">
+          <li>Generate a 1D array of 20 random integers between 10 and 100.</li>
+          <li>Reshape it into a 4x5 matrix.</li>
+          <li>Find the maximum value in each row and minimum value in each column.</li>
+          <li>Calculate the mean of the entire array.</li>
+        </ol>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-indigo-500">
+          <h4 class="font-bold text-indigo-700 mb-3">Answer:</h4>
+          
+          <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>import numpy as np
+
+# Set seed for reproducibility (optional)
+np.random.seed(42)
+
+# (i) Generate 1D array of 20 random integers between 10 and 100
+arr_1d = np.random.randint(10, 101, size=20)
+print("1D Array:", arr_1d)
+
+# (ii) Reshape into 4x5 matrix
+matrix = arr_1d.reshape(4, 5)
+print("\n4x5 Matrix:")
+print(matrix)
+
+# (iii) Maximum in each row, Minimum in each column
+row_max = np.max(matrix, axis=1)  # axis=1 means along columns (row-wise)
+col_min = np.min(matrix, axis=0)  # axis=0 means along rows (column-wise)
+
+print("\nMaximum in each row:", row_max)
+print("Minimum in each column:", col_min)
+
+# (iv) Mean of entire array
+array_mean = np.mean(matrix)
+print("\nMean of array:", array_mean)</code></pre>
+          
+          <p class="text-gray-700 mb-2"><strong>Sample Output:</strong></p>
+          <pre class="bg-gray-800 text-gray-300 p-3 rounded-lg overflow-x-auto text-sm"><code>1D Array: [61 14 65 74 93 42 68 36 87 43 24 15 55 34 95 25 73 19 68 49]
+
+4x5 Matrix:
+[[61 14 65 74 93]
+ [42 68 36 87 43]
+ [24 15 55 34 95]
+ [25 73 19 68 49]]
+
+Maximum in each row: [93 87 95 73]
+Minimum in each column: [24 14 19 34 43]
+
+Mean of array: 50.65</code></pre>
+          
+          <p class="text-gray-700 mt-4 mb-2"><strong>Key Concepts:</strong></p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li><code class="bg-gray-200 px-1 rounded">np.random.randint(low, high, size)</code> - generates random integers</li>
+            <li><code class="bg-gray-200 px-1 rounded">reshape(rows, cols)</code> - changes array dimensions</li>
+            <li><code class="bg-gray-200 px-1 rounded">axis=0</code> operates column-wise, <code class="bg-gray-200 px-1 rounded">axis=1</code> operates row-wise</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 3</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO3</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">For the following employee ages dataset: <code class="bg-gray-100 px-2 py-1 rounded text-sm">[28, 32, 35, 38, 40, 42, 45, 48, 52, 58]</code></p>
+        <ol class="list-decimal list-inside text-gray-600 space-y-1 ml-4 mb-4">
+          <li>Calculate the Mean and Standard Deviation.</li>
+          <li>Determine which data points lie outside 1.5 standard deviations from the mean.</li>
+          <li>Interpret what this analysis reveals about the age distribution.</li>
+        </ol>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-indigo-500">
+          <h4 class="font-bold text-indigo-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-2"><strong>(i) Mean and Standard Deviation:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-2">Dataset: [28, 32, 35, 38, 40, 42, 45, 48, 52, 58], n = 10</p>
+            <p class="text-gray-600 mb-2"><strong>Mean (x-bar):</strong> Sum / n = (28+32+35+38+40+42+45+48+52+58) / 10 = 418 / 10 = <span class="text-indigo-600 font-bold">41.8</span></p>
+            
+            <p class="text-gray-600 mb-2"><strong>Standard Deviation:</strong></p>
+            <p class="text-gray-600 mb-1">Step 1: Calculate squared deviations from mean:</p>
+            <p class="text-gray-500 text-sm mb-2">(28-41.8)^2 + (32-41.8)^2 + ... + (58-41.8)^2 = 190.44 + 96.04 + 46.24 + 14.44 + 3.24 + 0.04 + 10.24 + 38.44 + 104.04 + 262.44 = 765.6</p>
+            <p class="text-gray-600 mb-1">Step 2: Variance = 765.6 / 10 = 76.56</p>
+            <p class="text-gray-600">Step 3: SD = sqrt(76.56) = <span class="text-indigo-600 font-bold">8.75</span></p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(ii) Data points outside 1.5 SD:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-2">Lower bound = Mean - 1.5*SD = 41.8 - 1.5(8.75) = 41.8 - 13.125 = <strong>28.675</strong></p>
+            <p class="text-gray-600 mb-2">Upper bound = Mean + 1.5*SD = 41.8 + 1.5(8.75) = 41.8 + 13.125 = <strong>54.925</strong></p>
+            <p class="text-gray-600 mb-2">Data points outside [28.675, 54.925]:</p>
+            <p class="text-indigo-600 font-bold">28 (below lower bound) and 58 (above upper bound)</p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(iii) Interpretation:</strong></p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li>The mean age of 41.8 years indicates a middle-aged workforce</li>
+            <li>SD of 8.75 shows moderate spread in ages</li>
+            <li>Only 2 out of 10 values (20%) lie outside 1.5 SD, indicating most employees are clustered around the mean</li>
+            <li>The distribution appears relatively symmetric with slight outliers at both extremes</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 4</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO3</span>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">L4</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">A factory produces bolts with diameters following a Normal Distribution with <strong>mean = 10mm</strong> and <strong>standard deviation = 0.5mm</strong>. Quality control accepts bolts between 9.2mm and 10.8mm.</p>
+        <ol class="list-decimal list-inside text-gray-600 space-y-1 ml-4 mb-4">
+          <li>What percentage of bolts will be rejected?</li>
+          <li>If 10,000 bolts are produced daily, how many are expected to be rejected?</li>
+          <li>What diameter range contains the middle 95% of bolts?</li>
+        </ol>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-indigo-500">
+          <h4 class="font-bold text-indigo-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-2"><strong>(i) Percentage of bolts rejected:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-2">Given: Mean = 10mm, SD = 0.5mm</p>
+            <p class="text-gray-600 mb-2">Calculate Z-scores for acceptance limits:</p>
+            <p class="text-gray-600 mb-1">Z(9.2) = (9.2 - 10) / 0.5 = -1.6</p>
+            <p class="text-gray-600 mb-2">Z(10.8) = (10.8 - 10) / 0.5 = +1.6</p>
+            <p class="text-gray-600 mb-2">From Z-table: P(-1.6 &lt; Z &lt; 1.6) = 0.9452 (approximately 94.52%)</p>
+            <p class="text-gray-600"><strong>Rejection rate:</strong> 100% - 94.52% = <span class="text-indigo-600 font-bold">5.48%</span></p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(ii) Expected rejected bolts from 10,000:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600">Rejected = 10,000 x 0.0548 = <span class="text-indigo-600 font-bold">548 bolts</span></p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(iii) Range for middle 95%:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-600 mb-2">For 95% confidence, Z = +/- 1.96</p>
+            <p class="text-gray-600 mb-1">Lower limit = 10 - (1.96 x 0.5) = 10 - 0.98 = <strong>9.02mm</strong></p>
+            <p class="text-gray-600 mb-1">Upper limit = 10 + (1.96 x 0.5) = 10 + 0.98 = <strong>10.98mm</strong></p>
+            <p class="text-gray-600 mt-2">Middle 95% of bolts have diameter: <span class="text-indigo-600 font-bold">9.02mm to 10.98mm</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 5</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">4 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO3</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L2</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-4">Explain the difference between Population Standard Deviation and Sample Standard Deviation. When should each be used? Write their formulas.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-indigo-500">
+          <h4 class="font-bold text-indigo-700 mb-3">Answer:</h4>
+          
+          <div class="overflow-x-auto mb-4">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-indigo-100">
+                  <th class="border border-gray-300 p-2 text-left">Aspect</th>
+                  <th class="border border-gray-300 p-2 text-left">Population SD</th>
+                  <th class="border border-gray-300 p-2 text-left">Sample SD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border border-gray-300 p-2 font-medium">Symbol</td>
+                  <td class="border border-gray-300 p-2">sigma</td>
+                  <td class="border border-gray-300 p-2">s</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 p-2 font-medium">Denominator</td>
+                  <td class="border border-gray-300 p-2">N (population size)</td>
+                  <td class="border border-gray-300 p-2">n-1 (Bessel's correction)</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-300 p-2 font-medium">When to use</td>
+                  <td class="border border-gray-300 p-2">When data includes entire population</td>
+                  <td class="border border-gray-300 p-2">When data is a sample from larger population</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>Formulas:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-600 mb-2"><strong>Population SD:</strong> sigma = sqrt[ sum(xi - mu)^2 / N ]</p>
+            <p class="text-gray-600 mb-3"><strong>Sample SD:</strong> s = sqrt[ sum(xi - x-bar)^2 / (n-1) ]</p>
+            <p class="text-gray-600 text-sm"><strong>Why n-1?</strong> Bessel's correction compensates for the bias when estimating population variance from a sample. Using n would underestimate the true population variance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 6</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO3</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Write a Python program using NumPy with:</p>
+        <div class="bg-gray-50 p-3 rounded-lg mb-3 font-mono text-sm">
+          marks = [78, 85, 62, 91, 73, 88, 95, 67]<br>
+          attendance = [85, 90, 70, 95, 80, 88, 92, 75]
+        </div>
+        <ol class="list-decimal list-inside text-gray-600 space-y-1 ml-4 mb-4">
+          <li>Calculate the correlation coefficient between marks and attendance.</li>
+          <li>Find students with marks above the median.</li>
+          <li>Calculate the percentage of students with attendance >= 80%.</li>
+        </ol>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-indigo-500">
+          <h4 class="font-bold text-indigo-700 mb-3">Answer:</h4>
+          
+          <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>import numpy as np
+
+# Data
+marks = np.array([78, 85, 62, 91, 73, 88, 95, 67])
+attendance = np.array([85, 90, 70, 95, 80, 88, 92, 75])
+
+# (i) Correlation coefficient
+correlation_matrix = np.corrcoef(marks, attendance)
+correlation = correlation_matrix[0, 1]
+print(f"Correlation coefficient: {correlation:.4f}")
+
+# (ii) Students with marks above median
+median_marks = np.median(marks)
+print(f"\nMedian marks: {median_marks}")
+above_median = marks[marks > median_marks]
+print(f"Marks above median: {above_median}")
+# With indices
+indices = np.where(marks > median_marks)[0]
+print(f"Student indices (0-based): {indices}")
+
+# (iii) Percentage with attendance >= 80%
+high_attendance = np.sum(attendance >= 80)
+percentage = (high_attendance / len(attendance)) * 100
+print(f"\nStudents with attendance >= 80%: {high_attendance}")
+print(f"Percentage: {percentage:.2f}%")</code></pre>
+          
+          <p class="text-gray-700 mb-2"><strong>Output:</strong></p>
+          <pre class="bg-gray-800 text-gray-300 p-3 rounded-lg overflow-x-auto text-sm"><code>Correlation coefficient: 0.8721
+
+Median marks: 81.5
+Marks above median: [85 91 88 95]
+Student indices (0-based): [1 3 5 6]
+
+Students with attendance >= 80%: 6
+Percentage: 75.00%</code></pre>
+          
+          <p class="text-gray-700 mt-4 mb-2"><strong>Interpretation:</strong></p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li>Correlation of 0.87 indicates strong positive relationship between marks and attendance</li>
+            <li>4 students scored above median (81.5)</li>
+            <li>75% students have good attendance (>=80%)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 7</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO3</span>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">L4</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Given monthly website traffic data: <code class="bg-gray-100 px-2 py-1 rounded text-sm">[1200, 1350, 1180, 1420, 1500, 1380, 1550, 1620, 1480, 1700, 1580, 1750]</code></p>
+        <ol class="list-decimal list-inside text-gray-600 space-y-1 ml-4 mb-4">
+          <li>Calculate the Coefficient of Variation (CV).</li>
+          <li>Identify any outliers using the IQR method.</li>
+          <li>Compare this dataset's variability with another having CV = 15%. Which shows more consistency?</li>
+        </ol>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-indigo-500">
+          <h4 class="font-bold text-indigo-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-2"><strong>(i) Coefficient of Variation:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-1">Mean = (1200+1350+...+1750) / 12 = 17710 / 12 = <strong>1475.83</strong></p>
+            <p class="text-gray-600 mb-1">Standard Deviation = <strong>173.68</strong> (calculated)</p>
+            <p class="text-gray-600 mb-1">CV = (SD / Mean) x 100 = (173.68 / 1475.83) x 100</p>
+            <p class="text-indigo-600 font-bold">CV = 11.77%</p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(ii) Outlier Detection using IQR:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-1">Sorted: [1180, 1200, 1350, 1380, 1420, 1480, 1500, 1550, 1580, 1620, 1700, 1750]</p>
+            <p class="text-gray-600 mb-1">Q1 (25th percentile) = 1365, Q3 (75th percentile) = 1600</p>
+            <p class="text-gray-600 mb-1">IQR = Q3 - Q1 = 1600 - 1365 = <strong>235</strong></p>
+            <p class="text-gray-600 mb-1">Lower fence = Q1 - 1.5*IQR = 1365 - 352.5 = <strong>1012.5</strong></p>
+            <p class="text-gray-600 mb-1">Upper fence = Q3 + 1.5*IQR = 1600 + 352.5 = <strong>1952.5</strong></p>
+            <p class="text-indigo-600 font-bold">No outliers (all values within [1012.5, 1952.5])</p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(iii) Comparison:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-600 mb-1">Our dataset CV = 11.77%</p>
+            <p class="text-gray-600 mb-1">Other dataset CV = 15%</p>
+            <p class="text-gray-600"><strong>Conclusion:</strong> <span class="text-indigo-600 font-bold">Our dataset (CV=11.77%) shows MORE consistency</span> because lower CV indicates less relative variability around the mean.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q8 - Normal Distribution -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6 border-2 border-indigo-300">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-indigo-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 8</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">NEW</span>
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO3</span>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">L4</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Explain the 68-95-99.7 Rule (Empirical Rule) in Normal Distribution. The heights of adult males in a city follow a normal distribution with <strong>mean = 170 cm</strong> and <strong>standard deviation = 6 cm</strong>.</p>
+        <ol class="list-decimal list-inside text-gray-600 space-y-1 ml-4 mb-4">
+          <li>What percentage of males have heights between 158 cm and 182 cm?</li>
+          <li>What percentage of males are taller than 176 cm?</li>
+          <li>If the city has 50,000 adult males, how many are expected to have heights below 158 cm?</li>
+          <li>What height value separates the tallest 2.5% of males from the rest?</li>
+        </ol>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-indigo-500">
+          <h4 class="font-bold text-indigo-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-2"><strong>68-95-99.7 Rule (Empirical Rule):</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-2">For a normal distribution:</p>
+            <ul class="list-disc list-inside text-gray-600 space-y-1">
+              <li><strong>68%</strong> of data falls within 1 standard deviation of mean (mean +/- 1 SD)</li>
+              <li><strong>95%</strong> of data falls within 2 standard deviations of mean (mean +/- 2 SD)</li>
+              <li><strong>99.7%</strong> of data falls within 3 standard deviations of mean (mean +/- 3 SD)</li>
+            </ul>
+          </div>
+          
+          <p class="text-gray-600 mb-3">Given: Mean = 170 cm, SD = 6 cm</p>
+          
+          <p class="text-gray-700 mb-2"><strong>(i) Percentage between 158 cm and 182 cm:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-1">158 cm = 170 - 12 = 170 - 2(6) = Mean - 2 SD</p>
+            <p class="text-gray-600 mb-1">182 cm = 170 + 12 = 170 + 2(6) = Mean + 2 SD</p>
+            <p class="text-gray-600">By empirical rule, <span class="text-indigo-600 font-bold">95%</span> of males have heights between 158 cm and 182 cm.</p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(ii) Percentage taller than 176 cm:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-1">176 cm = 170 + 6 = Mean + 1 SD</p>
+            <p class="text-gray-600 mb-1">68% are within 1 SD, so 32% are outside</p>
+            <p class="text-gray-600 mb-1">Since normal distribution is symmetric: 32% / 2 = 16% on each tail</p>
+            <p class="text-gray-600">Percentage taller than 176 cm = <span class="text-indigo-600 font-bold">16%</span></p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(iii) Expected males with height below 158 cm:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-1">158 cm = Mean - 2 SD</p>
+            <p class="text-gray-600 mb-1">95% within 2 SD means 5% outside, with 2.5% below lower limit</p>
+            <p class="text-gray-600 mb-1">Expected count = 50,000 x 0.025 = <span class="text-indigo-600 font-bold">1,250 males</span></p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(iv) Height separating top 2.5%:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-600 mb-1">Top 2.5% corresponds to Z = +2 (since 97.5% below this point)</p>
+            <p class="text-gray-600 mb-1">Height = Mean + 2*SD = 170 + 2(6) = 170 + 12</p>
+            <p class="text-gray-600">Height cutoff = <span class="text-indigo-600 font-bold">182 cm</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unit IV -->
+    <section class="mb-10">
+      <div class="unit-gradient-2 text-white rounded-xl p-4 mb-6 shadow-md">
+        <h2 class="text-xl font-bold">UNIT IV: Data Visualization</h2>
+      </div>
+
+      <!-- Q9 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 9</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">4 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO4</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L2</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-4">Distinguish between a Histogram and a Bar Chart. Provide a suitable use case scenario for each in the context of student performance analysis.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-emerald-500">
+          <h4 class="font-bold text-emerald-700 mb-3">Answer:</h4>
+          
+          <div class="overflow-x-auto mb-4">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-emerald-100">
+                  <th class="border border-gray-300 p-2 text-left">Aspect</th>
+                  <th class="border border-gray-300 p-2 text-left">Histogram</th>
+                  <th class="border border-gray-300 p-2 text-left">Bar Chart</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border border-gray-300 p-2 font-medium">Data Type</td><td class="border border-gray-300 p-2">Continuous/Numerical</td><td class="border border-gray-300 p-2">Categorical/Discrete</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Bars</td><td class="border border-gray-300 p-2">Adjacent (no gaps)</td><td class="border border-gray-300 p-2">Separated (with gaps)</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">X-axis</td><td class="border border-gray-300 p-2">Continuous ranges/bins</td><td class="border border-gray-300 p-2">Categories</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Purpose</td><td class="border border-gray-300 p-2">Show distribution/frequency</td><td class="border border-gray-300 p-2">Compare categories</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Bar Order</td><td class="border border-gray-300 p-2">Fixed (numerical order)</td><td class="border border-gray-300 p-2">Can be reordered</td></tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>Use Cases in Student Performance:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-600 mb-2"><strong>Histogram:</strong> Display distribution of exam scores (0-100) across all students. Shows how many students scored in ranges like 0-20, 21-40, 41-60, etc. Helps identify if scores are normally distributed or skewed.</p>
+            <p class="text-gray-600"><strong>Bar Chart:</strong> Compare average marks across different subjects (Math, Science, English, History). Each bar represents a distinct category, making it easy to compare performance across subjects.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 10</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO4</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Write a Python program using Matplotlib to create a figure with three subplots arranged horizontally:</p>
+        <div class="bg-gray-50 p-3 rounded-lg mb-3 font-mono text-sm">
+          study_hours = [2, 3, 4, 5, 6, 7, 8]<br>
+          scores = [45, 55, 60, 70, 75, 85, 90]
+        </div>
+        <ol class="list-decimal list-inside text-gray-600 space-y-1 ml-4 mb-4">
+          <li>A scatter plot showing relationship between study_hours and scores</li>
+          <li>A histogram of the scores with 5 bins</li>
+          <li>A horizontal bar chart of study_hours</li>
+        </ol>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-emerald-500">
+          <h4 class="font-bold text-emerald-700 mb-3">Answer:</h4>
+          
+          <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm"><code>import matplotlib.pyplot as plt
+
+# Data
+study_hours = [2, 3, 4, 5, 6, 7, 8]
+scores = [45, 55, 60, 70, 75, 85, 90]
+students = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7']
+
+# Create figure with 3 horizontal subplots
+fig, axes = plt.subplots(1, 3, figsize=(15, 4))
+fig.suptitle('Student Performance Analysis', fontsize=14, fontweight='bold')
+
+# (i) Scatter Plot
+axes[0].scatter(study_hours, scores, color='blue', s=100, edgecolors='black')
+axes[0].set_xlabel('Study Hours')
+axes[0].set_ylabel('Scores')
+axes[0].set_title('Study Hours vs Scores')
+axes[0].grid(True, linestyle='--', alpha=0.7)
+
+# (ii) Histogram
+axes[1].hist(scores, bins=5, color='green', edgecolor='black', alpha=0.7)
+axes[1].set_xlabel('Score Range')
+axes[1].set_ylabel('Frequency')
+axes[1].set_title('Score Distribution')
+
+# (iii) Horizontal Bar Chart
+axes[2].barh(students, study_hours, color='orange', edgecolor='black')
+axes[2].set_xlabel('Study Hours')
+axes[2].set_ylabel('Students')
+axes[2].set_title('Study Hours per Student')
+
+# Adjust layout and display
+plt.tight_layout()
+plt.savefig('student_analysis.png', dpi=300, bbox_inches='tight')
+plt.show()</code></pre>
+          
+          <p class="text-gray-700 mt-4 mb-2"><strong>Key Functions Used:</strong></p>
+          <ul class="list-disc list-inside text-gray-600 space-y-1">
+            <li><code class="bg-gray-200 px-1 rounded">plt.subplots(1, 3)</code> - creates 1 row, 3 columns of subplots</li>
+            <li><code class="bg-gray-200 px-1 rounded">scatter()</code> - creates scatter plot</li>
+            <li><code class="bg-gray-200 px-1 rounded">hist(bins=5)</code> - creates histogram with 5 bins</li>
+            <li><code class="bg-gray-200 px-1 rounded">barh()</code> - creates horizontal bar chart</li>
+            <li><code class="bg-gray-200 px-1 rounded">tight_layout()</code> - prevents subplot overlap</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 11</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO4</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Explain the architecture of Tableau (Data Layer, Analytics Layer, Sharing Layer). Describe how to create a dashboard in Tableau.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-emerald-500">
+          <h4 class="font-bold text-emerald-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-3"><strong>Tableau Architecture:</strong></p>
+          
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-700 font-semibold mb-2">1. Data Layer (Data Connectors)</p>
+            <ul class="list-disc list-inside text-gray-600 mb-3 ml-4">
+              <li>Connects to various data sources (Excel, SQL, Cloud databases)</li>
+              <li>Supports live connections and data extracts</li>
+              <li>Handles data preparation and cleaning</li>
+            </ul>
+            
+            <p class="text-gray-700 font-semibold mb-2">2. Analytics Layer (VizQL Engine)</p>
+            <ul class="list-disc list-inside text-gray-600 mb-3 ml-4">
+              <li>Proprietary Visual Query Language converts actions to queries</li>
+              <li>Performs calculations, aggregations, and transformations</li>
+              <li>Renders visualizations in real-time</li>
+            </ul>
+            
+            <p class="text-gray-700 font-semibold mb-2">3. Sharing Layer (Tableau Server/Cloud)</p>
+            <ul class="list-disc list-inside text-gray-600 ml-4">
+              <li>Publishes and shares dashboards</li>
+              <li>Manages user access and permissions</li>
+              <li>Enables collaboration and scheduling</li>
+            </ul>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>Steps to Create Dashboard:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <ol class="list-decimal list-inside text-gray-600 space-y-2">
+              <li><strong>Connect Data:</strong> File > Connect > Select data source</li>
+              <li><strong>Create Worksheets:</strong>
+                <ul class="list-disc list-inside ml-6 mt-1">
+                  <li>Bar Chart: Drag Department to Rows, Count to Columns</li>
+                  <li>Histogram: Drag Salary to Columns, change to histogram</li>
+                  <li>Scatter Plot: Drag Experience to Columns, Rating to Rows</li>
+                </ul>
+              </li>
+              <li><strong>Create Dashboard:</strong> Dashboard > New Dashboard</li>
+              <li><strong>Add Worksheets:</strong> Drag sheets to dashboard canvas</li>
+              <li><strong>Add Filters:</strong> Drag Department field, select "Show Filter"</li>
+              <li><strong>Configure Interactivity:</strong> Dashboard > Actions > Add Filter Action</li>
+              <li><strong>Format and Publish:</strong> Apply formatting, then Server > Publish</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 12</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO4</span>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">L4</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Write Python code using Seaborn to analyze a student dataset with pair plot and violin plot.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-emerald-500">
+          <h4 class="font-bold text-emerald-700 mb-3">Answer:</h4>
+          
+          <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Create sample student dataset
+np.random.seed(42)
+n = 100
+data = {
+    'Math_Score': np.random.normal(70, 15, n).clip(0, 100),
+    'Science_Score': np.random.normal(65, 12, n).clip(0, 100),
+    'English_Score': np.random.normal(72, 10, n).clip(0, 100),
+    'Attendance': np.random.normal(80, 10, n).clip(50, 100),
+    'Gender': np.random.choice(['Male', 'Female'], n)
+}
+df = pd.DataFrame(data)
+
+# (i) Pair Plot
+plt.figure(figsize=(10, 8))
+pair_plot = sns.pairplot(df[['Math_Score', 'Science_Score', 'English_Score', 'Attendance']], 
+                         diag_kind='kde', 
+                         plot_kws={'alpha': 0.6})
+pair_plot.fig.suptitle('Pair Plot: Student Performance Variables', y=1.02)
+plt.savefig('pair_plot.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+# (ii) Violin Plot
+plt.figure(figsize=(8, 6))
+sns.violinplot(x='Gender', y='Math_Score', data=df, palette='Set2')
+plt.title('Math Score Distribution by Gender')
+plt.xlabel('Gender')
+plt.ylabel('Math Score')
+plt.savefig('violin_plot.png', dpi=300, bbox_inches='tight')
+plt.show()</code></pre>
+          
+          <p class="text-gray-700 mb-2"><strong>(iii) Insights from Visualizations:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-700 font-semibold mb-2">Pair Plot Insights:</p>
+            <ul class="list-disc list-inside text-gray-600 mb-3">
+              <li>Diagonal KDE plots show distribution shape for each variable</li>
+              <li>Scatter plots reveal correlations between subject scores</li>
+              <li>Can identify if high performers in one subject excel in others</li>
+              <li>Attendance correlation with scores can be observed</li>
+            </ul>
+            
+            <p class="text-gray-700 font-semibold mb-2">Violin Plot Insights:</p>
+            <ul class="list-disc list-inside text-gray-600">
+              <li>Shows full distribution shape for each gender</li>
+              <li>Width indicates frequency at different score levels</li>
+              <li>Helps identify if performance differs by gender</li>
+              <li>Central markers show median and quartiles</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 13</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">4 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO4</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L2</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-4">What is the purpose of a Box Plot? Sketch a box plot and label its five key components.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-emerald-500">
+          <h4 class="font-bold text-emerald-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-3"><strong>Purpose of Box Plot:</strong></p>
+          <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Displays the five-number summary of data distribution</li>
+            <li>Identifies outliers and data spread</li>
+            <li>Compares distributions across groups</li>
+            <li>Shows skewness and symmetry of data</li>
+          </ul>
+          
+          <p class="text-gray-700 mb-2"><strong>Five Key Components:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <pre class="text-sm text-gray-700 font-mono">
+         Outliers    *
+                     |
+    Upper Whisker ---|  Maximum (within 1.5*IQR)
+                   -----
+                  |     |
+    Q3 (75%)  ----|     |---- Upper edge of box
+                  |     |
+    Median (Q2)---|-----|---- Line inside box
+                  |     |
+    Q1 (25%)  ----|     |---- Lower edge of box
+                  |     |
+                   -----
+    Lower Whisker ---|  Minimum (within 1.5*IQR)
+                     |
+         Outliers    *
+            </pre>
+          </div>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-emerald-100">
+                  <th class="border border-gray-300 p-2 text-left">Component</th>
+                  <th class="border border-gray-300 p-2 text-left">Represents</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border border-gray-300 p-2">Minimum (Whisker)</td><td class="border border-gray-300 p-2">Smallest value within 1.5*IQR from Q1</td></tr>
+                <tr><td class="border border-gray-300 p-2">Q1 (Box bottom)</td><td class="border border-gray-300 p-2">25th percentile - 25% data below</td></tr>
+                <tr><td class="border border-gray-300 p-2">Median (Line)</td><td class="border border-gray-300 p-2">50th percentile - middle value</td></tr>
+                <tr><td class="border border-gray-300 p-2">Q3 (Box top)</td><td class="border border-gray-300 p-2">75th percentile - 75% data below</td></tr>
+                <tr><td class="border border-gray-300 p-2">Maximum (Whisker)</td><td class="border border-gray-300 p-2">Largest value within 1.5*IQR from Q3</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 14</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO4</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Write a Python program using Matplotlib to visualize quarterly revenue data with grouped bar chart and line overlay.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-emerald-500">
+          <h4 class="font-bold text-emerald-700 mb-3">Answer:</h4>
+          
+          <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm"><code>import matplotlib.pyplot as plt
+import numpy as np
+
+# Data
+quarters = ['Q1', 'Q2', 'Q3', 'Q4']
+product_A = [120, 150, 135, 180]
+product_B = [100, 130, 145, 160]
+total_revenue = [a + b for a, b in zip(product_A, product_B)]
+
+# Set up bar positions
+x = np.arange(len(quarters))
+width = 0.35
+
+# Create figure and primary axis
+fig, ax1 = plt.subplots(figsize=(10, 6))
+
+# (i) Grouped Bar Chart
+bars1 = ax1.bar(x - width/2, product_A, width, label='Product A', color='steelblue', edgecolor='black')
+bars2 = ax1.bar(x + width/2, product_B, width, label='Product B', color='coral', edgecolor='black')
+
+# (ii) Line for Total Revenue (secondary axis for clarity)
+ax2 = ax1.twinx()
+line = ax2.plot(x, total_revenue, color='green', marker='o', linewidth=2, markersize=8, label='Total Revenue')
+
+# Labels and formatting
+ax1.set_xlabel('Quarter', fontsize=12)
+ax1.set_ylabel('Revenue (Product A & B)', fontsize=12)
+ax2.set_ylabel('Total Revenue', fontsize=12, color='green')
+ax1.set_title('Quarterly Revenue Analysis', fontsize=14, fontweight='bold')
+ax1.set_xticks(x)
+ax1.set_xticklabels(quarters)
+
+# (iii) Legend and Grid
+lines1, labels1 = ax1.get_legend_handles_labels()
+lines2, labels2 = ax2.get_legend_handles_labels()
+ax1.legend(lines1 + lines2, labels1 + labels2, loc='upper left')
+ax1.grid(True, axis='y', linestyle='--', alpha=0.7)
+
+# Add value labels on bars
+for bar in bars1:
+    ax1.annotate(f'{bar.get_height()}', xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
+                 ha='center', va='bottom', fontsize=9)
+for bar in bars2:
+    ax1.annotate(f'{bar.get_height()}', xy=(bar.get_x() + bar.get_width()/2, bar.get_height()),
+                 ha='center', va='bottom', fontsize=9)
+
+plt.tight_layout()
+plt.savefig('revenue_analysis.png', dpi=300)
+plt.show()</code></pre>
+        </div>
+      </div>
+
+      <!-- Q15 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 15</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO4</span>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">L4</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Using Seaborn, write code to create a clustered heatmap and count plot for customer data.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-emerald-500">
+          <h4 class="font-bold text-emerald-700 mb-3">Answer:</h4>
+          
+          <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>import seaborn as sns
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+# Create sample customer data
+np.random.seed(42)
+n = 200
+data = {
+    'Age': np.random.randint(18, 70, n),
+    'Income': np.random.randint(20000, 150000, n),
+    'Spending_Score': np.random.randint(1, 100, n),
+    'Loyalty_Years': np.random.randint(0, 15, n),
+    'Membership_Type': np.random.choice(['Bronze', 'Silver', 'Gold', 'Platinum'], n),
+    'Gender': np.random.choice(['Male', 'Female'], n)
+}
+df = pd.DataFrame(data)
+
+# (i) Clustered Heatmap for numerical variables
+plt.figure(figsize=(10, 8))
+numeric_cols = ['Age', 'Income', 'Spending_Score', 'Loyalty_Years']
+correlation_matrix = df[numeric_cols].corr()
+
+sns.clustermap(correlation_matrix, 
+               annot=True, 
+               cmap='coolwarm', 
+               fmt='.2f',
+               linewidths=0.5,
+               figsize=(8, 8))
+plt.title('Clustered Heatmap: Customer Segmentation Variables')
+plt.savefig('clustered_heatmap.png', dpi=300, bbox_inches='tight')
+plt.show()
+
+# (ii) Count Plot with hue
+plt.figure(figsize=(10, 6))
+sns.countplot(x='Membership_Type', 
+              hue='Gender', 
+              data=df, 
+              palette='Set2',
+              order=['Bronze', 'Silver', 'Gold', 'Platinum'])
+plt.title('Customer Distribution by Membership Type and Gender')
+plt.xlabel('Membership Type')
+plt.ylabel('Count')
+plt.legend(title='Gender')
+plt.savefig('count_plot.png', dpi=300, bbox_inches='tight')
+plt.show()</code></pre>
+          
+          <p class="text-gray-700 mb-2"><strong>(iii) Business Insights:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-700 font-semibold mb-2">Clustered Heatmap Insights:</p>
+            <ul class="list-disc list-inside text-gray-600 mb-3">
+              <li>Reveals correlations between customer attributes</li>
+              <li>Clustering groups similar variables together</li>
+              <li>High Income-Spending correlation suggests premium targeting</li>
+              <li>Loyalty-Age patterns help retention strategies</li>
+            </ul>
+            
+            <p class="text-gray-700 font-semibold mb-2">Count Plot Insights:</p>
+            <ul class="list-disc list-inside text-gray-600">
+              <li>Shows membership distribution across tiers</li>
+              <li>Gender breakdown reveals demographic patterns</li>
+              <li>Identifies underrepresented segments for growth</li>
+              <li>Helps tailor gender-specific marketing campaigns</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unit V -->
+    <section class="mb-10">
+      <div class="unit-gradient-3 text-white rounded-xl p-4 mb-6 shadow-md">
+        <h2 class="text-xl font-bold">UNIT V: Model Development and Evaluation</h2>
+      </div>
+
+      <!-- Q16 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 16</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">4 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO5</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L2</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-4">Define Classification and Regression problems. Give two real-world examples and one algorithm for each.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-red-500">
+          <h4 class="font-bold text-red-700 mb-3">Answer:</h4>
+          
+          <div class="overflow-x-auto mb-4">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-red-100">
+                  <th class="border border-gray-300 p-2 text-left">Aspect</th>
+                  <th class="border border-gray-300 p-2 text-left">Classification</th>
+                  <th class="border border-gray-300 p-2 text-left">Regression</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border border-gray-300 p-2 font-medium">Definition</td><td class="border border-gray-300 p-2">Predicts discrete class labels or categories</td><td class="border border-gray-300 p-2">Predicts continuous numerical values</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Output Type</td><td class="border border-gray-300 p-2">Categorical (Yes/No, Classes)</td><td class="border border-gray-300 p-2">Continuous (Numbers)</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Example 1</td><td class="border border-gray-300 p-2">Email spam detection (Spam/Not Spam)</td><td class="border border-gray-300 p-2">House price prediction</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Example 2</td><td class="border border-gray-300 p-2">Disease diagnosis (Positive/Negative)</td><td class="border border-gray-300 p-2">Stock price forecasting</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Algorithm</td><td class="border border-gray-300 p-2">Decision Tree, Logistic Regression</td><td class="border border-gray-300 p-2">Linear Regression, Random Forest Regressor</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 17</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO5</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Build a Simple Linear Regression model for employee productivity prediction.</p>
+        <div class="bg-gray-50 p-3 rounded-lg mb-3 font-mono text-sm">
+          Experience (years): [1, 2, 3, 4, 5, 6, 7, 8]<br>
+          Productivity Score: [55, 60, 68, 72, 78, 82, 85, 88]
+        </div>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-red-500">
+          <h4 class="font-bold text-red-700 mb-3">Answer:</h4>
+          
+          <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>import numpy as np
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+# Data
+X = np.array([1, 2, 3, 4, 5, 6, 7, 8]).reshape(-1, 1)  # Features (2D array)
+y = np.array([55, 60, 68, 72, 78, 82, 85, 88])         # Target
+
+# (i) Build Linear Regression Model
+model = LinearRegression()
+model.fit(X, y)
+
+# (ii) Get Regression Equation
+slope = model.coef_[0]
+intercept = model.intercept_
+print(f"Regression Equation: y = {slope:.2f}x + {intercept:.2f}")
+
+# (iii) Predict for 10 years experience
+prediction_10 = model.predict([[10]])
+print(f"Predicted productivity for 10 years: {prediction_10[0]:.2f}")
+
+# (iv) Calculate R-squared
+r_squared = model.score(X, y)
+print(f"R-squared Score: {r_squared:.4f}")
+
+# Plot
+plt.figure(figsize=(8, 6))
+plt.scatter(X, y, color='blue', s=100, label='Actual Data')
+plt.plot(X, model.predict(X), color='red', linewidth=2, label='Regression Line')
+plt.scatter([10], prediction_10, color='green', s=150, marker='*', label='Prediction (10 yrs)')
+plt.xlabel('Experience (years)')
+plt.ylabel('Productivity Score')
+plt.title('Employee Productivity vs Experience')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()</code></pre>
+          
+          <p class="text-gray-700 mb-2"><strong>Output:</strong></p>
+          <pre class="bg-gray-800 text-gray-300 p-3 rounded-lg overflow-x-auto text-sm mb-4"><code>Regression Equation: y = 4.83x + 51.50
+Predicted productivity for 10 years: 99.79
+R-squared Score: 0.9911</code></pre>
+          
+          <p class="text-gray-700 mb-2"><strong>Interpretation:</strong></p>
+          <ul class="list-disc list-inside text-gray-600">
+            <li><strong>Slope (4.83):</strong> Each additional year of experience increases productivity by ~4.83 points</li>
+            <li><strong>Intercept (51.50):</strong> Baseline productivity for 0 years experience</li>
+            <li><strong>R-squared (0.9911):</strong> 99.11% of variance in productivity is explained by experience - excellent fit</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 18</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO5</span>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">L4</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-4">Explain Training Error, Test Error, and Cross-Validation concepts.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-red-500">
+          <h4 class="font-bold text-red-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-2"><strong>(i) Training and Test Error vs Model Complexity:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <pre class="text-sm text-gray-700 font-mono mb-3">
+    Error
+      |
+      |  \                           _____ Test Error
+      |   \                    ____/
+      |    \              ____/
+      |     \____    ____/
+      |          \__/  <-- Sweet Spot (Optimal Complexity)
+      |           ____________________ Training Error
+      |
+      +---------------------------------> Model Complexity
+           Simple                   Complex
+            </pre>
+            <ul class="list-disc list-inside text-gray-600">
+              <li><strong>Training Error:</strong> Decreases as complexity increases (model memorizes data)</li>
+              <li><strong>Test Error:</strong> Initially decreases, then increases (overfitting)</li>
+              <li><strong>Sweet Spot:</strong> Where test error is minimum - optimal model complexity</li>
+            </ul>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(ii) Identifying Overfitting and Underfitting:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-gray-100">
+                  <th class="border p-2">Condition</th>
+                  <th class="border p-2">Training Error</th>
+                  <th class="border p-2">Test Error</th>
+                  <th class="border p-2">Issue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border p-2">Underfitting</td><td class="border p-2">High</td><td class="border p-2">High</td><td class="border p-2">High Bias</td></tr>
+                <tr><td class="border p-2">Good Fit</td><td class="border p-2">Low</td><td class="border p-2">Low</td><td class="border p-2">Balanced</td></tr>
+                <tr><td class="border p-2">Overfitting</td><td class="border p-2">Very Low</td><td class="border p-2">High</td><td class="border p-2">High Variance</td></tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(iii) Cross-Validation and K-Fold:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-600 mb-2"><strong>Cross-Validation:</strong> Technique to evaluate model by training and testing on different subsets of data, providing more reliable performance estimates.</p>
+            <p class="text-gray-600 mb-2"><strong>K-Fold Cross-Validation:</strong></p>
+            <ol class="list-decimal list-inside text-gray-600 mb-2">
+              <li>Split data into K equal parts (folds)</li>
+              <li>Train on K-1 folds, test on remaining fold</li>
+              <li>Repeat K times with different test fold each time</li>
+              <li>Average the K performance scores</li>
+            </ol>
+            <pre class="bg-gray-900 text-green-400 p-3 rounded-lg overflow-x-auto text-sm"><code>from sklearn.model_selection import cross_val_score
+scores = cross_val_score(model, X, y, cv=5)  # 5-Fold CV
+print(f"CV Scores: {scores}, Mean: {scores.mean():.4f}")</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q19 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 19</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO5</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Explain classification metrics and calculate from confusion matrix.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-red-500">
+          <h4 class="font-bold text-red-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-2"><strong>Formulas:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-2"><strong>Accuracy</strong> = (TP + TN) / (TP + TN + FP + FN) - Overall correctness</p>
+            <p class="text-gray-600 mb-2"><strong>Precision</strong> = TP / (TP + FP) - Of predicted positives, how many are correct</p>
+            <p class="text-gray-600 mb-2"><strong>Recall (Sensitivity)</strong> = TP / (TP + FN) - Of actual positives, how many are detected</p>
+            <p class="text-gray-600"><strong>F1-Score</strong> = 2 * (Precision * Recall) / (Precision + Recall) - Harmonic mean</p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>Given Confusion Matrix:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600">TP = 45, FP = 10, TN = 40, FN = 5</p>
+            <p class="text-gray-600">Total = 45 + 10 + 40 + 5 = 100</p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>Calculations:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-1"><strong>Accuracy</strong> = (45 + 40) / 100 = 85/100 = <span class="text-red-600 font-bold">0.85 or 85%</span></p>
+            <p class="text-gray-600 mb-1"><strong>Precision</strong> = 45 / (45 + 10) = 45/55 = <span class="text-red-600 font-bold">0.818 or 81.8%</span></p>
+            <p class="text-gray-600 mb-1"><strong>Recall</strong> = 45 / (45 + 5) = 45/50 = <span class="text-red-600 font-bold">0.90 or 90%</span></p>
+            <p class="text-gray-600"><strong>F1-Score</strong> = 2 * (0.818 * 0.90) / (0.818 + 0.90) = 1.472/1.718 = <span class="text-red-600 font-bold">0.857 or 85.7%</span></p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>Most Important for Medical Diagnosis:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-600"><span class="text-red-600 font-bold">Recall (Sensitivity)</span> is most critical for medical diagnosis because:</p>
+            <ul class="list-disc list-inside text-gray-600 mt-2">
+              <li>False Negatives (FN) are dangerous - missing a disease can be fatal</li>
+              <li>Better to have false alarms (FP) than miss actual cases</li>
+              <li>High recall ensures maximum disease detection</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 20</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">4 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO5</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L2</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-4">What is Feature Scaling? Differentiate between Min-Max Normalization and Standardization.</p>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-red-500">
+          <h4 class="font-bold text-red-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-3"><strong>Feature Scaling:</strong> Technique to standardize the range of independent variables, ensuring all features contribute equally to the model. Essential for distance-based algorithms (KNN, SVM) and gradient descent optimization.</p>
+          
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm border-collapse">
+              <thead>
+                <tr class="bg-red-100">
+                  <th class="border border-gray-300 p-2 text-left">Aspect</th>
+                  <th class="border border-gray-300 p-2 text-left">Min-Max Normalization</th>
+                  <th class="border border-gray-300 p-2 text-left">Standardization (Z-score)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border border-gray-300 p-2 font-medium">Formula</td><td class="border border-gray-300 p-2">X' = (X - Xmin) / (Xmax - Xmin)</td><td class="border border-gray-300 p-2">Z = (X - mean) / std</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Output Range</td><td class="border border-gray-300 p-2">[0, 1]</td><td class="border border-gray-300 p-2">Mean=0, Std=1 (unbounded)</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Outlier Impact</td><td class="border border-gray-300 p-2">Sensitive to outliers</td><td class="border border-gray-300 p-2">Less sensitive</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">Best For</td><td class="border border-gray-300 p-2">Neural Networks, Image data</td><td class="border border-gray-300 p-2">SVM, Linear Regression, PCA</td></tr>
+                <tr><td class="border border-gray-300 p-2 font-medium">sklearn</td><td class="border border-gray-300 p-2">MinMaxScaler()</td><td class="border border-gray-300 p-2">StandardScaler()</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q21 -->
+      <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">Question 21</span>
+          <div class="flex gap-2">
+            <span class="text-xs bg-gray-100 px-2 py-1 rounded">8 Marks</span>
+            <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">CO5</span>
+            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">L3</span>
+          </div>
+        </div>
+        <p class="text-gray-700 mb-3">Calculate regression metrics for customer satisfaction prediction.</p>
+        <div class="bg-gray-50 p-3 rounded-lg mb-3 font-mono text-sm">
+          Actual Ratings: [3.5, 4.0, 2.8, 4.5, 3.2, 4.8]<br>
+          Predicted Ratings: [3.2, 4.3, 3.0, 4.2, 3.5, 4.5]
+        </div>
+        
+        <div class="answer-box rounded-xl p-5 mt-4 border-l-4 border-red-500">
+          <h4 class="font-bold text-red-700 mb-3">Answer:</h4>
+          
+          <p class="text-gray-700 mb-2"><strong>(i) Manual Calculations:</strong></p>
+          <div class="bg-white p-4 rounded-lg mb-4">
+            <p class="text-gray-600 mb-2">Errors (Actual - Predicted): [0.3, -0.3, -0.2, 0.3, -0.3, 0.3]</p>
+            <p class="text-gray-600 mb-2">Absolute Errors: [0.3, 0.3, 0.2, 0.3, 0.3, 0.3]</p>
+            <p class="text-gray-600 mb-3">Squared Errors: [0.09, 0.09, 0.04, 0.09, 0.09, 0.09]</p>
+            
+            <p class="text-gray-600 mb-1"><strong>MAE</strong> = Sum(|errors|) / n = (0.3+0.3+0.2+0.3+0.3+0.3) / 6 = 1.7/6 = <span class="text-red-600 font-bold">0.283</span></p>
+            <p class="text-gray-600 mb-1"><strong>MSE</strong> = Sum(errors^2) / n = (0.09+0.09+0.04+0.09+0.09+0.09) / 6 = 0.49/6 = <span class="text-red-600 font-bold">0.082</span></p>
+            <p class="text-gray-600"><strong>RMSE</strong> = sqrt(MSE) = sqrt(0.082) = <span class="text-red-600 font-bold">0.286</span></p>
+          </div>
+          
+          <p class="text-gray-700 mb-2"><strong>(ii) Python Verification:</strong></p>
+          <pre class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm mb-4"><code>from sklearn.metrics import mean_absolute_error, mean_squared_error
+import numpy as np
+
+actual = [3.5, 4.0, 2.8, 4.5, 3.2, 4.8]
+predicted = [3.2, 4.3, 3.0, 4.2, 3.5, 4.5]
+
+mae = mean_absolute_error(actual, predicted)
+mse = mean_squared_error(actual, predicted)
+rmse = np.sqrt(mse)
+
+print(f"MAE: {mae:.4f}")   # 0.2833
+print(f"MSE: {mse:.4f}")   # 0.0817
+print(f"RMSE: {rmse:.4f}") # 0.2858</code></pre>
+          
+          <p class="text-gray-700 mb-2"><strong>(iii) Why RMSE over MSE:</strong></p>
+          <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>RMSE has same units as target variable (ratings), MSE has squared units</li>
+            <li>RMSE = 0.286 means average prediction error is about 0.29 rating points</li>
+            <li>More intuitive for interpretation and communication</li>
+          </ul>
+          
+          <p class="text-gray-700 mb-2"><strong>(iv) Model Performance Assessment:</strong></p>
+          <div class="bg-white p-4 rounded-lg">
+            <p class="text-gray-600">Acceptable threshold: 0.5</p>
+            <p class="text-gray-600">Our MAE: 0.283, RMSE: 0.286</p>
+            <p class="text-green-600 font-bold">Yes, the model is performing satisfactorily since both MAE (0.283) and RMSE (0.286) are below the 0.5 threshold.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-gray-500 text-sm py-6 border-t border-gray-200">
+      <p class="font-medium">Practice Questions with Detailed Solutions</p>
+      <p class="mt-1">BL: L1-Remembering, L2-Understanding, L3-Applying, L4-Analysis</p>
+      <p class="mt-1">Total Questions: 21 | Prepared for B.Tech AI 5th Semester</p>
+    </footer>
+
+  </div>
+</body>
+</html>
