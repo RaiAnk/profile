@@ -1,0 +1,2672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning: Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .overview-box {
+            background: #faf5ff;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 5px solid #0891b2;
+        }
+        
+        .overview-box h2 {
+            color: #0891b2;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+        
+        .big-picture {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        section {
+            margin-bottom: 50px;
+        }
+        
+        h2 {
+            color: #0891b2;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #7c3aed;
+        }
+        
+        h3 {
+            color: #0e7490;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .definition {
+            background: #cffafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #06b6d4;
+        }
+        
+        .definition strong {
+            color: #0e7490;
+        }
+        
+        .simple-explanation {
+            background: #fef3c7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .simple-explanation-title {
+            color: #d97706;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .example {
+            background: #fff7ed;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #fb923c;
+        }
+        
+        .example-title {
+            color: #ea580c;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .code-box {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            border-left: 4px solid #10b981;
+            position: relative;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .copy-button:hover {
+            background: #059669;
+            transform: scale(1.05);
+        }
+
+        .copy-button:active {
+            transform: scale(0.95);
+        }
+
+        .copy-button.copied {
+            background: #3b82f6;
+        }
+
+        .copy-icon {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .code-box pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+        
+        .code-title {
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        
+        .case-study {
+            background: #fce7f3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #ec4899;
+        }
+        
+        .case-study-title {
+            color: #be185d;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        
+        .analogy-box {
+            background: #fef9c3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #eab308;
+        }
+        
+        .analogy-box strong {
+            color: #a16207;
+        }
+        
+        .key-points {
+            background: #dbeafe;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .key-points ul {
+            margin-left: 20px;
+        }
+        
+        .key-points li {
+            margin: 10px 0;
+        }
+        
+        .warning-box {
+            background: #dbeafe;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ef4444;
+            margin: 20px 0;
+        }
+        
+        .success-box {
+            background: #f0fdf4;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #22c55e;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        th {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        tr:hover {
+            background: #f3e8ff;
+        }
+        
+        .highlight {
+            background: #fef08a;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        .process-flow {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .process-arrow {
+            font-size: 2em;
+            color: #7c3aed;
+            margin: 10px 0;
+        }
+        
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-item h4 {
+            color: #0891b2;
+            margin-top: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .visualization-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .visualization-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .visualization-title {
+            color: #0891b2;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Machine Learning</h1>
+            <p>Model Development and Evaluation - A Complete Guide</p>
+        </header>
+        
+        <div class="content">
+            <!-- Learning Objectives -->
+            <div class="success-box" style="border-left: 4px solid #7c3aed; background: #f3e8ff;">
+                <h2 style="color: #7c3aed; margin-bottom: 20px;">🎯 Learning Objectives</h2>
+                <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>By the end of this unit, you will be able to:</strong></p>
+                <ul style="margin-left: 20px; font-size: 1.05em; line-height: 2;">
+                    <li>☐ <strong>Define</strong> and differentiate between supervised and unsupervised learning with real-world examples</li>
+                    <li>☐ <strong>Implement</strong> linear regression both from scratch (using mathematics) and with scikit-learn</li>
+                    <li>☐ <strong>Create and interpret</strong> four essential model visualization plots (regression line, residuals, actual vs predicted, distribution)</li>
+                    <li>☐ <strong>Calculate</strong> performance metrics (R², MSE, RMSE, MAE) manually and explain their significance</li>
+                    <li>☐ <strong>Diagnose</strong> overfitting and underfitting using learning curves and train-test error gaps</li>
+                    <li>☐ <strong>Select</strong> the best model using cross-validation and performance metrics</li>
+                    <li>☐ <strong>Make</strong> data-driven predictions and decisions based on model output</li>
+                </ul>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="key-points" style="background: #fff7ed; border-left: 4px solid #f59e0b;">
+                <h3 style="color: #ea580c;">📚 Prerequisites & Required Tools</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div>
+                        <h4 style="color: #ea580c; margin-top: 0;">Required Knowledge:</h4>
+                        <ul>
+                            <li>Python basics (variables, loops, functions)</li>
+                            <li>NumPy arrays and basic operations</li>
+                            <li>Basic statistics (mean, variance, standard deviation)</li>
+                            <li>Coordinate geometry (understanding y = mx + b)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #ea580c; margin-top: 0;">Required Tools:</h4>
+                        <ul>
+                            <li>Python 3.7 or higher</li>
+                            <li>Libraries: numpy, pandas, scikit-learn, matplotlib</li>
+                            <li><strong>Installation:</strong></li>
+                        </ul>
+                        <div class="code-box" style="margin-top: 10px; padding: 10px; font-size: 0.85em;">
+                            <pre>pip install numpy pandas scikit-learn matplotlib</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Section -->
+            <div class="overview-box">
+                <h2>🎯 Overview: Understanding Machine Learning</h2>
+                
+                <div class="big-picture">
+                    <h3 style="color: #7c3aed; border: none; margin-top: 0;">What is Machine Learning?</h3>
+                    <p style="font-size: 1.1em;"><strong>Machine Learning (ML)</strong> is a branch of Artificial Intelligence that enables computers to <span class="highlight">learn from data without being explicitly programmed</span>. Instead of writing specific rules for every scenario, we train models to discover patterns and make predictions.</p>
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Think of it Like Teaching a Child</div>
+                    <p><strong>Traditional Programming:</strong> You give exact instructions. "If you see a red light, stop. If you see a green light, go."</p>
+                    <p style="margin-top: 10px;"><strong>Machine Learning:</strong> You show examples. Show 1000 pictures of cats and dogs. The child learns to identify patterns and can recognize new cats and dogs they've never seen before!</p>
+                </div>
+
+                <div class="process-flow">
+                    <h3 style="color: #7c3aed; border: none; margin-top: 0;">The Machine Learning Pipeline</h3>
+                    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 20px 0;">
+                        <div style="background: #ddd6fe; padding: 15px; border-radius: 8px; flex: 1; min-width: 120px;">
+                            <strong>Step 1</strong><br>Collect Data
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #dbeafe; padding: 15px; border-radius: 8px; flex: 1; min-width: 120px;">
+                            <strong>Step 2</strong><br>Prepare Data
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #dcfce7; padding: 15px; border-radius: 8px; flex: 1; min-width: 120px;">
+                            <strong>Step 3</strong><br>Train Model
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fef3c7; padding: 15px; border-radius: 8px; flex: 1; min-width: 120px;">
+                            <strong>Step 4</strong><br>Evaluate Model
+                        </div>
+                        <div class="process-arrow">→</div>
+                        <div style="background: #fce7f3; padding: 15px; border-radius: 8px; flex: 1; min-width: 120px;">
+                            <strong>Step 5</strong><br>Make Predictions
+                        </div>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h4>📚 Key Concepts in This Unit:</h4>
+                    <ul>
+                        <li><strong>Supervised Learning:</strong> Learning from labeled data (we know the answers)</li>
+                        <li><strong>Unsupervised Learning:</strong> Finding patterns in unlabeled data (no answers given)</li>
+                        <li><strong>Linear Regression:</strong> Predicting continuous values (like house prices)</li>
+                        <li><strong>Model Evaluation:</strong> Measuring how well our model performs</li>
+                        <li><strong>Overfitting & Underfitting:</strong> Common problems in model training</li>
+                    </ul>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Machine Learning Pipeline Visualization</div>
+                    <img src="unit5_assets/ml_pipeline.png" alt="ML Pipeline Flowchart">
+                </div>
+            </div>
+
+            <!-- Supervised vs Unsupervised -->
+            <section id="learning-types">
+                <h2>📊 Supervised vs Unsupervised Learning</h2>
+                
+                <div class="definition">
+                    <strong>Supervised Learning:</strong> The model learns from labeled training data. Each example has input features and a known output (label). The model learns to map inputs to outputs.
+                    <br><br>
+                    <strong>Unsupervised Learning:</strong> The model learns from unlabeled data. It finds hidden patterns or structures without being told what to look for.
+                </div>
+
+                <div class="comparison-box">
+                    <div class="comparison-item">
+                        <h4>🎯 Supervised Learning</h4>
+                        <p><strong>Examples:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Predicting house prices</li>
+                            <li>Email spam detection</li>
+                            <li>Image classification</li>
+                            <li>Disease diagnosis</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Types:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li><strong>Regression:</strong> Predict numbers (price, temperature)</li>
+                            <li><strong>Classification:</strong> Predict categories (spam/not spam)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h4>🔍 Unsupervised Learning</h4>
+                        <p><strong>Examples:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Customer segmentation</li>
+                            <li>Anomaly detection</li>
+                            <li>Market basket analysis</li>
+                            <li>Image compression</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Types:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li><strong>Clustering:</strong> Group similar items</li>
+                            <li><strong>Dimensionality Reduction:</strong> Simplify data</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🎓 Learning Analogy:</strong><br>
+                    <strong>Supervised Learning:</strong> Like studying with answer keys. You practice problems and check if your answers match the correct ones.<br><br>
+                    <strong>Unsupervised Learning:</strong> Like organizing your closet. No one tells you how to do it, but you naturally group similar items together (shirts with shirts, pants with pants).
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">🔍 Supervised vs Unsupervised Learning</div>
+                    <img src="unit5_assets/supervised_vs_unsupervised.png" alt="Supervised vs Unsupervised Learning Comparison">
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">🎯 Decision Guide: Choosing Your Learning Type</div>
+                    <img src="unit5_assets/learning_type_decision_tree.png" alt="Learning Type Decision Tree">
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📚 Real-World Example: Student Performance</div>
+                    <p><strong>Supervised Learning Scenario:</strong> Predict student final exam scores based on study hours, attendance, and assignment scores. We have historical data with known outcomes.</p>
+                    <p style="margin-top: 10px;"><strong>Unsupervised Learning Scenario:</strong> Group students into different learning style categories based on their behavior patterns, without predefined categories.</p>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 1: Simple Supervised Learning (Classification)</div>
+                    <pre>
+# Import libraries
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+
+# Sample data: [study_hours, attendance_%] -> pass/fail
+X = np.array([
+    [2, 60], [3, 70], [4, 80], [5, 85], [6, 90],
+    [1, 50], [2, 55], [7, 95], [8, 98], [3, 65]
+])
+y = np.array([0, 0, 1, 1, 1, 0, 0, 1, 1, 0])  # 0=Fail, 1=Pass
+
+# Split data: 80% training, 20% testing
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Create and train model
+model = KNeighborsClassifier(n_neighbors=3)
+model.fit(X_train, y_train)
+
+# Make predictions
+predictions = model.predict(X_test)
+
+# Evaluate
+accuracy = accuracy_score(y_test, predictions)
+print(f"Model Accuracy: {accuracy * 100:.2f}%")
+
+# Predict for new student
+new_student = [[5, 88]]
+result = model.predict(new_student)
+print(f"Prediction: {'Pass' if result[0] == 1 else 'Fail'}")
+                    </pre>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 2: Simple Unsupervised Learning (Clustering)</div>
+                    <pre>
+# Import libraries
+import numpy as np
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
+
+# Sample data: Customer spending patterns [frequency, amount]
+X = np.array([
+    [2, 1000], [3, 1200], [2, 900],      # Low spenders
+    [8, 5000], [9, 5500], [7, 4800],     # High spenders
+    [5, 3000], [4, 2800], [6, 3200]      # Medium spenders
+])
+
+# Create clustering model (3 groups)
+kmeans = KMeans(n_clusters=3, random_state=42)
+clusters = kmeans.fit_predict(X)
+
+# Print results
+print("Customer Group Assignments:", clusters)
+print("\nCluster Centers:")
+print(kmeans.cluster_centers_)
+
+# Assign labels to clusters
+for i, center in enumerate(kmeans.cluster_centers_):
+    freq, amount = center
+    if amount < 2000:
+        label = "Low Spenders"
+    elif amount < 4000:
+        label = "Medium Spenders"
+    else:
+        label = "High Spenders"
+    print(f"Cluster {i}: {label} (Avg: {freq:.1f} visits, ${amount:.0f})")
+                    </pre>
+                </div>
+            </section>
+
+            <!-- Linear Regression -->
+            <section id="linear-regression">
+                <h2>📈 Linear Regression: Predicting Continuous Values</h2>
+                
+                <div class="definition">
+                    <strong>Linear Regression</strong> is a supervised learning algorithm that models the relationship between input features and a continuous output value. It finds the best-fitting straight line (or hyperplane) through the data.
+                    <br><br>
+                    <strong>The Goal:</strong> Find the line that minimizes the distance between predicted and actual values.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>📏 Ruler Analogy:</strong> Imagine plotting points on graph paper showing study hours vs exam scores. Linear regression is like placing a ruler to draw the line that comes closest to all points. Once you have that line, you can predict scores for any number of study hours!
+                </div>
+
+                <h3>The Mathematics Behind Linear Regression</h3>
+
+                <div class="key-points">
+                    <h4>Simple Linear Regression (One Input Variable):</h4>
+                    <p style="font-size: 1.2em; margin: 10px 0;"><strong>y = mx + b</strong></p>
+                    <ul>
+                        <li><strong>y:</strong> Output (what we predict)</li>
+                        <li><strong>x:</strong> Input feature</li>
+                        <li><strong>m:</strong> Slope (how steep the line is)</li>
+                        <li><strong>b:</strong> Y-intercept (where line crosses y-axis)</li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px;">Multiple Linear Regression (Many Input Variables):</h4>
+                    <p style="font-size: 1.2em; margin: 10px 0;"><strong>y = b₀ + b₁x₁ + b₂x₂ + ... + bₙxₙ</strong></p>
+                    <ul>
+                        <li><strong>b₀:</strong> Intercept</li>
+                        <li><strong>b₁, b₂, ..., bₙ:</strong> Coefficients for each feature</li>
+                        <li><strong>x₁, x₂, ..., xₙ:</strong> Input features</li>
+                    </ul>
+                </div>
+
+                <div class="definition" style="background: #fef3c7; border-left: 4px solid #f59e0b;">
+                    <h4 style="color: #d97706; margin-top: 0;">📐 How Do We Find m and b?</h4>
+                    <p>Linear regression finds the best values for slope (m) and intercept (b) by minimizing the <strong>Mean Squared Error (MSE)</strong> - the average of squared differences between actual and predicted values.</p>
+
+                    <div style="background: white; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                        <h4 style="color: #0891b2; margin-top: 0;">Formulas for Calculation:</h4>
+                        <p style="font-size: 1.1em; margin: 10px 0;"><strong>Slope (m):</strong></p>
+                        <p style="font-size: 1.1em; margin-left: 20px;">m = Σ((xᵢ - x̄)(yᵢ - ȳ)) / Σ((xᵢ - x̄)²)</p>
+
+                        <p style="font-size: 1.1em; margin: 15px 0 10px 0;"><strong>Intercept (b):</strong></p>
+                        <p style="font-size: 1.1em; margin-left: 20px;">b = ȳ - m × x̄</p>
+
+                        <p style="margin-top: 15px;"><strong>Where:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>xᵢ, yᵢ = individual data points</li>
+                            <li>x̄, ȳ = means (averages) of x and y</li>
+                            <li>Σ = summation (add up all values)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="example" style="background: #e0f2fe; border-left: 4px solid #0891b2;">
+                    <div class="example-title" style="color: #0369a1;">📝 Step-by-Step Manual Calculation Example</div>
+                    <p><strong>Problem:</strong> Predict exam scores based on study hours using these 5 students' data:</p>
+
+                    <table style="max-width: 400px; margin: 15px 0;">
+                        <thead>
+                            <tr><th>Study Hours (x)</th><th>Exam Score (y)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>50</td></tr>
+                            <tr><td>2</td><td>55</td></tr>
+                            <tr><td>3</td><td>65</td></tr>
+                            <tr><td>4</td><td>70</td></tr>
+                            <tr><td>5</td><td>75</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div style="background: white; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                        <h4 style="color: #0891b2; margin-top: 0;">Step 1: Calculate Means</h4>
+                        <p>x̄ = (1 + 2 + 3 + 4 + 5) / 5 = 15 / 5 = <strong>3</strong></p>
+                        <p>ȳ = (50 + 55 + 65 + 70 + 75) / 5 = 315 / 5 = <strong>63</strong></p>
+
+                        <h4 style="color: #0891b2; margin-top: 20px;">Step 2: Calculate Slope (m)</h4>
+                        <p>We need: Σ((xᵢ - x̄)(yᵢ - ȳ)) and Σ((xᵢ - x̄)²)</p>
+
+                        <table style="font-size: 0.9em; margin: 10px 0;">
+                            <thead>
+                                <tr>
+                                    <th>xᵢ</th><th>yᵢ</th><th>(xᵢ - x̄)</th><th>(yᵢ - ȳ)</th>
+                                    <th>(xᵢ - x̄)(yᵢ - ȳ)</th><th>(xᵢ - x̄)²</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td>50</td><td>-2</td><td>-13</td><td>26</td><td>4</td></tr>
+                                <tr><td>2</td><td>55</td><td>-1</td><td>-8</td><td>8</td><td>1</td></tr>
+                                <tr><td>3</td><td>65</td><td>0</td><td>2</td><td>0</td><td>0</td></tr>
+                                <tr><td>4</td><td>70</td><td>1</td><td>7</td><td>7</td><td>1</td></tr>
+                                <tr><td>5</td><td>75</td><td>2</td><td>12</td><td>24</td><td>4</td></tr>
+                                <tr style="background: #fef3c7; font-weight: bold;">
+                                    <td colspan="4">Σ (Sum):</td><td>65</td><td>10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <p style="font-size: 1.1em; margin: 15px 0;">
+                            <strong>m = 65 / 10 = 6.5</strong>
+                        </p>
+
+                        <h4 style="color: #0891b2; margin-top: 20px;">Step 3: Calculate Intercept (b)</h4>
+                        <p>b = ȳ - m × x̄</p>
+                        <p>b = 63 - 6.5 × 3</p>
+                        <p>b = 63 - 19.5</p>
+                        <p style="font-size: 1.1em;"><strong>b = 43.5</strong></p>
+
+                        <h4 style="color: #0891b2; margin-top: 20px;">Step 4: Final Equation</h4>
+                        <div style="background: #dcfce7; padding: 15px; border-radius: 5px; border: 2px solid #10b981;">
+                            <p style="font-size: 1.3em; text-align: center; margin: 0;">
+                                <strong>Score = 6.5 × Hours + 43.5</strong>
+                            </p>
+                        </div>
+
+                        <h4 style="color: #0891b2; margin-top: 20px;">Step 5: Make a Prediction</h4>
+                        <p><strong>Question:</strong> If a student studies for 3.5 hours, what score can they expect?</p>
+                        <p>Score = 6.5 × 3.5 + 43.5</p>
+                        <p>Score = 22.75 + 43.5</p>
+                        <p style="font-size: 1.2em; color: #10b981;"><strong>Score ≈ 66.25</strong></p>
+
+                        <p style="margin-top: 15px; font-style: italic;">
+                            <strong>Interpretation:</strong> Each additional hour of study increases the expected score by 6.5 points. Even with 0 hours of study, the baseline score is 43.5.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Linear Regression Step-by-Step Process</div>
+                    <img src="unit5_assets/linear_regression_steps.png" alt="Linear Regression Step by Step">
+                </div>
+
+                <div class="example">
+                    <div class="example-title">📐 Manual Calculation Example</div>
+                    <p><strong>Problem:</strong> Predict house price based on size (in sq ft)</p>
+                    <table style="max-width: 400px;">
+                        <thead>
+                            <tr><th>Size (sq ft)</th><th>Price ($1000s)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1000</td><td>200</td></tr>
+                            <tr><td>1500</td><td>280</td></tr>
+                            <tr><td>2000</td><td>360</td></tr>
+                            <tr><td>2500</td><td>440</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top: 15px;">After calculation, we get: <strong>Price = 0.16 × Size + 40</strong></p>
+                    <p>Meaning: Each square foot adds $160 to the price, plus a base price of $40,000</p>
+                    <p style="margin-top: 10px;"><strong>Prediction for 1800 sq ft house:</strong> 0.16 × 1800 + 40 = <strong>$328,000</strong></p>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 3: Basic Linear Regression from Scratch</div>
+                    <pre>
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Sample data: Study hours vs Exam scores
+study_hours = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+exam_scores = np.array([50, 55, 65, 70, 75, 82, 88, 95])
+
+# Calculate slope (m) and intercept (b) manually
+n = len(study_hours)
+mean_x = np.mean(study_hours)
+mean_y = np.mean(exam_scores)
+
+# Formula: m = Σ((x - mean_x)(y - mean_y)) / Σ((x - mean_x)²)
+numerator = np.sum((study_hours - mean_x) * (exam_scores - mean_y))
+denominator = np.sum((study_hours - mean_x) ** 2)
+m = numerator / denominator
+b = mean_y - m * mean_x
+
+print(f"Equation: Score = {m:.2f} × Hours + {b:.2f}")
+
+# Make predictions
+def predict(hours):
+    return m * hours + b
+
+# Test prediction
+new_hours = 5.5
+predicted_score = predict(new_hours)
+print(f"\nPredicted score for {new_hours} hours: {predicted_score:.2f}")
+
+# Calculate error (Mean Squared Error)
+predictions = predict(study_hours)
+mse = np.mean((exam_scores - predictions) ** 2)
+print(f"Mean Squared Error: {mse:.2f}")
+                    </pre>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 4: Linear Regression with Scikit-Learn</div>
+                    <pre>
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+import numpy as np
+
+# Data: [study_hours, assignments_completed, attendance_%]
+X = np.array([
+    [2, 5, 70], [3, 7, 75], [4, 8, 80], [5, 9, 85],
+    [6, 10, 90], [7, 11, 92], [8, 12, 95], [9, 13, 97]
+])
+y = np.array([55, 62, 68, 75, 80, 86, 91, 96])  # Exam scores
+
+# Create and train model
+model = LinearRegression()
+model.fit(X, y)
+
+# Print model parameters
+print("Intercept (b₀):", model.intercept_)
+print("Coefficients:", model.coef_)
+print("\nEquation:")
+print(f"Score = {model.intercept_:.2f} + {model.coef_[0]:.2f}×hours")
+print(f"        + {model.coef_[1]:.2f}×assignments")
+print(f"        + {model.coef_[2]:.2f}×attendance")
+
+# Make predictions
+predictions = model.predict(X)
+
+# Evaluate model
+mse = mean_squared_error(y, predictions)
+r2 = r2_score(y, predictions)
+print(f"\nMean Squared Error: {mse:.2f}")
+print(f"R² Score: {r2:.4f}")  # 1.0 = perfect fit
+
+# Predict for new student
+new_student = [[5, 8, 82]]
+predicted_score = model.predict(new_student)
+print(f"\nPrediction for new student: {predicted_score[0]:.2f}")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📈 Linear Regression Example</div>
+                    <img src="unit5_assets/linear_regression_basic.png" alt="Linear Regression Example">
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Understanding R² Score:</strong> R² (R-squared) tells us how well our model fits the data. It ranges from 0 to 1, where 1 means perfect prediction. An R² of 0.85 means our model explains 85% of the variation in the data.
+                </div>
+            </section>
+
+            <!-- Model Visualization -->
+            <section id="visualization">
+                <h2>📊 Model Visualization</h2>
+                
+                <div class="definition">
+                    <strong>Model Visualization</strong> is the process of creating visual representations of your model, data, and predictions. Visualization helps us understand model behavior, identify patterns, and communicate results effectively.
+                </div>
+
+                <div class="key-points">
+                    <h4>Why Visualize?</h4>
+                    <ul>
+                        <li><strong>Understand data distribution:</strong> See patterns and outliers</li>
+                        <li><strong>Validate model fit:</strong> Check if predictions match reality</li>
+                        <li><strong>Identify problems:</strong> Spot overfitting or underfitting</li>
+                        <li><strong>Communicate results:</strong> Make findings clear to stakeholders</li>
+                    </ul>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 5: Comprehensive Model Visualization</div>
+                    <pre>
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Generate sample data
+np.random.seed(42)
+X = np.linspace(0, 10, 50).reshape(-1, 1)
+y = 3 * X.flatten() + 7 + np.random.normal(0, 2, 50)
+
+# Train model
+model = LinearRegression()
+model.fit(X, y)
+predictions = model.predict(X)
+
+# Create comprehensive visualization
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+
+# Plot 1: Scatter plot with regression line
+axes[0, 0].scatter(X, y, alpha=0.5, label='Actual Data')
+axes[0, 0].plot(X, predictions, 'r-', linewidth=2, label='Regression Line')
+axes[0, 0].set_xlabel('Input Feature (X)')
+axes[0, 0].set_ylabel('Target Variable (y)')
+axes[0, 0].set_title('Linear Regression Fit')
+axes[0, 0].legend()
+axes[0, 0].grid(True, alpha=0.3)
+
+# Plot 2: Residuals plot (errors)
+residuals = y - predictions
+axes[0, 1].scatter(predictions, residuals, alpha=0.5)
+axes[0, 1].axhline(y=0, color='r', linestyle='--')
+axes[0, 1].set_xlabel('Predicted Values')
+axes[0, 1].set_ylabel('Residuals (Errors)')
+axes[0, 1].set_title('Residual Plot')
+axes[0, 1].grid(True, alpha=0.3)
+
+# Plot 3: Actual vs Predicted
+axes[1, 0].scatter(y, predictions, alpha=0.5)
+axes[1, 0].plot([y.min(), y.max()], [y.min(), y.max()], 
+                'r--', lw=2, label='Perfect Prediction')
+axes[1, 0].set_xlabel('Actual Values')
+axes[1, 0].set_ylabel('Predicted Values')
+axes[1, 0].set_title('Actual vs Predicted')
+axes[1, 0].legend()
+axes[1, 0].grid(True, alpha=0.3)
+
+# Plot 4: Distribution of residuals
+axes[1, 1].hist(residuals, bins=15, edgecolor='black', alpha=0.7)
+axes[1, 1].axvline(x=0, color='r', linestyle='--')
+axes[1, 1].set_xlabel('Residuals')
+axes[1, 1].set_ylabel('Frequency')
+axes[1, 1].set_title('Distribution of Residuals')
+axes[1, 1].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig('model_visualization.png', dpi=150, bbox_inches='tight')
+print("Visualization saved as 'model_visualization.png'")
+
+# Print statistics
+print(f"\nModel Statistics:")
+print(f"R² Score: {r2_score(y, predictions):.4f}")
+print(f"MSE: {mean_squared_error(y, predictions):.4f}")
+print(f"RMSE: {np.sqrt(mean_squared_error(y, predictions)):.4f}")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Comprehensive Model Evaluation Dashboard</div>
+                    <img src="unit5_assets/model_visualization_comprehensive.png" alt="Comprehensive Model Visualization">
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Understanding the Plots</div>
+                    <p><strong>Scatter + Regression Line:</strong> Shows how well the line fits the data points</p>
+                    <p><strong>Residuals Plot:</strong> Shows prediction errors. Should be randomly scattered around zero</p>
+                    <p><strong>Actual vs Predicted:</strong> Points should cluster near the diagonal line for good predictions</p>
+                    <p><strong>Residuals Histogram:</strong> Should look like a bell curve centered at zero</p>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 6: Feature Importance Visualization</div>
+                    <pre>
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Multi-feature data
+np.random.seed(42)
+n_samples = 100
+feature_names = ['Study Hours', 'Sleep Hours', 'Assignments', 'Attendance %']
+
+X = np.column_stack([
+    np.random.uniform(1, 10, n_samples),    # Study hours
+    np.random.uniform(5, 9, n_samples),      # Sleep hours
+    np.random.uniform(0, 20, n_samples),     # Assignments
+    np.random.uniform(60, 100, n_samples)    # Attendance
+])
+
+# Create target with known relationships
+y = (5 * X[:, 0] +           # Study hours (most important)
+     2 * X[:, 1] +            # Sleep hours
+     1.5 * X[:, 2] +          # Assignments
+     0.3 * X[:, 3] +          # Attendance (least important)
+     np.random.normal(0, 5, n_samples))
+
+# Train model
+model = LinearRegression()
+model.fit(X, y)
+
+# Get coefficients (feature importance)
+coefficients = model.coef_
+
+# Visualize feature importance
+plt.figure(figsize=(10, 6))
+colors = ['#7c3aed', '#8b5cf6', '#a78bfa', '#c4b5fd']
+bars = plt.barh(feature_names, np.abs(coefficients), color=colors)
+
+plt.xlabel('Absolute Coefficient Value', fontsize=12)
+plt.ylabel('Features', fontsize=12)
+plt.title('Feature Importance in Predicting Exam Score', 
+          fontsize=14, fontweight='bold')
+plt.grid(axis='x', alpha=0.3)
+
+# Add value labels
+for i, (bar, coef) in enumerate(zip(bars, coefficients)):
+    width = bar.get_width()
+    plt.text(width, bar.get_y() + bar.get_height()/2, 
+             f'{coef:.2f}', ha='left', va='center', fontsize=10)
+
+plt.tight_layout()
+plt.savefig('feature_importance.png', dpi=150, bbox_inches='tight')
+print("Feature importance plot saved!")
+
+# Print interpretation
+print("\nFeature Importance Interpretation:")
+for name, coef in zip(feature_names, coefficients):
+    print(f"{name}: {coef:.2f}")
+    print(f"  → Each unit increase adds {coef:.2f} to the score")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Feature Importance Analysis</div>
+                    <img src="unit5_assets/feature_importance.png" alt="Feature Importance Visualization">
+                </div>
+            </section>
+
+            <!-- Prediction and Decision Making -->
+            <section id="prediction">
+                <h2>🎯 Prediction and Decision Making</h2>
+                
+                <div class="definition">
+                    <strong>Prediction</strong> is using a trained model to estimate unknown values for new data. <strong>Decision Making</strong> involves using these predictions to take actions or make informed choices.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>🏥 Medical Diagnosis Analogy:</strong> After training on thousands of patient records, a model can predict disease risk for a new patient (prediction). Doctors then use this prediction to decide on preventive treatments or further tests (decision making).
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-title">🏢 Case Study: Real Estate Price Prediction System</div>
+                    <p><strong>Scenario:</strong> A real estate company wants to automatically estimate house prices to help buyers and sellers make informed decisions.</p>
+                    
+                    <p style="margin-top: 15px;"><strong>Features considered:</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li>Square footage</li>
+                        <li>Number of bedrooms</li>
+                        <li>Number of bathrooms</li>
+                        <li>Age of property</li>
+                        <li>Distance to city center (km)</li>
+                        <li>Crime rate in area</li>
+                    </ul>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 7: Complete Prediction System</div>
+                    <pre>
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import mean_absolute_error, r2_score
+
+# Generate realistic house data
+np.random.seed(42)
+n_houses = 200
+
+sqft = np.random.uniform(800, 3500, n_houses)
+bedrooms = np.random.randint(1, 6, n_houses)
+bathrooms = np.random.randint(1, 4, n_houses)
+age = np.random.uniform(0, 50, n_houses)
+distance = np.random.uniform(1, 30, n_houses)
+crime_rate = np.random.uniform(0, 10, n_houses)
+
+# Create realistic prices based on features
+base_price = 100000
+prices = (base_price + 
+          sqft * 150 +                    # $150 per sq ft
+          bedrooms * 20000 +              # $20k per bedroom
+          bathrooms * 15000 -             # $15k per bathroom
+          age * 1000 -                    # -$1k per year old
+          distance * 2000 -               # -$2k per km from center
+          crime_rate * 5000 +             # -$5k per crime rate point
+          np.random.normal(0, 50000, n_houses))  # Random variation
+
+# Combine features
+X = np.column_stack([sqft, bedrooms, bathrooms, age, distance, crime_rate])
+y = prices
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Standardize features (important for fair comparison)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Train model
+model = LinearRegression()
+model.fit(X_train_scaled, y_train)
+
+# Make predictions on test set
+predictions = model.predict(X_test_scaled)
+
+# Evaluate
+mae = mean_absolute_error(y_test, predictions)
+r2 = r2_score(y_test, predictions)
+
+print("="*50)
+print("HOUSE PRICE PREDICTION SYSTEM")
+print("="*50)
+print(f"\nModel Performance:")
+print(f"Mean Absolute Error: ${mae:,.2f}")
+print(f"R² Score: {r2:.4f}")
+print(f"Average Prediction Off By: ${mae:,.2f}")
+
+# Feature names for interpretation
+features = ['Sq Ft', 'Bedrooms', 'Bathrooms', 'Age', 'Distance', 'Crime']
+print("\n" + "="*50)
+print("FEATURE IMPORTANCE (Coefficients)")
+print("="*50)
+for feat, coef in zip(features, model.coef_):
+    direction = "increases" if coef > 0 else "decreases"
+    print(f"{feat:12s}: {coef:10.2f} ({direction} price)")
+
+# Interactive prediction function
+def predict_house_price(sqft, beds, baths, age, dist, crime):
+    """Predict price for a house with given features"""
+    features = np.array([[sqft, beds, baths, age, dist, crime]])
+    features_scaled = scaler.transform(features)
+    predicted_price = model.predict(features_scaled)[0]
+    return predicted_price
+
+# Example predictions with decision making
+print("\n" + "="*50)
+print("SAMPLE PREDICTIONS & DECISIONS")
+print("="*50)
+
+test_houses = [
+    (2000, 3, 2, 10, 5, 3, "New suburban family home"),
+    (1200, 2, 1, 30, 15, 6, "Older home far from center"),
+    (3000, 4, 3, 5, 2, 1, "Luxury home near downtown")
+]
+
+for sqft, beds, baths, age, dist, crime, desc in test_houses:
+    price = predict_house_price(sqft, beds, baths, age, dist, crime)
+    print(f"\n{desc}:")
+    print(f"  Features: {sqft}sqft, {beds}bed, {baths}bath, {age}yr old")
+    print(f"  Location: {dist}km from center, crime rate: {crime}")
+    print(f"  Predicted Price: ${price:,.2f}")
+    
+    # Decision making logic
+    if price < 300000:
+        decision = "GOOD DEAL - Consider buying"
+    elif price < 500000:
+        decision = "FAIR PRICE - Negotiate further"
+    else:
+        decision = "PREMIUM PROPERTY - Assess value carefully"
+    print(f"  Decision: {decision}")
+                    </pre>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 8: Confidence Intervals in Predictions</div>
+                    <pre>
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
+
+# Training data
+np.random.seed(42)
+X_train = np.linspace(0, 10, 50).reshape(-1, 1)
+y_train = 2.5 * X_train.flatten() + 10 + np.random.normal(0, 2, 50)
+
+# Train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Calculate prediction intervals
+predictions = model.predict(X_train)
+residuals = y_train - predictions
+std_residuals = np.std(residuals)
+
+# Predict with confidence
+def predict_with_confidence(X_new, confidence=0.95):
+    """Predict with confidence interval"""
+    pred = model.predict(X_new)
+    
+    # Calculate margin based on confidence level
+    # For 95% confidence, use ~2 standard deviations
+    margin = 2 * std_residuals
+    
+    lower_bound = pred - margin
+    upper_bound = pred + margin
+    
+    return pred, lower_bound, upper_bound
+
+# Test predictions
+test_values = np.array([[3], [5], [7]])
+
+print("PREDICTIONS WITH CONFIDENCE INTERVALS")
+print("="*50)
+for x_val in test_values:
+    pred, lower, upper = predict_with_confidence(x_val)
+    print(f"\nInput: {x_val[0]:.1f}")
+    print(f"Prediction: {pred[0]:.2f}")
+    print(f"95% Confidence Interval: [{lower[0]:.2f}, {upper[0]:.2f}]")
+    print(f"Interpretation: We're 95% confident the true value")
+    print(f"                is between {lower[0]:.2f} and {upper[0]:.2f}")
+
+# Visualize with confidence bands
+X_plot = np.linspace(0, 10, 100).reshape(-1, 1)
+y_pred, y_lower, y_upper = predict_with_confidence(X_plot)
+
+plt.figure(figsize=(10, 6))
+plt.scatter(X_train, y_train, alpha=0.5, label='Training Data')
+plt.plot(X_plot, y_pred, 'r-', linewidth=2, label='Prediction')
+plt.fill_between(X_plot.flatten(), y_lower.flatten(), y_upper.flatten(), 
+                 alpha=0.2, color='red', label='95% Confidence Interval')
+plt.xlabel('Input Feature')
+plt.ylabel('Target Variable')
+plt.title('Predictions with Confidence Intervals')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.savefig('confidence_intervals.png', dpi=150)
+print("\n\nVisualization saved as 'confidence_intervals.png'")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Predictions with Confidence Intervals</div>
+                    <img src="unit5_assets/confidence_intervals.png" alt="Confidence Intervals Visualization">
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Decision Making Tips:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Always consider prediction confidence/uncertainty</li>
+                        <li>Use domain knowledge alongside model predictions</li>
+                        <li>Set decision thresholds based on business needs</li>
+                        <li>Monitor prediction accuracy in production</li>
+                        <li>Have human oversight for critical decisions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Model Evaluation -->
+            <section id="evaluation">
+                <h2>⚖️ Model Evaluation: The Critical Phase</h2>
+                
+                <div class="definition">
+                    <strong>Model Evaluation</strong> is the process of assessing how well a machine learning model performs. We need multiple metrics to understand different aspects of model quality: accuracy, generalization ability, and reliability.
+                </div>
+
+                <h3>Key Evaluation Metrics</h3>
+
+                <div class="key-points">
+                    <h4>For Regression Problems (Predicting Numbers):</h4>
+                    <ul>
+                        <li><strong>Mean Squared Error (MSE):</strong> Average of squared differences between predictions and actual values. Lower is better.</li>
+                        <li><strong>Root Mean Squared Error (RMSE):</strong> Square root of MSE. In same units as target variable.</li>
+                        <li><strong>Mean Absolute Error (MAE):</strong> Average absolute difference. Easy to interpret.</li>
+                        <li><strong>R² Score:</strong> Proportion of variance explained. Ranges 0-1, closer to 1 is better.</li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px;">For Classification Problems (Predicting Categories):</h4>
+                    <ul>
+                        <li><strong>Accuracy:</strong> Percentage of correct predictions.</li>
+                        <li><strong>Precision:</strong> Of predicted positives, how many are actually positive?</li>
+                        <li><strong>Recall:</strong> Of actual positives, how many did we find?</li>
+                        <li><strong>F1-Score:</strong> Harmonic mean of precision and recall.</li>
+                    </ul>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Metrics Comparison Guide: When to Use Which?</div>
+                    <img src="unit5_assets/metrics_comparison_guide.png" alt="Metrics Comparison Guide">
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 9: Comprehensive Regression Metrics</div>
+                    <pre>
+import numpy as np
+from sklearn.metrics import (mean_squared_error, mean_absolute_error, 
+                              r2_score, mean_absolute_percentage_error)
+import matplotlib.pyplot as plt
+
+# Sample predictions vs actual values
+y_true = np.array([100, 120, 140, 160, 180, 200, 220, 240])
+y_pred = np.array([98, 125, 138, 165, 175, 205, 215, 245])
+
+# Calculate all metrics
+mse = mean_squared_error(y_true, y_pred)
+rmse = np.sqrt(mse)
+mae = mean_absolute_error(y_true, y_pred)
+r2 = r2_score(y_true, y_pred)
+mape = mean_absolute_percentage_error(y_true, y_pred) * 100
+
+print("="*60)
+print("REGRESSION MODEL EVALUATION METRICS")
+print("="*60)
+print(f"\nMean Squared Error (MSE):     {mse:.2f}")
+print(f"  Interpretation: Average squared error is {mse:.2f}")
+
+print(f"\nRoot Mean Squared Error (RMSE): {rmse:.2f}")
+print(f"  Interpretation: On average, predictions are off by ±{rmse:.2f}")
+
+print(f"\nMean Absolute Error (MAE):    {mae:.2f}")
+print(f"  Interpretation: Average absolute error is {mae:.2f}")
+
+print(f"\nR² Score:                     {r2:.4f}")
+print(f"  Interpretation: Model explains {r2*100:.2f}% of variance")
+
+print(f"\nMean Absolute % Error (MAPE): {mape:.2f}%")
+print(f"  Interpretation: On average, {mape:.2f}% off from true value")
+
+# Visual comparison
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+
+# Plot 1: Actual vs Predicted
+axes[0].scatter(y_true, y_pred, s=100, alpha=0.6)
+axes[0].plot([y_true.min(), y_true.max()], 
+             [y_true.min(), y_true.max()], 
+             'r--', lw=2, label='Perfect Prediction')
+axes[0].set_xlabel('Actual Values', fontsize=12)
+axes[0].set_ylabel('Predicted Values', fontsize=12)
+axes[0].set_title('Actual vs Predicted', fontsize=14, fontweight='bold')
+axes[0].legend()
+axes[0].grid(True, alpha=0.3)
+
+# Plot 2: Errors
+errors = y_pred - y_true
+axes[1].bar(range(len(errors)), errors, color=['red' if e < 0 else 'green' 
+            for e in errors], alpha=0.6)
+axes[1].axhline(y=0, color='black', linestyle='-', linewidth=1)
+axes[1].set_xlabel('Sample Index', fontsize=12)
+axes[1].set_ylabel('Prediction Error', fontsize=12)
+axes[1].set_title('Individual Prediction Errors', fontsize=14, fontweight='bold')
+axes[1].grid(True, alpha=0.3, axis='y')
+
+plt.tight_layout()
+plt.savefig('regression_metrics.png', dpi=150)
+print("\n" + "="*60)
+print("Visualization saved as 'regression_metrics.png'")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Regression Model Metrics</div>
+                    <img src="unit5_assets/regression_metrics.png" alt="Regression Metrics Visualization">
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 10: Classification Metrics with Confusion Matrix</div>
+                    <pre>
+from sklearn.metrics import (accuracy_score, precision_score, recall_score, 
+                              f1_score, confusion_matrix, classification_report)
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+# Sample classification results (0=Fail, 1=Pass)
+y_true = np.array([1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1])
+y_pred = np.array([1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1])
+
+# Calculate metrics
+accuracy = accuracy_score(y_true, y_pred)
+precision = precision_score(y_true, y_pred)
+recall = recall_score(y_true, y_pred)
+f1 = f1_score(y_true, y_pred)
+
+print("="*60)
+print("CLASSIFICATION MODEL EVALUATION")
+print("="*60)
+
+print(f"\nAccuracy:  {accuracy:.4f} ({accuracy*100:.2f}%)")
+print(f"  Interpretation: {accuracy*100:.2f}% of predictions are correct")
+
+print(f"\nPrecision: {precision:.4f} ({precision*100:.2f}%)")
+print(f"  Interpretation: When we predict 'Pass', we're right")
+print(f"                  {precision*100:.2f}% of the time")
+
+print(f"\nRecall:    {recall:.4f} ({recall*100:.2f}%)")
+print(f"  Interpretation: We correctly identify {recall*100:.2f}%")
+print(f"                  of actual 'Pass' students")
+
+print(f"\nF1-Score:  {f1:.4f}")
+print(f"  Interpretation: Balanced measure = {f1*100:.2f}%")
+
+# Confusion Matrix
+cm = confusion_matrix(y_true, y_pred)
+print("\n" + "="*60)
+print("CONFUSION MATRIX")
+print("="*60)
+print("\n                Predicted")
+print("              Fail    Pass")
+print(f"    Fail  |   {cm[0,0]:3d}     {cm[0,1]:3d}")
+print(f"Actual    |")
+print(f"    Pass  |   {cm[1,0]:3d}     {cm[1,1]:3d}")
+
+# Detailed report
+print("\n" + "="*60)
+print(classification_report(y_true, y_pred, 
+                            target_names=['Fail', 'Pass']))
+
+# Visualize confusion matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
+            xticklabels=['Fail', 'Pass'],
+            yticklabels=['Fail', 'Pass'])
+plt.ylabel('Actual', fontsize=12)
+plt.xlabel('Predicted', fontsize=12)
+plt.title('Confusion Matrix', fontsize=14, fontweight='bold')
+plt.savefig('confusion_matrix.png', dpi=150, bbox_inches='tight')
+print("\nVisualization saved as 'confusion_matrix.png'")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Confusion Matrix Visualization</div>
+                    <img src="unit5_assets/confusion_matrix.png" alt="Confusion Matrix">
+                </div>
+
+                <div class="simple-explanation">
+                    <div class="simple-explanation-title">💡 Understanding Confusion Matrix</div>
+                    <p><strong>True Positives (TP):</strong> Correctly predicted Pass</p>
+                    <p><strong>True Negatives (TN):</strong> Correctly predicted Fail</p>
+                    <p><strong>False Positives (FP):</strong> Predicted Pass, actually Fail (Type I Error)</p>
+                    <p><strong>False Negatives (FN):</strong> Predicted Fail, actually Pass (Type II Error)</p>
+                    <br>
+                    <p><strong>Precision = TP / (TP + FP)</strong> → How precise are positive predictions?</p>
+                    <p><strong>Recall = TP / (TP + FN)</strong> → How many positives did we catch?</p>
+                </div>
+            </section>
+
+            <!-- Overfitting and Underfitting -->
+            <section id="fitting">
+                <h2>🎭 Overfitting and Underfitting</h2>
+                
+                <div class="definition">
+                    <strong>Underfitting:</strong> Model is too simple to capture patterns in data. Performs poorly on both training and test data.
+                    <br><br>
+                    <strong>Overfitting:</strong> Model memorizes training data including noise. Performs well on training data but poorly on new data.
+                    <br><br>
+                    <strong>Good Fit:</strong> Model captures true patterns and generalizes well to new data.
+                </div>
+
+                <div class="analogy-box">
+                    <strong>📚 Student Exam Analogy:</strong><br><br>
+                    <strong>Underfitting:</strong> Student doesn't study enough, fails both practice tests and real exam.<br><br>
+                    <strong>Overfitting:</strong> Student memorizes practice test answers without understanding concepts. Aces practice tests but fails real exam with different questions.<br><br>
+                    <strong>Good Fit:</strong> Student understands concepts, does well on practice tests AND real exam.
+                </div>
+
+                <div class="comparison-box">
+                    <div class="comparison-item">
+                        <h4 style="color: #ef4444;">❌ Underfitting</h4>
+                        <p><strong>Signs:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Low training accuracy</li>
+                            <li>Low test accuracy</li>
+                            <li>High bias</li>
+                            <li>Model too simple</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Solutions:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Add more features</li>
+                            <li>Use more complex model</li>
+                            <li>Train longer</li>
+                            <li>Reduce regularization</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <h4 style="color: #ef4444;">❌ Overfitting</h4>
+                        <p><strong>Signs:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>High training accuracy</li>
+                            <li>Low test accuracy</li>
+                            <li>High variance</li>
+                            <li>Large gap between train/test</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><strong>Solutions:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Get more training data</li>
+                            <li>Use simpler model</li>
+                            <li>Apply regularization</li>
+                            <li>Remove noise/outliers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 11: Demonstrating Underfitting, Good Fit, and Overfitting</div>
+                    <pre>
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+# Generate non-linear data
+np.random.seed(42)
+X = np.linspace(0, 10, 50).reshape(-1, 1)
+y = 0.5 * X.flatten()**2 - 3*X.flatten() + 10 + np.random.normal(0, 3, 50)
+
+# Split into train and test
+train_size = int(0.7 * len(X))
+X_train, X_test = X[:train_size], X[train_size:]
+y_train, y_test = y[:train_size], y[train_size:]
+
+# Create three models with different complexities
+models = {
+    'Underfitting (Degree 1)': 1,    # Too simple - straight line
+    'Good Fit (Degree 2)': 2,         # Just right - quadratic
+    'Overfitting (Degree 15)': 15    # Too complex - wiggly curve
+}
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+results = {}
+
+for idx, (name, degree) in enumerate(models.items()):
+    # Create polynomial features
+    poly = PolynomialFeatures(degree=degree)
+    X_train_poly = poly.fit_transform(X_train)
+    X_test_poly = poly.transform(X_test)
+    
+    # Train model
+    model = LinearRegression()
+    model.fit(X_train_poly, y_train)
+    
+    # Predictions
+    y_train_pred = model.predict(X_train_poly)
+    y_test_pred = model.predict(X_test_poly)
+    
+    # Metrics
+    train_mse = mean_squared_error(y_train, y_train_pred)
+    test_mse = mean_squared_error(y_test, y_test_pred)
+    results[name] = {'train_mse': train_mse, 'test_mse': test_mse}
+    
+    # Plot
+    X_plot = np.linspace(0, 10, 300).reshape(-1, 1)
+    X_plot_poly = poly.transform(X_plot)
+    y_plot = model.predict(X_plot_poly)
+    
+    axes[idx].scatter(X_train, y_train, alpha=0.6, label='Training Data')
+    axes[idx].scatter(X_test, y_test, alpha=0.6, color='red', 
+                      label='Test Data')
+    axes[idx].plot(X_plot, y_plot, 'g-', linewidth=2, 
+                   label=f'Degree {degree}')
+    axes[idx].set_title(name, fontweight='bold')
+    axes[idx].set_xlabel('X')
+    axes[idx].set_ylabel('y')
+    axes[idx].legend()
+    axes[idx].grid(True, alpha=0.3)
+    axes[idx].text(0.5, 0.95, f'Train MSE: {train_mse:.2f}\nTest MSE: {test_mse:.2f}',
+                   transform=axes[idx].transAxes, verticalalignment='top',
+                   bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+
+plt.tight_layout()
+plt.savefig('fitting_comparison.png', dpi=150, bbox_inches='tight')
+
+# Print detailed results
+print("="*60)
+print("UNDERFITTING vs GOOD FIT vs OVERFITTING")
+print("="*60)
+for name, metrics in results.items():
+    print(f"\n{name}:")
+    print(f"  Training MSE: {metrics['train_mse']:.2f}")
+    print(f"  Test MSE:     {metrics['test_mse']:.2f}")
+    print(f"  Gap:          {abs(metrics['test_mse'] - metrics['train_mse']):.2f}")
+    
+    if metrics['train_mse'] > 50:
+        print(f"  Status: UNDERFITTING (high error on both sets)")
+    elif abs(metrics['test_mse'] - metrics['train_mse']) > 20:
+        print(f"  Status: OVERFITTING (large train-test gap)")
+    else:
+        print(f"  Status: GOOD FIT (low error, small gap)")
+
+print("\n" + "="*60)
+print("Visualization saved as 'fitting_comparison.png'")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Underfitting vs Good Fit vs Overfitting</div>
+                    <img src="unit5_assets/fitting_comparison.png" alt="Fitting Comparison">
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 12: Learning Curves to Detect Overfitting</div>
+                    <pre>
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import learning_curve
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import Pipeline
+
+# Generate data
+np.random.seed(42)
+X = np.linspace(0, 10, 100).reshape(-1, 1)
+y = 0.5*X.flatten()**2 - 3*X.flatten() + 10 + np.random.normal(0, 3, 100)
+
+# Create models
+models = {
+    'Underfitting (Linear)': Pipeline([
+        ('poly', PolynomialFeatures(degree=1)),
+        ('linear', LinearRegression())
+    ]),
+    'Good Fit (Quadratic)': Pipeline([
+        ('poly', PolynomialFeatures(degree=2)),
+        ('linear', LinearRegression())
+    ]),
+    'Overfitting (High Degree)': Pipeline([
+        ('poly', PolynomialFeatures(degree=10)),
+        ('linear', LinearRegression())
+    ])
+}
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+for idx, (name, model) in enumerate(models.items()):
+    # Calculate learning curves
+    train_sizes, train_scores, val_scores = learning_curve(
+        model, X, y, 
+        train_sizes=np.linspace(0.1, 1.0, 10),
+        cv=5,
+        scoring='neg_mean_squared_error',
+        n_jobs=-1
+    )
+    
+    # Convert to positive MSE
+    train_scores_mean = -train_scores.mean(axis=1)
+    val_scores_mean = -val_scores.mean(axis=1)
+    train_scores_std = train_scores.std(axis=1)
+    val_scores_std = val_scores.std(axis=1)
+    
+    # Plot
+    axes[idx].plot(train_sizes, train_scores_mean, 'o-', 
+                   label='Training Error', linewidth=2)
+    axes[idx].plot(train_sizes, val_scores_mean, 'o-', 
+                   label='Validation Error', linewidth=2)
+    axes[idx].fill_between(train_sizes, 
+                           train_scores_mean - train_scores_std,
+                           train_scores_mean + train_scores_std, 
+                           alpha=0.1)
+    axes[idx].fill_between(train_sizes, 
+                           val_scores_mean - val_scores_std,
+                           val_scores_mean + val_scores_std, 
+                           alpha=0.1)
+    
+    axes[idx].set_title(name, fontweight='bold')
+    axes[idx].set_xlabel('Training Set Size')
+    axes[idx].set_ylabel('Mean Squared Error')
+    axes[idx].legend(loc='best')
+    axes[idx].grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig('learning_curves.png', dpi=150, bbox_inches='tight')
+
+print("="*60)
+print("LEARNING CURVES INTERPRETATION")
+print("="*60)
+print("\nUnderfitting:")
+print("  - Both curves plateau at high error")
+print("  - Adding more data doesn't help much")
+print("  - Solution: Use more complex model")
+
+print("\nGood Fit:")
+print("  - Both curves converge at low error")
+print("  - Small gap between training and validation")
+print("  - Solution: This is what we want!")
+
+print("\nOverfitting:")
+print("  - Large gap between curves")
+print("  - Training error much lower than validation")
+print("  - Solution: Get more data or simplify model")
+
+print("\nVisualization saved as 'learning_curves.png'")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Learning Curves Analysis</div>
+                    <img src="unit5_assets/learning_curves.png" alt="Learning Curves">
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Bias-Variance Tradeoff</div>
+                    <img src="unit5_assets/bias_variance_tradeoff.png" alt="Bias-Variance Tradeoff">
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">🔍 Model Diagnosis Flowchart - Step-by-Step Guide</div>
+                    <img src="unit5_assets/model_diagnosis_flowchart.png" alt="Model Diagnosis Flowchart">
+                </div>
+
+                <div class="key-points" style="background: #e0f2fe; border-left: 4px solid #0891b2;">
+                    <h4 style="color: #0369a1;">🎯 Quick Diagnosis Table</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Training Error</th>
+                                <th>Test Error</th>
+                                <th>Diagnosis</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #fee2e2;">
+                                <td><strong>HIGH</strong></td>
+                                <td><strong>HIGH</strong></td>
+                                <td><span style="color: #dc2626; font-weight: bold;">UNDERFITTING</span></td>
+                                <td>Add features, increase complexity, train longer</td>
+                            </tr>
+                            <tr style="background: #fef3c7;">
+                                <td><strong>LOW</strong></td>
+                                <td><strong>HIGH</strong></td>
+                                <td><span style="color: #ea580c; font-weight: bold;">OVERFITTING</span></td>
+                                <td>Get more data, reduce complexity, regularization</td>
+                            </tr>
+                            <tr style="background: #dcfce7;">
+                                <td><strong>LOW</strong></td>
+                                <td><strong>LOW</strong></td>
+                                <td><span style="color: #059669; font-weight: bold;">GOOD FIT ✓</span></td>
+                                <td>Compare models, select best, deploy</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⚠️ Important:</strong> The goal is NOT to minimize training error. The goal is to build a model that <span class="highlight">generalizes well to new, unseen data</span>. Always evaluate on separate test data!
+                </div>
+            </section>
+
+            <!-- Model Selection -->
+            <section id="model-selection">
+                <h2>🏆 Model Selection Based on Performance Metrics</h2>
+                
+                <div class="definition">
+                    <strong>Model Selection</strong> is choosing the best model from multiple candidates based on performance metrics. This involves comparing different algorithms, hyperparameters, and feature sets to find the optimal configuration.
+                </div>
+
+                <div class="key-points">
+                    <h4>Model Selection Strategies:</h4>
+                    <ul>
+                        <li><strong>Train-Test Split:</strong> Simple 70-30 or 80-20 split</li>
+                        <li><strong>Cross-Validation:</strong> Multiple train-test splits for robust evaluation</li>
+                        <li><strong>Grid Search:</strong> Systematically test hyperparameter combinations</li>
+                        <li><strong>Ensemble Methods:</strong> Combine multiple models for better performance</li>
+                    </ul>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 13: Train-Test Split and Cross-Validation</div>
+                    <pre>
+import numpy as np
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Generate dataset
+np.random.seed(42)
+n_samples = 200
+X = np.random.randn(n_samples, 5)  # 5 features
+y = (2*X[:, 0] + 3*X[:, 1] - 1.5*X[:, 2] + 
+     0.5*X[:, 3] + np.random.randn(n_samples) * 2)
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Define candidate models
+models = {
+    'Linear Regression': LinearRegression(),
+    'Ridge Regression': Ridge(alpha=1.0),
+    'Lasso Regression': Lasso(alpha=0.1),
+    'Decision Tree': DecisionTreeRegressor(max_depth=5, random_state=42),
+    'Random Forest': RandomForestRegressor(n_estimators=100, 
+                                          max_depth=5, 
+                                          random_state=42)
+}
+
+print("="*70)
+print("MODEL SELECTION: COMPARING MULTIPLE ALGORITHMS")
+print("="*70)
+
+results = []
+
+for name, model in models.items():
+    # Train model
+    model.fit(X_train, y_train)
+    
+    # Single train-test evaluation
+    train_pred = model.predict(X_train)
+    test_pred = model.predict(X_test)
+    
+    train_mse = mean_squared_error(y_train, train_pred)
+    test_mse = mean_squared_error(y_test, test_pred)
+    test_r2 = r2_score(y_test, test_pred)
+    
+    # Cross-validation (5-fold)
+    cv_scores = cross_val_score(model, X_train, y_train, 
+                                 cv=5, 
+                                 scoring='neg_mean_squared_error')
+    cv_mse = -cv_scores.mean()
+    cv_std = cv_scores.std()
+    
+    results.append({
+        'Model': name,
+        'Train MSE': train_mse,
+        'Test MSE': test_mse,
+        'Test R²': test_r2,
+        'CV MSE': cv_mse,
+        'CV Std': cv_std
+    })
+    
+    print(f"\n{name}:")
+    print(f"  Train MSE:          {train_mse:.4f}")
+    print(f"  Test MSE:           {test_mse:.4f}")
+    print(f"  Test R²:            {test_r2:.4f}")
+    print(f"  Cross-Val MSE:      {cv_mse:.4f} ± {cv_std:.4f}")
+    
+    # Diagnose fitting issues
+    if train_mse > 8:
+        print(f"  ⚠️  High training error - possible UNDERFITTING")
+    elif (test_mse - train_mse) > 5:
+        print(f"  ⚠️  Large train-test gap - possible OVERFITTING")
+    else:
+        print(f"  ✅ Good balance between bias and variance")
+
+# Find best model
+print("\n" + "="*70)
+print("MODEL SELECTION DECISION")
+print("="*70)
+
+best_model = min(results, key=lambda x: x['Test MSE'])
+print(f"\n🏆 Best Model: {best_model['Model']}")
+print(f"   Test MSE: {best_model['Test MSE']:.4f}")
+print(f"   Test R²: {best_model['Test R²']:.4f}")
+print(f"\n   This model provides the best balance of")
+print(f"   accuracy and generalization to new data.")
+                    </pre>
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">📊 Model Performance Comparison</div>
+                    <img src="unit5_assets/model_comparison.png" alt="Model Comparison Chart">
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 14: Advanced - Grid Search for Hyperparameter Tuning</div>
+                    <pre>
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestRegressor
+import numpy as np
+
+# Generate data
+np.random.seed(42)
+X = np.random.randn(300, 8)
+y = np.sum(X[:, :4], axis=1) + np.random.randn(300) * 0.5
+
+# Define parameter grid
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [3, 5, 7, 10],
+    'min_samples_split': [2, 5, 10],
+    'min_samples_leaf': [1, 2, 4]
+}
+
+# Create model
+rf = RandomForestRegressor(random_state=42)
+
+# Grid search with cross-validation
+grid_search = GridSearchCV(
+    estimator=rf,
+    param_grid=param_grid,
+    cv=5,
+    scoring='neg_mean_squared_error',
+    n_jobs=-1,
+    verbose=1
+)
+
+print("="*70)
+print("HYPERPARAMETER TUNING WITH GRID SEARCH")
+print("="*70)
+print(f"\nTesting {len(param_grid['n_estimators']) * len(param_grid['max_depth']) * len(param_grid['min_samples_split']) * len(param_grid['min_samples_leaf'])} combinations...")
+print("This may take a moment...\n")
+
+# Fit grid search
+grid_search.fit(X, y)
+
+# Results
+print("\n" + "="*70)
+print("BEST HYPERPARAMETERS FOUND")
+print("="*70)
+for param, value in grid_search.best_params_.items():
+    print(f"  {param}: {value}")
+
+print(f"\nBest Cross-Validation MSE: {-grid_search.best_score_:.4f}")
+
+# Compare top 5 configurations
+results_df = []
+for i in range(min(5, len(grid_search.cv_results_['params']))):
+    idx = grid_search.cv_results_['rank_test_score'] == (i + 1)
+    idx = np.where(idx)[0][0]
+    results_df.append({
+        'Rank': i + 1,
+        'Params': grid_search.cv_results_['params'][idx],
+        'Mean MSE': -grid_search.cv_results_['mean_test_score'][idx],
+        'Std MSE': grid_search.cv_results_['std_test_score'][idx]
+    })
+
+print("\n" + "="*70)
+print("TOP 5 CONFIGURATIONS")
+print("="*70)
+for result in results_df:
+    print(f"\nRank {result['Rank']}:")
+    print(f"  Parameters: {result['Params']}")
+    print(f"  Mean MSE: {result['Mean MSE']:.4f} ± {result['Std MSE']:.4f}")
+
+# Use best model
+best_model = grid_search.best_estimator_
+print("\n" + "="*70)
+print(f"✅ Best model ready for predictions!")
+print("="*70)
+                    </pre>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-title">🎓 Complete Case Study: Student Success Prediction System</div>
+                    <p><strong>Problem:</strong> Build a system to predict student final exam scores and identify at-risk students early.</p>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Code Example 15: Complete End-to-End ML Pipeline</div>
+                    <pre>
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import matplotlib.pyplot as plt
+
+print("="*70)
+print("COMPLETE ML PIPELINE: STUDENT SUCCESS PREDICTION")
+print("="*70)
+
+# ========== STEP 1: DATA GENERATION ==========
+print("\n📊 STEP 1: Generating Student Data...")
+np.random.seed(42)
+n_students = 500
+
+data = {
+    'study_hours_weekly': np.random.uniform(5, 40, n_students),
+    'attendance_percent': np.random.uniform(50, 100, n_students),
+    'assignments_completed': np.random.randint(0, 21, n_students),
+    'previous_grade': np.random.uniform(40, 100, n_students),
+    'class_participation': np.random.uniform(1, 10, n_students),
+    'sleep_hours': np.random.uniform(4, 10, n_students),
+}
+
+# Create realistic final scores
+final_scores = (
+    2.5 * data['study_hours_weekly'] +
+    0.4 * data['attendance_percent'] +
+    2.0 * data['assignments_completed'] +
+    0.3 * data['previous_grade'] +
+    1.5 * data['class_participation'] +
+    1.2 * data['sleep_hours'] +
+    np.random.normal(0, 5, n_students)
+)
+
+# Normalize to 0-100 range
+final_scores = np.clip(final_scores, 0, 100)
+data['final_score'] = final_scores
+
+df = pd.DataFrame(data)
+print(f"✅ Generated data for {n_students} students")
+print("\nDataset Preview:")
+print(df.head())
+print("\nDataset Statistics:")
+print(df.describe())
+
+# ========== STEP 2: DATA PREPARATION ==========
+print("\n" + "="*70)
+print("🔧 STEP 2: Preparing Data...")
+
+X = df.drop('final_score', axis=1)
+y = df['final_score']
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+# Feature scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+print(f"✅ Training set: {len(X_train)} students")
+print(f"✅ Test set: {len(X_test)} students")
+
+# ========== STEP 3: MODEL TRAINING & SELECTION ==========
+print("\n" + "="*70)
+print("🤖 STEP 3: Training Multiple Models...")
+
+models = {
+    'Linear Regression': LinearRegression(),
+    'Ridge Regression': Ridge(alpha=1.0),
+    'Decision Tree': DecisionTreeRegressor(max_depth=6, random_state=42),
+    'Random Forest': RandomForestRegressor(n_estimators=100, 
+                                          max_depth=6, 
+                                          random_state=42),
+    'Gradient Boosting': GradientBoostingRegressor(n_estimators=100, 
+                                                   max_depth=4, 
+                                                   random_state=42)
+}
+
+results = {}
+
+for name, model in models.items():
+    # Train
+    if 'scaled' in str(type(model)).lower() or 'Linear' in name or 'Ridge' in name:
+        model.fit(X_train_scaled, y_train)
+        train_pred = model.predict(X_train_scaled)
+        test_pred = model.predict(X_test_scaled)
+        X_cv = X_train_scaled
+    else:
+        model.fit(X_train, y_train)
+        train_pred = model.predict(X_train)
+        test_pred = model.predict(X_test)
+        X_cv = X_train
+    
+    # Evaluate
+    train_rmse = np.sqrt(mean_squared_error(y_train, train_pred))
+    test_rmse = np.sqrt(mean_squared_error(y_test, test_pred))
+    test_mae = mean_absolute_error(y_test, test_pred)
+    test_r2 = r2_score(y_test, test_pred)
+    
+    # Cross-validation
+    cv_scores = cross_val_score(model, X_cv, y_train, 
+                                cv=5, scoring='neg_mean_squared_error')
+    cv_rmse = np.sqrt(-cv_scores.mean())
+    
+    results[name] = {
+        'model': model,
+        'train_rmse': train_rmse,
+        'test_rmse': test_rmse,
+        'test_mae': test_mae,
+        'test_r2': test_r2,
+        'cv_rmse': cv_rmse
+    }
+    
+    print(f"\n{name}:")
+    print(f"  Train RMSE: {train_rmse:.2f}")
+    print(f"  Test RMSE:  {test_rmse:.2f}")
+    print(f"  Test MAE:   {test_mae:.2f}")
+    print(f"  Test R²:    {test_r2:.4f}")
+    print(f"  CV RMSE:    {cv_rmse:.2f}")
+
+# ========== STEP 4: MODEL SELECTION ==========
+print("\n" + "="*70)
+print("🏆 STEP 4: Selecting Best Model...")
+
+best_model_name = min(results.keys(), 
+                      key=lambda k: results[k]['test_rmse'])
+best_model = results[best_model_name]['model']
+
+print(f"\n✨ Best Model: {best_model_name}")
+print(f"   Test RMSE: {results[best_model_name]['test_rmse']:.2f}")
+print(f"   Test R²: {results[best_model_name]['test_r2']:.4f}")
+print(f"\n   Interpretation: On average, predictions are")
+print(f"   off by ±{results[best_model_name]['test_rmse']:.2f} points")
+
+# ========== STEP 5: FEATURE IMPORTANCE ==========
+if hasattr(best_model, 'feature_importances_'):
+    print("\n" + "="*70)
+    print("📈 STEP 5: Feature Importance Analysis...")
+    
+    importances = best_model.feature_importances_
+    feature_names = X.columns
+    
+    sorted_idx = np.argsort(importances)[::-1]
+    
+    print("\nMost Important Features:")
+    for i, idx in enumerate(sorted_idx[:5], 1):
+        print(f"  {i}. {feature_names[idx]}: {importances[idx]:.4f}")
+
+# ========== STEP 6: PREDICTIONS & DECISIONS ==========
+print("\n" + "="*70)
+print("🎯 STEP 6: Making Predictions for New Students...")
+
+# Sample predictions
+sample_students = pd.DataFrame({
+    'study_hours_weekly': [15, 25, 35],
+    'attendance_percent': [70, 85, 95],
+    'assignments_completed': [12, 16, 19],
+    'previous_grade': [65, 75, 88],
+    'class_participation': [5, 7, 9],
+    'sleep_hours': [6, 7, 8]
+})
+
+if 'Linear' in best_model_name or 'Ridge' in best_model_name:
+    sample_scaled = scaler.transform(sample_students)
+    predictions = best_model.predict(sample_scaled)
+else:
+    predictions = best_model.predict(sample_students)
+
+print("\nPredictions for Sample Students:")
+for i, pred in enumerate(predictions, 1):
+    print(f"\nStudent {i}:")
+    print(f"  Study Hours: {sample_students.iloc[i-1]['study_hours_weekly']:.0f}/week")
+    print(f"  Attendance: {sample_students.iloc[i-1]['attendance_percent']:.0f}%")
+    print(f"  Predicted Score: {pred:.1f}")
+    
+    # Decision making
+    if pred < 50:
+        decision = "⚠️ AT RISK - Immediate intervention needed"
+    elif pred < 70:
+        decision = "⚡ NEEDS SUPPORT - Provide additional resources"
+    else:
+        decision = "✅ ON TRACK - Continue current performance"
+    print(f"  Decision: {decision}")
+
+print("\n" + "="*70)
+print("✅ PIPELINE COMPLETE!")
+print("="*70)
+                    </pre>
+                </div>
+
+                <div class="success-box">
+                    <strong>✅ Model Selection Best Practices:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Always use cross-validation for robust evaluation</li>
+                        <li>Consider multiple metrics (not just one)</li>
+                        <li>Balance model complexity with interpretability</li>
+                        <li>Test on truly unseen data before deployment</li>
+                        <li>Monitor model performance in production</li>
+                        <li>Retrain periodically with new data</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Practice Exercises -->
+            <section id="practice-exercises">
+                <h2>✏️ Hands-On Practice Exercises</h2>
+
+                <div class="definition">
+                    <strong>Test Your Understanding:</strong> Complete these exercises to reinforce your learning. Solutions are provided at the end of each exercise.
+                </div>
+
+                <div class="visualization-box">
+                    <div class="visualization-title">🎓 Choose Your Learning Path</div>
+                    <img src="unit5_assets/learning_paths.png" alt="Learning Paths">
+                </div>
+
+                <div class="example" style="background: #f0f9ff; border-left: 4px solid #0284c7;">
+                    <div class="example-title" style="color: #0369a1;">📝 Exercise 1: Supervised vs Unsupervised Classification (Beginner)</div>
+                    <p><strong>Task:</strong> Classify each scenario as Supervised or Unsupervised learning:</p>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li>Predicting house prices based on historical sales data</li>
+                        <li>Grouping customers by purchasing behavior without predefined categories</li>
+                        <li>Detecting spam emails using labeled examples</li>
+                        <li>Finding topics in a collection of news articles</li>
+                        <li>Predicting student grades based on past performance</li>
+                    </ol>
+
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #0369a1;">💡 Click to Show Solution</summary>
+                        <div style="background: white; padding: 15px; margin-top: 10px; border-radius: 5px;">
+                            <ol>
+                                <li><strong>Supervised</strong> - We have labels (prices) and historical data</li>
+                                <li><strong>Unsupervised</strong> - No predefined categories, finding patterns</li>
+                                <li><strong>Supervised</strong> - We have labeled examples (spam/not spam)</li>
+                                <li><strong>Unsupervised</strong> - Discovering topics without labels</li>
+                                <li><strong>Supervised</strong> - Using known outcomes to predict future grades</li>
+                            </ol>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="example" style="background: #fef3c7; border-left: 4px solid #f59e0b;">
+                    <div class="example-title" style="color: #d97706;">📝 Exercise 2: Manual Linear Regression Calculation (Intermediate)</div>
+                    <p><strong>Given Data:</strong></p>
+                    <table style="max-width: 300px; margin: 10px 0;">
+                        <thead>
+                            <tr><th>X (Input)</th><th>y (Output)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>2</td><td>3</td></tr>
+                            <tr><td>4</td><td>7</td></tr>
+                            <tr><td>6</td><td>11</td></tr>
+                            <tr><td>8</td><td>15</td></tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Tasks:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>Calculate the mean of X and y</li>
+                        <li>Calculate the slope (m)</li>
+                        <li>Calculate the intercept (b)</li>
+                        <li>Write the final equation</li>
+                        <li>Predict y when X = 5</li>
+                    </ol>
+
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #d97706;">💡 Click to Show Solution</summary>
+                        <div style="background: white; padding: 15px; margin-top: 10px; border-radius: 5px;">
+                            <p><strong>Step 1: Calculate means</strong></p>
+                            <p>x̄ = (2 + 4 + 6 + 8) / 4 = 20 / 4 = <strong>5</strong></p>
+                            <p>ȳ = (3 + 7 + 11 + 15) / 4 = 36 / 4 = <strong>9</strong></p>
+
+                            <p><strong>Step 2: Calculate slope (m)</strong></p>
+                            <p>Σ((xᵢ - x̄)(yᵢ - ȳ)) = (-3×-6) + (-1×-2) + (1×2) + (3×6) = 18 + 2 + 2 + 18 = <strong>40</strong></p>
+                            <p>Σ((xᵢ - x̄)²) = 9 + 1 + 1 + 9 = <strong>20</strong></p>
+                            <p>m = 40 / 20 = <strong>2</strong></p>
+
+                            <p><strong>Step 3: Calculate intercept (b)</strong></p>
+                            <p>b = ȳ - m × x̄ = 9 - 2 × 5 = 9 - 10 = <strong>-1</strong></p>
+
+                            <p><strong>Step 4: Final equation</strong></p>
+                            <p style="font-size: 1.2em; color: #059669;"><strong>y = 2x - 1</strong></p>
+
+                            <p><strong>Step 5: Prediction for X = 5</strong></p>
+                            <p>y = 2(5) - 1 = 10 - 1 = <strong>9</strong></p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="code-box">
+                    <div class="code-title">💻 Exercise 3: Code Implementation (Intermediate)</div>
+                    <pre>
+# Complete the following code to create a linear regression model
+
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Dataset
+student_hours = np.array([1, 2, 3, 4, 5, 6, 7, 8]).reshape(-1, 1)
+exam_scores = np.array([40, 50, 60, 70, 80, 90, 95, 98])
+
+# TODO 1: Split data into train and test sets (80-20 split)
+# X_train, X_test, y_train, y_test = ???
+
+# TODO 2: Create and train a Linear Regression model
+# model = ???
+# model.fit(???)
+
+# TODO 3: Make predictions on test set
+# predictions = ???
+
+# TODO 4: Calculate R² score and RMSE
+# r2 = ???
+# rmse = ???
+
+# TODO 5: Print results
+# print(f"R² Score: {r2:.4f}")
+# print(f"RMSE: {rmse:.2f}")
+
+# TODO 6: Predict score for a student studying 4.5 hours
+# new_prediction = ???
+# print(f"Predicted score for 4.5 hours: {new_prediction:.2f}")
+                    </pre>
+                </div>
+
+                <details style="margin: 20px 0;">
+                    <summary style="cursor: pointer; font-weight: bold; background: #dcfce7; padding: 10px; border-radius: 5px; color: #059669;">💡 Click to Show Solution for Exercise 3</summary>
+                    <div class="code-box" style="margin-top: 10px;">
+                        <pre>
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+import matplotlib.pyplot as plt
+
+# Dataset
+student_hours = np.array([1, 2, 3, 4, 5, 6, 7, 8]).reshape(-1, 1)
+exam_scores = np.array([40, 50, 60, 70, 80, 90, 95, 98])
+
+# Solution 1: Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    student_hours, exam_scores, test_size=0.2, random_state=42
+)
+
+# Solution 2: Create and train model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Solution 3: Make predictions
+predictions = model.predict(X_test)
+
+# Solution 4: Calculate metrics
+r2 = r2_score(y_test, predictions)
+rmse = np.sqrt(mean_squared_error(y_test, predictions))
+
+# Solution 5: Print results
+print(f"R² Score: {r2:.4f}")
+print(f"RMSE: {rmse:.2f}")
+print(f"Equation: Score = {model.coef_[0]:.2f} × Hours + {model.intercept_:.2f}")
+
+# Solution 6: Predict for 4.5 hours
+new_prediction = model.predict([[4.5]])
+print(f"Predicted score for 4.5 hours: {new_prediction[0]:.2f}")
+
+# Bonus: Plot the results
+plt.scatter(student_hours, exam_scores, label='Actual Data')
+plt.plot(student_hours, model.predict(student_hours),
+         'r-', label='Regression Line')
+plt.xlabel('Study Hours')
+plt.ylabel('Exam Score')
+plt.title('Linear Regression: Study Hours vs Exam Score')
+plt.legend()
+plt.grid(True, alpha=0.3)
+plt.show()
+                        </pre>
+                    </div>
+                </details>
+
+                <div class="example" style="background: #fce7f3; border-left: 4px solid #ec4899;">
+                    <div class="example-title" style="color: #be185d;">📝 Exercise 4: Model Diagnosis (Advanced)</div>
+                    <p><strong>Scenario:</strong> You trained a model with the following performance:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Training RMSE: 3.5</li>
+                        <li>Test RMSE: 15.2</li>
+                        <li>R² on training data: 0.95</li>
+                        <li>R² on test data: 0.42</li>
+                    </ul>
+                    <p><strong>Questions:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>What problem does this model have?</li>
+                        <li>Why is this happening?</li>
+                        <li>Suggest 3 solutions to fix this problem</li>
+                        <li>Which metric is most concerning and why?</li>
+                    </ol>
+
+                    <details style="margin-top: 15px;">
+                        <summary style="cursor: pointer; font-weight: bold; color: #be185d;">💡 Click to Show Solution</summary>
+                        <div style="background: white; padding: 15px; margin-top: 10px; border-radius: 5px;">
+                            <p><strong>1. Problem:</strong> OVERFITTING</p>
+                            <p style="margin-left: 20px;">The model performs excellently on training data (R²=0.95, RMSE=3.5) but poorly on test data (R²=0.42, RMSE=15.2).</p>
+
+                            <p><strong>2. Why is this happening?</strong></p>
+                            <p style="margin-left: 20px;">The model has memorized the training data including its noise and patterns, rather than learning generalizable patterns. The large gap between training and test performance indicates the model is too complex for the available data.</p>
+
+                            <p><strong>3. Three Solutions:</strong></p>
+                            <ol style="margin-left: 40px;">
+                                <li><strong>Get more training data:</strong> More data helps the model learn true patterns instead of noise</li>
+                                <li><strong>Reduce model complexity:</strong> Use fewer features or a simpler model</li>
+                                <li><strong>Apply regularization:</strong> Add penalties for complex models (Ridge or Lasso regression)</li>
+                            </ol>
+
+                            <p><strong>4. Most Concerning Metric:</strong></p>
+                            <p style="margin-left: 20px;">The <strong>gap between training and test RMSE</strong> (15.2 - 3.5 = 11.7) is most concerning. This huge difference clearly shows the model doesn't generalize. While low R² on test data is also bad, the RMSE gap directly shows prediction reliability on new data.</p>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="success-box">
+                    <h4>🎯 Challenge Exercise: Real-World Application (Advanced)</h4>
+                    <p><strong>Scenario:</strong> You have a dataset with information about houses including:</p>
+                    <ul style="margin-left: 20px;">
+                        <li>Size (square feet)</li>
+                        <li>Number of bedrooms</li>
+                        <li>Age of house (years)</li>
+                        <li>Distance from city center (km)</li>
+                        <li>Sale price (target variable)</li>
+                    </ul>
+                    <p><strong>Your Tasks:</strong></p>
+                    <ol style="margin-left: 20px;">
+                        <li>What type of ML problem is this? (Supervised/Unsupervised, Regression/Classification)</li>
+                        <li>Write Python code to:
+                            <ul style="margin-left: 20px;">
+                                <li>Load and explore the data</li>
+                                <li>Split data 80-20</li>
+                                <li>Train a linear regression model</li>
+                                <li>Evaluate using RMSE and R²</li>
+                                <li>Create 2 visualizations (regression line, actual vs predicted)</li>
+                            </ul>
+                        </li>
+                        <li>Interpret the coefficients: What does each feature contribute to the price?</li>
+                        <li>If the model shows overfitting, what would you do?</li>
+                    </ol>
+                    <p style="margin-top: 15px; font-style: italic;"><strong>Hint:</strong> Use the complete pipeline examples from Code Example 7 and 15 as references!</p>
+                </div>
+            </section>
+
+            <!-- Common Mistakes -->
+            <section id="common-mistakes">
+                <h2>⚠️ Common Mistakes & Troubleshooting</h2>
+
+                <div class="warning-box" style="background: #fef2f2; border-left: 4px solid #ef4444;">
+                    <h3 style="color: #dc2626; margin-top: 0;">🚫 Top 7 Mistakes to Avoid</h3>
+
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: #dc2626;">1. Not Splitting Data Before Training</h4>
+                        <p><strong>Problem:</strong> Using the same data for both training and testing</p>
+                        <p><strong>Why it's bad:</strong> You can't assess real performance - the model has seen all the answers!</p>
+                        <p style="color: #059669;"><strong>Solution:</strong> Always split data FIRST, before any training: <code style="background: #dcfce7; padding: 2px 5px;">train_test_split(X, y, test_size=0.2)</code></p>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: #dc2626;">2. Using Test Data for Model Decisions</h4>
+                        <p><strong>Problem:</strong> Checking test performance repeatedly and adjusting the model</p>
+                        <p><strong>Why it's bad:</strong> Test data gets "contaminated" - results become overly optimistic</p>
+                        <p style="color: #059669;"><strong>Solution:</strong> Use cross-validation on training data for tuning. Save test data for final evaluation ONLY.</p>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: #dc2626;">3. Forgetting to Scale/Normalize Features</h4>
+                        <p><strong>Problem:</strong> Features on different scales (e.g., age: 0-100, income: 0-1000000)</p>
+                        <p><strong>Why it's bad:</strong> Some algorithms give more weight to larger-scale features</p>
+                        <p style="color: #059669;"><strong>Solution:</strong> Use StandardScaler or MinMaxScaler: <code style="background: #dcfce7; padding: 2px 5px;">scaler.fit_transform(X_train)</code></p>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: #dc2626;">4. Ignoring Cross-Validation</h4>
+                        <p><strong>Problem:</strong> Relying on a single train-test split</p>
+                        <p><strong>Why it's bad:</strong> Results might be lucky/unlucky based on the specific split</p>
+                        <p style="color: #059669;"><strong>Solution:</strong> Use k-fold cross-validation (k=5 or 10): <code style="background: #dcfce7; padding: 2px 5px;">cross_val_score(model, X, y, cv=5)</code></p>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: #dc2626;">5. Confusing Correlation with Causation</h4>
+                        <p><strong>Problem:</strong> Assuming high R² means one variable causes the other</p>
+                        <p><strong>Why it's bad:</strong> Correlation doesn't imply causation (ice cream sales ≠ cause drowning)</p>
+                        <p style="color: #059669;"><strong>Solution:</strong> Use domain knowledge. ML finds associations, not causal relationships.</p>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: #dc2626;">6. Not Checking Residual Plots</h4>
+                        <p><strong>Problem:</strong> Only looking at R² and assuming linear regression is appropriate</p>
+                        <p><strong>Why it's bad:</strong> Might miss non-linear patterns in the data</p>
+                        <p style="color: #059669;"><strong>Solution:</strong> Always plot residuals. They should be randomly scattered around zero.</p>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <h4 style="color: #dc2626;">7. Overfitting on Small Datasets</h4>
+                        <p><strong>Problem:</strong> Using complex models with few data points</p>
+                        <p><strong>Why it's bad:</strong> Model memorizes the small dataset instead of learning patterns</p>
+                        <p style="color: #059669;"><strong>Solution:</strong> Rule of thumb: Need at least 10 samples per feature. Use simpler models for small data.</p>
+                    </div>
+                </div>
+
+                <div class="key-points" style="background: #dcfce7; border-left: 4px solid #10b981;">
+                    <h4 style="color: #059669;">✅ Debugging Checklist</h4>
+                    <p>When your model isn't working, check:</p>
+                    <ol style="margin-left: 20px; line-height: 1.8;">
+                        <li>☐ Data is split correctly (train/test separation)</li>
+                        <li>☐ No data leakage (test data not used in training)</li>
+                        <li>☐ Features are scaled if necessary</li>
+                        <li>☐ No missing values (NaN) in the data</li>
+                        <li>☐ Correct shapes: X is 2D, y is 1D</li>
+                        <li>☐ Residuals are random (plot them!)</li>
+                        <li>☐ Train-test error gap is reasonable (< 20%)</li>
+                        <li>☐ Model complexity matches data size</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Quick Reference -->
+            <section id="quick-reference">
+                <h2>📝 Quick Reference Cheat Sheet</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div class="key-points" style="background: #f0f9ff;">
+                        <h4 style="color: #0369a1;">Linear Regression Equation</h4>
+                        <p style="font-size: 1.2em; margin: 10px 0;"><code>y = mx + b</code></p>
+                        <p><strong>m</strong> = slope (change in y per unit x)</p>
+                        <p><strong>b</strong> = intercept (y when x=0)</p>
+                    </div>
+
+                    <div class="key-points" style="background: #fef3c7;">
+                        <h4 style="color: #d97706;">Key Formulas</h4>
+                        <p><strong>MSE:</strong> (1/n)Σ(yᵢ - ŷᵢ)²</p>
+                        <p><strong>RMSE:</strong> √MSE</p>
+                        <p><strong>MAE:</strong> (1/n)Σ|yᵢ - ŷᵢ|</p>
+                        <p><strong>R²:</strong> 1 - (SS_res / SS_tot)</p>
+                    </div>
+
+                    <div class="key-points" style="background: #f0fdf4;">
+                        <h4 style="color: #059669;">Scikit-Learn Essentials</h4>
+                        <div class="code-box" style="margin-top: 10px; padding: 10px; font-size: 0.8em;">
+                            <pre>
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+                            </pre>
+                        </div>
+                    </div>
+
+                    <div class="key-points" style="background: #fce7f3;">
+                        <h4 style="color: #be185d;">Diagnosis Quick Guide</h4>
+                        <p><strong>Underfitting:</strong> High train & test error</p>
+                        <p style="margin-left: 15px; font-size: 0.9em;">→ Add complexity</p>
+                        <p><strong>Overfitting:</strong> Low train, high test error</p>
+                        <p style="margin-left: 15px; font-size: 0.9em;">→ Add data / reduce complexity</p>
+                        <p><strong>Good Fit:</strong> Low train & test error</p>
+                        <p style="margin-left: 15px; font-size: 0.9em;">→ Deploy!</p>
+                    </div>
+                </div>
+
+                <div class="success-box" style="margin-top: 20px;">
+                    <h4>🎯 ML Workflow Checklist</h4>
+                    <ol style="margin-left: 20px; line-height: 2;">
+                        <li>☐ <strong>Collect & Explore Data</strong> - Understand what you have</li>
+                        <li>☐ <strong>Prepare Data</strong> - Handle missing values, scale features</li>
+                        <li>☐ <strong>Split Data</strong> - 80-20 or 70-30 train-test split</li>
+                        <li>☐ <strong>Choose Model</strong> - Start simple (Linear Regression)</li>
+                        <li>☐ <strong>Train Model</strong> - Fit on training data only</li>
+                        <li>☐ <strong>Evaluate</strong> - Check multiple metrics (R², RMSE, MAE)</li>
+                        <li>☐ <strong>Diagnose</strong> - Check for overfitting/underfitting</li>
+                        <li>☐ <strong>Tune</strong> - Adjust based on diagnosis</li>
+                        <li>☐ <strong>Test</strong> - Final evaluation on test set</li>
+                        <li>☐ <strong>Deploy</strong> - Use for real predictions</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section id="summary">
+                <h2>📚 Unit Summary</h2>
+                
+                <div class="key-points">
+                    <h3>Key Takeaways</h3>
+                    
+                    <h4>1. Machine Learning Fundamentals</h4>
+                    <ul>
+                        <li><strong>Supervised Learning:</strong> Learn from labeled data (regression & classification)</li>
+                        <li><strong>Unsupervised Learning:</strong> Find patterns in unlabeled data (clustering)</li>
+                        <li>ML Pipeline: Data → Preparation → Training → Evaluation → Prediction</li>
+                    </ul>
+
+                    <h4>2. Linear Regression</h4>
+                    <ul>
+                        <li>Predicts continuous values using linear relationships</li>
+                        <li>Formula: y = b₀ + b₁x₁ + b₂x₂ + ... + bₙxₙ</li>
+                        <li>Easy to interpret and implement</li>
+                        <li>Works well when relationship is approximately linear</li>
+                    </ul>
+
+                    <h4>3. Model Evaluation Metrics</h4>
+                    <ul>
+                        <li><strong>For Regression:</strong> MSE, RMSE, MAE, R²</li>
+                        <li><strong>For Classification:</strong> Accuracy, Precision, Recall, F1-Score</li>
+                        <li>Always evaluate on separate test data</li>
+                        <li>Use multiple metrics for comprehensive assessment</li>
+                    </ul>
+
+                    <h4>4. Overfitting vs Underfitting</h4>
+                    <ul>
+                        <li><strong>Underfitting:</strong> Too simple, high bias, poor performance</li>
+                        <li><strong>Overfitting:</strong> Too complex, high variance, memorizes training data</li>
+                        <li><strong>Good Fit:</strong> Balanced, generalizes well to new data</li>
+                        <li>Use cross-validation and learning curves to diagnose</li>
+                    </ul>
+
+                    <h4>5. Model Selection</h4>
+                    <ul>
+                        <li>Compare multiple algorithms systematically</li>
+                        <li>Use cross-validation for robust comparison</li>
+                        <li>Tune hyperparameters with grid search</li>
+                        <li>Choose based on performance, interpretability, and deployment needs</li>
+                    </ul>
+                </div>
+
+                <div style="background: linear-gradient(135deg, #00ff00 0%, #5b21b6 100%); color: white; padding: 30px; border-radius: 10px; margin-top: 40px; text-align: center;">
+                    <h3 style="color: white; border: none; margin-bottom: 15px;">🎯 The Golden Rules of Machine Learning</h3>
+                    <ol style="text-align: left; max-width: 800px; margin: 20px auto; font-size: 1.1em; line-height: 1.8;">
+                        <li><strong>More data is better than complex algorithms</strong></li>
+                        <li><strong>Simple models that work > Complex models that don't</strong></li>
+                        <li><strong>Always validate on unseen data</strong></li>
+                        <li><strong>Understand your problem before choosing a model</strong></li>
+                        <li><strong>Feature engineering matters more than algorithm selection</strong></li>
+                        <li><strong>Monitor and update models regularly</strong></li>
+                    </ol>
+                </div>
+
+                <div class="warning-box" style="margin-top: 30px;">
+                    <strong>🎓 For Exam Preparation:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Understand the difference between supervised and unsupervised learning</li>
+                        <li>Be able to explain and calculate linear regression manually</li>
+                        <li>Know all evaluation metrics and when to use each</li>
+                        <li>Explain overfitting and underfitting with examples</li>
+                        <li>Understand model selection strategies and cross-validation</li>
+                        <li>Practice implementing these concepts in code</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Add copy buttons to all code boxes
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBoxes = document.querySelectorAll('.code-box');
+
+            codeBoxes.forEach(function(codeBox) {
+                // Create copy button
+                const copyButton = document.createElement('button');
+                copyButton.className = 'copy-button';
+                copyButton.innerHTML = `
+                    <svg class="copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    </svg>
+                    Copy
+                `;
+
+                // Add click event
+                copyButton.addEventListener('click', function() {
+                    // Find the pre element within the code box
+                    const preElement = codeBox.querySelector('pre');
+                    if (preElement) {
+                        // Get the text content
+                        const code = preElement.textContent;
+
+                        // Copy to clipboard
+                        navigator.clipboard.writeText(code).then(function() {
+                            // Change button state
+                            copyButton.innerHTML = `
+                                <svg class="copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Copied!
+                            `;
+                            copyButton.classList.add('copied');
+
+                            // Reset button after 2 seconds
+                            setTimeout(function() {
+                                copyButton.innerHTML = `
+                                    <svg class="copy-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Copy
+                                `;
+                                copyButton.classList.remove('copied');
+                            }, 2000);
+                        }).catch(function(err) {
+                            console.error('Failed to copy: ', err);
+                            alert('Failed to copy code. Please try again.');
+                        });
+                    }
+                });
+
+                // Add button to code box
+                codeBox.insertBefore(copyButton, codeBox.firstChild);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
