@@ -1,0 +1,53 @@
+{
+  "name": "acoustictalk-sdk",
+  "version": "1.0.0",
+  "description": "Infrastructure-free, zero-config acoustic mesh networking SDK. Enables devices to communicate via ultrasonic audio without WiFi, Bluetooth, or any network infrastructure.",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "demo": "npx serve demo",
+    "serve": "npx serve .",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "build": "rollup -c",
+    "lint": "eslint src/**/*.js"
+  },
+  "keywords": [
+    "acoustic",
+    "ultrasonic",
+    "mesh-network",
+    "peer-to-peer",
+    "zero-config",
+    "offline",
+    "audio-communication",
+    "iot",
+    "proximity",
+    "webrtc-alternative"
+  ],
+  "author": "AcousticTalk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acoustictalk/acoustictalk-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/acoustictalk/acoustictalk-sdk/issues"
+  },
+  "homepage": "https://acoustictalk.io",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "jest": "^29.0.0",
+    "rollup": "^4.0.0",
+    "serve": "^14.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "browser": {
+    "crypto": false
+  },
+  "files": [
+    "src/**/*",
+    "dist/**/*",
+    "demo/**/*"
+  ]
+}

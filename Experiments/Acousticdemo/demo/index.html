@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcousticTalk SDK - Demo Dashboard</title>
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a24;
+      --border-color: #2a2a3a;
+      --text-primary: #ffffff;
+      --text-secondary: #8888aa;
+      --accent-blue: #00a8ff;
+      --accent-green: #00ff88;
+      --accent-purple: #8844ff;
+      --accent-orange: #ff8844;
+      --accent-red: #ff4444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 280px 1fr 320px;
+      grid-template-rows: auto 1fr;
+      min-height: 100vh;
+      gap: 1px;
+      background: var(--border-color);
+    }
+
+    header {
+      grid-column: 1 / -1;
+      background: var(--bg-secondary);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .logo h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .logo span {
+      color: var(--accent-blue);
+    }
+
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      animation: pulse 2s infinite;
+    }
+
+    .status-dot.offline { background: var(--text-secondary); animation: none; }
+    .status-dot.connecting { background: var(--accent-orange); }
+    .status-dot.error { background: var(--accent-red); }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--bg-secondary);
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .device-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .device-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-2px);
+    }
+
+    .device-card.selected {
+      border-color: var(--accent-blue);
+      background: rgba(0, 168, 255, 0.1);
+    }
+
+    .device-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .device-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .device-id {
+      font-size: 11px;
+      color: var(--text-secondary);
+      font-family: monospace;
+    }
+
+    .device-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .my-device {
+      background: linear-gradient(135deg, rgba(0, 168, 255, 0.1), rgba(136, 68, 255, 0.1));
+      border-color: var(--accent-purple);
+    }
+
+    /* Main Content */
+    .main-content {
+      background: var(--bg-primary);
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    .controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 168, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent-blue);
+    }
+
+    .btn-danger {
+      background: var(--accent-red);
+      color: white;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .stat-unit {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-left: 4px;
+    }
+
+    /* Visualizations */
+    .viz-container {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+    }
+
+    .viz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .viz-title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+    canvas {
+      width: 100%;
+      height: 150px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+    }
+
+    /* Message Area */
+    .message-area {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+    }
+
+    .message-input {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .message-input input, .message-input textarea {
+      flex: 1;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text-primary);
+      font-size: 14px;
+    }
+
+    .message-input textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .message-input input:focus, .message-input textarea:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+    }
+
+    .message-log {
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 13px;
+    }
+
+    .message-entry {
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      background: var(--bg-secondary);
+      border-radius: 6px;
+      border-left: 3px solid var(--accent-blue);
+    }
+
+    .message-entry.sent { border-left-color: var(--accent-green); }
+    .message-entry.received { border-left-color: var(--accent-purple); }
+    .message-entry.system { border-left-color: var(--accent-orange); }
+    .message-entry.warn { border-left-color: #ffaa00; background: rgba(255, 170, 0, 0.1); }
+    .message-entry.info { border-left-color: var(--accent-blue); }
+    .message-entry.success { border-left-color: var(--accent-green); }
+
+    .message-time {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    /* Right Panel */
+    .right-panel {
+      background: var(--bg-secondary);
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .panel-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-color);
+    }
+
+    .panel-card-title {
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 13px;
+    }
+
+    .metric-row:last-child { border-bottom: none; }
+
+    .metric-label { color: var(--text-secondary); }
+
+    .metric-value { font-weight: 600; }
+
+    /* File Upload */
+    .file-upload {
+      border: 2px dashed var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 16px;
+    }
+
+    .file-upload:hover {
+      border-color: var(--accent-blue);
+      background: rgba(0, 168, 255, 0.05);
+    }
+
+    .file-upload input {
+      display: none;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-secondary);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+      transition: width 0.3s;
+    }
+
+    /* Mode Toggle */
+    .mode-toggle {
+      display: flex;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 4px;
+    }
+
+    .mode-btn {
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-radius: 6px;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .mode-btn.active {
+      background: var(--accent-blue);
+      color: white;
+    }
+
+    /* Network Topology */
+    .topology-canvas {
+      width: 100%;
+      height: 200px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+    }
+
+    /* Speed Test Results */
+    .speed-results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .speed-card {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .speed-type {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .speed-value {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar, .right-panel {
+        display: none;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Sound Wave Animation */
+    .sound-wave {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 20px;
+    }
+
+    .sound-wave span {
+      width: 3px;
+      background: var(--accent-blue);
+      border-radius: 2px;
+      animation: wave 0.5s ease-in-out infinite;
+    }
+
+    .sound-wave span:nth-child(1) { animation-delay: 0s; height: 40%; }
+    .sound-wave span:nth-child(2) { animation-delay: 0.1s; height: 70%; }
+    .sound-wave span:nth-child(3) { animation-delay: 0.2s; height: 100%; }
+    .sound-wave span:nth-child(4) { animation-delay: 0.3s; height: 70%; }
+    .sound-wave span:nth-child(5) { animation-delay: 0.4s; height: 40%; }
+
+    @keyframes wave {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.5); }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <div class="logo-icon">🔊</div>
+        <h1>Acoustic<span>Talk</span> SDK</h1>
+      </div>
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="status-dot" id="statusDot"></div>
+          <span id="statusText">Initializing...</span>
+        </div>
+        <div class="mode-toggle">
+          <button class="mode-btn active" data-mode="ultrasonic">Ultrasonic</button>
+          <button class="mode-btn" data-mode="audible">Audible</button>
+        </div>
+        <div class="status-item">
+          <span id="deviceCount">0</span> devices nearby
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar - Devices -->
+    <aside class="sidebar">
+      <div class="section-title">My Device</div>
+      <div class="device-card my-device" id="myDeviceCard">
+        <div class="device-header">
+          <span class="device-name" id="myDeviceName">Loading...</span>
+          <div class="sound-wave">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="device-id" id="myDeviceId">--</div>
+        <div class="device-meta">
+          <span>📡 Ultrasonic</span>
+          <span>🔒 Secure</span>
+        </div>
+      </div>
+
+      <div class="section-title">Nearby Devices</div>
+      <div id="deviceList">
+        <p style="color: var(--text-secondary); font-size: 13px; padding: 16px;">
+          Start scanning to discover nearby devices...
+        </p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Controls -->
+      <div class="controls">
+        <button class="btn btn-primary" id="btnStart" onclick="startMesh()">
+          ▶️ Start Mesh
+        </button>
+        <button class="btn btn-secondary" id="btnStop" onclick="stopMesh()" disabled>
+          ⏹️ Stop
+        </button>
+        <button class="btn btn-secondary" onclick="runSpeedTest()">
+          ⚡ Speed Test
+        </button>
+        <button class="btn btn-secondary" onclick="playTestTone()">
+          🔊 Test Tone
+        </button>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Data Rate</div>
+          <div class="stat-value" id="statDataRate">--<span class="stat-unit">bps</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Bytes Sent</div>
+          <div class="stat-value" id="statBytesSent">0<span class="stat-unit">B</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Bytes Received</div>
+          <div class="stat-value" id="statBytesReceived">0<span class="stat-unit">B</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Messages</div>
+          <div class="stat-value" id="statMessages">0</div>
+        </div>
+      </div>
+
+      <!-- Waveform Visualization -->
+      <div class="viz-container">
+        <div class="viz-header">
+          <span class="viz-title">📊 Audio Waveform</span>
+          <span style="color: var(--text-secondary); font-size: 12px;">Real-time input</span>
+        </div>
+        <canvas id="waveformCanvas"></canvas>
+      </div>
+
+      <!-- Frequency Spectrum -->
+      <div class="viz-container">
+        <div class="viz-header">
+          <span class="viz-title">🌈 Frequency Spectrum</span>
+          <span style="color: var(--text-secondary); font-size: 12px;">18kHz - 20kHz band</span>
+        </div>
+        <canvas id="spectrumCanvas"></canvas>
+      </div>
+
+      <!-- Message Area -->
+      <div class="message-area">
+        <div class="viz-header">
+          <span class="viz-title">💬 Message Console</span>
+        </div>
+        <div class="message-input">
+          <textarea id="messageInput" placeholder="Type a message to broadcast..."></textarea>
+          <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+        </div>
+        <div class="message-log" id="messageLog">
+          <div class="message-entry system">
+            <div class="message-time">--:--:--</div>
+            <div>System initialized. Click "Start Mesh" to begin.</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Panel -->
+    <aside class="right-panel">
+      <!-- Transfer Panel -->
+      <div class="panel-card">
+        <div class="panel-card-title">📤 File Transfer</div>
+        <div class="file-upload" onclick="document.getElementById('fileInput').click()">
+          <input type="file" id="fileInput" onchange="handleFileSelect(event)">
+          <p style="color: var(--text-secondary);">Drop file here or click to upload</p>
+          <p style="font-size: 12px; color: var(--text-secondary); margin-top: 8px;">Supports: Images, Text, Binary</p>
+        </div>
+        <div id="transferProgress" style="display: none;">
+          <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+            <span id="transferFileName">file.txt</span>
+            <span id="transferPercent">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="transferProgressBar" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speed Test Results -->
+      <div class="panel-card">
+        <div class="panel-card-title">⚡ Speed Test Results</div>
+        <div class="speed-results">
+          <div class="speed-card">
+            <div class="speed-type">Text</div>
+            <div class="speed-value" id="speedText">--</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">B/s</div>
+          </div>
+          <div class="speed-card">
+            <div class="speed-type">Image</div>
+            <div class="speed-value" id="speedImage">--</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">B/s</div>
+          </div>
+          <div class="speed-card">
+            <div class="speed-type">Binary</div>
+            <div class="speed-value" id="speedBinary">--</div>
+            <div style="font-size: 11px; color: var(--text-secondary);">B/s</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical Layer Stats -->
+      <div class="panel-card">
+        <div class="panel-card-title">📡 Physical Layer</div>
+        <div class="metric-row">
+          <span class="metric-label">Base Frequency</span>
+          <span class="metric-value" id="metricBaseFreq">18,000 Hz</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Symbol Rate</span>
+          <span class="metric-value" id="metricSymbolRate">-- sym/s</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Modulation</span>
+          <span class="metric-value">16-FSK</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Symbols TX</span>
+          <span class="metric-value" id="metricSymbolsTx">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Symbols RX</span>
+          <span class="metric-value" id="metricSymbolsRx">0</span>
+        </div>
+      </div>
+
+      <!-- MAC Layer Stats -->
+      <div class="panel-card">
+        <div class="panel-card-title">🔄 MAC Layer</div>
+        <div class="metric-row">
+          <span class="metric-label">Current Slot</span>
+          <span class="metric-value" id="metricSlot">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Assigned Slots</span>
+          <span class="metric-value" id="metricAssignedSlots">--</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Collisions</span>
+          <span class="metric-value" id="metricCollisions">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Utilization</span>
+          <span class="metric-value" id="metricUtilization">0%</span>
+        </div>
+      </div>
+
+      <!-- Security Stats -->
+      <div class="panel-card">
+        <div class="panel-card-title">🔒 Security</div>
+        <div class="metric-row">
+          <span class="metric-label">Active Sessions</span>
+          <span class="metric-value" id="metricSessions">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Auth Success</span>
+          <span class="metric-value" id="metricAuthSuccess">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Challenges Sent</span>
+          <span class="metric-value" id="metricChallenges">0</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Jamming Detected</span>
+          <span class="metric-value" id="metricJamming">0</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module">
+    // Import the SDK (in production, use bundled version)
+    import AcousticMesh from '../src/index.js';
+
+    // Make globally available
+    window.AcousticMesh = AcousticMesh;
+
+    // Global mesh instance
+    let mesh = null;
+    let waveformCtx, spectrumCtx;
+    let animationFrame;
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      initializeCanvases();
+      checkEnvironment();
+      updateStatus('offline', 'Click "Start Mesh" to begin');
+    });
+
+    function checkEnvironment() {
+      const isSecure = window.isSecureContext;
+      const isLocalhost = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+      const isFile = location.protocol === 'file:';
+
+      if (isFile || (!isSecure && !isLocalhost)) {
+        logMessage('warn', '❌ Cannot access microphone from file:// or non-HTTPS');
+        logMessage('warn', '');
+        logMessage('info', '🔧 TO FIX: Run these commands:');
+        logMessage('info', '   cd acoustictalk-sdk');
+        logMessage('info', '   node server.cjs');
+        logMessage('info', '');
+        logMessage('info', '📍 Then open: http://localhost:8080/demo/');
+        logMessage('warn', '');
+        document.getElementById('btnStart').disabled = true;
+        updateStatus('error', 'Requires localhost - see instructions below');
+      } else {
+        logMessage('success', '✓ Environment OK - Real audio available');
+        logMessage('info', 'Click "Start Mesh" to begin');
+      }
+    }
+
+    function initializeCanvases() {
+      const waveformCanvas = document.getElementById('waveformCanvas');
+      const spectrumCanvas = document.getElementById('spectrumCanvas');
+
+      waveformCanvas.width = waveformCanvas.offsetWidth * 2;
+      waveformCanvas.height = 300;
+      spectrumCanvas.width = spectrumCanvas.offsetWidth * 2;
+      spectrumCanvas.height = 300;
+
+      waveformCtx = waveformCanvas.getContext('2d');
+      spectrumCtx = spectrumCanvas.getContext('2d');
+
+      // Draw placeholder
+      drawPlaceholder(waveformCtx, waveformCanvas, 'Waveform will appear here');
+      drawPlaceholder(spectrumCtx, spectrumCanvas, 'Spectrum will appear here');
+    }
+
+    function drawPlaceholder(ctx, canvas, text) {
+      ctx.fillStyle = '#12121a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#8888aa';
+      ctx.font = '24px system-ui';
+      ctx.textAlign = 'center';
+      ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+    }
+
+    window.startMesh = async function() {
+      try {
+        updateStatus('connecting', 'Initializing...');
+
+        // Create mesh instance
+        const mode = document.querySelector('.mode-btn.active').dataset.mode;
+
+        mesh = AcousticMesh.create({
+          mode: mode,
+          deviceName: 'Browser_' + Math.random().toString(36).substr(2, 4),
+          capabilities: ['text', 'image', 'binary'],
+          onStateChange: (newState, oldState) => {
+            console.log(`State: ${oldState} -> ${newState}`);
+            updateStatusFromState(newState);
+          },
+          onDeviceDiscovered: (device) => {
+            console.log('Device discovered:', device);
+            addDeviceToList(device);
+            logMessage('system', `Device discovered: ${device.deviceName}`);
+          },
+          onDeviceLost: (device) => {
+            console.log('Device lost:', device);
+            removeDeviceFromList(device.deviceId);
+            logMessage('system', `Device lost: ${device.deviceName}`);
+          },
+          onMessage: (message) => {
+            console.log('Message received:', message);
+            logMessage('received', message.data);
+          },
+          onError: (error) => {
+            console.error('Error:', error);
+            logMessage('system', `Error: ${error.message}`);
+          }
+        });
+
+        // Initialize
+        const initResult = await mesh.initialize();
+        if (!initResult.success) {
+          throw new Error(initResult.error);
+        }
+
+        logMessage('success', '✓ Audio initialized - Microphone ready');
+
+        // Update UI with device info
+        document.getElementById('myDeviceName').textContent = mesh.deviceName;
+        document.getElementById('myDeviceId').textContent = mesh.deviceId.slice(0, 16) + '...';
+        document.getElementById('statDataRate').innerHTML =
+          initResult.dataRate.bitRate.toFixed(0) + '<span class="stat-unit">bps</span>';
+        document.getElementById('metricSymbolRate').textContent =
+          initResult.dataRate.symbolRate.toFixed(0) + ' sym/s';
+
+        // Start mesh
+        await mesh.start();
+
+        // Update UI
+        document.getElementById('btnStart').disabled = true;
+        document.getElementById('btnStop').disabled = false;
+
+        // Start visualization
+        startVisualization();
+
+        // Start stats update
+        startStatsUpdate();
+
+        logMessage('success', `Mesh started! Device: ${mesh.deviceId.slice(0,8)}...`);
+        logMessage('info', `Sample rate: ${initResult.sampleRate} Hz`);
+        logMessage('info', `Data rate: ${initResult.dataRate.bitRate.toFixed(0)} bps`);
+        logMessage('info', 'Listening for acoustic signals...');
+
+      } catch (error) {
+        console.error('Failed to start:', error);
+        updateStatus('error', error.message);
+        logMessage('system', `Failed to start: ${error.message}`);
+      }
+    };
+
+    window.stopMesh = function() {
+      if (mesh) {
+        mesh.stop();
+        mesh.dispose();
+        mesh = null;
+      }
+
+      document.getElementById('btnStart').disabled = false;
+      document.getElementById('btnStop').disabled = true;
+      document.getElementById('deviceList').innerHTML = '<p style="color: var(--text-secondary); font-size: 13px; padding: 16px;">Start scanning to discover nearby devices...</p>';
+
+      cancelAnimationFrame(animationFrame);
+      updateStatus('offline', 'Mesh stopped');
+      logMessage('system', 'Mesh stopped');
+    };
+
+    window.sendMessage = async function() {
+      if (!mesh) {
+        logMessage('system', 'Start mesh first!');
+        return;
+      }
+
+      const input = document.getElementById('messageInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      try {
+        await mesh.broadcast(text);
+        logMessage('sent', text);
+        input.value = '';
+      } catch (error) {
+        logMessage('system', `Send failed: ${error.message}`);
+      }
+    };
+
+    window.playTestTone = async function() {
+      if (!mesh) {
+        logMessage('system', 'Start mesh first!');
+        return;
+      }
+
+      logMessage('system', 'Playing test tone at 18kHz...');
+      await mesh.playTestTone(18000, 0.5);
+      logMessage('system', 'Test tone complete');
+    };
+
+    window.runSpeedTest = async function() {
+      if (!mesh) {
+        logMessage('system', 'Start mesh first!');
+        return;
+      }
+
+      logMessage('system', 'Running speed test...');
+
+      // Text test
+      const textData = 'A'.repeat(100);
+      const textStart = performance.now();
+      await mesh.broadcast(textData);
+      const textTime = performance.now() - textStart;
+      const textSpeed = Math.round((textData.length * 1000) / textTime);
+      document.getElementById('speedText').textContent = textSpeed;
+
+      // Binary test (simulated)
+      const binaryData = new Uint8Array(256);
+      for (let i = 0; i < 256; i++) binaryData[i] = i;
+      const binaryStart = performance.now();
+      await mesh.broadcast(binaryData);
+      const binaryTime = performance.now() - binaryStart;
+      const binarySpeed = Math.round((binaryData.length * 1000) / binaryTime);
+      document.getElementById('speedBinary').textContent = binarySpeed;
+
+      // Image test (simulated small image)
+      const imageData = new Uint8Array(1024);
+      for (let i = 0; i < 1024; i++) imageData[i] = Math.random() * 255;
+      const imageStart = performance.now();
+      await mesh.broadcast(imageData);
+      const imageTime = performance.now() - imageStart;
+      const imageSpeed = Math.round((imageData.length * 1000) / imageTime);
+      document.getElementById('speedImage').textContent = imageSpeed;
+
+      logMessage('system', `Speed test complete. Text: ${textSpeed} B/s, Binary: ${binarySpeed} B/s`);
+    };
+
+    window.handleFileSelect = async function(event) {
+      const file = event.target.files[0];
+      if (!file || !mesh) return;
+
+      const progressDiv = document.getElementById('transferProgress');
+      const progressBar = document.getElementById('transferProgressBar');
+      const fileName = document.getElementById('transferFileName');
+      const percent = document.getElementById('transferPercent');
+
+      progressDiv.style.display = 'block';
+      fileName.textContent = file.name;
+
+      logMessage('system', `Preparing to send: ${file.name} (${file.size} bytes)`);
+
+      try {
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          const data = new Uint8Array(e.target.result);
+          const chunkSize = 256;
+          const totalChunks = Math.ceil(data.length / chunkSize);
+
+          for (let i = 0; i < totalChunks; i++) {
+            const chunk = data.slice(i * chunkSize, (i + 1) * chunkSize);
+            await mesh.broadcast(chunk);
+
+            const progress = Math.round(((i + 1) / totalChunks) * 100);
+            progressBar.style.width = progress + '%';
+            percent.textContent = progress + '%';
+          }
+
+          logMessage('system', `File sent: ${file.name}`);
+        };
+        reader.readAsArrayBuffer(file);
+      } catch (error) {
+        logMessage('system', `File send failed: ${error.message}`);
+      }
+    };
+
+    // Mode toggle
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const freq = btn.dataset.mode === 'ultrasonic' ? '18,000 Hz' : '1,000 Hz';
+        document.getElementById('metricBaseFreq').textContent = freq;
+      });
+    });
+
+    function updateStatus(status, text) {
+      const dot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
+
+      dot.className = 'status-dot';
+      if (status === 'offline') dot.classList.add('offline');
+      else if (status === 'connecting') dot.classList.add('connecting');
+      else if (status === 'error') dot.classList.add('error');
+
+      statusText.textContent = text;
+    }
+
+    function updateStatusFromState(state) {
+      const statusMap = {
+        'initializing': ['connecting', 'Initializing...'],
+        'scanning': ['', 'Scanning...'],
+        'idle': ['', 'Ready'],
+        'transmitting': ['', 'Transmitting...'],
+        'receiving': ['', 'Receiving...'],
+        'error': ['error', 'Error']
+      };
+
+      const [dotClass, text] = statusMap[state] || ['', state];
+      updateStatus(dotClass, text);
+    }
+
+    function logMessage(type, content) {
+      const log = document.getElementById('messageLog');
+      const entry = document.createElement('div');
+      entry.className = `message-entry ${type} fade-in`;
+
+      const time = new Date().toLocaleTimeString();
+      entry.innerHTML = `
+        <div class="message-time">${time}</div>
+        <div>${typeof content === 'object' ? JSON.stringify(content) : content}</div>
+      `;
+
+      log.appendChild(entry);
+      log.scrollTop = log.scrollHeight;
+
+      // Keep only last 100 messages
+      while (log.children.length > 100) {
+        log.removeChild(log.firstChild);
+      }
+    }
+
+    function addDeviceToList(device) {
+      const list = document.getElementById('deviceList');
+
+      // Remove placeholder
+      const placeholder = list.querySelector('p');
+      if (placeholder) placeholder.remove();
+
+      // Check if device already exists
+      if (document.getElementById(`device-${device.deviceId}`)) {
+        return;
+      }
+
+      const card = document.createElement('div');
+      card.className = 'device-card fade-in';
+      card.id = `device-${device.deviceId}`;
+      card.innerHTML = `
+        <div class="device-header">
+          <span class="device-name">${device.deviceName}</span>
+          <span style="color: var(--accent-green);">●</span>
+        </div>
+        <div class="device-id">${device.deviceId.slice(0, 16)}...</div>
+        <div class="device-meta">
+          <span>📡 ${device.latency || 0}ms</span>
+          <span>🔋 ${device.capabilities?.length || 0} caps</span>
+        </div>
+      `;
+
+      card.onclick = () => {
+        document.querySelectorAll('.device-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+      };
+
+      list.appendChild(card);
+      document.getElementById('deviceCount').textContent = list.children.length;
+    }
+
+    function removeDeviceFromList(deviceId) {
+      const card = document.getElementById(`device-${deviceId}`);
+      if (card) {
+        card.remove();
+        document.getElementById('deviceCount').textContent =
+          document.getElementById('deviceList').children.length;
+      }
+    }
+
+    function startVisualization() {
+      const waveformCanvas = document.getElementById('waveformCanvas');
+      const spectrumCanvas = document.getElementById('spectrumCanvas');
+
+      function draw() {
+        if (!mesh) return;
+
+        // Get audio data
+        const audioStats = mesh.audioIO.getStats();
+
+        // Draw waveform
+        const waveform = mesh.audioIO.getWaveformData();
+        if (waveform) {
+          drawWaveform(waveformCtx, waveformCanvas, waveform);
+        }
+
+        // Draw spectrum
+        const freqData = mesh.audioIO.getFrequencyData();
+        if (freqData) {
+          drawSpectrum(spectrumCtx, spectrumCanvas, freqData.data);
+        }
+
+        animationFrame = requestAnimationFrame(draw);
+      }
+
+      draw();
+    }
+
+    function drawWaveform(ctx, canvas, data) {
+      ctx.fillStyle = '#12121a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.strokeStyle = '#00a8ff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+
+      const sliceWidth = canvas.width / data.length;
+      let x = 0;
+
+      for (let i = 0; i < data.length; i++) {
+        const y = (data[i] + 1) * canvas.height / 2;
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+        x += sliceWidth;
+      }
+
+      ctx.stroke();
+    }
+
+    function drawSpectrum(ctx, canvas, data) {
+      ctx.fillStyle = '#12121a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const barWidth = canvas.width / data.length * 2;
+      let x = 0;
+
+      // Focus on ultrasonic range (roughly last 1/4 of spectrum for 44.1kHz sample rate)
+      const start = Math.floor(data.length * 0.8);
+
+      for (let i = start; i < data.length; i++) {
+        const barHeight = (data[i] / 255) * canvas.height;
+
+        // Gradient from blue to purple
+        const hue = 200 + (i - start) / (data.length - start) * 60;
+        ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
+
+        ctx.fillRect(x, canvas.height - barHeight, barWidth - 1, barHeight);
+        x += barWidth;
+      }
+    }
+
+    function startStatsUpdate() {
+      setInterval(() => {
+        if (!mesh) return;
+
+        const stats = mesh.getStats();
+
+        // Update stats
+        document.getElementById('statBytesSent').innerHTML =
+          formatBytes(stats.performance.totalBytesSent);
+        document.getElementById('statBytesReceived').innerHTML =
+          formatBytes(stats.performance.totalBytesReceived);
+        document.getElementById('statMessages').textContent =
+          stats.performance.messageCount;
+
+        // Physical layer
+        document.getElementById('metricSymbolsTx').textContent =
+          stats.physical?.symbolsTransmitted || 0;
+        document.getElementById('metricSymbolsRx').textContent =
+          stats.physical?.symbolsReceived || 0;
+
+        // MAC layer
+        const macInfo = mesh.mac.getSlotInfo();
+        document.getElementById('metricSlot').textContent = macInfo.currentSlot;
+        document.getElementById('metricAssignedSlots').textContent =
+          macInfo.assignedSlots.join(', ') || '--';
+        document.getElementById('metricCollisions').textContent =
+          stats.mac?.collisions || 0;
+        document.getElementById('metricUtilization').textContent =
+          ((stats.mac?.slotUtilization || 0) * 100).toFixed(0) + '%';
+
+        // Security
+        document.getElementById('metricSessions').textContent =
+          stats.security?.activeSessions || 0;
+        document.getElementById('metricAuthSuccess').textContent =
+          stats.security?.stats?.authSuccesses || 0;
+        document.getElementById('metricChallenges').textContent =
+          stats.security?.stats?.challengesSent || 0;
+        document.getElementById('metricJamming').textContent =
+          stats.security?.stats?.jammingDetected || 0;
+
+        // Device count
+        document.getElementById('deviceCount').textContent = stats.devices || 0;
+
+      }, 500);
+    }
+
+    function formatBytes(bytes) {
+      if (bytes < 1024) return bytes + '<span class="stat-unit">B</span>';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + '<span class="stat-unit">KB</span>';
+      return (bytes / 1024 / 1024).toFixed(2) + '<span class="stat-unit">MB</span>';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AcousticTalk - Simple Speed Test</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #00a8ff, #8844ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: #888;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: #242444;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-right: 12px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00a8ff, #8844ff);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #333355;
+      color: white;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 168, 255, 0.3);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status {
+      padding: 12px 16px;
+      border-radius: 8px;
+      background: #333355;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #888;
+    }
+
+    .status-dot.active {
+      background: #00ff88;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .log {
+      background: #1a1a2e;
+      border-radius: 8px;
+      padding: 16px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .log-entry {
+      margin-bottom: 4px;
+    }
+
+    .log-time {
+      color: #666;
+    }
+
+    .log-info { color: #00a8ff; }
+    .log-success { color: #00ff88; }
+    .log-warn { color: #ffaa00; }
+    .log-error { color: #ff4444; }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .result-card {
+      background: #1a1a2e;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .result-type {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    .result-value {
+      font-size: 32px;
+      font-weight: bold;
+      color: #00a8ff;
+    }
+
+    .result-unit {
+      font-size: 14px;
+      color: #888;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    input, textarea {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #444;
+      border-radius: 8px;
+      background: #1a1a2e;
+      color: white;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #00a8ff;
+    }
+
+    .device-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .device-info span {
+      color: #888;
+    }
+
+    .device-info strong {
+      color: #eee;
+    }
+
+    .wave-animation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 40px;
+      margin: 16px 0;
+    }
+
+    .wave-animation span {
+      width: 4px;
+      background: #00a8ff;
+      border-radius: 2px;
+      animation: wave 0.5s ease-in-out infinite;
+    }
+
+    .wave-animation span:nth-child(1) { animation-delay: 0s; }
+    .wave-animation span:nth-child(2) { animation-delay: 0.1s; }
+    .wave-animation span:nth-child(3) { animation-delay: 0.2s; }
+    .wave-animation span:nth-child(4) { animation-delay: 0.3s; }
+    .wave-animation span:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes wave {
+      0%, 100% { height: 10px; }
+      50% { height: 40px; }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AcousticTalk SDK</h1>
+    <p class="subtitle">Zero-config acoustic mesh networking - Speed Test Demo</p>
+
+    <!-- Status -->
+    <div class="card">
+      <h2>Status</h2>
+      <div class="status">
+        <div class="status-dot" id="statusDot"></div>
+        <span id="statusText">Not initialized</span>
+      </div>
+      <div class="device-info" id="deviceInfo" style="display: none;">
+        <span>Device ID:</span>
+        <strong id="deviceId">--</strong>
+        <span>Device Name:</span>
+        <strong id="deviceName">--</strong>
+        <span>Data Rate:</span>
+        <strong id="dataRate">--</strong>
+        <span>Mode:</span>
+        <strong id="mode">--</strong>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="card">
+      <h2>Controls</h2>
+      <button class="btn-primary" id="btnInit" onclick="initMesh()">Initialize</button>
+      <button class="btn-secondary" id="btnStart" onclick="startMesh()" disabled>Start</button>
+      <button class="btn-secondary" id="btnStop" onclick="stopMesh()" disabled>Stop</button>
+      <button class="btn-secondary" onclick="playTestTone()">Test Tone (18kHz)</button>
+    </div>
+
+    <!-- Speed Test -->
+    <div class="card">
+      <h2>Speed Test</h2>
+      <p style="color: #888; margin-bottom: 16px;">Test acoustic data transmission speeds for different data types</p>
+
+      <button class="btn-primary" onclick="runSpeedTest()" id="btnSpeedTest" disabled>Run Speed Test</button>
+      <button class="btn-secondary" onclick="runTextTest()" id="btnTextTest" disabled>Text Only</button>
+      <button class="btn-secondary" onclick="runBinaryTest()" id="btnBinaryTest" disabled>Binary Only</button>
+
+      <div class="wave-animation hidden" id="testingAnimation">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="results" id="results">
+        <div class="result-card">
+          <div class="result-type">Text (100 chars)</div>
+          <div class="result-value" id="resultText">--</div>
+          <div class="result-unit">bytes/sec</div>
+        </div>
+        <div class="result-card">
+          <div class="result-type">Binary (256 bytes)</div>
+          <div class="result-value" id="resultBinary">--</div>
+          <div class="result-unit">bytes/sec</div>
+        </div>
+        <div class="result-card">
+          <div class="result-type">Large (1KB)</div>
+          <div class="result-value" id="resultLarge">--</div>
+          <div class="result-unit">bytes/sec</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Send Message -->
+    <div class="card">
+      <h2>Send Message</h2>
+      <div class="input-group">
+        <textarea id="messageInput" placeholder="Type a message to broadcast acoustically..."></textarea>
+        <button class="btn-primary" onclick="sendMessage()" id="btnSend" disabled>Send</button>
+      </div>
+    </div>
+
+    <!-- Log -->
+    <div class="card">
+      <h2>Activity Log</h2>
+      <div class="log" id="log"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import AcousticMesh from '../src/index.js';
+
+    window.AcousticMesh = AcousticMesh;
+    window.mesh = null;
+
+    window.initMesh = async function() {
+      log('info', 'Initializing AcousticMesh SDK...');
+
+      try {
+        window.mesh = AcousticMesh.create({
+          mode: 'ultrasonic',
+          deviceName: 'SpeedTest_' + Math.random().toString(36).substr(2, 4),
+          onStateChange: (newState) => {
+            log('info', `State changed to: ${newState}`);
+            updateStatus(newState);
+          },
+          onMessage: (message) => {
+            log('success', `Received: ${JSON.stringify(message.data).slice(0, 100)}`);
+          },
+          onDeviceDiscovered: (device) => {
+            log('info', `Device discovered: ${device.deviceName}`);
+          },
+          onError: (error) => {
+            log('error', `Error: ${error.message}`);
+          }
+        });
+
+        const result = await mesh.initialize();
+
+        if (result.success) {
+          log('success', 'Initialization successful!');
+          log('info', `Device ID: ${mesh.deviceId}`);
+          log('info', `Data Rate: ${result.dataRate.bitRate.toFixed(0)} bps`);
+
+          document.getElementById('deviceInfo').style.display = 'grid';
+          document.getElementById('deviceId').textContent = mesh.deviceId.slice(0, 16) + '...';
+          document.getElementById('deviceName').textContent = mesh.deviceName;
+          document.getElementById('dataRate').textContent = result.dataRate.bitRate.toFixed(0) + ' bps';
+          document.getElementById('mode').textContent = 'Ultrasonic (18kHz)';
+
+          document.getElementById('btnInit').disabled = true;
+          document.getElementById('btnStart').disabled = false;
+
+          updateStatus('idle');
+        } else {
+          throw new Error(result.error);
+        }
+      } catch (error) {
+        log('error', `Initialization failed: ${error.message}`);
+        updateStatus('error');
+      }
+    };
+
+    window.startMesh = async function() {
+      if (!mesh) return;
+
+      log('info', 'Starting mesh...');
+      await mesh.start();
+
+      document.getElementById('btnStart').disabled = true;
+      document.getElementById('btnStop').disabled = false;
+      document.getElementById('btnSpeedTest').disabled = false;
+      document.getElementById('btnTextTest').disabled = false;
+      document.getElementById('btnBinaryTest').disabled = false;
+      document.getElementById('btnSend').disabled = false;
+
+      log('success', 'Mesh started! Scanning for devices...');
+    };
+
+    window.stopMesh = function() {
+      if (!mesh) return;
+
+      mesh.stop();
+
+      document.getElementById('btnStart').disabled = false;
+      document.getElementById('btnStop').disabled = true;
+      document.getElementById('btnSpeedTest').disabled = true;
+      document.getElementById('btnTextTest').disabled = true;
+      document.getElementById('btnBinaryTest').disabled = true;
+      document.getElementById('btnSend').disabled = true;
+
+      log('info', 'Mesh stopped');
+      updateStatus('idle');
+    };
+
+    window.playTestTone = async function() {
+      if (!mesh) {
+        log('warn', 'Initialize mesh first!');
+        return;
+      }
+
+      log('info', 'Playing 18kHz test tone...');
+      await mesh.playTestTone(18000, 0.5);
+      log('success', 'Test tone complete');
+    };
+
+    window.runSpeedTest = async function() {
+      if (!mesh) return;
+
+      showTestingAnimation(true);
+      log('info', 'Running comprehensive speed test...');
+
+      // Text test
+      await runTextTest();
+
+      // Binary test
+      await runBinaryTest();
+
+      // Large data test
+      const largeData = new Uint8Array(1024);
+      for (let i = 0; i < 1024; i++) largeData[i] = Math.random() * 255;
+
+      const largeStart = performance.now();
+      await mesh.broadcast(largeData);
+      const largeTime = performance.now() - largeStart;
+      const largeSpeed = Math.round((largeData.length * 1000) / largeTime);
+
+      document.getElementById('resultLarge').textContent = largeSpeed;
+      log('success', `Large data (1KB): ${largeSpeed} bytes/sec`);
+
+      showTestingAnimation(false);
+      log('success', 'Speed test complete!');
+    };
+
+    window.runTextTest = async function() {
+      if (!mesh) return;
+
+      const textData = 'Hello from AcousticTalk! '.repeat(4); // 100 chars
+      log('info', `Sending ${textData.length} characters...`);
+
+      const startTime = performance.now();
+      await mesh.broadcast(textData);
+      const endTime = performance.now();
+
+      const duration = endTime - startTime;
+      const speed = Math.round((textData.length * 1000) / duration);
+
+      document.getElementById('resultText').textContent = speed;
+      log('success', `Text speed: ${speed} bytes/sec (${duration.toFixed(0)}ms)`);
+
+      return speed;
+    };
+
+    window.runBinaryTest = async function() {
+      if (!mesh) return;
+
+      const binaryData = new Uint8Array(256);
+      for (let i = 0; i < 256; i++) binaryData[i] = i;
+
+      log('info', `Sending ${binaryData.length} binary bytes...`);
+
+      const startTime = performance.now();
+      await mesh.broadcast(binaryData);
+      const endTime = performance.now();
+
+      const duration = endTime - startTime;
+      const speed = Math.round((binaryData.length * 1000) / duration);
+
+      document.getElementById('resultBinary').textContent = speed;
+      log('success', `Binary speed: ${speed} bytes/sec (${duration.toFixed(0)}ms)`);
+
+      return speed;
+    };
+
+    window.sendMessage = async function() {
+      if (!mesh) return;
+
+      const input = document.getElementById('messageInput');
+      const text = input.value.trim();
+
+      if (!text) {
+        log('warn', 'Enter a message first!');
+        return;
+      }
+
+      log('info', `Sending: "${text}"`);
+
+      const startTime = performance.now();
+      await mesh.broadcast(text);
+      const duration = performance.now() - startTime;
+
+      log('success', `Message sent in ${duration.toFixed(0)}ms`);
+      input.value = '';
+    };
+
+    function updateStatus(state) {
+      const dot = document.getElementById('statusDot');
+      const text = document.getElementById('statusText');
+
+      dot.classList.remove('active');
+
+      const statusMap = {
+        'idle': ['Ready', true],
+        'scanning': ['Scanning...', true],
+        'transmitting': ['Transmitting...', true],
+        'receiving': ['Receiving...', true],
+        'error': ['Error', false],
+        'initializing': ['Initializing...', false]
+      };
+
+      const [statusText, isActive] = statusMap[state] || [state, false];
+      text.textContent = statusText;
+      if (isActive) dot.classList.add('active');
+    }
+
+    function showTestingAnimation(show) {
+      const anim = document.getElementById('testingAnimation');
+      anim.classList.toggle('hidden', !show);
+    }
+
+    function log(type, message) {
+      const logDiv = document.getElementById('log');
+      const time = new Date().toLocaleTimeString();
+
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.innerHTML = `<span class="log-time">[${time}]</span> <span class="log-${type}">${message}</span>`;
+
+      logDiv.appendChild(entry);
+      logDiv.scrollTop = logDiv.scrollHeight;
+
+      // Keep only last 50 entries
+      while (logDiv.children.length > 50) {
+        logDiv.removeChild(logDiv.firstChild);
+      }
+    }
+
+    // Initial log
+    log('info', 'AcousticTalk SDK loaded. Click "Initialize" to begin.');
+  </script>
+</body>
+</html>
