@@ -1,0 +1,2653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prolog Programming Lab Practicals | Artificial Intelligence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #3d5a80 50%, #98c1d9 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 i {
+            margin-right: 15px;
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .author-name {
+            font-size: 1.1em;
+            font-weight: 500;
+            opacity: 0.9;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+
+        .author-name i {
+            margin-right: 8px;
+        }
+
+        .course-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .course-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            backdrop-filter: blur(5px);
+        }
+
+        .content {
+            padding: 50px;
+        }
+
+        /* Course Outcomes Box */
+        .co-box {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f0 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            border-left: 6px solid #1e3a5f;
+            box-shadow: 0 4px 15px rgba(30,58,95,0.15);
+        }
+
+        .co-box h2 {
+            color: #1e3a5f;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border: none;
+        }
+
+        .co-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .co-item {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #3d5a80;
+        }
+
+        .co-tag {
+            display: inline-block;
+            background: #1e3a5f;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-right: 10px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: #1e3a5f;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .nav-tab {
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            border: none;
+            text-decoration: none;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: #98c1d9;
+            color: #1e3a5f;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab i {
+            margin-right: 8px;
+        }
+
+        /* Introduction Section */
+        .intro-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            border-left: 6px solid #10b981;
+        }
+
+        .intro-section h2 {
+            color: #059669;
+            border-bottom: none;
+            margin-bottom: 20px;
+        }
+
+        /* What is Prolog Box */
+        .prolog-intro {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .prolog-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .prolog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .prolog-card.what { border-top: 5px solid #10b981; }
+        .prolog-card.why { border-top: 5px solid #f59e0b; }
+        .prolog-card.how { border-top: 5px solid #3b82f6; }
+        .prolog-card.where { border-top: 5px solid #8b5cf6; }
+
+        .prolog-card h4 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prolog-card.what h4 { color: #059669; }
+        .prolog-card.why h4 { color: #d97706; }
+        .prolog-card.how h4 { color: #2563eb; }
+        .prolog-card.where h4 { color: #7c3aed; }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 60px;
+            scroll-margin-top: 20px;
+        }
+
+        h2 {
+            color: #1e3a5f;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 4px solid #3d5a80;
+            display: flex;
+            align-items: center;
+        }
+
+        h2 i {
+            margin-right: 15px;
+            color: #3d5a80;
+        }
+
+        h3 {
+            color: #3d5a80;
+            font-size: 1.6em;
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+
+        h3 i {
+            margin-right: 10px;
+        }
+
+        /* Practical Box */
+        .practical-box {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            overflow: hidden;
+            border: 2px solid #e5e7eb;
+        }
+
+        .practical-header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #3d5a80 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .practical-number {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .practical-co {
+            background: #10b981;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .practical-content {
+            padding: 30px;
+        }
+
+        .practical-aim {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #3b82f6;
+        }
+
+        .practical-aim h4 {
+            color: #1d4ed8;
+            margin-bottom: 10px;
+        }
+
+        /* Theory Box */
+        .theory-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #f59e0b;
+        }
+
+        .theory-box h4 {
+            color: #92400e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Simple Explanation Box */
+        .simple-explanation {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #10b981;
+        }
+
+        .simple-explanation h4 {
+            color: #047857;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .simple-explanation h4 i {
+            color: #10b981;
+        }
+
+        /* Analogy Box */
+        .analogy-box {
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #ec4899;
+        }
+
+        .analogy-box h4 {
+            color: #be185d;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Code Block */
+        .code-container {
+            position: relative;
+            margin: 25px 0;
+        }
+
+        .code-header {
+            background: #334155;
+            padding: 12px 20px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-lang {
+            color: #94a3b8;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .copy-button {
+            background: #3d5a80;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: #98c1d9;
+            color: #1e3a5f;
+        }
+
+        .copy-button.copied {
+            background: #10b981;
+        }
+
+        .code-block {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 0 0 12px 12px;
+            overflow-x: auto;
+            font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-block .comment { color: #6b7280; }
+        .code-block .keyword { color: #c084fc; }
+        .code-block .predicate { color: #fbbf24; }
+        .code-block .variable { color: #60a5fa; }
+        .code-block .string { color: #86efac; }
+        .code-block .operator { color: #f472b6; }
+
+        /* Output Box */
+        .output-box {
+            background: #0f172a;
+            color: #10b981;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: 'Fira Code', monospace;
+            border-left: 5px solid #10b981;
+        }
+
+        .output-box h5 {
+            color: #6ee7b7;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        /* Step by Step Box */
+        .steps-box {
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #8b5cf6;
+        }
+
+        .steps-box h4 {
+            color: #6d28d9;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            padding: 15px 15px 15px 60px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #8b5cf6;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        /* Extra Task Box */
+        .extra-task {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border: 3px dashed #ef4444;
+        }
+
+        .extra-task h4 {
+            color: #dc2626;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Solution Toggle */
+        .solution-toggle {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .solution-toggle:hover {
+            background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+            transform: translateY(-2px);
+        }
+
+        .solution-content {
+            display: none;
+            margin-top: 20px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            border: 3px solid #7c3aed;
+        }
+
+        .solution-content.show {
+            display: block;
+        }
+
+        /* Tip Box */
+        .tip-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #10b981;
+        }
+
+        .tip-box strong {
+            color: #047857;
+        }
+
+        .tip-box i {
+            margin-right: 10px;
+            color: #10b981;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #ef4444;
+        }
+
+        .warning-box i {
+            margin-right: 10px;
+            color: #ef4444;
+        }
+
+        /* Key Syntax Box */
+        .syntax-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #0284c7;
+        }
+
+        .syntax-box h4 {
+            color: #0369a1;
+            margin-bottom: 15px;
+        }
+
+        .syntax-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .syntax-code {
+            background: #1e293b;
+            color: #fbbf24;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-family: 'Fira Code', monospace;
+            white-space: nowrap;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #1e3a5f 0%, #3d5a80 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        tr:hover {
+            background: #e8f4f8;
+        }
+
+        /* Setup Box */
+        .setup-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid #22c55e;
+        }
+
+        .setup-box h3 {
+            color: #15803d;
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0d1b2a 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: 25px;
+            }
+
+            h2 {
+                font-size: 1.6em;
+            }
+
+            .prolog-intro {
+                grid-template-columns: 1fr;
+            }
+
+            .practical-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+
+            .nav-tabs, .copy-button {
+                display: none;
+            }
+        }
+
+        /* Diagram Container */
+        .diagram-container {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: center;
+            overflow-x: auto;
+        }
+
+        .diagram-title {
+            color: #1e3a5f;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Animation for practical boxes */
+        .practical-box {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .practical-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-laptop-code"></i> Prolog Programming Lab Practicals</h1>
+            <p class="author-name"><i class="fas fa-user-graduate"></i> by Dr. Ankush Rai</p>
+            <p>A Beginner-Friendly Guide to Logic Programming in Artificial Intelligence</p>
+            <div class="course-info">
+                <span class="course-badge"><i class="fas fa-book"></i> AI Lab Course</span>
+                <span class="course-badge"><i class="fas fa-clock"></i> 11 Practicals</span>
+                <span class="course-badge"><i class="fas fa-graduation-cap"></i> Hands-on Learning</span>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- Course Outcomes -->
+            <div class="co-box">
+                <h2><i class="fas fa-bullseye"></i> Course Outcomes (COs)</h2>
+                <div class="co-list">
+                    <div class="co-item">
+                        <span class="co-tag">CO1</span>
+                        Represent production rules and knowledge using Prolog
+                    </div>
+                    <div class="co-item">
+                        <span class="co-tag">CO2</span>
+                        Control backtracking techniques in Prolog
+                    </div>
+                    <div class="co-item">
+                        <span class="co-tag">CO3</span>
+                        Implement Lists in Prolog and perform various actions on lists
+                    </div>
+                    <div class="co-item">
+                        <span class="co-tag">CO4</span>
+                        Solve knowledge-based well-defined problems
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav-tabs">
+                <a href="#intro" class="nav-tab"><i class="fas fa-play-circle"></i> Introduction</a>
+                <a href="#setup" class="nav-tab"><i class="fas fa-cog"></i> Setup</a>
+                <a href="#exp1" class="nav-tab"><i class="fas fa-users"></i> Exp 1: Family Rules</a>
+                <a href="#exp2" class="nav-tab"><i class="fas fa-cut"></i> Exp 2: Cut & Fail</a>
+                <a href="#exp3" class="nav-tab"><i class="fas fa-calculator"></i> Exp 3: Factorial</a>
+                <a href="#exp4" class="nav-tab"><i class="fas fa-list"></i> Exp 4-8: Lists</a>
+                <a href="#exp9" class="nav-tab"><i class="fas fa-layer-group"></i> Exp 9: Tower of Hanoi</a>
+                <a href="#exp10" class="nav-tab"><i class="fas fa-tint"></i> Exp 10: Water Jug</a>
+                <a href="#exp11" class="nav-tab"><i class="fas fa-puzzle-piece"></i> Exp 11: Cryptarithmetic</a>
+            </nav>
+
+            <!-- Introduction Section -->
+            <section id="intro" class="intro-section">
+                <h2><i class="fas fa-rocket"></i> Welcome to Prolog Programming!</h2>
+                <p style="font-size: 1.1em; margin-bottom: 25px;">
+                    Don't worry if you've never programmed before! Prolog is actually one of the easiest languages to understand
+                    because it works like how we think naturally - by asking questions and defining relationships.
+                </p>
+
+                <div class="prolog-intro">
+                    <div class="prolog-card what">
+                        <h4><i class="fas fa-question-circle"></i> What is Prolog?</h4>
+                        <p><strong>Prolog = Programming in Logic</strong></p>
+                        <p>Instead of telling the computer HOW to solve a problem step-by-step, you tell it WHAT the problem is, and it figures out the solution!</p>
+                        <p style="margin-top: 10px;"><em>Think of it as describing facts and relationships, then asking questions.</em></p>
+                    </div>
+
+                    <div class="prolog-card why">
+                        <h4><i class="fas fa-lightbulb"></i> Why Learn Prolog?</h4>
+                        <ul style="margin-left: 20px;">
+                            <li>Perfect for AI and expert systems</li>
+                            <li>Natural language processing</li>
+                            <li>Database querying</li>
+                            <li>Solving puzzles and games</li>
+                            <li>Teaches logical thinking</li>
+                        </ul>
+                    </div>
+
+                    <div class="prolog-card how">
+                        <h4><i class="fas fa-cogs"></i> How Does It Work?</h4>
+                        <p><strong>Three simple building blocks:</strong></p>
+                        <ol style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Facts</strong> - Things that are true</li>
+                            <li><strong>Rules</strong> - IF-THEN relationships</li>
+                            <li><strong>Queries</strong> - Questions you ask</li>
+                        </ol>
+                    </div>
+
+                    <div class="prolog-card where">
+                        <h4><i class="fas fa-globe"></i> Where is it Used?</h4>
+                        <ul style="margin-left: 20px;">
+                            <li>IBM Watson (AI assistant)</li>
+                            <li>Expert medical diagnosis systems</li>
+                            <li>Natural language chatbots</li>
+                            <li>Scheduling and planning systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Prolog Basics -->
+            <section>
+                <h2><i class="fas fa-book-open"></i> Prolog Basics - Learn in 5 Minutes!</h2>
+
+                <div class="simple-explanation">
+                    <h4><i class="fas fa-lightbulb"></i> Think of Prolog Like a Detective!</h4>
+                    <p>Imagine you're a detective. You have:</p>
+                    <ul style="margin-left: 25px; margin-top: 10px;">
+                        <li><strong>Facts</strong> = Evidence you know is true ("John is a man", "Mary is John's mother")</li>
+                        <li><strong>Rules</strong> = Logical deductions ("If X is Y's mother, then Y is X's child")</li>
+                        <li><strong>Queries</strong> = Questions to solve ("Who is John's mother?")</li>
+                    </ul>
+                </div>
+
+                <div class="syntax-box">
+                    <h4><i class="fas fa-code"></i> Essential Prolog Syntax</h4>
+
+                    <div class="syntax-item">
+                        <span class="syntax-code">fact.</span>
+                        <span>Every statement ends with a <strong>period (.)</strong></span>
+                    </div>
+
+                    <div class="syntax-item">
+                        <span class="syntax-code">likes(john, pizza).</span>
+                        <span><strong>Predicates</strong> describe relationships. Here: "John likes pizza"</span>
+                    </div>
+
+                    <div class="syntax-item">
+                        <span class="syntax-code">X, Y, Name</span>
+                        <span><strong>Variables</strong> start with UPPERCASE letters</span>
+                    </div>
+
+                    <div class="syntax-item">
+                        <span class="syntax-code">john, pizza, mother</span>
+                        <span><strong>Constants/Atoms</strong> start with lowercase letters</span>
+                    </div>
+
+                    <div class="syntax-item">
+                        <span class="syntax-code">parent(X, Y) :- father(X, Y).</span>
+                        <span><strong>Rules</strong> use <code>:-</code> which means "if". Read as: "X is parent of Y IF X is father of Y"</span>
+                    </div>
+
+                    <div class="syntax-item">
+                        <span class="syntax-code">?- likes(john, pizza).</span>
+                        <span><strong>Queries</strong> start with <code>?-</code> to ask questions</span>
+                    </div>
+
+                    <div class="syntax-item">
+                        <span class="syntax-code">A, B</span>
+                        <span><strong>AND</strong> operator: comma means "and"</span>
+                    </div>
+
+                    <div class="syntax-item">
+                        <span class="syntax-code">A ; B</span>
+                        <span><strong>OR</strong> operator: semicolon means "or"</span>
+                    </div>
+                </div>
+
+                <div class="analogy-box">
+                    <h4><i class="fas fa-coffee"></i> Real-Life Analogy</h4>
+                    <p><strong>Imagine a family tree database:</strong></p>
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 10px; font-family: monospace;">
+                        <p style="color: #6b7280;">% Facts (things we know)</p>
+                        <p style="color: #fbbf24;">father(ram, sita).</p>
+                        <p style="color: #6b7280; margin-top: 5px;">% This simply means: "Ram is the father of Sita"</p>
+                        <p style="color: #fbbf24; margin-top: 10px;">mother(geeta, sita).</p>
+                        <p style="color: #6b7280;">% This means: "Geeta is the mother of Sita"</p>
+                    </div>
+                    <p style="margin-top: 15px;">Now you can ask questions like: <code>?- father(X, sita).</code> and Prolog will tell you <code>X = ram</code></p>
+                </div>
+            </section>
+
+            <!-- Setup Section -->
+            <section id="setup">
+                <h2><i class="fas fa-download"></i> Setting Up Prolog</h2>
+
+                <div class="setup-box">
+                    <h3><i class="fas fa-desktop"></i> Installing SWI-Prolog (Recommended)</h3>
+
+                    <div class="steps-box" style="margin-top: 20px;">
+                        <h4><i class="fas fa-list-ol"></i> Installation Steps</h4>
+                        <ol class="step-list">
+                            <li>Go to <strong>https://www.swi-prolog.org/Download.html</strong></li>
+                            <li>Download the version for your operating system (Windows/Mac/Linux)</li>
+                            <li>Run the installer and follow the prompts</li>
+                            <li>Open SWI-Prolog from your applications menu</li>
+                            <li>You'll see a prompt like <code>?-</code> which means you're ready!</li>
+                        </ol>
+                    </div>
+
+                    <div class="tip-box">
+                        <i class="fas fa-lightbulb"></i>
+                        <strong>Tip:</strong> You can also use online Prolog interpreters like <strong>SWISH</strong> (swish.swi-prolog.org) - no installation needed!
+                    </div>
+                </div>
+
+                <div class="theory-box">
+                    <h4><i class="fas fa-keyboard"></i> Basic Commands to Know</h4>
+                    <table>
+                        <tr>
+                            <th>Command</th>
+                            <th>What it Does</th>
+                        </tr>
+                        <tr>
+                            <td><code>[filename].</code></td>
+                            <td>Load a Prolog file (without .pl extension)</td>
+                        </tr>
+                        <tr>
+                            <td><code>consult('filename.pl').</code></td>
+                            <td>Load a Prolog file (with full name)</td>
+                        </tr>
+                        <tr>
+                            <td><code>listing.</code></td>
+                            <td>Show all loaded facts and rules</td>
+                        </tr>
+                        <tr>
+                            <td><code>halt.</code></td>
+                            <td>Exit Prolog</td>
+                        </tr>
+                        <tr>
+                            <td><code>;</code> (semicolon)</td>
+                            <td>Find next solution (during query)</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ==================== EXPERIMENT 1 ==================== -->
+            <section id="exp1">
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 1</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Family Relationships using Facts and Rules</h3>
+                        </div>
+                        <span class="practical-co">CO1: Represent Production Rules</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to find the rules for <strong>parent, child, son, daughter, brother, sister, uncle, aunt, ancestor</strong> given only facts about <strong>man, woman, father, and wife</strong>.</p>
+                        </div>
+
+                        <div class="simple-explanation">
+                            <h4><i class="fas fa-lightbulb"></i> Understanding the Problem</h4>
+                            <p>Imagine you have a family tree. We'll give Prolog just 4 basic facts:</p>
+                            <ul style="margin-left: 25px; margin-top: 10px;">
+                                <li><strong>man(X)</strong> - X is a male person</li>
+                                <li><strong>woman(X)</strong> - X is a female person</li>
+                                <li><strong>father(X, Y)</strong> - X is the father of Y</li>
+                                <li><strong>wife(X, Y)</strong> - X is the wife of Y</li>
+                            </ul>
+                            <p style="margin-top: 15px;">From these 4 facts, Prolog can figure out ALL other relationships through logical rules!</p>
+                        </div>
+
+                        <div class="theory-box">
+                            <h4><i class="fas fa-brain"></i> The Logic Behind Family Rules</h4>
+                            <table>
+                                <tr>
+                                    <th>Relationship</th>
+                                    <th>Logic in English</th>
+                                </tr>
+                                <tr>
+                                    <td>Mother</td>
+                                    <td>If X is wife of Y, and Y is father of Z, then X is mother of Z</td>
+                                </tr>
+                                <tr>
+                                    <td>Parent</td>
+                                    <td>If X is father OR mother of Y, then X is parent of Y</td>
+                                </tr>
+                                <tr>
+                                    <td>Child</td>
+                                    <td>If X is parent of Y, then Y is child of X</td>
+                                </tr>
+                                <tr>
+                                    <td>Son</td>
+                                    <td>If X is child of Y AND X is a man, then X is son of Y</td>
+                                </tr>
+                                <tr>
+                                    <td>Daughter</td>
+                                    <td>If X is child of Y AND X is a woman, then X is daughter of Y</td>
+                                </tr>
+                                <tr>
+                                    <td>Brother</td>
+                                    <td>If X and Y have same parent AND X is a man AND X is not Y</td>
+                                </tr>
+                                <tr>
+                                    <td>Sister</td>
+                                    <td>If X and Y have same parent AND X is a woman AND X is not Y</td>
+                                </tr>
+                                <tr>
+                                    <td>Uncle</td>
+                                    <td>If X is brother of Y AND Y is parent of Z, then X is uncle of Z</td>
+                                </tr>
+                                <tr>
+                                    <td>Aunt</td>
+                                    <td>If X is sister of Y AND Y is parent of Z, then X is aunt of Z</td>
+                                </tr>
+                                <tr>
+                                    <td>Ancestor</td>
+                                    <td>X is ancestor of Y if X is parent of Y, OR X is parent of someone who is ancestor of Y (recursive!)</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <h4><i class="fas fa-code"></i> Complete Program</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> family.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% ============================================</span>
+<span class="comment">% FACTS: Basic information about the family</span>
+<span class="comment">% ============================================</span>
+
+<span class="comment">% Defining who are men</span>
+<span class="predicate">man</span>(ram).
+<span class="predicate">man</span>(shyam).
+<span class="predicate">man</span>(mohan).
+<span class="predicate">man</span>(sohan).
+<span class="predicate">man</span>(rahul).
+
+<span class="comment">% Defining who are women</span>
+<span class="predicate">woman</span>(sita).
+<span class="predicate">woman</span>(gita).
+<span class="predicate">woman</span>(radha).
+<span class="predicate">woman</span>(meera).
+
+<span class="comment">% Defining father relationships</span>
+<span class="comment">% father(X, Y) means X is the father of Y</span>
+<span class="predicate">father</span>(ram, mohan).
+<span class="predicate">father</span>(ram, gita).
+<span class="predicate">father</span>(shyam, rahul).
+<span class="predicate">father</span>(shyam, meera).
+<span class="predicate">father</span>(mohan, sohan).
+<span class="predicate">father</span>(mohan, radha).
+
+<span class="comment">% Defining wife relationships</span>
+<span class="comment">% wife(X, Y) means X is the wife of Y</span>
+<span class="predicate">wife</span>(sita, ram).
+<span class="predicate">wife</span>(gita, shyam).
+
+<span class="comment">% ============================================</span>
+<span class="comment">% RULES: Derived relationships</span>
+<span class="comment">% ============================================</span>
+
+<span class="comment">% Mother: X is mother of Y if X is wife of someone who is father of Y</span>
+<span class="predicate">mother</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">wife</span>(<span class="variable">X</span>, <span class="variable">Z</span>),
+    <span class="predicate">father</span>(<span class="variable">Z</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Parent: X is parent of Y if X is father OR mother of Y</span>
+<span class="predicate">parent</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span> <span class="predicate">father</span>(<span class="variable">X</span>, <span class="variable">Y</span>).
+<span class="predicate">parent</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span> <span class="predicate">mother</span>(<span class="variable">X</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Child: Y is child of X if X is parent of Y</span>
+<span class="predicate">child</span>(<span class="variable">Y</span>, <span class="variable">X</span>) <span class="operator">:-</span> <span class="predicate">parent</span>(<span class="variable">X</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Son: X is son of Y if X is child of Y and X is a man</span>
+<span class="predicate">son</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">child</span>(<span class="variable">X</span>, <span class="variable">Y</span>),
+    <span class="predicate">man</span>(<span class="variable">X</span>).
+
+<span class="comment">% Daughter: X is daughter of Y if X is child of Y and X is a woman</span>
+<span class="predicate">daughter</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">child</span>(<span class="variable">X</span>, <span class="variable">Y</span>),
+    <span class="predicate">woman</span>(<span class="variable">X</span>).
+
+<span class="comment">% Sibling: X and Y are siblings if they have the same parent</span>
+<span class="predicate">sibling</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">parent</span>(<span class="variable">Z</span>, <span class="variable">X</span>),
+    <span class="predicate">parent</span>(<span class="variable">Z</span>, <span class="variable">Y</span>),
+    <span class="variable">X</span> <span class="operator">\=</span> <span class="variable">Y</span>.
+
+<span class="comment">% Brother: X is brother of Y if they are siblings and X is a man</span>
+<span class="predicate">brother</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">sibling</span>(<span class="variable">X</span>, <span class="variable">Y</span>),
+    <span class="predicate">man</span>(<span class="variable">X</span>).
+
+<span class="comment">% Sister: X is sister of Y if they are siblings and X is a woman</span>
+<span class="predicate">sister</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">sibling</span>(<span class="variable">X</span>, <span class="variable">Y</span>),
+    <span class="predicate">woman</span>(<span class="variable">X</span>).
+
+<span class="comment">% Uncle: X is uncle of Y if X is brother of Y's parent</span>
+<span class="predicate">uncle</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">brother</span>(<span class="variable">X</span>, <span class="variable">Z</span>),
+    <span class="predicate">parent</span>(<span class="variable">Z</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Aunt: X is aunt of Y if X is sister of Y's parent</span>
+<span class="predicate">aunt</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">sister</span>(<span class="variable">X</span>, <span class="variable">Z</span>),
+    <span class="predicate">parent</span>(<span class="variable">Z</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Ancestor: X is ancestor of Y if X is parent of Y (base case)</span>
+<span class="predicate">ancestor</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span> <span class="predicate">parent</span>(<span class="variable">X</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Ancestor: X is ancestor of Y if X is parent of someone who is ancestor of Y (recursive)</span>
+<span class="predicate">ancestor</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">parent</span>(<span class="variable">X</span>, <span class="variable">Z</span>),
+    <span class="predicate">ancestor</span>(<span class="variable">Z</span>, <span class="variable">Y</span>).</pre>
+                        </div>
+
+                        <h4><i class="fas fa-terminal"></i> Sample Queries and Output</h4>
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Running Queries</h5>
+<pre>
+?- parent(ram, mohan).
+true.
+
+?- mother(X, mohan).
+X = sita.
+
+?- son(X, ram).
+X = mohan.
+
+?- daughter(X, ram).
+X = gita.
+
+?- brother(mohan, gita).
+true.
+
+?- sister(gita, mohan).
+true.
+
+?- ancestor(ram, sohan).
+true.
+
+?- ancestor(ram, X).
+X = mohan ;
+X = gita ;
+X = sohan ;
+X = radha.
+</pre>
+                        </div>
+
+                        <div class="extra-task">
+                            <h4><i class="fas fa-star"></i> Extra Task: Try This!</h4>
+                            <p><strong>Task:</strong> Add rules for <code>grandfather</code> and <code>grandmother</code> to the program.</p>
+                            <p style="margin-top: 10px;"><em>Hint: Grandfather is the father of a parent. Grandmother is the mother of a parent.</em></p>
+
+                            <button class="solution-toggle" onclick="toggleSolution(this)">
+                                <i class="fas fa-eye"></i> Show Solution
+                            </button>
+                            <div class="solution-content">
+                                <div class="code-container">
+                                    <div class="code-header">
+                                        <span class="code-lang">Prolog - Solution</span>
+                                    </div>
+                                    <pre class="code-block"><span class="comment">% Grandfather: X is grandfather of Y if X is father of Z and Z is parent of Y</span>
+<span class="predicate">grandfather</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">father</span>(<span class="variable">X</span>, <span class="variable">Z</span>),
+    <span class="predicate">parent</span>(<span class="variable">Z</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Grandmother: X is grandmother of Y if X is mother of Z and Z is parent of Y</span>
+<span class="predicate">grandmother</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">mother</span>(<span class="variable">X</span>, <span class="variable">Z</span>),
+    <span class="predicate">parent</span>(<span class="variable">Z</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Test queries:</span>
+<span class="comment">% ?- grandfather(ram, sohan).   --> true</span>
+<span class="comment">% ?- grandmother(sita, radha).  --> true</span></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== EXPERIMENT 2 ==================== -->
+            <section id="exp2">
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 2</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Implementation of Cut (!) and Fail Predicates</h3>
+                        </div>
+                        <span class="practical-co">CO2: Control Backtracking</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Understand and implement the <strong>cut (!)</strong> and <strong>fail</strong> predicates to control Prolog's backtracking behavior.</p>
+                        </div>
+
+                        <div class="simple-explanation">
+                            <h4><i class="fas fa-lightbulb"></i> What is Backtracking?</h4>
+                            <p>When Prolog tries to solve a query, it explores all possible solutions. If one path fails, it <strong>"backtracks"</strong> - goes back and tries another path.</p>
+                            <p style="margin-top: 10px;"><strong>Think of it like GPS navigation:</strong> If one road is blocked, GPS finds an alternative route. Prolog does the same with logic!</p>
+                        </div>
+
+                        <div class="theory-box">
+                            <h4><i class="fas fa-cut"></i> Understanding Cut (!)</h4>
+                            <p><strong>The cut (!) is like a "no going back" sign.</strong></p>
+                            <p style="margin-top: 10px;">Once Prolog passes a cut:</p>
+                            <ul style="margin-left: 25px; margin-top: 10px;">
+                                <li>It commits to all choices made so far in this rule</li>
+                                <li>It won't backtrack to try other alternatives</li>
+                                <li>It's like saying "I'm satisfied with this answer, don't look for more"</li>
+                            </ul>
+                        </div>
+
+                        <div class="analogy-box">
+                            <h4><i class="fas fa-door-open"></i> Analogy: Finding a Restaurant</h4>
+                            <p><strong>Without cut:</strong> "Find ALL good restaurants in town" - keeps searching even after finding one</p>
+                            <p style="margin-top: 10px;"><strong>With cut:</strong> "Find the FIRST good restaurant and STOP" - once found, stops looking</p>
+                        </div>
+
+                        <h4><i class="fas fa-code"></i> Example 1: Without Cut (Multiple Solutions)</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> without_cut.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Facts about fruits</span>
+<span class="predicate">fruit</span>(apple).
+<span class="predicate">fruit</span>(banana).
+<span class="predicate">fruit</span>(cherry).
+<span class="predicate">fruit</span>(date).
+
+<span class="comment">% Rule to find any fruit</span>
+<span class="predicate">find_fruit</span>(<span class="variable">X</span>) <span class="operator">:-</span>
+    <span class="predicate">fruit</span>(<span class="variable">X</span>),
+    <span class="predicate">write</span>(<span class="string">'Found: '</span>),
+    <span class="predicate">write</span>(<span class="variable">X</span>),
+    <span class="predicate">nl</span>.</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output (Without Cut)</h5>
+<pre>
+?- find_fruit(X).
+Found: apple
+X = apple ;
+Found: banana
+X = banana ;
+Found: cherry
+X = cherry ;
+Found: date
+X = date.
+</pre>
+                        </div>
+
+                        <h4><i class="fas fa-code"></i> Example 2: With Cut (Stop at First)</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> with_cut.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Facts about fruits</span>
+<span class="predicate">fruit</span>(apple).
+<span class="predicate">fruit</span>(banana).
+<span class="predicate">fruit</span>(cherry).
+
+<span class="comment">% Rule with cut - finds only the first fruit and stops</span>
+<span class="predicate">find_first_fruit</span>(<span class="variable">X</span>) <span class="operator">:-</span>
+    <span class="predicate">fruit</span>(<span class="variable">X</span>),
+    <span class="operator">!</span>,  <span class="comment">% Cut here - don't backtrack!</span>
+    <span class="predicate">write</span>(<span class="string">'Found first fruit: '</span>),
+    <span class="predicate">write</span>(<span class="variable">X</span>),
+    <span class="predicate">nl</span>.</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output (With Cut)</h5>
+<pre>
+?- find_first_fruit(X).
+Found first fruit: apple
+X = apple.
+
+% Notice: Only ONE solution, no more backtracking!
+</pre>
+                        </div>
+
+                        <div class="theory-box">
+                            <h4><i class="fas fa-times-circle"></i> Understanding Fail</h4>
+                            <p><strong>The <code>fail</code> predicate always fails.</strong></p>
+                            <p style="margin-top: 10px;">It forces Prolog to backtrack and try other solutions. Common uses:</p>
+                            <ul style="margin-left: 25px; margin-top: 10px;">
+                                <li>Combined with repeat to create loops</li>
+                                <li>To print all solutions</li>
+                                <li>Combined with cut to create negation</li>
+                            </ul>
+                        </div>
+
+                        <h4><i class="fas fa-code"></i> Example 3: Using Fail to Print All Solutions</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> print_all.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Facts</span>
+<span class="predicate">student</span>(alice).
+<span class="predicate">student</span>(bob).
+<span class="predicate">student</span>(charlie).
+<span class="predicate">student</span>(diana).
+
+<span class="comment">% Print all students using fail</span>
+<span class="predicate">print_all_students</span> <span class="operator">:-</span>
+    <span class="predicate">student</span>(<span class="variable">X</span>),
+    <span class="predicate">write</span>(<span class="variable">X</span>), <span class="predicate">nl</span>,
+    <span class="keyword">fail</span>.  <span class="comment">% Force backtracking to find next solution</span>
+
+<span class="comment">% This second clause succeeds when all solutions are exhausted</span>
+<span class="predicate">print_all_students</span>.</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- print_all_students.
+alice
+bob
+charlie
+diana
+true.
+</pre>
+                        </div>
+
+                        <h4><i class="fas fa-code"></i> Example 4: Cut-Fail Combination (Negation)</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> negation.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Facts about likes</span>
+<span class="predicate">likes</span>(mary, pizza).
+<span class="predicate">likes</span>(mary, ice_cream).
+<span class="predicate">likes</span>(john, burger).
+
+<span class="comment">% Negation as failure: X does NOT like Y</span>
+<span class="predicate">does_not_like</span>(<span class="variable">X</span>, <span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="predicate">likes</span>(<span class="variable">X</span>, <span class="variable">Y</span>),
+    <span class="operator">!</span>,         <span class="comment">% If likes(X,Y) succeeds, cut</span>
+    <span class="keyword">fail</span>.      <span class="comment">% Then fail - so does_not_like fails</span>
+<span class="predicate">does_not_like</span>(<span class="variable">_</span>, <span class="variable">_</span>).  <span class="comment">% Otherwise, succeed (X does not like Y)</span>
+
+<span class="comment">% Practical example: Find students who are NOT on the honor roll</span>
+<span class="predicate">honor_roll</span>(alice).
+<span class="predicate">honor_roll</span>(charlie).
+
+<span class="predicate">regular_student</span>(<span class="variable">X</span>) <span class="operator">:-</span>
+    <span class="predicate">student</span>(<span class="variable">X</span>),
+    <span class="operator">\+</span> <span class="predicate">honor_roll</span>(<span class="variable">X</span>).  <span class="comment">% \+ is built-in negation</span></pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- does_not_like(mary, pizza).
+false.
+
+?- does_not_like(mary, burger).
+true.
+
+?- regular_student(X).
+X = bob ;
+X = diana.
+</pre>
+                        </div>
+
+                        <h4><i class="fas fa-code"></i> Example 5: Grade Calculator with Cut</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> grade.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Grade calculator using cut for efficiency</span>
+<span class="comment">% Once a grade is found, no need to check other conditions</span>
+
+<span class="predicate">grade</span>(<span class="variable">Marks</span>, <span class="string">'A'</span>) <span class="operator">:-</span> <span class="variable">Marks</span> <span class="operator">>=</span> 90, <span class="operator">!</span>.
+<span class="predicate">grade</span>(<span class="variable">Marks</span>, <span class="string">'B'</span>) <span class="operator">:-</span> <span class="variable">Marks</span> <span class="operator">>=</span> 80, <span class="operator">!</span>.
+<span class="predicate">grade</span>(<span class="variable">Marks</span>, <span class="string">'C'</span>) <span class="operator">:-</span> <span class="variable">Marks</span> <span class="operator">>=</span> 70, <span class="operator">!</span>.
+<span class="predicate">grade</span>(<span class="variable">Marks</span>, <span class="string">'D'</span>) <span class="operator">:-</span> <span class="variable">Marks</span> <span class="operator">>=</span> 60, <span class="operator">!</span>.
+<span class="predicate">grade</span>(<span class="variable">_</span>, <span class="string">'F'</span>).
+
+<span class="comment">% Display grade with message</span>
+<span class="predicate">show_grade</span>(<span class="variable">Name</span>, <span class="variable">Marks</span>) <span class="operator">:-</span>
+    <span class="predicate">grade</span>(<span class="variable">Marks</span>, <span class="variable">Grade</span>),
+    <span class="predicate">write</span>(<span class="variable">Name</span>), <span class="predicate">write</span>(<span class="string">' scored '</span>), <span class="predicate">write</span>(<span class="variable">Marks</span>),
+    <span class="predicate">write</span>(<span class="string">' marks. Grade: '</span>), <span class="predicate">write</span>(<span class="variable">Grade</span>), <span class="predicate">nl</span>.</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- grade(85, G).
+G = 'B'.
+
+?- show_grade(john, 92).
+john scored 92 marks. Grade: A
+true.
+
+?- show_grade(mary, 55).
+mary scored 55 marks. Grade: F
+true.
+</pre>
+                        </div>
+
+                        <div class="extra-task">
+                            <h4><i class="fas fa-star"></i> Extra Task: Try This!</h4>
+                            <p><strong>Task:</strong> Write a program that finds the maximum of two numbers using cut.</p>
+                            <p style="margin-top: 10px;"><em>Hint: If X >= Y, max is X (cut). Otherwise, max is Y.</em></p>
+
+                            <button class="solution-toggle" onclick="toggleSolution(this)">
+                                <i class="fas fa-eye"></i> Show Solution
+                            </button>
+                            <div class="solution-content">
+                                <div class="code-container">
+                                    <div class="code-header">
+                                        <span class="code-lang">Prolog - Solution</span>
+                                    </div>
+                                    <pre class="code-block"><span class="comment">% Maximum of two numbers using cut</span>
+<span class="predicate">max</span>(<span class="variable">X</span>, <span class="variable">Y</span>, <span class="variable">X</span>) <span class="operator">:-</span> <span class="variable">X</span> <span class="operator">>=</span> <span class="variable">Y</span>, <span class="operator">!</span>.
+<span class="predicate">max</span>(<span class="variable">_</span>, <span class="variable">Y</span>, <span class="variable">Y</span>).
+
+<span class="comment">% Test queries:</span>
+<span class="comment">% ?- max(5, 3, M).   --> M = 5</span>
+<span class="comment">% ?- max(2, 8, M).   --> M = 8</span>
+<span class="comment">% ?- max(4, 4, M).   --> M = 4</span></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== EXPERIMENT 3 ==================== -->
+            <section id="exp3">
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 3</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Calculate Factorial Value</h3>
+                        </div>
+                        <span class="practical-co">CO2: Control Backtracking</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to calculate the factorial of a given number using recursion.</p>
+                        </div>
+
+                        <div class="simple-explanation">
+                            <h4><i class="fas fa-lightbulb"></i> What is Factorial?</h4>
+                            <p><strong>Factorial of N (written as N!)</strong> = N × (N-1) × (N-2) × ... × 2 × 1</p>
+                            <ul style="margin-left: 25px; margin-top: 15px;">
+                                <li>5! = 5 × 4 × 3 × 2 × 1 = 120</li>
+                                <li>4! = 4 × 3 × 2 × 1 = 24</li>
+                                <li>3! = 3 × 2 × 1 = 6</li>
+                                <li>0! = 1 (by definition)</li>
+                            </ul>
+                        </div>
+
+                        <div class="theory-box">
+                            <h4><i class="fas fa-brain"></i> Recursive Definition</h4>
+                            <p>Factorial can be defined recursively:</p>
+                            <ul style="margin-left: 25px; margin-top: 10px;">
+                                <li><strong>Base case:</strong> factorial(0) = 1</li>
+                                <li><strong>Recursive case:</strong> factorial(N) = N × factorial(N-1)</li>
+                            </ul>
+                            <p style="margin-top: 15px;"><strong>Example:</strong> factorial(4) = 4 × factorial(3) = 4 × 3 × factorial(2) = 4 × 3 × 2 × factorial(1) = 4 × 3 × 2 × 1 × factorial(0) = 4 × 3 × 2 × 1 × 1 = 24</p>
+                        </div>
+
+                        <h4><i class="fas fa-code"></i> Complete Program</h4>
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> factorial.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Factorial calculation in Prolog</span>
+<span class="comment">% factorial(N, F) means F is the factorial of N</span>
+
+<span class="comment">% Base case: factorial of 0 is 1</span>
+<span class="predicate">factorial</span>(0, 1) <span class="operator">:-</span> <span class="operator">!</span>.
+
+<span class="comment">% Recursive case: factorial of N is N * factorial(N-1)</span>
+<span class="predicate">factorial</span>(<span class="variable">N</span>, <span class="variable">F</span>) <span class="operator">:-</span>
+    <span class="variable">N</span> <span class="operator">></span> 0,                    <span class="comment">% N must be positive</span>
+    <span class="variable">N1</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">-</span> 1,              <span class="comment">% Calculate N-1</span>
+    <span class="predicate">factorial</span>(<span class="variable">N1</span>, <span class="variable">F1</span>),         <span class="comment">% Find factorial of N-1</span>
+    <span class="variable">F</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">*</span> <span class="variable">F1</span>.               <span class="comment">% F = N * factorial(N-1)</span>
+
+<span class="comment">% User-friendly version with output</span>
+<span class="predicate">calculate_factorial</span>(<span class="variable">N</span>) <span class="operator">:-</span>
+    <span class="predicate">factorial</span>(<span class="variable">N</span>, <span class="variable">F</span>),
+    <span class="predicate">write</span>(<span class="string">'Factorial of '</span>), <span class="predicate">write</span>(<span class="variable">N</span>),
+    <span class="predicate">write</span>(<span class="string">' is '</span>), <span class="predicate">write</span>(<span class="variable">F</span>), <span class="predicate">nl</span>.</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Sample Output</h5>
+<pre>
+?- factorial(5, F).
+F = 120.
+
+?- factorial(0, F).
+F = 1.
+
+?- factorial(7, F).
+F = 5040.
+
+?- calculate_factorial(6).
+Factorial of 6 is 720
+true.
+</pre>
+                        </div>
+
+                        <div class="steps-box">
+                            <h4><i class="fas fa-shoe-prints"></i> How It Works: Step by Step</h4>
+                            <ol class="step-list">
+                                <li>Query: <code>factorial(4, F)</code> - Find factorial of 4</li>
+                                <li>4 > 0, so calculate N1 = 4-1 = 3, need factorial(3, F1)</li>
+                                <li>3 > 0, so calculate N1 = 3-1 = 2, need factorial(2, F1)</li>
+                                <li>2 > 0, so calculate N1 = 2-1 = 1, need factorial(1, F1)</li>
+                                <li>1 > 0, so calculate N1 = 1-1 = 0, need factorial(0, F1)</li>
+                                <li>Base case: factorial(0, 1) - F1 = 1</li>
+                                <li>Now unwind: F = 1*1 = 1, F = 2*1 = 2, F = 3*2 = 6, F = 4*6 = 24</li>
+                            </ol>
+                        </div>
+
+                        <div class="extra-task">
+                            <h4><i class="fas fa-star"></i> Extra Task: Try This!</h4>
+                            <p><strong>Task 1:</strong> Write a program to calculate the <strong>sum of first N natural numbers</strong>.</p>
+                            <p style="margin-top: 5px;"><em>Sum(5) = 1+2+3+4+5 = 15</em></p>
+                            <p style="margin-top: 15px;"><strong>Task 2:</strong> Write a program to calculate <strong>power(X, N)</strong> = X^N.</p>
+                            <p style="margin-top: 5px;"><em>power(2, 5) = 2^5 = 32</em></p>
+
+                            <button class="solution-toggle" onclick="toggleSolution(this)">
+                                <i class="fas fa-eye"></i> Show Solution
+                            </button>
+                            <div class="solution-content">
+                                <div class="code-container">
+                                    <div class="code-header">
+                                        <span class="code-lang">Prolog - Solutions</span>
+                                    </div>
+                                    <pre class="code-block"><span class="comment">% Task 1: Sum of first N natural numbers</span>
+<span class="predicate">sum_n</span>(0, 0) <span class="operator">:-</span> <span class="operator">!</span>.
+<span class="predicate">sum_n</span>(<span class="variable">N</span>, <span class="variable">Sum</span>) <span class="operator">:-</span>
+    <span class="variable">N</span> <span class="operator">></span> 0,
+    <span class="variable">N1</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">-</span> 1,
+    <span class="predicate">sum_n</span>(<span class="variable">N1</span>, <span class="variable">Sum1</span>),
+    <span class="variable">Sum</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">+</span> <span class="variable">Sum1</span>.
+
+<span class="comment">% Test: ?- sum_n(5, S).  --> S = 15</span>
+
+<span class="comment">% Task 2: Power calculation X^N</span>
+<span class="predicate">power</span>(<span class="variable">_</span>, 0, 1) <span class="operator">:-</span> <span class="operator">!</span>.  <span class="comment">% X^0 = 1</span>
+<span class="predicate">power</span>(<span class="variable">X</span>, <span class="variable">N</span>, <span class="variable">Result</span>) <span class="operator">:-</span>
+    <span class="variable">N</span> <span class="operator">></span> 0,
+    <span class="variable">N1</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">-</span> 1,
+    <span class="predicate">power</span>(<span class="variable">X</span>, <span class="variable">N1</span>, <span class="variable">R1</span>),
+    <span class="variable">Result</span> <span class="keyword">is</span> <span class="variable">X</span> <span class="operator">*</span> <span class="variable">R1</span>.
+
+<span class="comment">% Test: ?- power(2, 5, P).  --> P = 32</span>
+<span class="comment">% Test: ?- power(3, 4, P).  --> P = 81</span></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== EXPERIMENTS 4-8: LISTS ==================== -->
+            <section id="exp4">
+                <h2><i class="fas fa-list"></i> Experiments 4-8: Working with Lists</h2>
+
+                <div class="simple-explanation">
+                    <h4><i class="fas fa-lightbulb"></i> What is a List in Prolog?</h4>
+                    <p>A <strong>list</strong> is a collection of elements enclosed in square brackets, separated by commas.</p>
+                    <ul style="margin-left: 25px; margin-top: 15px;">
+                        <li><code>[1, 2, 3, 4, 5]</code> - A list of numbers</li>
+                        <li><code>[apple, banana, cherry]</code> - A list of atoms</li>
+                        <li><code>[]</code> - An empty list</li>
+                        <li><code>[Head | Tail]</code> - Head is first element, Tail is rest of the list</li>
+                    </ul>
+                </div>
+
+                <div class="theory-box">
+                    <h4><i class="fas fa-puzzle-piece"></i> The Head-Tail Pattern (Most Important!)</h4>
+                    <p>Every non-empty list can be split into:</p>
+                    <ul style="margin-left: 25px; margin-top: 10px;">
+                        <li><strong>Head</strong> - The first element</li>
+                        <li><strong>Tail</strong> - Everything else (also a list)</li>
+                    </ul>
+                    <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px; font-family: monospace;">
+                        <p>?- [H|T] = [1, 2, 3, 4, 5].</p>
+                        <p>H = 1</p>
+                        <p>T = [2, 3, 4, 5]</p>
+                    </div>
+                </div>
+
+                <!-- Practical 4: Display All Elements -->
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 4</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Display All Elements in a List</h3>
+                        </div>
+                        <span class="practical-co">CO3: Implement List Operations</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to display all elements in a list, one by one.</p>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> display_list.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Display all elements in a list</span>
+
+<span class="comment">% Base case: Empty list - nothing to print</span>
+<span class="predicate">print_list</span>([]).
+
+<span class="comment">% Recursive case: Print head, then print tail</span>
+<span class="predicate">print_list</span>([<span class="variable">H</span>|<span class="variable">T</span>]) <span class="operator">:-</span>
+    <span class="predicate">write</span>(<span class="variable">H</span>), <span class="predicate">nl</span>,      <span class="comment">% Print the head element</span>
+    <span class="predicate">print_list</span>(<span class="variable">T</span>).      <span class="comment">% Recursively print the tail</span>
+
+<span class="comment">% Alternative: Print with numbering</span>
+<span class="predicate">print_numbered</span>(<span class="variable">List</span>) <span class="operator">:-</span> <span class="predicate">print_numbered</span>(<span class="variable">List</span>, 1).
+
+<span class="predicate">print_numbered</span>([], <span class="variable">_</span>).
+<span class="predicate">print_numbered</span>([<span class="variable">H</span>|<span class="variable">T</span>], <span class="variable">N</span>) <span class="operator">:-</span>
+    <span class="predicate">write</span>(<span class="variable">N</span>), <span class="predicate">write</span>(<span class="string">'. '</span>), <span class="predicate">write</span>(<span class="variable">H</span>), <span class="predicate">nl</span>,
+    <span class="variable">N1</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">+</span> 1,
+    <span class="predicate">print_numbered</span>(<span class="variable">T</span>, <span class="variable">N1</span>).</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- print_list([apple, banana, cherry, date]).
+apple
+banana
+cherry
+date
+true.
+
+?- print_numbered([red, green, blue]).
+1. red
+2. green
+3. blue
+true.
+</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practical 5: Length of List -->
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 5</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Find Length of a List</h3>
+                        </div>
+                        <span class="practical-co">CO3: Implement List Operations</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to find the length (number of elements) of a list.</p>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> list_length.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Find length of a list</span>
+<span class="comment">% list_length(List, Length)</span>
+
+<span class="comment">% Base case: Empty list has length 0</span>
+<span class="predicate">list_length</span>([], 0).
+
+<span class="comment">% Recursive case: Length = 1 + length of tail</span>
+<span class="predicate">list_length</span>([<span class="variable">_</span>|<span class="variable">T</span>], <span class="variable">Len</span>) <span class="operator">:-</span>
+    <span class="predicate">list_length</span>(<span class="variable">T</span>, <span class="variable">TailLen</span>),
+    <span class="variable">Len</span> <span class="keyword">is</span> <span class="variable">TailLen</span> <span class="operator">+</span> 1.
+
+<span class="comment">% Tail-recursive version (more efficient)</span>
+<span class="predicate">list_length_tr</span>(<span class="variable">List</span>, <span class="variable">Len</span>) <span class="operator">:-</span> <span class="predicate">list_length_tr</span>(<span class="variable">List</span>, 0, <span class="variable">Len</span>).
+
+<span class="predicate">list_length_tr</span>([], <span class="variable">Acc</span>, <span class="variable">Acc</span>).
+<span class="predicate">list_length_tr</span>([<span class="variable">_</span>|<span class="variable">T</span>], <span class="variable">Acc</span>, <span class="variable">Len</span>) <span class="operator">:-</span>
+    <span class="variable">Acc1</span> <span class="keyword">is</span> <span class="variable">Acc</span> <span class="operator">+</span> 1,
+    <span class="predicate">list_length_tr</span>(<span class="variable">T</span>, <span class="variable">Acc1</span>, <span class="variable">Len</span>).</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- list_length([1, 2, 3, 4, 5], L).
+L = 5.
+
+?- list_length([], L).
+L = 0.
+
+?- list_length([a, b, c], L).
+L = 3.
+
+% Note: SWI-Prolog has built-in length/2
+?- length([1, 2, 3], L).
+L = 3.
+</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practical 6: First and Last Element -->
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 6</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Display First and Last Element</h3>
+                        </div>
+                        <span class="practical-co">CO3: Implement List Operations</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to display the first element and last element in a list.</p>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> first_last.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% First element of a list</span>
+<span class="comment">% The first element is simply the head!</span>
+<span class="predicate">first</span>([<span class="variable">H</span>|<span class="variable">_</span>], <span class="variable">H</span>).
+
+<span class="comment">% Last element of a list</span>
+<span class="comment">% Base case: Single element list - that element is the last</span>
+<span class="predicate">last_element</span>([<span class="variable">X</span>], <span class="variable">X</span>).
+
+<span class="comment">% Recursive case: Skip head, find last of tail</span>
+<span class="predicate">last_element</span>([<span class="variable">_</span>|<span class="variable">T</span>], <span class="variable">Last</span>) <span class="operator">:-</span>
+    <span class="predicate">last_element</span>(<span class="variable">T</span>, <span class="variable">Last</span>).
+
+<span class="comment">% Display both first and last</span>
+<span class="predicate">show_first_last</span>(<span class="variable">List</span>) <span class="operator">:-</span>
+    <span class="predicate">first</span>(<span class="variable">List</span>, <span class="variable">F</span>),
+    <span class="predicate">last_element</span>(<span class="variable">List</span>, <span class="variable">L</span>),
+    <span class="predicate">write</span>(<span class="string">'First element: '</span>), <span class="predicate">write</span>(<span class="variable">F</span>), <span class="predicate">nl</span>,
+    <span class="predicate">write</span>(<span class="string">'Last element: '</span>), <span class="predicate">write</span>(<span class="variable">L</span>), <span class="predicate">nl</span>.
+
+<span class="comment">% Get Nth element (bonus!)</span>
+<span class="predicate">nth_element</span>([<span class="variable">H</span>|<span class="variable">_</span>], 1, <span class="variable">H</span>) <span class="operator">:-</span> <span class="operator">!</span>.
+<span class="predicate">nth_element</span>([<span class="variable">_</span>|<span class="variable">T</span>], <span class="variable">N</span>, <span class="variable">Element</span>) <span class="operator">:-</span>
+    <span class="variable">N</span> <span class="operator">></span> 1,
+    <span class="variable">N1</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">-</span> 1,
+    <span class="predicate">nth_element</span>(<span class="variable">T</span>, <span class="variable">N1</span>, <span class="variable">Element</span>).</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- first([a, b, c, d], F).
+F = a.
+
+?- last_element([1, 2, 3, 4, 5], L).
+L = 5.
+
+?- show_first_last([red, green, blue, yellow]).
+First element: red
+Last element: yellow
+true.
+
+?- nth_element([a, b, c, d, e], 3, E).
+E = c.
+</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practical 7: Merge Two Lists -->
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 7</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Merge Two Lists</h3>
+                        </div>
+                        <span class="practical-co">CO3: Implement List Operations</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to merge (append/concatenate) two lists into one.</p>
+                        </div>
+
+                        <div class="simple-explanation">
+                            <h4><i class="fas fa-lightbulb"></i> Understanding Merge</h4>
+                            <p>Merging [1,2,3] and [4,5,6] gives [1,2,3,4,5,6]</p>
+                            <p style="margin-top: 10px;"><strong>Logic:</strong> Take elements from first list one by one, prepend to the merged result.</p>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> merge_list.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Merge two lists (also called append)</span>
+<span class="comment">% merge(List1, List2, MergedList)</span>
+
+<span class="comment">% Base case: Merging empty list with L gives L</span>
+<span class="predicate">merge</span>([], <span class="variable">L</span>, <span class="variable">L</span>).
+
+<span class="comment">% Recursive case: Take head of first list, merge rest</span>
+<span class="predicate">merge</span>([<span class="variable">H</span>|<span class="variable">T1</span>], <span class="variable">L2</span>, [<span class="variable">H</span>|<span class="variable">T3</span>]) <span class="operator">:-</span>
+    <span class="predicate">merge</span>(<span class="variable">T1</span>, <span class="variable">L2</span>, <span class="variable">T3</span>).
+
+<span class="comment">% Display merged result</span>
+<span class="predicate">show_merge</span>(<span class="variable">L1</span>, <span class="variable">L2</span>) <span class="operator">:-</span>
+    <span class="predicate">merge</span>(<span class="variable">L1</span>, <span class="variable">L2</span>, <span class="variable">Result</span>),
+    <span class="predicate">write</span>(<span class="string">'List 1: '</span>), <span class="predicate">write</span>(<span class="variable">L1</span>), <span class="predicate">nl</span>,
+    <span class="predicate">write</span>(<span class="string">'List 2: '</span>), <span class="predicate">write</span>(<span class="variable">L2</span>), <span class="predicate">nl</span>,
+    <span class="predicate">write</span>(<span class="string">'Merged: '</span>), <span class="predicate">write</span>(<span class="variable">Result</span>), <span class="predicate">nl</span>.
+
+<span class="comment">% Merge three lists (bonus)</span>
+<span class="predicate">merge3</span>(<span class="variable">L1</span>, <span class="variable">L2</span>, <span class="variable">L3</span>, <span class="variable">Result</span>) <span class="operator">:-</span>
+    <span class="predicate">merge</span>(<span class="variable">L1</span>, <span class="variable">L2</span>, <span class="variable">Temp</span>),
+    <span class="predicate">merge</span>(<span class="variable">Temp</span>, <span class="variable">L3</span>, <span class="variable">Result</span>).</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- merge([1, 2, 3], [4, 5, 6], M).
+M = [1, 2, 3, 4, 5, 6].
+
+?- merge([a, b], [c, d, e], M).
+M = [a, b, c, d, e].
+
+?- show_merge([red, green], [blue, yellow]).
+List 1: [red,green]
+List 2: [blue,yellow]
+Merged: [red,green,blue,yellow]
+true.
+
+% Note: SWI-Prolog has built-in append/3
+?- append([1,2], [3,4], L).
+L = [1, 2, 3, 4].
+</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Practical 8: Delete from List -->
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 8</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Delete an Item from List</h3>
+                        </div>
+                        <span class="practical-co">CO3: Implement List Operations</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to delete an item from a list.</p>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> delete_item.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Delete an item from a list</span>
+<span class="comment">% delete_item(Item, List, ResultList)</span>
+
+<span class="comment">% Base case: Item not in empty list</span>
+<span class="predicate">delete_item</span>(<span class="variable">_</span>, [], []).
+
+<span class="comment">% If head matches item, skip it (delete it)</span>
+<span class="predicate">delete_item</span>(<span class="variable">X</span>, [<span class="variable">X</span>|<span class="variable">T</span>], <span class="variable">T</span>) <span class="operator">:-</span> <span class="operator">!</span>.  <span class="comment">% Delete first occurrence only</span>
+
+<span class="comment">% If head doesn't match, keep it and continue</span>
+<span class="predicate">delete_item</span>(<span class="variable">X</span>, [<span class="variable">H</span>|<span class="variable">T</span>], [<span class="variable">H</span>|<span class="variable">R</span>]) <span class="operator">:-</span>
+    <span class="predicate">delete_item</span>(<span class="variable">X</span>, <span class="variable">T</span>, <span class="variable">R</span>).
+
+<span class="comment">% Delete ALL occurrences of an item</span>
+<span class="predicate">delete_all</span>(<span class="variable">_</span>, [], []).
+<span class="predicate">delete_all</span>(<span class="variable">X</span>, [<span class="variable">X</span>|<span class="variable">T</span>], <span class="variable">R</span>) <span class="operator">:-</span>
+    <span class="predicate">delete_all</span>(<span class="variable">X</span>, <span class="variable">T</span>, <span class="variable">R</span>).  <span class="comment">% Skip X and continue</span>
+<span class="predicate">delete_all</span>(<span class="variable">X</span>, [<span class="variable">H</span>|<span class="variable">T</span>], [<span class="variable">H</span>|<span class="variable">R</span>]) <span class="operator">:-</span>
+    <span class="variable">X</span> <span class="operator">\=</span> <span class="variable">H</span>,
+    <span class="predicate">delete_all</span>(<span class="variable">X</span>, <span class="variable">T</span>, <span class="variable">R</span>).
+
+<span class="comment">% Check if item is a member of the list</span>
+<span class="predicate">is_member</span>(<span class="variable">X</span>, [<span class="variable">X</span>|<span class="variable">_</span>]) <span class="operator">:-</span> <span class="operator">!</span>.
+<span class="predicate">is_member</span>(<span class="variable">X</span>, [<span class="variable">_</span>|<span class="variable">T</span>]) <span class="operator">:-</span> <span class="predicate">is_member</span>(<span class="variable">X</span>, <span class="variable">T</span>).</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- delete_item(3, [1, 2, 3, 4, 5], R).
+R = [1, 2, 4, 5].
+
+?- delete_item(a, [a, b, a, c, a], R).
+R = [b, a, c, a].    % Only first 'a' deleted
+
+?- delete_all(a, [a, b, a, c, a], R).
+R = [b, c].          % All 'a's deleted
+
+?- is_member(3, [1, 2, 3, 4]).
+true.
+
+?- is_member(5, [1, 2, 3]).
+false.
+</pre>
+                        </div>
+
+                        <div class="extra-task">
+                            <h4><i class="fas fa-star"></i> Extra Task: Try These!</h4>
+                            <p><strong>Task 1:</strong> Write a program to <strong>reverse a list</strong>.</p>
+                            <p><strong>Task 2:</strong> Write a program to find the <strong>sum of all elements</strong> in a list.</p>
+
+                            <button class="solution-toggle" onclick="toggleSolution(this)">
+                                <i class="fas fa-eye"></i> Show Solutions
+                            </button>
+                            <div class="solution-content">
+                                <div class="code-container">
+                                    <div class="code-header">
+                                        <span class="code-lang">Prolog - Solutions</span>
+                                    </div>
+                                    <pre class="code-block"><span class="comment">% Task 1: Reverse a list</span>
+<span class="predicate">reverse_list</span>(<span class="variable">List</span>, <span class="variable">Reversed</span>) <span class="operator">:-</span>
+    <span class="predicate">reverse_list</span>(<span class="variable">List</span>, [], <span class="variable">Reversed</span>).
+
+<span class="predicate">reverse_list</span>([], <span class="variable">Acc</span>, <span class="variable">Acc</span>).
+<span class="predicate">reverse_list</span>([<span class="variable">H</span>|<span class="variable">T</span>], <span class="variable">Acc</span>, <span class="variable">Reversed</span>) <span class="operator">:-</span>
+    <span class="predicate">reverse_list</span>(<span class="variable">T</span>, [<span class="variable">H</span>|<span class="variable">Acc</span>], <span class="variable">Reversed</span>).
+
+<span class="comment">% Test: ?- reverse_list([1,2,3,4,5], R).  --> R = [5,4,3,2,1]</span>
+
+<span class="comment">% Task 2: Sum of all elements</span>
+<span class="predicate">sum_list</span>([], 0).
+<span class="predicate">sum_list</span>([<span class="variable">H</span>|<span class="variable">T</span>], <span class="variable">Sum</span>) <span class="operator">:-</span>
+    <span class="predicate">sum_list</span>(<span class="variable">T</span>, <span class="variable">TailSum</span>),
+    <span class="variable">Sum</span> <span class="keyword">is</span> <span class="variable">H</span> <span class="operator">+</span> <span class="variable">TailSum</span>.
+
+<span class="comment">% Test: ?- sum_list([1,2,3,4,5], S).  --> S = 15</span>
+<span class="comment">% Test: ?- sum_list([10,20,30], S).   --> S = 60</span></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== EXPERIMENT 9: TOWER OF HANOI ==================== -->
+            <section id="exp9">
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 9</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Tower of Hanoi Problem</h3>
+                        </div>
+                        <span class="practical-co">CO4: Solve Knowledge-Based Problems</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to solve the classic Tower of Hanoi puzzle.</p>
+                        </div>
+
+                        <div class="simple-explanation">
+                            <h4><i class="fas fa-lightbulb"></i> What is Tower of Hanoi?</h4>
+                            <p>A classic puzzle with three pegs and N disks of different sizes.</p>
+                            <p style="margin-top: 10px;"><strong>Goal:</strong> Move all disks from peg A (source) to peg C (destination).</p>
+                            <p style="margin-top: 10px;"><strong>Rules:</strong></p>
+                            <ul style="margin-left: 25px; margin-top: 10px;">
+                                <li>Only one disk can be moved at a time</li>
+                                <li>Only the top disk can be moved</li>
+                                <li>A larger disk cannot be placed on a smaller disk</li>
+                            </ul>
+                        </div>
+
+                        <div class="diagram-container">
+                            <div class="diagram-title">Tower of Hanoi Visualization</div>
+                            <pre style="font-family: monospace; text-align: center; font-size: 1.1em;">
+    Initial State:          Goal State:
+
+         |                      |
+        [1]                     |
+       [ 2 ]                    |
+      [  3  ]                   |
+    =========              =========
+       A         B            C
+
+    Move all disks from A to C using B as auxiliary
+            </pre>
+                        </div>
+
+                        <div class="theory-box">
+                            <h4><i class="fas fa-brain"></i> The Recursive Strategy</h4>
+                            <p>To move N disks from A to C using B as auxiliary:</p>
+                            <ol style="margin-left: 25px; margin-top: 10px;">
+                                <li>Move N-1 disks from A to B (using C as auxiliary)</li>
+                                <li>Move the largest disk from A to C</li>
+                                <li>Move N-1 disks from B to C (using A as auxiliary)</li>
+                            </ol>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> hanoi.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Tower of Hanoi Solution</span>
+<span class="comment">% hanoi(N, Source, Auxiliary, Destination)</span>
+
+<span class="comment">% Base case: Move single disk directly</span>
+<span class="predicate">hanoi</span>(1, <span class="variable">Source</span>, <span class="variable">_</span>, <span class="variable">Dest</span>) <span class="operator">:-</span>
+    <span class="predicate">write</span>(<span class="string">'Move disk from '</span>),
+    <span class="predicate">write</span>(<span class="variable">Source</span>),
+    <span class="predicate">write</span>(<span class="string">' to '</span>),
+    <span class="predicate">write</span>(<span class="variable">Dest</span>),
+    <span class="predicate">nl</span>.
+
+<span class="comment">% Recursive case: Move N disks</span>
+<span class="predicate">hanoi</span>(<span class="variable">N</span>, <span class="variable">Source</span>, <span class="variable">Aux</span>, <span class="variable">Dest</span>) <span class="operator">:-</span>
+    <span class="variable">N</span> <span class="operator">></span> 1,
+    <span class="variable">N1</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">-</span> 1,
+    <span class="comment">% Step 1: Move N-1 disks from Source to Auxiliary</span>
+    <span class="predicate">hanoi</span>(<span class="variable">N1</span>, <span class="variable">Source</span>, <span class="variable">Dest</span>, <span class="variable">Aux</span>),
+    <span class="comment">% Step 2: Move largest disk from Source to Destination</span>
+    <span class="predicate">write</span>(<span class="string">'Move disk from '</span>),
+    <span class="predicate">write</span>(<span class="variable">Source</span>),
+    <span class="predicate">write</span>(<span class="string">' to '</span>),
+    <span class="predicate">write</span>(<span class="variable">Dest</span>),
+    <span class="predicate">nl</span>,
+    <span class="comment">% Step 3: Move N-1 disks from Auxiliary to Destination</span>
+    <span class="predicate">hanoi</span>(<span class="variable">N1</span>, <span class="variable">Aux</span>, <span class="variable">Source</span>, <span class="variable">Dest</span>).
+
+<span class="comment">% Easy-to-use wrapper</span>
+<span class="predicate">solve_hanoi</span>(<span class="variable">N</span>) <span class="operator">:-</span>
+    <span class="predicate">write</span>(<span class="string">'=== Tower of Hanoi with '</span>), <span class="predicate">write</span>(<span class="variable">N</span>), <span class="predicate">write</span>(<span class="string">' disks ==='</span>), <span class="predicate">nl</span>,
+    <span class="predicate">hanoi</span>(<span class="variable">N</span>, <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>),
+    <span class="predicate">write</span>(<span class="string">'=== Puzzle Solved! ==='</span>), <span class="predicate">nl</span>.</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output for 3 Disks</h5>
+<pre>
+?- solve_hanoi(3).
+=== Tower of Hanoi with 3 disks ===
+Move disk from A to C
+Move disk from A to B
+Move disk from C to B
+Move disk from A to C
+Move disk from B to A
+Move disk from B to C
+Move disk from A to C
+=== Puzzle Solved! ===
+true.
+</pre>
+                        </div>
+
+                        <div class="tip-box">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Fun Fact:</strong> For N disks, the minimum number of moves required is 2^N - 1.
+                            So for 3 disks: 2^3 - 1 = 7 moves. For 4 disks: 15 moves!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== EXPERIMENT 10: WATER JUG ==================== -->
+            <section id="exp10">
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 10</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">Water Jug Problem / Missionary Cannibal Problem</h3>
+                        </div>
+                        <span class="practical-co">CO4: Solve Knowledge-Based Problems</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to solve the Water Jug Problem.</p>
+                        </div>
+
+                        <div class="simple-explanation">
+                            <h4><i class="fas fa-lightbulb"></i> The Water Jug Problem</h4>
+                            <p><strong>Given:</strong> Two jugs - one holds 4 liters, another holds 3 liters. No measuring marks.</p>
+                            <p style="margin-top: 10px;"><strong>Goal:</strong> Measure exactly 2 liters of water.</p>
+                            <p style="margin-top: 10px;"><strong>Allowed Operations:</strong></p>
+                            <ul style="margin-left: 25px; margin-top: 10px;">
+                                <li>Fill a jug completely</li>
+                                <li>Empty a jug completely</li>
+                                <li>Pour from one jug to another until source is empty or destination is full</li>
+                            </ul>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> water_jug.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Water Jug Problem</span>
+<span class="comment">% State is represented as state(Jug4, Jug3)</span>
+<span class="comment">% Jug4 can hold 0-4 liters, Jug3 can hold 0-3 liters</span>
+
+<span class="comment">% Capacity of jugs</span>
+<span class="predicate">capacity</span>(jug4, 4).
+<span class="predicate">capacity</span>(jug3, 3).
+
+<span class="comment">% Goal: Get 2 liters in the 4-liter jug</span>
+<span class="predicate">goal</span>(<span class="predicate">state</span>(2, <span class="variable">_</span>)).
+
+<span class="comment">% Possible moves:</span>
+
+<span class="comment">% 1. Fill Jug4 completely</span>
+<span class="predicate">move</span>(<span class="predicate">state</span>(<span class="variable">_</span>, <span class="variable">Y</span>), <span class="predicate">state</span>(4, <span class="variable">Y</span>), <span class="string">'Fill 4-liter jug'</span>).
+
+<span class="comment">% 2. Fill Jug3 completely</span>
+<span class="predicate">move</span>(<span class="predicate">state</span>(<span class="variable">X</span>, <span class="variable">_</span>), <span class="predicate">state</span>(<span class="variable">X</span>, 3), <span class="string">'Fill 3-liter jug'</span>).
+
+<span class="comment">% 3. Empty Jug4</span>
+<span class="predicate">move</span>(<span class="predicate">state</span>(<span class="variable">_</span>, <span class="variable">Y</span>), <span class="predicate">state</span>(0, <span class="variable">Y</span>), <span class="string">'Empty 4-liter jug'</span>).
+
+<span class="comment">% 4. Empty Jug3</span>
+<span class="predicate">move</span>(<span class="predicate">state</span>(<span class="variable">X</span>, <span class="variable">_</span>), <span class="predicate">state</span>(<span class="variable">X</span>, 0), <span class="string">'Empty 3-liter jug'</span>).
+
+<span class="comment">% 5. Pour from Jug3 to Jug4 (until Jug4 is full or Jug3 is empty)</span>
+<span class="predicate">move</span>(<span class="predicate">state</span>(<span class="variable">X</span>, <span class="variable">Y</span>), <span class="predicate">state</span>(<span class="variable">X1</span>, <span class="variable">Y1</span>), <span class="string">'Pour from 3L to 4L'</span>) <span class="operator">:-</span>
+    <span class="variable">Y</span> <span class="operator">></span> 0,
+    <span class="variable">Transfer</span> <span class="keyword">is</span> <span class="predicate">min</span>(<span class="variable">Y</span>, 4 <span class="operator">-</span> <span class="variable">X</span>),
+    <span class="variable">X1</span> <span class="keyword">is</span> <span class="variable">X</span> <span class="operator">+</span> <span class="variable">Transfer</span>,
+    <span class="variable">Y1</span> <span class="keyword">is</span> <span class="variable">Y</span> <span class="operator">-</span> <span class="variable">Transfer</span>,
+    <span class="variable">X1</span> <span class="operator">\=</span> <span class="variable">X</span>.
+
+<span class="comment">% 6. Pour from Jug4 to Jug3 (until Jug3 is full or Jug4 is empty)</span>
+<span class="predicate">move</span>(<span class="predicate">state</span>(<span class="variable">X</span>, <span class="variable">Y</span>), <span class="predicate">state</span>(<span class="variable">X1</span>, <span class="variable">Y1</span>), <span class="string">'Pour from 4L to 3L'</span>) <span class="operator">:-</span>
+    <span class="variable">X</span> <span class="operator">></span> 0,
+    <span class="variable">Transfer</span> <span class="keyword">is</span> <span class="predicate">min</span>(<span class="variable">X</span>, 3 <span class="operator">-</span> <span class="variable">Y</span>),
+    <span class="variable">X1</span> <span class="keyword">is</span> <span class="variable">X</span> <span class="operator">-</span> <span class="variable">Transfer</span>,
+    <span class="variable">Y1</span> <span class="keyword">is</span> <span class="variable">Y</span> <span class="operator">+</span> <span class="variable">Transfer</span>,
+    <span class="variable">Y1</span> <span class="operator">\=</span> <span class="variable">Y</span>.
+
+<span class="comment">% Solve using DFS with visited states</span>
+<span class="predicate">solve</span>(<span class="variable">State</span>, <span class="variable">_</span>, []) <span class="operator">:-</span>
+    <span class="predicate">goal</span>(<span class="variable">State</span>), <span class="operator">!</span>.
+
+<span class="predicate">solve</span>(<span class="variable">State</span>, <span class="variable">Visited</span>, [<span class="variable">Action</span>|<span class="variable">Actions</span>]) <span class="operator">:-</span>
+    <span class="predicate">move</span>(<span class="variable">State</span>, <span class="variable">NextState</span>, <span class="variable">Action</span>),
+    <span class="operator">\+</span> <span class="predicate">member</span>(<span class="variable">NextState</span>, <span class="variable">Visited</span>),
+    <span class="predicate">solve</span>(<span class="variable">NextState</span>, [<span class="variable">NextState</span>|<span class="variable">Visited</span>], <span class="variable">Actions</span>).
+
+<span class="comment">% Main solver</span>
+<span class="predicate">water_jug</span> <span class="operator">:-</span>
+    <span class="predicate">write</span>(<span class="string">'=== Water Jug Problem ==='</span>), <span class="predicate">nl</span>,
+    <span class="predicate">write</span>(<span class="string">'Goal: Get 2 liters in the 4L jug'</span>), <span class="predicate">nl</span>, <span class="predicate">nl</span>,
+    <span class="variable">Start</span> <span class="operator">=</span> <span class="predicate">state</span>(0, 0),
+    <span class="predicate">solve</span>(<span class="variable">Start</span>, [<span class="variable">Start</span>], <span class="variable">Actions</span>),
+    <span class="predicate">write</span>(<span class="string">'Solution steps:'</span>), <span class="predicate">nl</span>,
+    <span class="predicate">print_actions</span>(<span class="variable">Actions</span>, 1).
+
+<span class="predicate">print_actions</span>([], <span class="variable">_</span>).
+<span class="predicate">print_actions</span>([<span class="variable">H</span>|<span class="variable">T</span>], <span class="variable">N</span>) <span class="operator">:-</span>
+    <span class="predicate">write</span>(<span class="variable">N</span>), <span class="predicate">write</span>(<span class="string">'. '</span>), <span class="predicate">write</span>(<span class="variable">H</span>), <span class="predicate">nl</span>,
+    <span class="variable">N1</span> <span class="keyword">is</span> <span class="variable">N</span> <span class="operator">+</span> 1,
+    <span class="predicate">print_actions</span>(<span class="variable">T</span>, <span class="variable">N1</span>).</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- water_jug.
+=== Water Jug Problem ===
+Goal: Get 2 liters in the 4L jug
+
+Solution steps:
+1. Fill 4-liter jug
+2. Pour from 4L to 3L
+3. Empty 3-liter jug
+4. Pour from 4L to 3L
+5. Fill 4-liter jug
+6. Pour from 4L to 3L
+true.
+
+% After step 6: 4L jug has 2 liters, 3L jug has 3 liters
+</pre>
+                        </div>
+
+                        <div class="tip-box">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Alternative Solution Path:</strong> There are multiple ways to reach 2 liters.
+                            The program finds one valid solution. You can modify it to find all solutions!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== EXPERIMENT 11: CRYPTARITHMETIC ==================== -->
+            <section id="exp11">
+                <div class="practical-box">
+                    <div class="practical-header">
+                        <div>
+                            <span class="practical-number">Practical 11</span>
+                            <h3 style="color: white; margin: 10px 0 0 0; font-size: 1.3em;">SEND + MORE = MONEY (Cryptarithmetic)</h3>
+                        </div>
+                        <span class="practical-co">CO4: Solve Knowledge-Based Problems</span>
+                    </div>
+
+                    <div class="practical-content">
+                        <div class="practical-aim">
+                            <h4><i class="fas fa-bullseye"></i> Aim</h4>
+                            <p>Write a Prolog program to solve the famous cryptarithmetic puzzle: SEND + MORE = MONEY</p>
+                        </div>
+
+                        <div class="simple-explanation">
+                            <h4><i class="fas fa-lightbulb"></i> What is Cryptarithmetic?</h4>
+                            <p>A puzzle where letters represent digits (0-9). Each letter must represent a unique digit.</p>
+                            <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px; text-align: center; font-family: monospace; font-size: 1.5em;">
+                                <p style="margin: 0;">  SEND</p>
+                                <p style="margin: 0;">+ MORE</p>
+                                <p style="margin: 0; border-top: 2px solid #333; padding-top: 5px;">MONEY</p>
+                            </div>
+                            <p style="margin-top: 15px;"><strong>Find:</strong> What digit does each letter represent?</p>
+                            <p style="margin-top: 5px;"><strong>Constraints:</strong> S and M cannot be 0 (no leading zeros)</p>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> cryptarithmetic.pl</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% SEND + MORE = MONEY Cryptarithmetic Puzzle</span>
+<span class="comment">% Each letter represents a unique digit 0-9</span>
+<span class="comment">% S and M cannot be 0 (no leading zeros)</span>
+
+<span class="comment">% Main solver using CLP(FD) - Constraint Logic Programming over Finite Domains</span>
+<span class="operator">:-</span> <span class="keyword">use_module</span>(<span class="predicate">library</span>(clpfd)).
+
+<span class="predicate">send_more_money</span>([<span class="variable">S</span>,<span class="variable">E</span>,<span class="variable">N</span>,<span class="variable">D</span>,<span class="variable">M</span>,<span class="variable">O</span>,<span class="variable">R</span>,<span class="variable">Y</span>]) <span class="operator">:-</span>
+    <span class="comment">% All variables are digits 0-9</span>
+    <span class="variable">Vars</span> <span class="operator">=</span> [<span class="variable">S</span>,<span class="variable">E</span>,<span class="variable">N</span>,<span class="variable">D</span>,<span class="variable">M</span>,<span class="variable">O</span>,<span class="variable">R</span>,<span class="variable">Y</span>],
+    <span class="variable">Vars</span> <span class="keyword">ins</span> 0..9,
+
+    <span class="comment">% All digits must be different</span>
+    <span class="predicate">all_different</span>(<span class="variable">Vars</span>),
+
+    <span class="comment">% S and M cannot be 0 (no leading zeros)</span>
+    <span class="variable">S</span> <span class="operator">#\=</span> 0,
+    <span class="variable">M</span> <span class="operator">#\=</span> 0,
+
+    <span class="comment">% The equation: SEND + MORE = MONEY</span>
+    <span class="comment">% SEND  = 1000*S + 100*E + 10*N + D</span>
+    <span class="comment">% MORE  = 1000*M + 100*O + 10*R + E</span>
+    <span class="comment">% MONEY = 10000*M + 1000*O + 100*N + 10*E + Y</span>
+
+    1000<span class="operator">*</span><span class="variable">S</span> <span class="operator">+</span> 100<span class="operator">*</span><span class="variable">E</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">N</span> <span class="operator">+</span> <span class="variable">D</span> <span class="operator">+</span>
+    1000<span class="operator">*</span><span class="variable">M</span> <span class="operator">+</span> 100<span class="operator">*</span><span class="variable">O</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">R</span> <span class="operator">+</span> <span class="variable">E</span> <span class="operator">#=</span>
+    10000<span class="operator">*</span><span class="variable">M</span> <span class="operator">+</span> 1000<span class="operator">*</span><span class="variable">O</span> <span class="operator">+</span> 100<span class="operator">*</span><span class="variable">N</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">E</span> <span class="operator">+</span> <span class="variable">Y</span>,
+
+    <span class="comment">% Find the solution</span>
+    <span class="predicate">label</span>(<span class="variable">Vars</span>).
+
+<span class="comment">% Pretty print solution</span>
+<span class="predicate">solve</span> <span class="operator">:-</span>
+    <span class="predicate">write</span>(<span class="string">'=== SEND + MORE = MONEY ==='</span>), <span class="predicate">nl</span>, <span class="predicate">nl</span>,
+    <span class="predicate">send_more_money</span>([<span class="variable">S</span>,<span class="variable">E</span>,<span class="variable">N</span>,<span class="variable">D</span>,<span class="variable">M</span>,<span class="variable">O</span>,<span class="variable">R</span>,<span class="variable">Y</span>]),
+
+    <span class="predicate">write</span>(<span class="string">'Solution found!'</span>), <span class="predicate">nl</span>, <span class="predicate">nl</span>,
+    <span class="predicate">write</span>(<span class="string">'Letter = Digit mapping:'</span>), <span class="predicate">nl</span>,
+    <span class="predicate">format</span>(<span class="string">'  S = ~w~n'</span>, [<span class="variable">S</span>]),
+    <span class="predicate">format</span>(<span class="string">'  E = ~w~n'</span>, [<span class="variable">E</span>]),
+    <span class="predicate">format</span>(<span class="string">'  N = ~w~n'</span>, [<span class="variable">N</span>]),
+    <span class="predicate">format</span>(<span class="string">'  D = ~w~n'</span>, [<span class="variable">D</span>]),
+    <span class="predicate">format</span>(<span class="string">'  M = ~w~n'</span>, [<span class="variable">M</span>]),
+    <span class="predicate">format</span>(<span class="string">'  O = ~w~n'</span>, [<span class="variable">O</span>]),
+    <span class="predicate">format</span>(<span class="string">'  R = ~w~n'</span>, [<span class="variable">R</span>]),
+    <span class="predicate">format</span>(<span class="string">'  Y = ~w~n'</span>, [<span class="variable">Y</span>]),
+    <span class="predicate">nl</span>,
+
+    <span class="variable">SEND</span> <span class="keyword">is</span> 1000<span class="operator">*</span><span class="variable">S</span> <span class="operator">+</span> 100<span class="operator">*</span><span class="variable">E</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">N</span> <span class="operator">+</span> <span class="variable">D</span>,
+    <span class="variable">MORE</span> <span class="keyword">is</span> 1000<span class="operator">*</span><span class="variable">M</span> <span class="operator">+</span> 100<span class="operator">*</span><span class="variable">O</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">R</span> <span class="operator">+</span> <span class="variable">E</span>,
+    <span class="variable">MONEY</span> <span class="keyword">is</span> 10000<span class="operator">*</span><span class="variable">M</span> <span class="operator">+</span> 1000<span class="operator">*</span><span class="variable">O</span> <span class="operator">+</span> 100<span class="operator">*</span><span class="variable">N</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">E</span> <span class="operator">+</span> <span class="variable">Y</span>,
+
+    <span class="predicate">write</span>(<span class="string">'Verification:'</span>), <span class="predicate">nl</span>,
+    <span class="predicate">format</span>(<span class="string">'  SEND  = ~w~n'</span>, [<span class="variable">SEND</span>]),
+    <span class="predicate">format</span>(<span class="string">'+ MORE  = ~w~n'</span>, [<span class="variable">MORE</span>]),
+    <span class="predicate">write</span>(<span class="string">'----------'</span>), <span class="predicate">nl</span>,
+    <span class="predicate">format</span>(<span class="string">'  MONEY = ~w~n'</span>, [<span class="variable">MONEY</span>]).</pre>
+                        </div>
+
+                        <div class="code-container">
+                            <div class="code-header">
+                                <span class="code-lang"><i class="fas fa-file-code"></i> cryptarithmetic_simple.pl (Without CLP - Generate & Test)</span>
+                                <button class="copy-button" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <pre class="code-block"><span class="comment">% Simple version without CLP library</span>
+<span class="comment">% Uses generate-and-test approach</span>
+
+<span class="predicate">digit</span>(0). <span class="predicate">digit</span>(1). <span class="predicate">digit</span>(2). <span class="predicate">digit</span>(3). <span class="predicate">digit</span>(4).
+<span class="predicate">digit</span>(5). <span class="predicate">digit</span>(6). <span class="predicate">digit</span>(7). <span class="predicate">digit</span>(8). <span class="predicate">digit</span>(9).
+
+<span class="predicate">solve_simple</span>(<span class="variable">S</span>,<span class="variable">E</span>,<span class="variable">N</span>,<span class="variable">D</span>,<span class="variable">M</span>,<span class="variable">O</span>,<span class="variable">R</span>,<span class="variable">Y</span>) <span class="operator">:-</span>
+    <span class="comment">% Generate possible values</span>
+    <span class="predicate">digit</span>(<span class="variable">D</span>), <span class="predicate">digit</span>(<span class="variable">E</span>), <span class="predicate">digit</span>(<span class="variable">Y</span>),
+    <span class="comment">% Check column 1 (rightmost): D + E = Y or D + E = 10 + Y</span>
+    <span class="variable">C1</span> <span class="keyword">is</span> (<span class="variable">D</span> <span class="operator">+</span> <span class="variable">E</span>) <span class="operator">//</span> 10,
+    <span class="variable">Y</span> <span class="keyword">is</span> (<span class="variable">D</span> <span class="operator">+</span> <span class="variable">E</span>) <span class="keyword">mod</span> 10,
+
+    <span class="predicate">digit</span>(<span class="variable">N</span>), <span class="predicate">digit</span>(<span class="variable">R</span>),
+    <span class="variable">N</span> <span class="operator">\=</span> <span class="variable">D</span>, <span class="variable">N</span> <span class="operator">\=</span> <span class="variable">E</span>, <span class="variable">N</span> <span class="operator">\=</span> <span class="variable">Y</span>,
+    <span class="variable">R</span> <span class="operator">\=</span> <span class="variable">D</span>, <span class="variable">R</span> <span class="operator">\=</span> <span class="variable">E</span>, <span class="variable">R</span> <span class="operator">\=</span> <span class="variable">Y</span>, <span class="variable">R</span> <span class="operator">\=</span> <span class="variable">N</span>,
+    <span class="comment">% Check column 2: N + R + C1 = E or 10 + E</span>
+    <span class="variable">C2</span> <span class="keyword">is</span> (<span class="variable">N</span> <span class="operator">+</span> <span class="variable">R</span> <span class="operator">+</span> <span class="variable">C1</span>) <span class="operator">//</span> 10,
+    <span class="variable">E</span> <span class="keyword">is</span> (<span class="variable">N</span> <span class="operator">+</span> <span class="variable">R</span> <span class="operator">+</span> <span class="variable">C1</span>) <span class="keyword">mod</span> 10,
+
+    <span class="predicate">digit</span>(<span class="variable">O</span>),
+    <span class="variable">O</span> <span class="operator">\=</span> <span class="variable">D</span>, <span class="variable">O</span> <span class="operator">\=</span> <span class="variable">E</span>, <span class="variable">O</span> <span class="operator">\=</span> <span class="variable">Y</span>, <span class="variable">O</span> <span class="operator">\=</span> <span class="variable">N</span>, <span class="variable">O</span> <span class="operator">\=</span> <span class="variable">R</span>,
+    <span class="comment">% Check column 3: E + O + C2 = N or 10 + N</span>
+    <span class="variable">C3</span> <span class="keyword">is</span> (<span class="variable">E</span> <span class="operator">+</span> <span class="variable">O</span> <span class="operator">+</span> <span class="variable">C2</span>) <span class="operator">//</span> 10,
+    <span class="variable">N</span> <span class="keyword">is</span> (<span class="variable">E</span> <span class="operator">+</span> <span class="variable">O</span> <span class="operator">+</span> <span class="variable">C2</span>) <span class="keyword">mod</span> 10,
+
+    <span class="predicate">digit</span>(<span class="variable">S</span>), <span class="predicate">digit</span>(<span class="variable">M</span>),
+    <span class="variable">S</span> <span class="operator">\=</span> 0, <span class="variable">M</span> <span class="operator">\=</span> 0,  <span class="comment">% No leading zeros</span>
+    <span class="variable">S</span> <span class="operator">\=</span> <span class="variable">D</span>, <span class="variable">S</span> <span class="operator">\=</span> <span class="variable">E</span>, <span class="variable">S</span> <span class="operator">\=</span> <span class="variable">Y</span>, <span class="variable">S</span> <span class="operator">\=</span> <span class="variable">N</span>, <span class="variable">S</span> <span class="operator">\=</span> <span class="variable">R</span>, <span class="variable">S</span> <span class="operator">\=</span> <span class="variable">O</span>,
+    <span class="variable">M</span> <span class="operator">\=</span> <span class="variable">D</span>, <span class="variable">M</span> <span class="operator">\=</span> <span class="variable">E</span>, <span class="variable">M</span> <span class="operator">\=</span> <span class="variable">Y</span>, <span class="variable">M</span> <span class="operator">\=</span> <span class="variable">N</span>, <span class="variable">M</span> <span class="operator">\=</span> <span class="variable">R</span>, <span class="variable">M</span> <span class="operator">\=</span> <span class="variable">O</span>, <span class="variable">M</span> <span class="operator">\=</span> <span class="variable">S</span>,
+    <span class="comment">% Check column 4: S + M + C3 = O or 10 + O</span>
+    <span class="variable">C4</span> <span class="keyword">is</span> (<span class="variable">S</span> <span class="operator">+</span> <span class="variable">M</span> <span class="operator">+</span> <span class="variable">C3</span>) <span class="operator">//</span> 10,
+    <span class="variable">O</span> <span class="keyword">is</span> (<span class="variable">S</span> <span class="operator">+</span> <span class="variable">M</span> <span class="operator">+</span> <span class="variable">C3</span>) <span class="keyword">mod</span> 10,
+    <span class="comment">% Check column 5: C4 = M</span>
+    <span class="variable">M</span> <span class="keyword">is</span> <span class="variable">C4</span>.
+
+<span class="comment">% Run the solver</span>
+<span class="predicate">run_simple</span> <span class="operator">:-</span>
+    <span class="predicate">solve_simple</span>(<span class="variable">S</span>,<span class="variable">E</span>,<span class="variable">N</span>,<span class="variable">D</span>,<span class="variable">M</span>,<span class="variable">O</span>,<span class="variable">R</span>,<span class="variable">Y</span>),
+    <span class="predicate">format</span>(<span class="string">'S=~w E=~w N=~w D=~w M=~w O=~w R=~w Y=~w~n'</span>,
+           [<span class="variable">S</span>,<span class="variable">E</span>,<span class="variable">N</span>,<span class="variable">D</span>,<span class="variable">M</span>,<span class="variable">O</span>,<span class="variable">R</span>,<span class="variable">Y</span>]).</pre>
+                        </div>
+
+                        <div class="output-box">
+                            <h5><i class="fas fa-play"></i> Output</h5>
+<pre>
+?- solve.
+=== SEND + MORE = MONEY ===
+
+Solution found!
+
+Letter = Digit mapping:
+  S = 9
+  E = 5
+  N = 6
+  D = 7
+  M = 1
+  O = 0
+  R = 8
+  Y = 2
+
+Verification:
+  SEND  = 9567
++ MORE  = 1085
+----------
+  MONEY = 10652
+true.
+</pre>
+                        </div>
+
+                        <div class="extra-task">
+                            <h4><i class="fas fa-star"></i> Extra Task: Try This!</h4>
+                            <p><strong>Task:</strong> Solve the puzzle: <strong>EAT + THAT = APPLE</strong></p>
+                            <p style="margin-top: 10px;"><em>Hint: Modify the constraints for the new letters and equation structure.</em></p>
+
+                            <button class="solution-toggle" onclick="toggleSolution(this)">
+                                <i class="fas fa-eye"></i> Show Hint
+                            </button>
+                            <div class="solution-content">
+                                <div class="code-container">
+                                    <div class="code-header">
+                                        <span class="code-lang">Prolog - Hint</span>
+                                    </div>
+                                    <pre class="code-block"><span class="comment">% EAT + THAT = APPLE</span>
+<span class="comment">% Letters: E, A, T, H, P, L</span>
+<span class="comment">% EAT   = 100*E + 10*A + T</span>
+<span class="comment">% THAT  = 1000*T + 100*H + 10*A + T</span>
+<span class="comment">% APPLE = 10000*A + 1000*P + 100*P + 10*L + E</span>
+
+<span class="operator">:-</span> <span class="keyword">use_module</span>(<span class="predicate">library</span>(clpfd)).
+
+<span class="predicate">eat_that_apple</span>([<span class="variable">E</span>,<span class="variable">A</span>,<span class="variable">T</span>,<span class="variable">H</span>,<span class="variable">P</span>,<span class="variable">L</span>]) <span class="operator">:-</span>
+    <span class="variable">Vars</span> <span class="operator">=</span> [<span class="variable">E</span>,<span class="variable">A</span>,<span class="variable">T</span>,<span class="variable">H</span>,<span class="variable">P</span>,<span class="variable">L</span>],
+    <span class="variable">Vars</span> <span class="keyword">ins</span> 0..9,
+    <span class="predicate">all_different</span>(<span class="variable">Vars</span>),
+    <span class="variable">E</span> <span class="operator">#\=</span> 0, <span class="variable">T</span> <span class="operator">#\=</span> 0, <span class="variable">A</span> <span class="operator">#\=</span> 0,
+    100<span class="operator">*</span><span class="variable">E</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">A</span> <span class="operator">+</span> <span class="variable">T</span> <span class="operator">+</span>
+    1000<span class="operator">*</span><span class="variable">T</span> <span class="operator">+</span> 100<span class="operator">*</span><span class="variable">H</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">A</span> <span class="operator">+</span> <span class="variable">T</span> <span class="operator">#=</span>
+    10000<span class="operator">*</span><span class="variable">A</span> <span class="operator">+</span> 1000<span class="operator">*</span><span class="variable">P</span> <span class="operator">+</span> 100<span class="operator">*</span><span class="variable">P</span> <span class="operator">+</span> 10<span class="operator">*</span><span class="variable">L</span> <span class="operator">+</span> <span class="variable">E</span>,
+    <span class="predicate">label</span>(<span class="variable">Vars</span>).</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Reference Section -->
+            <section>
+                <h2><i class="fas fa-book"></i> Quick Reference Card</h2>
+
+                <div class="syntax-box">
+                    <h4><i class="fas fa-terminal"></i> Essential Prolog Syntax</h4>
+                    <table>
+                        <tr>
+                            <th>Syntax</th>
+                            <th>Meaning</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><code>fact.</code></td>
+                            <td>Define a fact</td>
+                            <td><code>likes(john, pizza).</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>head :- body.</code></td>
+                            <td>Define a rule (IF)</td>
+                            <td><code>parent(X,Y) :- father(X,Y).</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>?- query.</code></td>
+                            <td>Ask a question</td>
+                            <td><code>?- parent(X, john).</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>X, Y</code></td>
+                            <td>AND (both must be true)</td>
+                            <td><code>parent(X,Y), man(X).</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>X ; Y</code></td>
+                            <td>OR (either can be true)</td>
+                            <td><code>father(X,Y); mother(X,Y).</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>!</code></td>
+                            <td>Cut (stop backtracking)</td>
+                            <td><code>max(X,Y,X) :- X >= Y, !.</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>fail</code></td>
+                            <td>Force failure</td>
+                            <td><code>print_all :- x(X), write(X), fail.</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>\+</code></td>
+                            <td>NOT (negation as failure)</td>
+                            <td><code>not_member(X,L) :- \+ member(X,L).</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>[H|T]</code></td>
+                            <td>List head and tail</td>
+                            <td><code>[1|[2,3,4]] = [1,2,3,4]</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>X is Expr</code></td>
+                            <td>Arithmetic evaluation</td>
+                            <td><code>X is 3 + 4.</code> (X = 7)</td>
+                        </tr>
+                        <tr>
+                            <td><code>X =:= Y</code></td>
+                            <td>Arithmetic equality</td>
+                            <td><code>3 + 2 =:= 5.</code> (true)</td>
+                        </tr>
+                        <tr>
+                            <td><code>X \= Y</code></td>
+                            <td>Not unifiable</td>
+                            <td><code>a \= b.</code> (true)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="tip-box">
+                    <i class="fas fa-graduation-cap"></i>
+                    <strong>Study Tips:</strong>
+                    <ul style="margin-left: 25px; margin-top: 10px;">
+                        <li>Practice each program multiple times until you can write it from memory</li>
+                        <li>Trace through the execution manually to understand recursion</li>
+                        <li>Try the extra tasks before looking at solutions</li>
+                        <li>Modify programs to solve similar problems</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <footer>
+            <p><i class="fas fa-laptop-code"></i> Prolog Programming Lab Practicals</p>
+            <p>by Dr. Ankush Rai</p>
+            <p>Artificial Intelligence Course | Happy Learning!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Copy code to clipboard
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-container').querySelector('.code-block');
+            const text = codeBlock.innerText;
+
+            navigator.clipboard.writeText(text).then(() => {
+                button.classList.add('copied');
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+
+                setTimeout(() => {
+                    button.classList.remove('copied');
+                    button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+                }, 2000);
+            });
+        }
+
+        // Toggle solution visibility
+        function toggleSolution(button) {
+            const solutionContent = button.nextElementSibling;
+            solutionContent.classList.toggle('show');
+
+            if (solutionContent.classList.contains('show')) {
+                button.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Solution';
+            } else {
+                button.innerHTML = '<i class="fas fa-eye"></i> Show Solution';
+            }
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active state to nav tabs on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navTabs = document.querySelectorAll('.nav-tab');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navTabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('href') === '#' + currentSection) {
+                    tab.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
