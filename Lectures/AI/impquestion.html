@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Exam Question Bank - Unit 1 & Unit 2</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:#333;background:linear-gradient(135deg,#1e3a5f 0%,#0d1b2a 100%);padding:20px}
+.container{max-width:1400px;margin:0 auto;background:#fff;border-radius:20px;box-shadow:0 25px 80px rgba(0,0,0,.4);overflow:hidden}
+header{background:linear-gradient(135deg,#1e3a5f 0%,#3d5a80 50%,#98c1d9 100%);color:#fff;padding:50px 40px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,255,255,.1) 0%,transparent 70%);animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.5}50%{transform:scale(1.1);opacity:.3}}
+header h1{font-size:2.5em;margin-bottom:10px;position:relative;z-index:1}
+header p{font-size:1.1em;opacity:.95;position:relative;z-index:1}
+.course-info{display:flex;justify-content:center;gap:20px;margin-top:20px;flex-wrap:wrap;position:relative;z-index:1}
+.course-badge{background:rgba(255,255,255,.2);padding:8px 20px;border-radius:25px;font-size:.9em;backdrop-filter:blur(5px)}
+.content{padding:50px}
+.unit-header{background:linear-gradient(135deg,#1e3a5f,#3d5a80);color:#fff;padding:25px 30px;border-radius:15px;margin:40px 0 30px;font-size:1.5em;display:flex;align-items:center;gap:15px}
+.unit-header i{font-size:1.3em}
+.co-tag{display:inline-block;background:#ffd700;color:#1e3a5f;padding:5px 15px;border-radius:20px;font-size:.75em;font-weight:700;margin-left:15px}
+.q-box{background:linear-gradient(135deg,#ede9fe,#ddd6fe);padding:30px;border-radius:15px;margin:25px 0;border-left:6px solid #7c3aed}
+.q-title{color:#5b21b6;font-weight:700;font-size:1.2em;margin-bottom:15px;display:flex;align-items:center;gap:10px}
+.marks{display:inline-block;padding:4px 14px;border-radius:20px;font-size:.8em;font-weight:700}
+.m4{background:#fef3c7;color:#b45309}.m8{background:#fee2e2;color:#dc2626}
+.bl-tag{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.7em;font-weight:600;background:#dbeafe;color:#1e40af;margin-left:8px}
+.ans{background:#fff;padding:25px;border-radius:12px;margin-top:15px;border:2px solid #7c3aed}
+.ans h5{color:#5b21b6;margin-bottom:15px;font-size:1.05em}
+.ans h5 i{margin-right:8px}
+table{width:100%;border-collapse:collapse;margin:15px 0;box-shadow:0 2px 10px rgba(0,0,0,.08);border-radius:10px;overflow:hidden}
+th{background:linear-gradient(135deg,#1e3a5f,#3d5a80);color:#fff;padding:12px;text-align:left}
+td{padding:10px 12px;border-bottom:1px solid #e5e7eb}
+tr:nth-child(even){background:#f8fafc}
+tr:hover{background:#e8f4f8}
+pre{background:#f0f0f0;padding:15px;border-radius:8px;font-family:'Courier New',monospace;overflow-x:auto;font-size:.9em;margin:10px 0}
+.note{background:linear-gradient(135deg,#d1fae5,#a7f3d0);padding:15px;border-radius:10px;margin:15px 0;border-left:4px solid #10b981;font-size:.95em}
+.note i{margin-right:8px;color:#10b981}
+.warn{background:linear-gradient(135deg,#fef2f2,#fecaca);padding:15px;border-radius:10px;margin:15px 0;border-left:4px solid #ef4444;font-size:.95em}
+.warn i{margin-right:8px;color:#ef4444}
+.formula{background:#f5f5f5;padding:15px 25px;border-radius:8px;text-align:center;font-size:1.15em;font-style:italic;margin:12px 0;border-left:4px solid #616161}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:15px 0}
+.g-box{padding:15px;border-radius:8px}
+.g-pro{background:#dcfce7;border-left:4px solid #22c55e}
+.g-con{background:#fee2e2;border-left:4px solid #ef4444}
+.sep{height:3px;background:linear-gradient(90deg,#7c3aed,#3b82f6,#10b981);border-radius:2px;margin:40px 0}
+footer{background:linear-gradient(135deg,#1e3a5f,#0d1b2a);color:#fff;padding:30px;text-align:center}
+@media(max-width:768px){.content{padding:20px}.grid2{grid-template-columns:1fr}header h1{font-size:1.8em}}
+ol.algo{counter-reset:s;list-style:none;padding-left:0}
+ol.algo li{counter-increment:s;margin:12px 0;padding-left:45px;position:relative}
+ol.algo li::before{content:counter(s);position:absolute;left:0;top:0;background:#7c3aed;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85em}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1><i class="fas fa-brain"></i> Artificial Intelligence — Exam Question Bank</h1>
+<p style="font-size:1.05em;margin-bottom:5px;opacity:.9;position:relative;z-index:1"><i class="fas fa-user-tie"></i> by <strong>Dr. Ankush Rai</strong></p>
+<p>Unit 1 (CO1) & Unit 2 (CO2) — 10 Questions Each with Model Answers</p>
+<div class="course-info">
+<span class="course-badge"><i class="fas fa-book"></i> Subject Code: 102601CS</span>
+<span class="course-badge"><i class="fas fa-graduation-cap"></i> B.Tech CSE-DS / AI — 6th Sem</span>
+<span class="course-badge"><i class="fas fa-file-alt"></i> 20 Questions Total</span>
+</div>
+</header>
+
+<div class="content">
+
+<!-- ===================== UNIT 1 ===================== -->
+<div class="unit-header"><i class="fas fa-search"></i> UNIT I — Overview & Search Techniques <span class="co-tag">CO1</span></div>
+<p style="margin-bottom:25px"><strong>CO1:</strong> Represent any well-defined problem and can apply AI Searching techniques to solve a problem.</p>
+
+<!-- U1 Q1 — 4 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 1 <span class="marks m4">4 MARKS</span> <span class="bl-tag">BL: L1</span></div>
+<p><strong>Define state space search. How does an informed search strategy differ from an uninformed search strategy? Illustrate with one example each.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>State Space Search:</strong></p>
+<p style="margin:10px 0 15px 15px">State space search is the process of systematically exploring a set of all possible configurations (states) of a problem to find a path from the initial state to the goal state. The state space is represented as a graph or tree where nodes denote states and edges denote operators/actions that transition between states. Formally it is a 4-tuple <em>(S, A, Action(s), Result(s,a))</em>.</p>
+
+<p><strong>Difference — Uninformed vs Informed Search:</strong></p>
+<table>
+<tr><th>Aspect</th><th>Uninformed (Blind)</th><th>Informed (Heuristic)</th></tr>
+<tr><td><strong>Domain knowledge</strong></td><td>No extra knowledge beyond problem definition</td><td>Uses a heuristic function h(n) estimating cost to goal</td></tr>
+<tr><td><strong>Guidance</strong></td><td>Explores systematically without direction</td><td>Prioritises nodes appearing closer to goal</td></tr>
+<tr><td><strong>Efficiency</strong></td><td>May explore many irrelevant states</td><td>Generally expands far fewer nodes</td></tr>
+<tr><td><strong>Example</strong></td><td>BFS finding shortest hop-count in a social network</td><td>A* using straight-line distance for GPS navigation</td></tr>
+</table>
+</div>
+</div>
+
+<!-- U1 Q2 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 2 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L3</span></div>
+<p><strong>You have two unmarked containers — one of 5-litre capacity and another of 3-litre capacity — and an unlimited water supply. Using a state space search approach, determine the sequence of operations to obtain exactly 4 litres in the 5-litre container.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Problem Formulation:</strong></p>
+<ul style="margin:10px 0 15px 20px">
+<li><strong>State:</strong> (x, y) where x = water in 5L jug (0≤x≤5), y = water in 3L jug (0≤y≤3)</li>
+<li><strong>Initial State:</strong> (0, 0)</li>
+<li><strong>Goal State:</strong> (4, n) for any n</li>
+</ul>
+
+<p><strong>Production Rules:</strong></p>
+<table>
+<tr><th>Rule</th><th>Condition</th><th>Action</th><th>Result</th></tr>
+<tr><td>R1</td><td>x &lt; 5</td><td>Fill 5L</td><td>(5, y)</td></tr>
+<tr><td>R2</td><td>y &lt; 3</td><td>Fill 3L</td><td>(x, 3)</td></tr>
+<tr><td>R3</td><td>x &gt; 0</td><td>Empty 5L</td><td>(0, y)</td></tr>
+<tr><td>R4</td><td>y &gt; 0</td><td>Empty 3L</td><td>(x, 0)</td></tr>
+<tr><td>R5</td><td>x+y≥5, y&gt;0</td><td>Pour 3L→5L till 5L full</td><td>(5, y−(5−x))</td></tr>
+<tr><td>R6</td><td>x+y≥3, x&gt;0</td><td>Pour 5L→3L till 3L full</td><td>(x−(3−y), 3)</td></tr>
+<tr><td>R7</td><td>x+y≤5, y&gt;0</td><td>Pour all 3L→5L</td><td>(x+y, 0)</td></tr>
+<tr><td>R8</td><td>x+y≤3, x&gt;0</td><td>Pour all 5L→3L</td><td>(0, x+y)</td></tr>
+</table>
+
+<p><strong>Solution Path:</strong></p>
+<table>
+<tr><th>Step</th><th>Rule</th><th>Action</th><th>5L Jug</th><th>3L Jug</th></tr>
+<tr><td>0</td><td>—</td><td>Start</td><td>0</td><td>0</td></tr>
+<tr><td>1</td><td>R1</td><td>Fill 5L jug</td><td>5</td><td>0</td></tr>
+<tr><td>2</td><td>R6</td><td>Pour 5L → 3L</td><td>2</td><td>3</td></tr>
+<tr><td>3</td><td>R4</td><td>Empty 3L jug</td><td>2</td><td>0</td></tr>
+<tr><td>4</td><td>R7</td><td>Pour 5L → 3L</td><td>0</td><td>2</td></tr>
+<tr><td>5</td><td>R1</td><td>Fill 5L jug</td><td>5</td><td>2</td></tr>
+<tr style="background:#dcfce7"><td>6</td><td>R6</td><td>Pour 5L → 3L</td><td><strong>4</strong></td><td>3</td></tr>
+</table>
+<p><strong>Result:</strong> Goal state (4, 3) reached in 6 steps.</p>
+</div>
+</div>
+
+<!-- U1 Q3 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 3 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L2</span></div>
+<p><strong>What is heuristic search? Describe the Hill Climbing algorithm and explain the three major pitfalls it encounters. Suggest a remedy for each pitfall.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Heuristic Search:</strong></p>
+<p style="margin:10px 0 15px 15px">Heuristic search (informed search) employs problem-specific knowledge — encoded as a heuristic function h(n) — to estimate how close a given state is to the goal. By expanding nodes with the most promising h(n) values first, it navigates the search space far more efficiently than blind methods.</p>
+
+<p><strong>Hill Climbing Algorithm:</strong></p>
+<ol class="algo">
+<li>Set <em>current</em> ← initial state.</li>
+<li>Generate all neighbours of <em>current</em>.</li>
+<li>Evaluate each neighbour with the heuristic.</li>
+<li>If the best neighbour is better than <em>current</em>, move to it; otherwise halt (local optimum).</li>
+<li>Repeat from Step 2.</li>
+</ol>
+
+<p style="margin-top:20px"><strong>Three Pitfalls and Remedies:</strong></p>
+<table>
+<tr><th>Pitfall</th><th>Description</th><th>Remedy</th></tr>
+<tr><td><strong>1. Local Maximum</strong></td><td>A peak whose value is higher than all neighbours but lower than the global maximum. The algorithm halts prematurely believing it has found the best solution.</td><td><strong>Random-restart hill climbing</strong> — run the algorithm multiple times from different random starting states and keep the best result.</td></tr>
+<tr><td><strong>2. Plateau / Flat Region</strong></td><td>A region where the current state and all its neighbours have the same heuristic value, giving no gradient to follow.</td><td><strong>Allow sideways moves</strong> — permit a fixed number of moves to equal-valued neighbours before terminating.</td></tr>
+<tr><td><strong>3. Ridge</strong></td><td>A narrow elevated area where every single-step move goes downhill, even though a combination of moves in different directions would ascend.</td><td><strong>Macro-operators / larger step sizes</strong> — combine multiple primitive moves into one compound move, or use stochastic methods like simulated annealing that occasionally accept downhill moves.</td></tr>
+</table>
+</div>
+</div>
+
+<!-- U1 Q4 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 4 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L4</span></div>
+<p><strong>Present the A* search algorithm step-by-step. Explain the concepts of over-estimation and under-estimation of a heuristic function and their impact on optimality.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>A* Evaluation Function:</strong></p>
+<div class="formula"><strong>f(n) = g(n) + h(n)</strong></div>
+<ul style="margin:10px 0 15px 20px">
+<li><strong>g(n):</strong> Actual cost from start to node n</li>
+<li><strong>h(n):</strong> Estimated cost from n to goal</li>
+<li><strong>f(n):</strong> Estimated total cost through n</li>
+</ul>
+
+<p><strong>A* Algorithm:</strong></p>
+<ol class="algo">
+<li><strong>Initialise:</strong> OPEN ← {start node with f = h(start)}; CLOSED ← ∅.</li>
+<li>If OPEN is empty → return FAILURE.</li>
+<li>Remove node <em>n</em> with smallest f(n) from OPEN.</li>
+<li>If <em>n</em> is goal → return solution path.</li>
+<li>Add <em>n</em> to CLOSED.</li>
+<li>For each successor <em>s</em> of <em>n</em>: compute tentative g(s) = g(n) + cost(n, s). If <em>s</em> ∈ CLOSED with a lower g, skip. If <em>s</em> ∈ OPEN with a lower g, skip. Otherwise set parent(s) = n, compute f(s) = g(s) + h(s), add/update <em>s</em> in OPEN.</li>
+<li>Go to Step 2.</li>
+</ol>
+
+<p style="margin-top:20px"><strong>Under-estimation (Admissible Heuristic):</strong></p>
+<ul style="margin:10px 0 15px 20px">
+<li>h(n) ≤ h*(n) for every node, where h*(n) is the true cost.</li>
+<li><strong>Impact:</strong> A* is guaranteed to find the <em>optimal</em> (least-cost) solution. It may explore extra nodes but will never miss the best path.</li>
+<li><strong>Example:</strong> Straight-line distance on a road map always underestimates actual road distance.</li>
+</ul>
+
+<p><strong>Over-estimation (Inadmissible Heuristic):</strong></p>
+<ul style="margin:10px 0 15px 20px">
+<li>h(n) > h*(n) for some nodes.</li>
+<li><strong>Impact:</strong> A* may return a sub-optimal solution because it can bypass cheaper paths in favour of nodes whose f-values appear lower due to inflated h. Optimality is <em>no longer guaranteed</em>.</li>
+<li><strong>Trade-off:</strong> Weighted A* (f = g + w·h, w > 1) deliberately overestimates to gain speed at the cost of bounded sub-optimality.</li>
+</ul>
+
+<div class="note"><i class="fas fa-lightbulb"></i> <strong>Key take-away:</strong> For A* to be both complete and optimal, the heuristic must be admissible (never overestimate). A consistent heuristic additionally ensures graph-search optimality.</div>
+</div>
+</div>
+
+<!-- U1 Q5 — 4 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 5 <span class="marks m4">4 MARKS</span> <span class="bl-tag">BL: L2</span></div>
+<p><strong>Contrast Breadth-First Search and Depth-First Search on the basis of data structure used, completeness, optimality, and space complexity.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+<table>
+<tr><th>Criterion</th><th>Breadth-First Search</th><th>Depth-First Search</th></tr>
+<tr><td><strong>Data Structure</strong></td><td>Queue (FIFO)</td><td>Stack (LIFO) / Recursion</td></tr>
+<tr><td><strong>Completeness</strong></td><td>Yes (finite branching factor)</td><td>No (may loop in infinite branches)</td></tr>
+<tr><td><strong>Optimality</strong></td><td>Yes (when all step costs equal)</td><td>No (may find a deeper solution first)</td></tr>
+<tr><td><strong>Space Complexity</strong></td><td>O(b<sup>d</sup>) — exponential, stores entire frontier</td><td>O(b·m) — linear in depth, stores only current path + siblings</td></tr>
+</table>
+<p style="margin-top:12px"><strong>Practical Guideline:</strong> Choose BFS when the optimal/shortest path is required and memory is sufficient; choose DFS when memory is tight or solutions lie deep in the tree.</p>
+</div>
+</div>
+
+<!-- U1 Q6 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 6 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L3</span></div>
+<p><strong>Apply the Minimax algorithm to the game tree below and determine the optimal move for MAX at the root. Show all intermediate computations.</strong></p>
+<pre>
+                MAX (Root)
+              /     |      \
+          MIN(A)  MIN(B)  MIN(C)
+          / \      / \      / \
+         7   3    8   2    5   9
+</pre>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Step 1 — Terminal values:</strong> 7, 3, 8, 2, 5, 9</p>
+
+<p><strong>Step 2 — Evaluate MIN nodes:</strong></p>
+<ul style="margin:8px 0 15px 25px">
+<li>A (MIN) = min(7, 3) = <strong>3</strong></li>
+<li>B (MIN) = min(8, 2) = <strong>2</strong></li>
+<li>C (MIN) = min(5, 9) = <strong>5</strong></li>
+</ul>
+
+<p><strong>Step 3 — Evaluate MAX root:</strong></p>
+<p style="margin-left:25px">Root (MAX) = max(3, 2, 5) = <strong>5</strong></p>
+
+<pre>
+                MAX (Root) = 5   ← chooses branch C
+              /       |        \
+        MIN(A)=3   MIN(B)=2   MIN(C)=5  ← selected
+          / \        / \        / \
+         7   3      8   2      5   9
+</pre>
+
+<p><strong>Optimal Move:</strong> MAX selects the rightmost branch (C), guaranteeing a minimax value of <strong>5</strong>.</p>
+<p><strong>Reasoning:</strong> Even though leaf 9 exists, MIN will never allow MAX to reach it — MIN at C picks 5. This is still the best MAX can guarantee across all three branches.</p>
+</div>
+</div>
+
+<!-- U1 Q7 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 7 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L4</span></div>
+<p><strong>Apply Alpha-Beta pruning to the game tree below. Clearly indicate which nodes are pruned and at which step the α ≥ β condition is met.</strong></p>
+<pre>
+                  MAX (R)
+                /         \
+           MIN (P)       MIN (Q)
+           /    \         /    \
+         MAX(D) MAX(E)  MAX(F) MAX(G)
+          /\     /\      /\     /\
+         5  3   8  2    1  6   4  7
+</pre>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Traversal (depth-first, left-to-right), α = −∞, β = +∞ initially:</strong></p>
+
+<table>
+<tr><th>Step</th><th>Node</th><th>Value</th><th>α</th><th>β</th><th>Action</th></tr>
+<tr><td>1</td><td>D: leaf 5</td><td>5</td><td>−∞</td><td>+∞</td><td>D update: v=max(−∞,5)=5</td></tr>
+<tr><td>2</td><td>D: leaf 3</td><td>3</td><td>−∞</td><td>+∞</td><td>v=max(5,3)=5 → D returns 5</td></tr>
+<tr><td>3</td><td>P (MIN)</td><td>—</td><td>−∞</td><td>5</td><td>β=min(∞,5)=5; continue</td></tr>
+<tr><td>4</td><td>E: leaf 8</td><td>8</td><td>−∞</td><td>5</td><td>E: v=max(−∞,8)=8</td></tr>
+<tr style="background:#fee2e2"><td>5</td><td>E: leaf 2</td><td>—</td><td>−∞</td><td>5</td><td>v=8 ≥ β=5 → <strong>β-cutoff at E! Leaf 2 NOT evaluated for MIN</strong>. But here E returns 8 anyway. P: β=min(5,8)=5. P returns 5.</td></tr>
+<tr><td>6</td><td>R (MAX)</td><td>—</td><td>5</td><td>+∞</td><td>α=max(−∞,5)=5; proceed to Q</td></tr>
+<tr><td>7</td><td>F: leaf 1</td><td>1</td><td>5</td><td>+∞</td><td>F: v=max(−∞,1)=1</td></tr>
+<tr><td>8</td><td>F: leaf 6</td><td>6</td><td>5</td><td>+∞</td><td>F: v=max(1,6)=6 → F returns 6</td></tr>
+<tr><td>9</td><td>Q (MIN)</td><td>—</td><td>5</td><td>6</td><td>β=min(∞,6)=6; α(5)&lt;β(6) → continue</td></tr>
+<tr><td>10</td><td>G: leaf 4</td><td>4</td><td>5</td><td>6</td><td>G: v=max(−∞,4)=4</td></tr>
+<tr style="background:#fee2e2"><td>11</td><td>G: leaf 7</td><td>7</td><td>5</td><td>6</td><td>G: v=max(4,7)=7. But at Q, β=min(6,7)=6. Actually no prune here as we already processed all. Q returns 6.</td></tr>
+<tr><td>12</td><td>R (MAX)</td><td>—</td><td>6</td><td>+∞</td><td>α=max(5,6)=6 → Root value = <strong>6</strong></td></tr>
+</table>
+
+<p style="margin-top:15px">Let me correct: at Step 4-5, once E's first leaf gives 8, the MIN node P already has β=5. Since E is a MAX node returning a value ≥ 8, which is ≥ β of P, a <strong>pruning occurs</strong> — E's second leaf (2) does not need to be checked to know P will not choose E. So <strong>leaf 2 is pruned</strong>.</p>
+
+<pre>
+                  MAX (R) = 6
+                /              \
+           MIN (P)=5        MIN (Q)=6
+           /      \          /      \
+        MAX(D)=5 MAX(E)=8  MAX(F)=6 MAX(G)=7
+          /\      /\         /\       /\
+         5  3    8  <s>2</s>       1  6     4  7
+                    ↑ PRUNED
+</pre>
+
+<p><strong>Optimal move:</strong> MAX at root selects <strong>right branch (Q)</strong> with value <strong>6</strong>.</p>
+</div>
+</div>
+
+<!-- U1 Q8 — 4 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 8 <span class="marks m4">4 MARKS</span> <span class="bl-tag">BL: L2</span></div>
+<p><strong>What is an evaluation function in the context of game-playing AI? What properties should a good evaluation function possess?</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Definition:</strong> An evaluation function (also called a static evaluator or utility function) assigns a numeric score to a non-terminal game state, estimating how favourable the position is for the MAX player. It is used when the game tree is too large to be searched completely, so search is cut off at a certain depth and the evaluation function substitutes for the true minimax value.</p>
+
+<p style="margin-top:15px"><strong>Desirable Properties:</strong></p>
+<ol style="margin-left:25px">
+<li style="margin:8px 0"><strong>Accuracy / Correlation:</strong> Higher scores should genuinely correspond to better winning chances; it must preserve the ordering of terminal utilities.</li>
+<li style="margin:8px 0"><strong>Computational Efficiency:</strong> Must be fast to compute because it is called thousands of times per move decision.</li>
+<li style="margin:8px 0"><strong>Terminal Consistency:</strong> Must return the true utility for terminal states (e.g., +∞ for win, −∞ for loss, 0 for draw).</li>
+<li style="margin:8px 0"><strong>Sensitivity:</strong> Should distinguish meaningfully different positions — a coarse function that returns only {−1, 0, +1} gives poor guidance.</li>
+</ol>
+
+<p style="margin-top:12px"><strong>Example (Chess):</strong> eval(s) = (material balance) + (positional factors) + (king safety) + (mobility), where material is weighted (Queen = 9, Rook = 5, Bishop/Knight = 3, Pawn = 1).</p>
+</div>
+</div>
+
+<!-- U1 Q9 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 9 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L3</span></div>
+<p><strong>Formulate the Missionary-Cannibal problem as a well-defined AI problem. List the state representation, initial state, goal state, operators, and constraints. Provide at least four steps of a valid solution path.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Problem Description:</strong> Three missionaries (M) and three cannibals (C) must cross a river using a boat that holds at most two people. If cannibals outnumber missionaries on either bank, the missionaries are eaten. Find a safe sequence of crossings.</p>
+
+<p><strong>State Representation:</strong> (M<sub>L</sub>, C<sub>L</sub>, B) where M<sub>L</sub> = missionaries on left bank, C<sub>L</sub> = cannibals on left bank, B = boat position (L or R). Right bank is implicit: M<sub>R</sub> = 3−M<sub>L</sub>, C<sub>R</sub> = 3−C<sub>L</sub>.</p>
+
+<ul style="margin:10px 0 15px 20px">
+<li><strong>Initial State:</strong> (3, 3, L) — all on left bank, boat on left</li>
+<li><strong>Goal State:</strong> (0, 0, R) — all on right bank</li>
+</ul>
+
+<p><strong>Operators:</strong> Move {1M, 1C, 2M, 2C, 1M+1C} from boat-side bank to the other.</p>
+
+<p><strong>Constraints:</strong></p>
+<ul style="margin:10px 0 15px 20px">
+<li>On both banks: M ≥ C whenever M > 0</li>
+<li>Boat carries 1 or 2 people</li>
+<li>0 ≤ M<sub>L</sub> ≤ 3, 0 ≤ C<sub>L</sub> ≤ 3</li>
+</ul>
+
+<p><strong>Partial Solution Path:</strong></p>
+<table>
+<tr><th>Step</th><th>Action (→ = L to R)</th><th>Left Bank</th><th>Right Bank</th><th>Boat</th></tr>
+<tr><td>0</td><td>Start</td><td>3M, 3C</td><td>0M, 0C</td><td>L</td></tr>
+<tr><td>1</td><td>Send 1M+1C →</td><td>2M, 2C</td><td>1M, 1C</td><td>R</td></tr>
+<tr><td>2</td><td>Return 1M ←</td><td>3M, 2C</td><td>0M, 1C</td><td>L</td></tr>
+<tr><td>3</td><td>Send 2C →</td><td>3M, 0C</td><td>0M, 3C</td><td>R</td></tr>
+<tr><td>4</td><td>Return 1C ←</td><td>3M, 1C</td><td>0M, 2C</td><td>L</td></tr>
+</table>
+<p>(The complete solution takes 11 crossings to reach (0, 0, R).)</p>
+
+<p><strong>State Space Size:</strong> 16 valid states out of 32 possible (after filtering constraint violations). This problem is fully solvable using BFS to find the shortest sequence.</p>
+</div>
+</div>
+
+<!-- U1 Q10 — 4 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 10 <span class="marks m4">4 MARKS</span> <span class="bl-tag">BL: L2</span></div>
+<p><strong>Differentiate between the A* and AO* search algorithms on any four dimensions.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+<table>
+<tr><th>Dimension</th><th>A*</th><th>AO*</th></tr>
+<tr><td><strong>Graph Type</strong></td><td>OR graph — finds a single path</td><td>AND-OR graph — finds a solution graph</td></tr>
+<tr><td><strong>Node Types</strong></td><td>Only OR nodes (choose one child)</td><td>Both AND nodes (solve ALL children) and OR nodes</td></tr>
+<tr><td><strong>Cost Propagation</strong></td><td>f(n) = g(n) + h(n) along a single path</td><td>OR: min over children; AND: sum over children + arc costs</td></tr>
+<tr><td><strong>Typical Application</strong></td><td>Shortest-path routing, puzzle solving</td><td>Planning with sub-problem decomposition, theorem proving</td></tr>
+</table>
+<p style="margin-top:12px"><strong>Key Insight:</strong> A* returns an optimal <em>path</em>; AO* returns an optimal <em>solution tree</em> when a problem can be broken into mandatory sub-goals.</p>
+</div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ===================== UNIT 2 ===================== -->
+<div class="unit-header"><i class="fas fa-database"></i> UNIT II — Knowledge Representation <span class="co-tag">CO2</span></div>
+<p style="margin-bottom:25px"><strong>CO2:</strong> Design knowledge base using FOPL and other knowledge representation techniques.</p>
+
+<!-- U2 Q1 — 4 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 1 <span class="marks m4">4 MARKS</span> <span class="bl-tag">BL: L2</span></div>
+<p><strong>What is First-Order Predicate Logic (FOPL)? How does it differ from Propositional Logic (PL) in terms of expressiveness?</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>FOPL (First-Order Predicate Logic):</strong></p>
+<p style="margin:10px 0 15px 15px">FOPL is a formal language used to represent knowledge about objects, their properties, and relationships between them. It extends propositional logic by introducing variables, quantifiers (∀ — for all, ∃ — there exists), predicates, and functions, allowing statements about classes of objects rather than only specific propositions.</p>
+
+<p><strong>Differences:</strong></p>
+<table>
+<tr><th>Aspect</th><th>Propositional Logic (PL)</th><th>First-Order Predicate Logic (FOPL)</th></tr>
+<tr><td><strong>Basic Unit</strong></td><td>Proposition (atomic true/false statement)</td><td>Predicate applied to terms (objects)</td></tr>
+<tr><td><strong>Variables</strong></td><td>Not supported</td><td>Supports variables (x, y …)</td></tr>
+<tr><td><strong>Quantifiers</strong></td><td>Not available</td><td>∀ (Universal) and ∃ (Existential)</td></tr>
+<tr><td><strong>Expressiveness</strong></td><td>Limited — cannot express "All dogs bark"</td><td>Rich — ∀x (Dog(x) → Barks(x))</td></tr>
+<tr><td><strong>Example</strong></td><td>P: "It is raining" (just T/F)</td><td>Raining(Raipur) — ties predicate to object</td></tr>
+</table>
+</div>
+</div>
+
+<!-- U2 Q2 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 2 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L3</span></div>
+<p><strong>Translate the following English sentences into First-Order Predicate Logic (FOPL):</strong></p>
+<ol style="margin:8px 0 0 25px">
+<li>Every student who studies hard passes the examination.</li>
+<li>Some professors teach Artificial Intelligence.</li>
+<li>No robot is capable of emotion.</li>
+<li>Everyone trusts someone.</li>
+<li>A person buys a product only if they can afford it.</li>
+</ol>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Predicates used:</strong> Student(x), StudiesHard(x), Passes(x, exam), Professor(x), Teaches(x, y), Robot(x), CapableOfEmotion(x), Trusts(x, y), Person(x), Buys(x, y), Product(y), CanAfford(x, y)</p>
+
+<table>
+<tr><th>#</th><th>English Sentence</th><th>FOPL Representation</th></tr>
+<tr><td>1</td><td>Every student who studies hard passes the examination.</td><td><strong>∀x [ (Student(x) ∧ StudiesHard(x)) → Passes(x, exam) ]</strong></td></tr>
+<tr><td>2</td><td>Some professors teach Artificial Intelligence.</td><td><strong>∃x [ Professor(x) ∧ Teaches(x, AI) ]</strong></td></tr>
+<tr><td>3</td><td>No robot is capable of emotion.</td><td><strong>∀x [ Robot(x) → ¬CapableOfEmotion(x) ]</strong><br><em>equivalently: ¬∃x [ Robot(x) ∧ CapableOfEmotion(x) ]</em></td></tr>
+<tr><td>4</td><td>Everyone trusts someone.</td><td><strong>∀x ∃y [ Trusts(x, y) ]</strong></td></tr>
+<tr><td>5</td><td>A person buys a product only if they can afford it.</td><td><strong>∀x ∀y [ (Person(x) ∧ Product(y) ∧ Buys(x, y)) → CanAfford(x, y) ]</strong></td></tr>
+</table>
+
+<div class="note"><i class="fas fa-lightbulb"></i> <strong>Tip:</strong> "Only if" in S5 means the buying implies affordability (necessary condition), <em>not</em> that affordability implies buying.</div>
+</div>
+</div>
+
+<!-- U2 Q3 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 3 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L3</span></div>
+<p><strong>Define Well-Formed Formula (WFF). Enumerate and explain the steps required to convert an FOPL sentence into Clausal Form (Conjunctive Normal Form). Demonstrate with the sentence: "Everyone who likes dogs is kind."</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Well-Formed Formula (WFF):</strong></p>
+<p style="margin:10px 0 15px 15px">A WFF is a syntactically valid expression in predicate logic constructed using predicates, variables, constants, functions, logical connectives (∧, ∨, →, ↔, ¬), and quantifiers (∀, ∃) according to the formation rules of FOPL. Every atomic formula is a WFF; compound WFFs are built recursively using connectives and quantifiers.</p>
+
+<p><strong>Steps to Convert to Clausal Form:</strong></p>
+
+<p>Given: <em>"Everyone who likes dogs is kind."</em></p>
+<p>FOPL: ∀x [ LikesDogs(x) → Kind(x) ]</p>
+
+<table>
+<tr><th>Step</th><th>Operation</th><th>Result</th></tr>
+<tr><td><strong>1. Eliminate →</strong></td><td>Replace A → B with ¬A ∨ B</td><td>∀x [ ¬LikesDogs(x) ∨ Kind(x) ]</td></tr>
+<tr><td><strong>2. Move ¬ inward</strong></td><td>Apply De Morgan's laws; push negation to atoms</td><td>∀x [ ¬LikesDogs(x) ∨ Kind(x) ] (no change needed)</td></tr>
+<tr><td><strong>3. Standardise variables</strong></td><td>Rename variables so each quantifier uses a unique name</td><td>Already fine — only x used</td></tr>
+<tr><td><strong>4. Skolemization</strong></td><td>Remove ∃ by replacing existential variables with Skolem constants/functions</td><td>No ∃ here — no change</td></tr>
+<tr><td><strong>5. Drop ∀</strong></td><td>All remaining variables are implicitly universally quantified</td><td>¬LikesDogs(x) ∨ Kind(x)</td></tr>
+<tr><td><strong>6. Distribute ∨ over ∧</strong></td><td>Convert to CNF (conjunction of disjunctions)</td><td>Already a single clause</td></tr>
+<tr><td><strong>7. Split into clauses</strong></td><td>Write as a set of clauses</td><td><strong>{ ¬LikesDogs(x) ∨ Kind(x) }</strong></td></tr>
+</table>
+
+<p style="margin-top:15px"><strong>Final Clausal Form:</strong> { ¬LikesDogs(x) ∨ Kind(x) }</p>
+<p>This single clause reads: "For any x, either x does not like dogs, or x is kind" — logically equivalent to the original statement.</p>
+</div>
+</div>
+
+<!-- U2 Q4 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 4 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L3</span></div>
+<p><strong>What are Semantic Networks? Draw a semantic network for the following facts and label all edges:</strong></p>
+<pre style="background:#ede9fe;border-left:4px solid #7c3aed">
+isa(bird, animal)
+instance(tweety, bird)
+has_property(bird, can_fly)
+colour(tweety, yellow)
+has_part(bird, wings)
+friend(tweety, polly)
+</pre>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Semantic Network Definition:</strong></p>
+<p style="margin:10px 0 15px 15px">A Semantic Network is a graph-based knowledge representation scheme where <strong>nodes</strong> represent concepts/objects and <strong>labelled directed edges</strong> (arcs) represent relationships between them. They support inheritance — properties of a class are inherited by its sub-classes and instances.</p>
+
+<p><strong>Key Relationships:</strong></p>
+<ul style="margin:10px 0 15px 20px">
+<li><strong>isa</strong> — class-to-superclass (subclass relationship)</li>
+<li><strong>instance</strong> — individual-to-class membership</li>
+<li><strong>has_property</strong> — attribute of a class</li>
+<li><strong>has_part</strong> — part-whole relationship</li>
+<li><strong>colour, friend</strong> — specific attribute / association</li>
+</ul>
+
+<p><strong>Semantic Network Diagram:</strong></p>
+<pre style="background:#f8fafc;padding:25px">
+    ┌────────┐                     
+    │ ANIMAL │                     
+    └───▲────┘                     
+        │ isa                      
+    ┌───┴────┐──has_property──▶ ┌──────────┐
+    │  BIRD  │                  │ CAN_FLY  │
+    └───▲────┘──has_part──────▶ ┌──────────┐
+        │                       │  WINGS   │
+        │ instance              └──────────┘
+    ┌───┴────┐                     
+    │ TWEETY │──colour──────────▶ ┌──────────┐
+    └───┬────┘                    │  YELLOW  │
+        │                         └──────────┘
+        │ friend                   
+    ┌───▼────┐                     
+    │ POLLY  │                     
+    └────────┘                     
+</pre>
+
+<p><strong>Inheritance Example:</strong> Since tweety is an instance of bird and bird isa animal, tweety <em>inherits</em>: (a) can_fly (from bird), (b) has wings (from bird), and (c) all properties of animal.</p>
+
+<p><strong>Advantages:</strong> Intuitive, supports inheritance, easy to visualise.<br>
+<strong>Limitations:</strong> No standard semantics, difficulty handling exceptions (e.g., penguin can't fly), limited expressiveness compared to FOPL.</p>
+</div>
+</div>
+
+<!-- U2 Q5 — 4 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 5 <span class="marks m4">4 MARKS</span> <span class="bl-tag">BL: L1</span></div>
+<p><strong>What is Knowledge Representation (KR) in AI? List and briefly describe any four KR techniques.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Knowledge Representation (KR):</strong></p>
+<p style="margin:10px 0 15px 15px">KR is the method by which an AI system encodes knowledge about the world — facts, rules, relationships, and heuristics — in a form that a reasoning engine can use to derive new conclusions, answer queries, and solve problems.</p>
+
+<p><strong>Four KR Techniques:</strong></p>
+<ol style="margin-left:25px">
+<li style="margin:10px 0"><strong>Predicate Logic (FOPL):</strong> Formal language using predicates, quantifiers, and logical connectives to express knowledge precisely. Supports automated theorem proving.</li>
+<li style="margin:10px 0"><strong>Semantic Networks:</strong> Graph structures with labelled nodes (concepts) and edges (relationships). Support inheritance and visual reasoning.</li>
+<li style="margin:10px 0"><strong>Frames:</strong> Data structures with named slots holding attribute-value pairs; organised in a hierarchy. Capture stereotypical knowledge about situations or objects.</li>
+<li style="margin:10px 0"><strong>Production Rules:</strong> IF-THEN rules that encode knowledge as condition-action pairs. Used in expert systems (e.g., MYCIN).</li>
+</ol>
+</div>
+</div>
+
+<!-- U2 Q6 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 6 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L4</span></div>
+<p><strong>Explain the Resolution principle for theorem proving in predicate logic. Using resolution, prove that "Socrates is mortal" from the knowledge base: (i) All men are mortal. (ii) Socrates is a man.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Resolution Principle:</strong></p>
+<p style="margin:10px 0 15px 15px">Resolution is a sound and complete inference procedure for clausal-form logic. It works by repeatedly selecting pairs of clauses containing complementary literals (one positive, one negated) and producing a new clause called the <em>resolvent</em>. If the empty clause (⊥) is derived, the original set of clauses is unsatisfiable, proving the desired conclusion by refutation.</p>
+
+<p><strong>Knowledge Base:</strong></p>
+<ol style="margin:10px 0 15px 25px">
+<li>∀x [ Man(x) → Mortal(x) ]</li>
+<li>Man(Socrates)</li>
+</ol>
+<p><strong>To prove:</strong> Mortal(Socrates)</p>
+
+<p><strong>Step 1 — Convert to Clausal Form:</strong></p>
+<ul style="margin:10px 0 15px 25px">
+<li>Clause C1: ¬Man(x) ∨ Mortal(x) &nbsp;&nbsp;(from rule 1)</li>
+<li>Clause C2: Man(Socrates) &nbsp;&nbsp;(fact 2)</li>
+</ul>
+
+<p><strong>Step 2 — Negate the goal (for refutation):</strong></p>
+<ul style="margin:10px 0 15px 25px">
+<li>Clause C3: ¬Mortal(Socrates)</li>
+</ul>
+
+<p><strong>Step 3 — Apply Resolution:</strong></p>
+<table>
+<tr><th>Step</th><th>Clauses Used</th><th>Unifier</th><th>Resolvent</th></tr>
+<tr><td>R1</td><td>C1: ¬Man(x) ∨ Mortal(x) <br>C2: Man(Socrates)</td><td>{x/Socrates}</td><td>Mortal(Socrates)</td></tr>
+<tr><td>R2</td><td>R1: Mortal(Socrates) <br>C3: ¬Mortal(Socrates)</td><td>—</td><td><strong>⊥ (Empty Clause)</strong></td></tr>
+</table>
+
+<p style="margin-top:15px"><strong>Conclusion:</strong> The derivation of the empty clause proves that the negation of the goal is unsatisfiable, i.e., <strong>Mortal(Socrates) is true</strong> — Socrates is mortal. ∎</p>
+
+<div class="note"><i class="fas fa-lightbulb"></i> Resolution is <strong>refutation-complete</strong>: if a conclusion follows from the KB, resolution will derive ⊥ from KB ∪ {¬conclusion} in a finite number of steps.</div>
+</div>
+</div>
+
+<!-- U2 Q7 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 7 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L3</span></div>
+<p><strong>Describe Frames and Scripts as structured knowledge representation techniques. Illustrate a Frame for "Car" and a Script for "Visiting a Doctor."</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Frames (Minsky, 1975):</strong></p>
+<p style="margin:10px 0 15px 15px">A Frame is a data structure representing a stereotypical situation or entity. It consists of a name and a collection of <em>slots</em> (attributes), each with a <em>filler</em> (value), a default value, constraints, and possibly attached procedures (<em>demons</em>). Frames are organised hierarchically; sub-frames inherit slots from parent frames.</p>
+
+<p><strong>Frame: Car</strong></p>
+<table>
+<tr><th>Slot</th><th>Filler / Default</th><th>Constraint</th></tr>
+<tr><td>isa</td><td>Vehicle</td><td>—</td></tr>
+<tr><td>manufacturer</td><td>(to be filled)</td><td>String</td></tr>
+<tr><td>num_wheels</td><td>4 (default)</td><td>Integer ≥ 3</td></tr>
+<tr><td>fuel_type</td><td>Petrol (default)</td><td>{Petrol, Diesel, Electric, Hybrid}</td></tr>
+<tr><td>colour</td><td>(to be filled)</td><td>String</td></tr>
+<tr><td>max_speed_kmh</td><td>180 (default)</td><td>Positive number</td></tr>
+<tr><td>has_part</td><td>{engine, chassis, wheels, seats}</td><td>Set of components</td></tr>
+</table>
+
+<p style="margin-top:25px"><strong>Scripts (Schank & Abelson, 1977):</strong></p>
+<p style="margin:10px 0 15px 15px">A Script is a structured representation of a stereotypical sequence of events in a particular context. It includes: Entry conditions, Roles (actors), Props (objects), Scenes (ordered sub-events), and Results (outcomes).</p>
+
+<p><strong>Script: Visiting a Doctor</strong></p>
+<table>
+<tr><th>Component</th><th>Details</th></tr>
+<tr><td><strong>Name</strong></td><td>DOCTOR-VISIT</td></tr>
+<tr><td><strong>Roles</strong></td><td>Patient, Doctor, Receptionist</td></tr>
+<tr><td><strong>Props</strong></td><td>Clinic, Prescription, Medical instruments, Fee</td></tr>
+<tr><td><strong>Entry Conditions</strong></td><td>Patient is unwell; Clinic is open</td></tr>
+<tr><td><strong>Scene 1: Arrival</strong></td><td>Patient enters clinic → registers at reception → sits in waiting area</td></tr>
+<tr><td><strong>Scene 2: Consultation</strong></td><td>Patient called → describes symptoms → Doctor examines patient</td></tr>
+<tr><td><strong>Scene 3: Diagnosis</strong></td><td>Doctor diagnoses condition → writes prescription</td></tr>
+<tr><td><strong>Scene 4: Departure</strong></td><td>Patient pays fee → collects prescription → leaves clinic</td></tr>
+<tr><td><strong>Results</strong></td><td>Patient has diagnosis and prescription; Doctor has been paid</td></tr>
+</table>
+
+<div class="grid2">
+<div class="g-box g-pro"><strong>Advantages (both):</strong><br>• Capture default/typical knowledge<br>• Support inheritance<br>• Enable expectation-based reasoning</div>
+<div class="g-box g-con"><strong>Limitations (both):</strong><br>• Inflexible for novel situations<br>• Difficult to handle exceptions<br>• Maintenance complexity in large KBs</div>
+</div>
+</div>
+</div>
+
+<!-- U2 Q8 — 4 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 8 <span class="marks m4">4 MARKS</span> <span class="bl-tag">BL: L2</span></div>
+<p><strong>State and explain any four rules of inference used in predicate logic theorem proving.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<table>
+<tr><th>Rule</th><th>Formal Form</th><th>Explanation</th></tr>
+<tr><td><strong>Modus Ponens</strong></td><td>P, P → Q ⊢ Q</td><td>If P is true and P implies Q, then Q is true. The most fundamental forward-chaining rule.</td></tr>
+<tr><td><strong>Modus Tollens</strong></td><td>¬Q, P → Q ⊢ ¬P</td><td>If Q is false and P implies Q, then P must be false (contrapositive reasoning).</td></tr>
+<tr><td><strong>Universal Instantiation</strong></td><td>∀x P(x) ⊢ P(c) for any constant c</td><td>A universally quantified statement can be applied to any specific constant in the domain.</td></tr>
+<tr><td><strong>Resolution</strong></td><td>(A ∨ B), (¬B ∨ C) ⊢ (A ∨ C)</td><td>Two clauses with complementary literals are combined, eliminating the complementary pair to produce a resolvent.</td></tr>
+</table>
+</div>
+</div>
+
+<!-- U2 Q9 — 8 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 9 <span class="marks m8">8 MARKS</span> <span class="bl-tag">BL: L3</span></div>
+<p><strong>Explain Conceptual Dependency (CD) theory for knowledge representation. Represent the sentence "Ram gave a book to Sita" using CD primitives.</strong></p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Conceptual Dependency Theory (Schank, 1972):</strong></p>
+<p style="margin:10px 0 15px 15px">CD is a theory of natural language understanding that represents the meaning of sentences using a small set of <em>primitive acts</em> (conceptual primitives) rather than words. The key idea is that sentences with the same meaning — even in different languages — map to the <strong>same CD representation</strong>. This provides a canonical, language-independent form.</p>
+
+<p><strong>Primitive Acts in CD:</strong></p>
+<table>
+<tr><th>Primitive</th><th>Meaning</th><th>Example</th></tr>
+<tr><td><strong>ATRANS</strong></td><td>Transfer of abstract relationship (possession, ownership)</td><td>Give, take, buy</td></tr>
+<tr><td><strong>PTRANS</strong></td><td>Transfer of physical location</td><td>Go, walk, move</td></tr>
+<tr><td><strong>MTRANS</strong></td><td>Transfer of mental information</td><td>Tell, learn, read</td></tr>
+<tr><td><strong>MBUILD</strong></td><td>Construction of new information from old</td><td>Decide, conclude, imagine</td></tr>
+<tr><td><strong>PROPEL</strong></td><td>Application of physical force</td><td>Push, pull, throw</td></tr>
+<tr><td><strong>INGEST</strong></td><td>Taking something into the body</td><td>Eat, drink, breathe</td></tr>
+<tr><td><strong>EXPEL</strong></td><td>Expulsion from the body</td><td>Spit, exhale, cry</td></tr>
+<tr><td><strong>GRASP</strong></td><td>Grasping an object</td><td>Hold, grab, clutch</td></tr>
+<tr><td><strong>SPEAK</strong></td><td>Producing sounds</td><td>Say, shout, sing</td></tr>
+<tr><td><strong>ATTEND</strong></td><td>Focusing a sense organ</td><td>Look, listen, smell</td></tr>
+</table>
+
+<p style="margin-top:20px"><strong>CD Representation of "Ram gave a book to Sita":</strong></p>
+<pre style="background:#ede9fe;border-left:4px solid #7c3aed">
+  Actor  :  Ram
+  Action :  ATRANS        (transfer of possession)
+  Object :  Book
+  From   :  Ram           (source of possession)
+  To     :  Sita          (recipient)
+  
+  Diagrammatic form:
+  
+       Ram  ←──ATRANS──→  Book
+               │
+         From: Ram
+         To:   Sita
+</pre>
+
+<p><strong>Note:</strong> "Gave" maps to ATRANS because giving involves transfer of possession/ownership of the object. The CD representation would be identical for equivalent sentences like "Sita received a book from Ram" or the Hindi equivalent.</p>
+
+<div class="grid2">
+<div class="g-box g-pro"><strong>Advantages:</strong><br>• Language-independent meaning<br>• Enables paraphrase detection<br>• Facilitates inference</div>
+<div class="g-box g-con"><strong>Limitations:</strong><br>• Limited set of primitives<br>• Ambiguity in choosing primitives<br>• Complex sentences hard to represent</div>
+</div>
+</div>
+</div>
+
+<!-- U2 Q10 — 4 Marks -->
+<div class="q-box">
+<div class="q-title"><i class="fas fa-pen"></i> Question 10 <span class="marks m4">4 MARKS</span> <span class="bl-tag">BL: L2</span></div>
+<p><strong>Define Unification in the context of FOPL. Unify the following pairs and give the Most General Unifier (MGU) or state if they are not unifiable:</strong></p>
+<p style="margin-left:20px">(a) P(x, f(y)) &nbsp;&nbsp;and&nbsp;&nbsp; P(a, f(b))<br>
+(b) Q(x, x) &nbsp;&nbsp;and&nbsp;&nbsp; Q(a, b) &nbsp;&nbsp;where a ≠ b</p>
+
+<div class="ans">
+<h5><i class="fas fa-check-circle"></i> Model Answer</h5>
+
+<p><strong>Unification:</strong></p>
+<p style="margin:10px 0 15px 15px">Unification is the process of finding a substitution (mapping of variables to terms) that makes two logical expressions <em>identical</em>. The result is called the <strong>Most General Unifier (MGU)</strong> — the simplest substitution that achieves the match without unnecessary specialisation. Unification is fundamental to resolution-based theorem proving and Prolog execution.</p>
+
+<p><strong>(a) P(x, f(y)) &nbsp;and&nbsp; P(a, f(b))</strong></p>
+<ul style="margin:10px 0 15px 25px">
+<li>Match first argument: x = a → substitute {x/a}</li>
+<li>Match second argument: f(y) with f(b) → y = b → add {y/b}</li>
+<li><strong>MGU = { x/a, y/b }</strong></li>
+<li>Result: both become P(a, f(b)) ✓</li>
+</ul>
+
+<p><strong>(b) Q(x, x) &nbsp;and&nbsp; Q(a, b) where a ≠ b</strong></p>
+<ul style="margin:10px 0 15px 25px">
+<li>Match first argument: x = a</li>
+<li>Match second argument: x = b</li>
+<li>But x cannot simultaneously be a and b (since a ≠ b)</li>
+<li><strong>Not unifiable — no MGU exists.</strong></li>
+</ul>
+
+<div class="warn"><i class="fas fa-exclamation-triangle"></i> <strong>Occur check:</strong> During unification, we must also ensure a variable is not unified with a term containing itself (e.g., x cannot unify with f(x)), as this would create an infinite structure.</div>
+</div>
+</div>
+
+</div><!-- end content -->
+
+<footer>
+<p><i class="fas fa-brain"></i> Artificial Intelligence — Exam Question Bank</p>
+<p style="margin-top:8px">Unit 1: CO1 (Search Techniques) | Unit 2: CO2 (Knowledge Representation)</p>
+<p style="margin-top:12px;font-size:.85em">B.Tech CSE-DS/AI — 6th Semester | Subject Code: 102601CS</p>
+</footer>
+</div>
+</body>
+</html>
