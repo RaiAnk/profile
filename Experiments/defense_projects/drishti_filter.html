@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh}
+  .card{transition:transform .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+  .badge{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .tag-cv{background:#1e3a5f;color:#93c5fd}
+  .tag-dt{background:#1a2e1a;color:#86efac}
+  .tag-ar{background:#2d1b69;color:#c4b5fd}
+  .tag-cyber{background:#3b1a1a;color:#fca5a5}
+  .tag-signal{background:#1a2e3b;color:#67e8f9}
+  .tag-iot{background:#2e2a1a;color:#fcd34d}
+  .tag-sim{background:#1a2b2e;color:#5eead4}
+  .tag-nlp{background:#2e1a2e;color:#f0abfc}
+  .tag-robotics{background:#2e2b1a;color:#fdba74}
+  .cat-ai{background:#0f2b4a;color:#60a5fa;border:1px solid #1d4ed8}
+  .cat-hw{background:#1a2e1a;color:#4ade80;border:1px solid #166534}
+  input[type=text]{background:#1e2130;border:1px solid #2d3748;color:#e2e8f0;outline:none}
+  input[type=text]:focus{border-color:#3b82f6;box-shadow:0 0 0 2px rgba(59,130,246,.2)}
+  select{background:#1e2130;border:1px solid #2d3748;color:#e2e8f0;outline:none;cursor:pointer}
+  select:focus{border-color:#3b82f6}
+  .filter-btn{background:#1e2130;border:1px solid #2d3748;color:#94a3b8;cursor:pointer;transition:all .15s}
+  .filter-btn:hover,.filter-btn.active{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+  .stat-card{background:#1e2130;border:1px solid #2d3748;border-radius:12px;padding:16px 20px}
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-track{background:#0f1117}
+  ::-webkit-scrollbar-thumb{background:#2d3748;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div style="max-width:1200px;margin:0 auto;padding:24px 20px">
+
+  <!-- Header -->
+  <div style="margin-bottom:28px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+      <div style="background:#1d4ed8;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;letter-spacing:.05em;color:#bfdbfe">DRISHTI · DPSU</div>
+      <div style="font-size:11px;color:#64748b">101 total challenges · filtered view</div>
+    </div>
+    <h1 style="font-size:22px;font-weight:600;color:#f1f5f9;line-height:1.3">Software &amp; AI-solvable opportunities</h1>
+    <p style="font-size:13px;color:#64748b;margin-top:4px">Excludes pure hardware fabrication. Shows challenges addressable by software, AI, or minimal hardware investment.</p>
+  </div>
+
+  <!-- Stats -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px" id="stats-row">
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Software / AI only</div><div style="font-size:26px;font-weight:600;color:#60a5fa" id="cnt-ai">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Small hardware</div><div style="font-size:26px;font-weight:600;color:#4ade80" id="cnt-hw">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Agencies covered</div><div style="font-size:26px;font-weight:600;color:#e2e8f0" id="cnt-ag">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Showing</div><div style="font-size:26px;font-weight:600;color:#a78bfa" id="cnt-show">—</div></div>
+  </div>
+
+  <!-- Filters -->
+  <div style="background:#1a1d2e;border:1px solid #2d3748;border-radius:12px;padding:16px 20px;margin-bottom:24px">
+    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <input type="text" id="search" placeholder="Search challenges…" style="flex:1;min-width:200px;padding:8px 12px;border-radius:8px;font-size:13px"/>
+
+      <select id="sel-agency" style="padding:8px 12px;border-radius:8px;font-size:13px">
+        <option value="">All agencies</option>
+      </select>
+
+      <select id="sel-domain" style="padding:8px 12px;border-radius:8px;font-size:13px">
+        <option value="">All domains</option>
+        <option value="Computer Vision">Computer Vision</option>
+        <option value="Digital Twin">Digital Twin</option>
+        <option value="AR/VR">AR / VR</option>
+        <option value="Cybersecurity">Cybersecurity</option>
+        <option value="Signal Processing">Signal Processing</option>
+        <option value="IoT / Monitoring">IoT / Monitoring</option>
+        <option value="Simulation">Simulation</option>
+        <option value="NLP / Data">NLP / Data</option>
+        <option value="Robotics">Robotics</option>
+      </select>
+
+      <div style="display:flex;gap:6px">
+        <button class="filter-btn active" data-cat="all" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">All</button>
+        <button class="filter-btn" data-cat="Software / AI" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">Software / AI</button>
+        <button class="filter-btn" data-cat="Small Hardware" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">Small hardware</button>
+      </div>
+
+      <button onclick="resetFilters()" style="padding:7px 14px;border-radius:8px;font-size:12px;color:#64748b;background:transparent;border:1px solid #2d3748;cursor:pointer">Reset</button>
+    </div>
+  </div>
+
+  <!-- Cards grid -->
+  <div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px"></div>
+  <div id="empty" style="display:none;text-align:center;padding:60px 0;color:#475569;font-size:14px">No challenges match your filters.</div>
+
+</div>
+
+<script>
+const DATA = [
+  {id:1,title:"Flight test plan — real-time data processing & analysis",agency:"HAL",cat:"Software / AI",domains:["Simulation","NLP / Data"],desc:"Software to assist in generating flight test plans with live telemetry ingestion, anomaly detection and automated report generation."},
+  {id:2,title:"Digital Twin for Gas Turbine Starter Engine",agency:"HAL",cat:"Software / AI",domains:["Digital Twin","Simulation"],desc:"High-fidelity parametric digital twin that mirrors thermal-mechanical behaviour of a gas turbine starter in real time."},
+  {id:3,title:"AR for pre-flight inspection & defect detection — Do-228",agency:"HAL",cat:"Software / AI",domains:["AR/VR","Computer Vision"],desc:"AR overlay + CV pipeline for automated defect detection, predictive maintenance flagging and guided pre-flight checks."},
+  {id:4,title:"Automation of I-level test bench — G3INS",agency:"HAL",cat:"Software / AI",domains:["NLP / Data","IoT / Monitoring"],desc:"Software layer to automate inertial navigation test sequences, log results and flag calibration deviations without manual intervention."},
+  {id:5,title:"AI & AR visual inspection — TPE331-12B engine, HTT-40",agency:"HAL",cat:"Software / AI",domains:["Computer Vision","AR/VR"],desc:"AI-driven visual inspection pipeline using AR headset feed to detect cracks, corrosion and FOD on trainer aircraft engines."},
+  {id:6,title:"Remote AR/VR assistance over LAN/WAN intranet",agency:"HAL",cat:"Software / AI",domains:["AR/VR"],desc:"Intranet-confined platform for immersive remote expert guidance during maintenance; works offline from public internet."},
+  {id:7,title:"Tracking of tools & gauges in aircraft industry",agency:"HAL",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"BLE/RFID tag + dashboard system to track tool location and last-known user in MRO bays; minimal commodity hardware."},
+  {id:8,title:"Wireless Intercom System",agency:"HAL",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"Custom low-latency encrypted wireless intercom using COTS RF modules; primarily firmware and protocol stack work."},
+  {id:9,title:"FDOA-based Direction of Arrival for radar signals",agency:"BEL",cat:"Software / AI",domains:["Signal Processing"],desc:"Pure DSP/ML algorithm to estimate emitter bearing from frequency-difference-of-arrival measurements across sensor pairs."},
+  {id:10,title:"Embedded real-time image analysis using AI",agency:"BEL",cat:"Software / AI",domains:["Computer Vision"],desc:"AI inference pipeline optimised for edge deployment (Jetson/FPGA class) for frame-by-frame scene classification."},
+  {id:11,title:"Recognition & cyber takeover of hostile drones",agency:"BEL",cat:"Software / AI",domains:["Cybersecurity","Signal Processing"],desc:"RF fingerprinting + protocol-reverse-engineering system to identify and inject spoofed commands into rogue drone links."},
+  {id:12,title:"Detection of Hypersonic Missile",agency:"BEL",cat:"Software / AI",domains:["Signal Processing","Computer Vision"],desc:"Multi-sensor fusion + ML classifier to detect hypersonic signatures in radar/IR sensor streams with low false-alarm rate."},
+  {id:13,title:"Digital Identity Verification & Cyber Surveillance",agency:"BEL",cat:"Software / AI",domains:["Cybersecurity","NLP / Data"],desc:"Biometric identity pipeline combined with network traffic analysis for insider-threat and perimeter-breach detection."},
+  {id:14,title:"Health Monitoring System for Sonar Transducers",agency:"BEL",cat:"Software / AI",domains:["IoT / Monitoring","Signal Processing"],desc:"Software that ingests transducer impedance/frequency response data and flags degradation or coupling anomalies automatically."},
+  {id:15,title:"Sonar Performance Modelling Software",agency:"BEL",cat:"Software / AI",domains:["Simulation","Signal Processing"],desc:"Physics-based sonar propagation model with sea-state and layer inputs, providing detection range predictions in real time."},
+  {id:16,title:"Smart Battery Management System (BMS) — Li-ion pack",agency:"BEL",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"Embedded BMS firmware + cell-balancing hardware for high-reliability li-ion packs; SOC/SOH estimation via ML."},
+  {id:17,title:"Acoustic sensors to detect drones",agency:"BEL",cat:"Small Hardware",domains:["IoT / Monitoring","Signal Processing"],desc:"MEMS microphone array + beamforming firmware to classify drone acoustic signatures; low-cost node deployment."},
+  {id:18,title:"Automatic Weather Station",agency:"BEL",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"Low-power sensor node (wind, rain, temp, humidity, pressure) with MQTT telemetry to central dashboard."},
+  {id:19,title:"Indigenous ship design software",agency:"GRSE",cat:"Software / AI",domains:["Simulation","NLP / Data"],desc:"CAD/CAE platform for parametric naval hull design including hydrostatics, stability and structural rule-checking."},
+  {id:20,title:"AI-powered Hull-form optimization",agency:"GRSE",cat:"Software / AI",domains:["Simulation","NLP / Data"],desc:"Surrogate-model or RL-based optimizer that searches hull parameter space for minimum resistance subject to naval constraints."},
+  {id:21,title:"AI-based detection & classification of coating defects",agency:"GRSE",cat:"Software / AI",domains:["Computer Vision"],desc:"Vision model trained to detect corrosion, holidays, blistering per AMPP/NACE/SSPC/ISO standards from camera images."},
+  {id:22,title:"Workforce monitoring inside ship under construction",agency:"GRSE",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"UWB/BLE localisation tags + dashboard to count and locate workers inside confined hull compartments; emergency recall mode."},
+  {id:23,title:"Advanced dock finder tool for dock scheduling",agency:"GRSE",cat:"Software / AI",domains:["NLP / Data","Simulation"],desc:"Constraint-based scheduler that optimises berth allocation, crane usage and dry-dock sequences across a shipyard calendar."},
+  {id:24,title:"AI-driven propulsion shaft alignment & load diagnostics",agency:"GRSE",cat:"Software / AI",domains:["IoT / Monitoring","NLP / Data"],desc:"Sensor-fused alignment model that infers shaft deflection and bearing loads from vibration signatures, guiding corrections."},
+  {id:25,title:"Remote monitoring & control of water jet system",agency:"BEML",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"PLC-agnostic SCADA overlay with mobile dashboard for remote diagnostics and override of water-jet dust suppression units."},
+  {id:26,title:"AI-based design change impact analysis & cost estimation",agency:"MDL",cat:"Software / AI",domains:["NLP / Data"],desc:"NLP + rules engine that parses ECO/ECN documents and propagates change impact across BOM, schedule and cost estimates."},
+  {id:27,title:"AI design optimisation vs class rules — 3D/BOM sync",agency:"MDL",cat:"Software / AI",domains:["NLP / Data","Simulation"],desc:"Tool that reads class society rule text, flags non-compliances in 3D model, and keeps BOM in sync with model changes."},
+  {id:28,title:"Digital Twin Sync (DTS) — design-to-production via tablet",agency:"MDL",cat:"Software / AI",domains:["Digital Twin","Computer Vision","AR/VR"],desc:"Tablet app that scans physical work against 3D design model, flags deviations with AI, and syncs approved changes remotely."},
+  {id:29,title:"AI drawing verification — revision compliance checker",agency:"MDL",cat:"Software / AI",domains:["Computer Vision","NLP / Data"],desc:"CV + NLP pipeline to compare production drawings against approved master, detecting missing revision marks and spec drift."},
+  {id:30,title:"AI tool for verification of ship design",agency:"HSL",cat:"Software / AI",domains:["NLP / Data","Simulation"],desc:"Rule-based + ML checker that validates ship design documents against class and statutory requirements automatically."},
+  {id:31,title:"AI-enabled technical scrutiny assessment platform",agency:"GSL",cat:"Software / AI",domains:["NLP / Data"],desc:"Document ingestion + LLM-based assessment tool for evaluating vendor technical proposals against defined scoring rubrics."},
+  {id:32,title:"AI-based electrical design documentation",agency:"GSL",cat:"Software / AI",domains:["NLP / Data"],desc:"Auto-generation of single-line diagrams, cable schedules and load lists from design intent inputs using generative AI."},
+  {id:33,title:"AI-based optimization of compartment layout",agency:"GSL",cat:"Software / AI",domains:["Simulation","NLP / Data"],desc:"Generative layout optimizer for ship compartments balancing access, weight distribution, damage stability and SOLAS compliance."},
+  {id:34,title:"Induction furnace lining health monitoring",agency:"MIDHANI",cat:"Small Hardware",domains:["IoT / Monitoring","Signal Processing"],desc:"Non-contact sensor array monitoring refractory thickness via ultrasonic/thermal signals; anomaly alert before breakthrough."},
+  {id:35,title:"VSIT-1M technology workflow",agency:"AWEIL",cat:"Software / AI",domains:["NLP / Data","Simulation"],desc:"Software workflow digitisation and process automation for the VSIT-1M system's acceptance and calibration procedures."},
+  {id:36,title:"DU-125 Muzzle Angle measurement",agency:"AWEIL",cat:"Small Hardware",domains:["Signal Processing","IoT / Monitoring"],desc:"Compact inertial/optical sensor module + firmware to measure and log muzzle droop angle with sub-arcminute resolution."}
+];
+
+const DOMAIN_CLASS = {"Computer Vision":"tag-cv","Digital Twin":"tag-dt","AR/VR":"tag-ar","Cybersecurity":"tag-cyber","Signal Processing":"tag-signal","IoT / Monitoring":"tag-iot","Simulation":"tag-sim","NLP / Data":"tag-nlp","Robotics":"tag-robotics"};
+
+let activeCat = "all";
+
+function buildAgencySelect(){
+  const agencies = [...new Set(DATA.map(d=>d.agency))].sort();
+  const sel = document.getElementById("sel-agency");
+  agencies.forEach(a=>{const o=document.createElement("option");o.value=a;o.textContent=a;sel.appendChild(o);});
+}
+
+function getFiltered(){
+  const q=document.getElementById("search").value.toLowerCase();
+  const ag=document.getElementById("sel-agency").value;
+  const dom=document.getElementById("sel-domain").value;
+  return DATA.filter(d=>{
+    if(activeCat!=="all" && d.cat!==activeCat) return false;
+    if(ag && d.agency!==ag) return false;
+    if(dom && !d.domains.includes(dom)) return false;
+    if(q && !d.title.toLowerCase().includes(q) && !d.desc.toLowerCase().includes(q) && !d.agency.toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+
+function render(){
+  const items=getFiltered();
+  const grid=document.getElementById("grid");
+  const empty=document.getElementById("empty");
+  grid.innerHTML="";
+  empty.style.display=items.length?"none":"block";
+  items.forEach(d=>{
+    const catClass=d.cat==="Software / AI"?"cat-ai":"cat-hw";
+    const domBadges=d.domains.map(dom=>`<span class="badge ${DOMAIN_CLASS[dom]||'tag-cv'}">${dom}</span>`).join(" ");
+    const card=document.createElement("div");
+    card.className="card";
+    card.style.cssText="background:#1a1d2e;border:1px solid #2d3748;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;cursor:default";
+    card.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <span class="badge ${catClass}" style="flex-shrink:0;margin-top:2px">${d.cat}</span>
+        <span style="font-size:11px;font-weight:600;color:#64748b;letter-spacing:.04em;white-space:nowrap">${d.agency}</span>
+      </div>
+      <div style="font-size:13px;font-weight:500;color:#f1f5f9;line-height:1.45">${d.title}</div>
+      <div style="font-size:12px;color:#64748b;line-height:1.6">${d.desc}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:2px">${domBadges}</div>`;
+    grid.appendChild(card);
+  });
+  updateStats(items);
+}
+
+function updateStats(items){
+  document.getElementById("cnt-ai").textContent=DATA.filter(d=>d.cat==="Software / AI").length;
+  document.getElementById("cnt-hw").textContent=DATA.filter(d=>d.cat==="Small Hardware").length;
+  document.getElementById("cnt-ag").textContent=[...new Set(items.map(d=>d.agency))].length;
+  document.getElementById("cnt-show").textContent=items.length;
+}
+
+function resetFilters(){
+  document.getElementById("search").value="";
+  document.getElementById("sel-agency").value="";
+  document.getElementById("sel-domain").value="";
+  activeCat="all";
+  document.querySelectorAll(".filter-btn").forEach(b=>{b.classList.toggle("active",b.dataset.cat==="all")});
+  render();
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    activeCat=btn.dataset.cat;
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    render();
+  });
+});
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("sel-agency").addEventListener("change",render);
+document.getElementById("sel-domain").addEventListener("change",render);
+
+buildAgencySelect();
+render();
+</script>
+</body>
+</html>

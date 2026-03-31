@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh}
+  .card{transition:transform .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+  .badge{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .tag-ai{background:#2d1b69;color:#c4b5fd}
+  .tag-cv{background:#1e3a5f;color:#93c5fd}
+  .tag-cyber{background:#3b1a1a;color:#fca5a5}
+  .tag-signal{background:#1a2e3b;color:#67e8f9}
+  .tag-iot{background:#2e2a1a;color:#fcd34d}
+  .tag-sim{background:#1a2b2e;color:#5eead4}
+  .tag-nlp{background:#2e1a2e;color:#f0abfc}
+  .tag-auto{background:#1a1a3b;color:#a5b4fc}
+  .tag-space{background:#1a2a1a;color:#6ee7b7}
+  .cat-ai{background:#0f2b4a;color:#60a5fa;border:1px solid #1d4ed8}
+  .cat-hw{background:#1a2e1a;color:#4ade80;border:1px solid #166534}
+  input[type=text]{background:#1e2130;border:1px solid #2d3748;color:#e2e8f0;outline:none}
+  input[type=text]:focus{border-color:#3b82f6;box-shadow:0 0 0 2px rgba(59,130,246,.2)}
+  select{background:#1e2130;border:1px solid #2d3748;color:#e2e8f0;outline:none;cursor:pointer}
+  select:focus{border-color:#3b82f6}
+  .filter-btn{background:#1e2130;border:1px solid #2d3748;color:#94a3b8;cursor:pointer;transition:all .15s}
+  .filter-btn:hover,.filter-btn.active{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+  .stat-card{background:#1e2130;border:1px solid #2d3748;border-radius:12px;padding:16px 20px}
+  .svc-army{background:#2e2a1a;color:#fcd34d;border:1px solid #78350f}
+  .svc-navy{background:#0f2b4a;color:#93c5fd;border:1px solid #1e40af}
+  .svc-iaf{background:#1a1a3b;color:#a5b4fc;border:1px solid #3730a3}
+  .svc-space{background:#0f2b1a;color:#6ee7b7;border:1px solid #065f46}
+  .warn-banner{background:#1a1a0a;border:1px solid #78350f;border-radius:10px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:flex-start;gap:10px}
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-track{background:#0f1117}
+  ::-webkit-scrollbar-thumb{background:#2d3748;border-radius:4px}
+</style>
+</head>
+<body>
+<div style="max-width:1200px;margin:0 auto;padding:24px 20px">
+
+  <!-- Header -->
+  <div style="margin-bottom:20px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+      <div style="background:#b45309;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;letter-spacing:.05em;color:#fef3c7">ADITI 4.0 · iDEX</div>
+      <div style="font-size:11px;color:#64748b">25 total challenges · filtered view</div>
+    </div>
+    <h1 style="font-size:22px;font-weight:600;color:#f1f5f9;line-height:1.3">Software &amp; AI-solvable opportunities</h1>
+    <p style="font-size:13px;color:#64748b;margin-top:4px">Army · Navy · Air Force · DefSpace — excludes kinetic weapons, munitions &amp; pure hardware platforms.</p>
+  </div>
+
+  <!-- Warning banner -->
+  <div class="warn-banner">
+    <div style="font-size:16px;margin-top:1px">⚠</div>
+    <div>
+      <div style="font-size:12px;font-weight:500;color:#fbbf24;margin-bottom:2px">Heavily kinetic challenge set</div>
+      <div style="font-size:12px;color:#92400e">ADITI 4.0 is dominated by guided munitions, loitering weapons, and platform hardware. Only <strong style="color:#fcd34d">7 of 25</strong> challenges are addressable through software, AI, or small hardware investment. This is the lowest software-addressable ratio across all three challenge sets.</div>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:24px">
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Software / AI only</div><div style="font-size:26px;font-weight:600;color:#60a5fa" id="cnt-ai">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Small hardware</div><div style="font-size:26px;font-weight:600;color:#4ade80" id="cnt-hw">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Services covered</div><div style="font-size:26px;font-weight:600;color:#e2e8f0" id="cnt-ag">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Showing</div><div style="font-size:26px;font-weight:600;color:#a78bfa" id="cnt-show">—</div></div>
+  </div>
+
+  <!-- Filters -->
+  <div style="background:#1a1d2e;border:1px solid #2d3748;border-radius:12px;padding:16px 20px;margin-bottom:24px">
+    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <input type="text" id="search" placeholder="Search challenges…" style="flex:1;min-width:200px;padding:8px 12px;border-radius:8px;font-size:13px"/>
+
+      <select id="sel-service" style="padding:8px 12px;border-radius:8px;font-size:13px">
+        <option value="">All services</option>
+        <option value="Indian Army">Indian Army</option>
+        <option value="Indian Navy">Indian Navy</option>
+        <option value="Indian Air Force">Indian Air Force</option>
+        <option value="DefSpace">DefSpace</option>
+      </select>
+
+      <select id="sel-domain" style="padding:8px 12px;border-radius:8px;font-size:13px">
+        <option value="">All domains</option>
+        <option value="AI / ML">AI / ML</option>
+        <option value="Computer Vision">Computer Vision</option>
+        <option value="Cybersecurity">Cybersecurity</option>
+        <option value="Signal Processing">Signal Processing</option>
+        <option value="IoT / Monitoring">IoT / Monitoring</option>
+        <option value="Simulation / Digital Twin">Simulation / Digital Twin</option>
+        <option value="NLP / Data">NLP / Data</option>
+        <option value="Autonomous Systems">Autonomous Systems</option>
+        <option value="Space Tech">Space Tech</option>
+      </select>
+
+      <div style="display:flex;gap:6px">
+        <button class="filter-btn active" data-cat="all" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">All</button>
+        <button class="filter-btn" data-cat="Software / AI" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">Software / AI</button>
+        <button class="filter-btn" data-cat="Small Hardware" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">Small hardware</button>
+      </div>
+
+      <button onclick="resetFilters()" style="padding:7px 14px;border-radius:8px;font-size:12px;color:#64748b;background:transparent;border:1px solid #2d3748;cursor:pointer">Reset</button>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px"></div>
+  <div id="empty" style="display:none;text-align:center;padding:60px 0;color:#475569;font-size:14px">No challenges match your filters.</div>
+
+</div>
+<script>
+const SVC_CLASS={"Indian Army":"svc-army","Indian Navy":"svc-navy","Indian Air Force":"svc-iaf","DefSpace":"svc-space"};
+const DOM_CLASS={"AI / ML":"tag-ai","Computer Vision":"tag-cv","Cybersecurity":"tag-cyber","Signal Processing":"tag-signal","IoT / Monitoring":"tag-iot","Simulation / Digital Twin":"tag-sim","NLP / Data":"tag-nlp","Autonomous Systems":"tag-auto","Space Tech":"tag-space"};
+
+const DATA=[
+  {
+    id:1,no:5,
+    title:"Cognitive Electronic Warfare System",
+    service:"Indian Army",
+    cat:"Software / AI",
+    domains:["AI / ML","Signal Processing","Cybersecurity"],
+    desc:"AI-driven EW stack that autonomously classifies adversary emitters, selects optimal jamming waveforms, and adapts in real time to counter-countermeasures — runs on existing EW hardware."
+  },
+  {
+    id:2,no:8,
+    title:"Autonomous Load Carrier Trucks — Indian Army ops",
+    service:"Indian Army",
+    cat:"Software / AI",
+    domains:["Autonomous Systems","AI / ML","Computer Vision"],
+    desc:"Autonomous driving stack (perception, localisation, path planning, convoy-follow mode) for existing army logistics trucks operating in high-altitude and off-road terrain."
+  },
+  {
+    id:3,no:18,
+    title:"AI-based OSINT analysis, monitoring &amp; social media stacks",
+    service:"Indian Air Force",
+    cat:"Software / AI",
+    domains:["AI / ML","NLP / Data","Cybersecurity"],
+    desc:"Multi-source open-source intelligence platform ingesting social media, web, and forum data with NLP entity extraction, sentiment analysis, and automated threat-relevance scoring."
+  },
+  {
+    id:4,no:24,
+    title:"Indigenous tool for Space Domain Training, Surveillance &amp; Operations",
+    service:"DefSpace",
+    cat:"Software / AI",
+    domains:["Simulation / Digital Twin","Space Tech","AI / ML"],
+    desc:"Space domain awareness platform combining orbital mechanics simulation, SSA data fusion, collision prediction, and mission-planning tools for IAF space operators."
+  },
+  {
+    id:5,no:6,
+    title:"Smart Ammunition Programming System for 40mm L/70 Gun",
+    service:"Indian Army",
+    cat:"Small Hardware",
+    domains:["IoT / Monitoring","Signal Processing"],
+    desc:"Portable programmer device (ruggedised handheld + software) that writes fuse parameters onto smart 40mm rounds prior to loading — primarily firmware and protocol-stack work."
+  },
+  {
+    id:6,no:12,
+    title:"Distributed Acoustic Sensing System for submarine fiber optic cable",
+    service:"Indian Navy",
+    cat:"Small Hardware",
+    domains:["Signal Processing","IoT / Monitoring","AI / ML"],
+    desc:"DAS interrogator unit + ML classification pipeline that extracts acoustic events from backscatter in an existing fiber optic cable, enabling passive underwater detection without dedicated sensors."
+  },
+  {
+    id:7,no:19,
+    title:"Helmet Mounted Digital Night Vision Device",
+    service:"Indian Air Force",
+    cat:"Small Hardware",
+    domains:["Computer Vision","AI / ML"],
+    desc:"Compact digital NVD with CMOS sensor, real-time image-enhancement AI (denoising, edge sharpening) and helmet-integration interface — primarily a firmware and CV algorithm problem."
+  }
+];
+
+let activeCat="all";
+
+function getFiltered(){
+  const q=document.getElementById("search").value.toLowerCase();
+  const sv=document.getElementById("sel-service").value;
+  const dom=document.getElementById("sel-domain").value;
+  return DATA.filter(d=>{
+    if(activeCat!=="all"&&d.cat!==activeCat) return false;
+    if(sv&&d.service!==sv) return false;
+    if(dom&&!d.domains.includes(dom)) return false;
+    if(q&&!d.title.toLowerCase().includes(q)&&!d.desc.toLowerCase().includes(q)&&!d.service.toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+
+function render(){
+  const items=getFiltered();
+  const grid=document.getElementById("grid");
+  const empty=document.getElementById("empty");
+  grid.innerHTML="";
+  empty.style.display=items.length?"none":"block";
+  items.forEach(d=>{
+    const catCls=d.cat==="Software / AI"?"cat-ai":"cat-hw";
+    const svcCls=SVC_CLASS[d.service]||"svc-army";
+    const domBadges=d.domains.map(dom=>`<span class="badge ${DOM_CLASS[dom]||'tag-ai'}">${dom}</span>`).join(" ");
+    const card=document.createElement("div");
+    card.className="card";
+    card.style.cssText="background:#1a1d2e;border:1px solid #2d3748;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px";
+    card.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <span class="badge ${catCls}" style="flex-shrink:0;margin-top:1px">${d.cat}</span>
+        <span class="badge ${svcCls}" style="flex-shrink:0">${d.service.replace("Indian ","")}</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:6px">
+        <span style="font-size:11px;font-weight:600;color:#475569;min-width:20px">#${d.no}</span>
+        <span style="font-size:13px;font-weight:500;color:#f1f5f9;line-height:1.45">${d.title}</span>
+      </div>
+      <div style="font-size:12px;color:#64748b;line-height:1.6">${d.desc}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:2px">${domBadges}</div>`;
+    grid.appendChild(card);
+  });
+  updateStats(items);
+}
+
+function updateStats(items){
+  document.getElementById("cnt-ai").textContent=DATA.filter(d=>d.cat==="Software / AI").length;
+  document.getElementById("cnt-hw").textContent=DATA.filter(d=>d.cat==="Small Hardware").length;
+  document.getElementById("cnt-ag").textContent=[...new Set(items.map(d=>d.service))].length;
+  document.getElementById("cnt-show").textContent=items.length;
+}
+
+function resetFilters(){
+  document.getElementById("search").value="";
+  document.getElementById("sel-service").value="";
+  document.getElementById("sel-domain").value="";
+  activeCat="all";
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b.dataset.cat==="all"));
+  render();
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    activeCat=btn.dataset.cat;
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    render();
+  });
+});
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("sel-service").addEventListener("change",render);
+document.getElementById("sel-domain").addEventListener("change",render);
+
+render();
+</script>
+</body>
+</html>

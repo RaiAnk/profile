@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh}
+  .card{transition:transform .15s,box-shadow .15s}
+  .card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+  .badge{display:inline-flex;align-items:center;font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;white-space:nowrap}
+  .tag-cv{background:#1e3a5f;color:#93c5fd}
+  .tag-ai{background:#2d1b69;color:#c4b5fd}
+  .tag-cyber{background:#3b1a1a;color:#fca5a5}
+  .tag-signal{background:#1a2e3b;color:#67e8f9}
+  .tag-iot{background:#2e2a1a;color:#fcd34d}
+  .tag-sim{background:#1a2b2e;color:#5eead4}
+  .tag-arvr{background:#2e1a2e;color:#f0abfc}
+  .tag-net{background:#1a2e1a;color:#86efac}
+  .tag-med{background:#3b2a1a;color:#fdba74}
+  .tag-auto{background:#1a1a3b;color:#a5b4fc}
+  .cat-ai{background:#0f2b4a;color:#60a5fa;border:1px solid #1d4ed8}
+  .cat-hw{background:#1a2e1a;color:#4ade80;border:1px solid #166534}
+  input[type=text]{background:#1e2130;border:1px solid #2d3748;color:#e2e8f0;outline:none}
+  input[type=text]:focus{border-color:#3b82f6;box-shadow:0 0 0 2px rgba(59,130,246,.2)}
+  select{background:#1e2130;border:1px solid #2d3748;color:#e2e8f0;outline:none;cursor:pointer}
+  select:focus{border-color:#3b82f6}
+  .filter-btn{background:#1e2130;border:1px solid #2d3748;color:#94a3b8;cursor:pointer;transition:all .15s}
+  .filter-btn:hover,.filter-btn.active{background:#1d4ed8;border-color:#3b82f6;color:#fff}
+  .stat-card{background:#1e2130;border:1px solid #2d3748;border-radius:12px;padding:16px 20px}
+  .svc-army{background:#2e2a1a;color:#fcd34d;border:1px solid #78350f}
+  .svc-navy{background:#0f2b4a;color:#93c5fd;border:1px solid #1e40af}
+  .svc-iaf{background:#1a1a3b;color:#a5b4fc;border:1px solid #3730a3}
+  .svc-cg{background:#1a2e2a;color:#6ee7b7;border:1px solid #065f46}
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-track{background:#0f1117}
+  ::-webkit-scrollbar-thumb{background:#2d3748;border-radius:4px}
+</style>
+</head>
+<body>
+<div style="max-width:1200px;margin:0 auto;padding:24px 20px">
+
+  <!-- Header -->
+  <div style="margin-bottom:28px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
+      <div style="background:#7c3aed;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:600;letter-spacing:.05em;color:#ede9fe">DISC 14 · iDEX</div>
+      <div style="font-size:11px;color:#64748b">82 total challenges · filtered view</div>
+    </div>
+    <h1 style="font-size:22px;font-weight:600;color:#f1f5f9;line-height:1.3">Software &amp; AI-solvable opportunities</h1>
+    <p style="font-size:13px;color:#64748b;margin-top:4px">Army · Navy · Air Force · Coast Guard — excludes pure hardware fabrication &amp; munitions.</p>
+  </div>
+
+  <!-- Stats -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:24px">
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Software / AI only</div><div style="font-size:26px;font-weight:600;color:#60a5fa" id="cnt-ai">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Small hardware</div><div style="font-size:26px;font-weight:600;color:#4ade80" id="cnt-hw">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Services covered</div><div style="font-size:26px;font-weight:600;color:#e2e8f0" id="cnt-ag">—</div></div>
+    <div class="stat-card"><div style="font-size:11px;color:#64748b;margin-bottom:4px">Showing</div><div style="font-size:26px;font-weight:600;color:#a78bfa" id="cnt-show">—</div></div>
+  </div>
+
+  <!-- Filters -->
+  <div style="background:#1a1d2e;border:1px solid #2d3748;border-radius:12px;padding:16px 20px;margin-bottom:24px">
+    <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+      <input type="text" id="search" placeholder="Search challenges…" style="flex:1;min-width:200px;padding:8px 12px;border-radius:8px;font-size:13px"/>
+
+      <select id="sel-service" style="padding:8px 12px;border-radius:8px;font-size:13px">
+        <option value="">All services</option>
+        <option value="Indian Army">Indian Army</option>
+        <option value="Indian Navy">Indian Navy</option>
+        <option value="Indian Air Force">Indian Air Force</option>
+        <option value="Indian Coast Guard">Indian Coast Guard</option>
+      </select>
+
+      <select id="sel-domain" style="padding:8px 12px;border-radius:8px;font-size:13px">
+        <option value="">All domains</option>
+        <option value="AI / ML">AI / ML</option>
+        <option value="Computer Vision">Computer Vision</option>
+        <option value="Cybersecurity">Cybersecurity</option>
+        <option value="Signal Processing">Signal Processing</option>
+        <option value="IoT / Monitoring">IoT / Monitoring</option>
+        <option value="Simulation / Digital Twin">Simulation / Digital Twin</option>
+        <option value="AR/VR">AR / VR</option>
+        <option value="Network / Comms">Network / Comms</option>
+        <option value="Medical AI">Medical AI</option>
+        <option value="Autonomous Systems">Autonomous Systems</option>
+      </select>
+
+      <div style="display:flex;gap:6px">
+        <button class="filter-btn active" data-cat="all" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">All</button>
+        <button class="filter-btn" data-cat="Software / AI" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">Software / AI</button>
+        <button class="filter-btn" data-cat="Small Hardware" style="padding:7px 14px;border-radius:8px;font-size:12px;font-weight:500">Small hardware</button>
+      </div>
+
+      <button onclick="resetFilters()" style="padding:7px 14px;border-radius:8px;font-size:12px;color:#64748b;background:transparent;border:1px solid #2d3748;cursor:pointer">Reset</button>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px"></div>
+  <div id="empty" style="display:none;text-align:center;padding:60px 0;color:#475569;font-size:14px">No challenges match your filters.</div>
+
+</div>
+<script>
+const SVC_CLASS={"Indian Army":"svc-army","Indian Navy":"svc-navy","Indian Air Force":"svc-iaf","Indian Coast Guard":"svc-cg"};
+const DOM_CLASS={"Computer Vision":"tag-cv","AI / ML":"tag-ai","Cybersecurity":"tag-cyber","Signal Processing":"tag-signal","IoT / Monitoring":"tag-iot","Simulation / Digital Twin":"tag-sim","AR/VR":"tag-arvr","Network / Comms":"tag-net","Medical AI":"tag-med","Autonomous Systems":"tag-auto"};
+
+const DATA=[
+  {id:1,no:1,title:"AI module for UAS — autonomous recognition, identification & targeting",service:"Indian Army",cat:"Software / AI",domains:["AI / ML","Computer Vision","Autonomous Systems"],desc:"AI inference stack running onboard a UAS to detect, classify and designate targets in real time without human-in-loop for each frame."},
+  {id:2,no:3,title:"Standardisation of Ground Control Station (GCS)",service:"Indian Army",cat:"Software / AI",domains:["Autonomous Systems","Network / Comms"],desc:"Open-architecture GCS software reference implementation and communication protocol standard enabling interoperability across UAS platforms."},
+  {id:3,no:10,title:"AI Enabled Gun Area Recce Module",service:"Indian Army",cat:"Software / AI",domains:["AI / ML","Computer Vision"],desc:"AI module ingesting imagery/sensor feeds to autonomously map enemy gun positions and generate prioritised targeting recommendations."},
+  {id:4,no:16,title:"Integrated Drone Management System — monitoring & decision support",service:"Indian Army",cat:"Software / AI",domains:["AI / ML","IoT / Monitoring","Autonomous Systems"],desc:"Unified C2 dashboard with automated telemetry ingestion, fleet health monitoring and mission planning for large drone inventories."},
+  {id:5,no:21,title:"AI Enabled Multi-Agent Module for UAS function",service:"Indian Army",cat:"Software / AI",domains:["AI / ML","Autonomous Systems"],desc:"Multi-agent coordination framework enabling collaborative sensing, dynamic task re-allocation and emergent swarm behaviour across UAS nodes."},
+  {id:6,no:30,title:"Secure indigenous AIS for platform identification",service:"Indian Navy",cat:"Software / AI",domains:["Cybersecurity","Network / Comms"],desc:"Hardened AIS transponder software with authenticated messaging to prevent spoofing of naval vessel identities at sea."},
+  {id:7,no:34,title:"Sovereign Multi-Modal Foundation Model",service:"Indian Navy",cat:"Software / AI",domains:["AI / ML"],desc:"Indigenously trained large multi-modal model (text, imagery, sensor) for classified naval intelligence and decision support applications."},
+  {id:8,no:37,title:"Safety Round Logging and Monitoring System (SRLMS)",service:"Indian Navy",cat:"Software / AI",domains:["IoT / Monitoring","Network / Comms"],desc:"Digital logging and tamper-evident audit platform for safety-critical rounds on warships, replacing paper-based tracking with real-time anomaly alerts."},
+  {id:9,no:38,title:"Software for P8I sonobuoy data processing",service:"Indian Navy",cat:"Software / AI",domains:["Signal Processing","AI / ML"],desc:"DSP + ML pipeline to process sonobuoy acoustic and RF telemetry streams, classify submarine contacts, and fuse multi-buoy detections into tracks."},
+  {id:10,no:43,title:"AI & storage computing layered solution for ship analytics",service:"Indian Navy",cat:"Software / AI",domains:["AI / ML","IoT / Monitoring"],desc:"Edge-to-cloud data fabric collating sensor streams from shipborne systems, feeding ML models for predictive maintenance and operational analytics."},
+  {id:11,no:50,title:"Virtual Walkthrough Model for P-75 submarines",service:"Indian Navy",cat:"Software / AI",domains:["Simulation / Digital Twin","AR/VR"],desc:"Immersive 3D digital twin of P-75 submarine interior enabling maintenance training, SOPs rehearsal and damage control simulation offline."},
+  {id:12,no:51,title:"Pan-IAF Wargaming tool",service:"Indian Air Force",cat:"Software / AI",domains:["Simulation / Digital Twin","AI / ML"],desc:"Strategic and operational wargaming platform simulating multi-domain air warfare scenarios with AI-driven opposing force and after-action analytics."},
+  {id:13,no:52,title:"Composite Situational Awareness Picture (CSAP)",service:"Indian Air Force",cat:"Software / AI",domains:["AI / ML","Network / Comms","Computer Vision"],desc:"Sensor-fusion engine merging radar tracks, ADS-B, EO/IR and SIGINT into a single correlated air picture for joint ops command centres."},
+  {id:14,no:55,title:"Combat Controlling Simulator",service:"Indian Air Force",cat:"Software / AI",domains:["Simulation / Digital Twin"],desc:"High-fidelity simulator for ground-based combat controllers to rehearse vector intercepts, SAR coordination and strike support missions."},
+  {id:15,no:59,title:"Automated decision tool — Himalayan helicopter & fixed-wing ops",service:"Indian Air Force",cat:"Software / AI",domains:["AI / ML","Simulation / Digital Twin"],desc:"ML model predicting pass/valley weather windows and recommending go/no-go for mountain sorties based on NWP, sensor, and historical data fusion."},
+  {id:16,no:66,title:"Indigenous GIS-based OFC Network Management System (NMS)",service:"Indian Air Force",cat:"Software / AI",domains:["Network / Comms","IoT / Monitoring"],desc:"GIS-integrated NMS for airfield OFC backbone: real-time link-state monitoring, fault localisation on map, and capacity planning dashboards."},
+  {id:17,no:68,title:"Indigenous Network Monitoring Solution",service:"Indian Air Force",cat:"Software / AI",domains:["Network / Comms","Cybersecurity"],desc:"Zero-dependency network monitoring stack (no foreign components) with flow analysis, SNMP polling, and intrusion-detection integration."},
+  {id:18,no:69,title:"Secure Information Exchange Platform for Military Units (SIEPMU)",service:"Indian Air Force",cat:"Software / AI",domains:["Cybersecurity","Network / Comms"],desc:"End-to-end encrypted messaging and file-sharing platform for inter-unit comms over public internet using Indian sovereign crypto standards."},
+  {id:19,no:70,title:"AR/VR Armament training and demolition simulator",service:"Indian Air Force",cat:"Software / AI",domains:["AR/VR","Simulation / Digital Twin"],desc:"Immersive VR sim for weapon loading, arming procedures and demolition drills — eliminating live ordnance risk during training."},
+  {id:20,no:74,title:"Indigenous Cyber Deception Framework",service:"Indian Air Force",cat:"Software / AI",domains:["Cybersecurity"],desc:"Honeynet and deception technology stack generating convincing fake network assets to detect, trap and attribute adversarial intrusions."},
+  {id:21,no:75,title:"AI-based airway assessment tool — pre-anaesthesia check-up",service:"Indian Air Force",cat:"Software / AI",domains:["Medical AI","AI / ML"],desc:"CV + NLP tool that analyses oropharyngeal imaging and patient data to predict difficult airway classification ahead of aviation medical procedures."},
+  {id:22,no:77,title:"Fuel consumption optimisation using AI tools",service:"Indian Coast Guard",cat:"Software / AI",domains:["AI / ML","IoT / Monitoring"],desc:"Voyage optimisation engine combining engine telemetry, sea-state forecasts and routing data to minimise fuel burn on patrol vessels."},
+  {id:23,no:82,title:"Maritime Security Analytics Software (MSAS) — AI/ML for coastal surveillance",service:"Indian Coast Guard",cat:"Software / AI",domains:["AI / ML","Computer Vision","Network / Comms"],desc:"Multi-source fusion platform (AIS, radar, camera, satellite) with ML-based vessel classification and anomaly flagging for coastal security ops."},
+  {id:24,no:7,title:"Man-portable ELINT system with ESM capabilities",service:"Indian Army",cat:"Small Hardware",domains:["Signal Processing","IoT / Monitoring"],desc:"Compact wideband receiver + embedded spectrum analysis firmware to intercept, classify and geolocate emitters in the field."},
+  {id:25,no:22,title:"360° situational awareness kit with driver assistance — Protected Mobility Vehicle",service:"Indian Army",cat:"Small Hardware",domains:["Computer Vision","IoT / Monitoring"],desc:"Multi-camera surround-view system with AI obstacle detection and blind-spot warning, retrofitted onto existing armoured vehicles."},
+  {id:26,no:25,title:"Fire Control System for Sniper Rifle",service:"Indian Army",cat:"Small Hardware",domains:["AI / ML","Signal Processing"],desc:"Clip-on ballistic computer with laser rangefinder, environmental sensors and fire-solution display for long-range precision engagement."},
+  {id:27,no:26,title:"Fire Assistance System for Assault Rifle",service:"Indian Army",cat:"Small Hardware",domains:["AI / ML","Signal Processing"],desc:"Lightweight target-acquisition module with range-gated IR and AI aim-correction overlay for individual soldier assault rifles."},
+  {id:28,no:31,title:"RF Emulator for deception — naval",service:"Indian Navy",cat:"Small Hardware",domains:["Signal Processing","Cybersecurity"],desc:"Software-defined radio node generating spoofed RF signatures to deceive adversary emitter-location and targeting systems."},
+  {id:29,no:33,title:"Control and monitoring unit for MiG-29K aircraft engine",service:"Indian Navy",cat:"Small Hardware",domains:["IoT / Monitoring","Signal Processing"],desc:"Embedded FADEC-adjacent monitor logging engine health parameters in real time with fault-tree diagnostics and maintenance alerts."},
+  {id:30,no:39,title:"Universal digital gauge — firing pin efficiency, torpedo tubes & gun mounts",service:"Indian Navy",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"Miniature pressure/piezo sensing module logging firing pin strike energy across weapon systems with centralised health dashboard."},
+  {id:31,no:42,title:"Non-Destructive Testing for weld joints in afloat condition",service:"Indian Navy",cat:"Small Hardware",domains:["Signal Processing","IoT / Monitoring"],desc:"Portable phased-array UT or eddy-current probe + AI defect-classification firmware capable of inspecting welds without drydocking."},
+  {id:32,no:45,title:"Doppler Velocity Log (DVL) — indigenous development",service:"Indian Navy",cat:"Small Hardware",domains:["Signal Processing"],desc:"Acoustic DVL unit with onboard ASIC/FPGA signal processing to provide precision bottom-track velocity data for submarine navigation."},
+  {id:33,no:49,title:"Universal fire sensor for MiG-29K aircraft engine",service:"Indian Navy",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"Multi-spectral (UV/IR) fire detection module with indigenous analog front-end certified for MiG-29K nacelle environments."},
+  {id:34,no:53,title:"UAS-borne NBC detection capabilities (modular)",service:"Indian Air Force",cat:"Small Hardware",domains:["IoT / Monitoring","Signal Processing"],desc:"Modular CBRN sensor pod (miniaturised spectrometer + particle counter) with drone-integration API transmitting threat geo-tags to ground."},
+  {id:35,no:58,title:"Drone-based calibration for MAFI navigational system",service:"Indian Air Force",cat:"Small Hardware",domains:["IoT / Monitoring","Signal Processing"],desc:"Calibration drone carrying precision reference transponder that auto-flies designated patterns to validate MAFI navigation aid accuracy."},
+  {id:36,no:60,title:"Next Generation Compact Universal Test Equipment (NGCUTE) for IAF ALMs",service:"Indian Air Force",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"Portable multi-protocol avionics tester replacing bulky legacy bench sets; covers ARINC 429/664, MIL-STD-1553 and discrete I/O."},
+  {id:37,no:63,title:"Integrated C-UAS system on existing vehicle",service:"Indian Air Force",cat:"Small Hardware",domains:["Signal Processing","AI / ML"],desc:"Retrofit counter-UAS kit (radar + EO/IR + RF jammer controller) packaged for installation on COTS military vehicles with minimal civil work."},
+  {id:38,no:71,title:"Manpack Tactical Air Navigation (TACAN) — indigenous",service:"Indian Air Force",cat:"Small Hardware",domains:["Signal Processing","Network / Comms"],desc:"Man-portable TACAN beacon with indigenous waveform generator and ruggedised enclosure for forward-deployed airfield operations."},
+  {id:39,no:72,title:"Indigenous Dense Wavelength Division Multiplexing (DWDM)",service:"Indian Air Force",cat:"Small Hardware",domains:["Network / Comms"],desc:"Indigenous DWDM transponder and mux/demux units for high-capacity airbase OFC backbones, replacing import-dependent equipment."},
+  {id:40,no:73,title:"Indigenous secure HDD with central management solution",service:"Indian Air Force",cat:"Small Hardware",domains:["Cybersecurity","IoT / Monitoring"],desc:"Hardware-encrypted storage device with remote wipe, geo-fencing lockout and centralised key-management console for classified data."},
+  {id:41,no:78,title:"Indigenised Integrated Bridge System (IBS)",service:"Indian Coast Guard",cat:"Small Hardware",domains:["Network / Comms","IoT / Monitoring"],desc:"ECDIS, radar, AIS, VDR and autopilot integrated on indigenous hardware; standardised API layer enables modular subsystem replacement."},
+  {id:42,no:79,title:"Indigenised Power Management System (PMS)",service:"Indian Coast Guard",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"Embedded PMS controller monitoring switchboard, generators and load feeders with load-shedding automation and maintenance alerts."},
+  {id:43,no:80,title:"Indigenous Fire Detection System (FDS) for ICG ships",service:"Indian Coast Guard",cat:"Small Hardware",domains:["IoT / Monitoring"],desc:"Multi-point addressable fire detection network with indigenous sensor nodes, panel firmware and integration to ship damage-control system."},
+  {id:44,no:81,title:"Indigenisation of Personal Locator Beacon (PLB)",service:"Indian Coast Guard",cat:"Small Hardware",domains:["IoT / Monitoring","Network / Comms"],desc:"406 MHz COSPAS-SARSAT PLB with indigenous RF front-end, GPS acquisition module and activation/self-test firmware."}
+];
+
+let activeCat="all";
+
+function getFiltered(){
+  const q=document.getElementById("search").value.toLowerCase();
+  const sv=document.getElementById("sel-service").value;
+  const dom=document.getElementById("sel-domain").value;
+  return DATA.filter(d=>{
+    if(activeCat!=="all"&&d.cat!==activeCat) return false;
+    if(sv&&d.service!==sv) return false;
+    if(dom&&!d.domains.includes(dom)) return false;
+    if(q&&!d.title.toLowerCase().includes(q)&&!d.desc.toLowerCase().includes(q)&&!d.service.toLowerCase().includes(q)) return false;
+    return true;
+  });
+}
+
+function render(){
+  const items=getFiltered();
+  const grid=document.getElementById("grid");
+  const empty=document.getElementById("empty");
+  grid.innerHTML="";
+  empty.style.display=items.length?"none":"block";
+  items.forEach(d=>{
+    const catCls=d.cat==="Software / AI"?"cat-ai":"cat-hw";
+    const svcCls=SVC_CLASS[d.service]||"svc-army";
+    const domBadges=d.domains.map(dom=>`<span class="badge ${DOM_CLASS[dom]||'tag-ai'}">${dom}</span>`).join(" ");
+    const card=document.createElement("div");
+    card.className="card";
+    card.style.cssText="background:#1a1d2e;border:1px solid #2d3748;border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:10px";
+    card.innerHTML=`
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
+        <span class="badge ${catCls}" style="flex-shrink:0;margin-top:1px">${d.cat}</span>
+        <span class="badge ${svcCls}" style="flex-shrink:0">${d.service.replace("Indian ","")}</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:6px">
+        <span style="font-size:11px;font-weight:600;color:#475569;min-width:20px">#${d.no}</span>
+        <span style="font-size:13px;font-weight:500;color:#f1f5f9;line-height:1.45">${d.title}</span>
+      </div>
+      <div style="font-size:12px;color:#64748b;line-height:1.6">${d.desc}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:2px">${domBadges}</div>`;
+    grid.appendChild(card);
+  });
+  updateStats(items);
+}
+
+function updateStats(items){
+  document.getElementById("cnt-ai").textContent=DATA.filter(d=>d.cat==="Software / AI").length;
+  document.getElementById("cnt-hw").textContent=DATA.filter(d=>d.cat==="Small Hardware").length;
+  document.getElementById("cnt-ag").textContent=[...new Set(items.map(d=>d.service))].length;
+  document.getElementById("cnt-show").textContent=items.length;
+}
+
+function resetFilters(){
+  document.getElementById("search").value="";
+  document.getElementById("sel-service").value="";
+  document.getElementById("sel-domain").value="";
+  activeCat="all";
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b.dataset.cat==="all"));
+  render();
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    activeCat=btn.dataset.cat;
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b===btn));
+    render();
+  });
+});
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("sel-service").addEventListener("change",render);
+document.getElementById("sel-domain").addEventListener("change",render);
+
+render();
+</script>
+</body>
+</html>
